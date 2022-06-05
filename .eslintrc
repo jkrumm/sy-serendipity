@@ -1,0 +1,33 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "codeFrame": false
+  },
+  "extends": [
+    "airbnb",
+    "prettier"
+  ],
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "ignorePatterns": ["gatsby-config.js", ".public/*", "postcss.config.js"],
+  "rules": {
+    "max-len": [
+      "warn",
+      {
+        "code": 200
+      }
+    ],
+    "react/prefer-stateless-function":0,
+    "react/jsx-filename-extension": [
+      "off"
+    ],
+    "react/prop-types": 0,
+    "no-return-assign": [
+      "off"
+    ]
+  }
+}

@@ -1,27 +1,28 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import get from 'lodash/get'
+import React from 'react';
+import { graphql } from 'gatsby';
+import get from 'lodash/get';
 
-import Seo from '../components/seo'
-import Layout from '../components/layout'
-import Hero from '../components/hero'
-import ArticlePreview from '../components/article-preview'
+import Seo from '../layout/seo';
+import Layout from '../layout/layout';
+import Hero from '../components/hero';
+import ArticlePreview from '../components/article-preview';
 
 class BlogIndex extends React.Component {
   render() {
-    const posts = get(this, 'props.data.allContentfulBlogPost.nodes')
+    const { location } = this.props;
+    const posts = get(this, 'props.data.allContentfulBlogPost.nodes');
 
     return (
-      <Layout location={this.props.location}>
+      <Layout location={location}>
         <Seo title="Blog" />
         <Hero title="Blog" />
         <ArticlePreview posts={posts} />
       </Layout>
-    )
+    );
   }
 }
 
-export default BlogIndex
+export default BlogIndex;
 
 export const pageQuery = graphql`
   query BlogIndexQuery {
@@ -32,12 +33,7 @@ export const pageQuery = graphql`
         publishDate(formatString: "MMMM Do, YYYY")
         tags
         heroImage {
-          gatsbyImageData(
-            layout: FULL_WIDTH
-            placeholder: BLURRED
-            width: 424
-            height: 212
-          )
+          gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, width: 424, height: 212)
         }
         description {
           raw
@@ -45,4 +41,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

@@ -1,29 +1,28 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
-import get from 'lodash/get'
-import { renderRichText } from 'gatsby-source-contentful/rich-text'
-import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
-import readingTime from 'reading-time'
+import React from 'react';
+import { graphql, Link } from 'gatsby';
+import get from 'lodash/get';
+import { renderRichText } from 'gatsby-source-contentful/rich-text';
+import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
+import readingTime from 'reading-time';
 
-import Seo from '../components/seo'
-import Layout from '../components/layout'
-import Hero from '../components/hero'
-import Tags from '../components/tags'
-import * as styles from './blog-post.module.css'
+import Seo from '../layout/seo';
+import Layout from '../layout/layout';
+import Hero from '../components/hero';
+import Tags from '../components/tags';
+import * as styles from './blog-post.module.css';
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = get(this.props, 'data.contentfulBlogPost')
-    const previous = get(this.props, 'data.previous')
-    const next = get(this.props, 'data.next')
-    const plainTextDescription = documentToPlainTextString(
-      JSON.parse(post.description.raw)
-    )
-    const plainTextBody = documentToPlainTextString(JSON.parse(post.body.raw))
-    const { minutes: timeToRead } = readingTime(plainTextBody)
+    const { location } = this.props;
+    const post = get(this.props, 'data.contentfulBlogPost');
+    const previous = get(this.props, 'data.previous');
+    const next = get(this.props, 'data.next');
+    const plainTextDescription = documentToPlainTextString(JSON.parse(post.description.raw));
+    const plainTextBody = documentToPlainTextString(JSON.parse(post.body.raw));
+    const { minutes: timeToRead } = readingTime(plainTextBody);
 
     return (
-      <Layout location={this.props.location}>
+      <Layout location={location}>
         <Seo
           title={post.title}
           description={plainTextDescription}
@@ -36,14 +35,11 @@ class BlogPostTemplate extends React.Component {
         />
         <div className={styles.container}>
           <span className={styles.meta}>
-            {post.author?.name} &middot;{' '}
-            <time dateTime={post.rawDate}>{post.publishDate}</time> –{' '}
-            {timeToRead} minute read
+            {post.author?.name} &middot;
+            <time dateTime={post.rawDate}>{post.publishDate}</time> – {timeToRead} minute read
           </span>
           <div className={styles.article}>
-            <div className={styles.body}>
-              {post.body?.raw && renderRichText(post.body)}
-            </div>
+            <div className={styles.body}>{post.body?.raw && renderRichText(post.body)}</div>
             <Tags tags={post.tags} />
             {(previous || next) && (
               <nav>
@@ -68,18 +64,14 @@ class BlogPostTemplate extends React.Component {
           </div>
         </div>
       </Layout>
-    )
+    );
   }
 }
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
-  query BlogPostBySlug(
-    $slug: String!
-    $previousPostSlug: String
-    $nextPostSlug: String
-  ) {
+  query BlogPostBySlug($slug: String!, $previousPostSlug: String, $nextPostSlug: String) {
     contentfulBlogPost(slug: { eq: $slug }) {
       slug
       title
@@ -111,4 +103,4 @@ export const pageQuery = graphql`
       title
     }
   }
-`
+`;
