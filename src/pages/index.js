@@ -86,9 +86,10 @@ class RootIndex extends React.Component {
                   </div>
                 </div>
                 <div className={styles.img}>
-                  <StaticImage
-                    alt="text-image-image"
-                    src="https://ik.imagekit.io/bgmwrkfoi/pexels-b-pixels-2258092_mKgtVaNG-.jpg"
+                  <img
+                    alt="sy-serendipity-top"
+                    width="400"
+                    src="https://ik.imagekit.io/bgmwrkfoi/Erste_Bilder/scale_345_9d288_TqbrTfPtq.jpg"
                   />
                 </div>
               </div>
@@ -98,7 +99,7 @@ class RootIndex extends React.Component {
                 <div className={styles.img}>
                   <StaticImage
                     alt="text-image-image"
-                    src="https://ik.imagekit.io/bgmwrkfoi/yacht-charter-30_Z3PJvQORi.jpeg"
+                    src="https://ik.imagekit.io/bgmwrkfoi/Erste_Bilder/scale_345_69f2d_BwquIQ4-4.jpg"
                   />
                 </div>
                 <div className={styles.text}>
@@ -129,9 +130,36 @@ class RootIndex extends React.Component {
               </div>
             </div>
           </section>
-          <section className={styles.video}>Blog</section>
-          <section className={styles.video}>Gallery</section>
-          <section className={styles.video}>Charter now</section>
+          <section>
+            <div className={styles.textImageThird}>
+              <div className={styles.content}>
+                <div className={styles.img}>
+                  <img
+                    alt="sy-serendipity-top"
+                    src="https://ik.imagekit.io/bgmwrkfoi/Erste_Bilder/scale_345_0aca2_BGTlui8la.jpg"
+                  />
+                  <img
+                    alt="sy-serendipity-top"
+                    src="https://ik.imagekit.io/bgmwrkfoi/Erste_Bilder/scale_345_fa4f3_eqe-voKBE.jpg"
+                  />
+                </div>
+                <div className={styles.text}>
+                  <div>
+                    <h2>Take a look inside</h2>
+                    <span>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet
+                      urna feugiat, varius quam quis, scelerisque odio. Pellentesque at feugiat
+                      lorem, ac fermentum velit. Phasellus commodo ornare sem, vel volutpat turpis
+                      congue nec. Pellentesque consequat elit bibendum fringilla rutrum.
+                    </span>
+                    <Link to="/gallery/">
+                      <button type="button">View Gallery</button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         </Container>
       </Layout>
     );

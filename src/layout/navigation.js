@@ -48,8 +48,8 @@ function Navigation() {
   });
 
   return (
-    <nav role="navigation" className={scroll > -50 ? 'navi scrolled' : 'navi'} aria-label="Main">
-      <div className={styles.container}>
+    <nav role="navigation" aria-label="Main">
+      <div className={`${styles.container}${scroll < -25 ? ' nav-scrolled' : ''}`}>
         <Link to="/" className={styles.logoLink}>
           {/* <span className={styles.logo} /> */}
           <h3 className={styles.navigationItem}>SY Serendipity</h3>
@@ -58,6 +58,11 @@ function Navigation() {
           <li className={styles.navigationItem}>
             <Link to="/" activeClassName="active">
               Home
+            </Link>
+          </li>
+          <li className={styles.navigationItem}>
+            <Link to="/gallery/" activeClassName="active">
+              Gallery
             </Link>
           </li>
           <li className={styles.navigationItem}>

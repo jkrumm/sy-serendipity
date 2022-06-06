@@ -1,0 +1,13 @@
+@import 'src/styling/variables.scss';
+
+.hero-small {
+  max-width: $size-max-width-pd;
+  padding: $layout-padding;
+  margin: 100px auto 0 auto;
+  border-bottom: 3px solid $dark;
+
+  h1 {
+    text-align: center;
+    font-size: 42px;
+  }
+}

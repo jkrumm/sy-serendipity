@@ -24,10 +24,12 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-helmet": "^6.1.0",
+    "react-photo-album": "^1.14.0",
     "react-slick": "^0.29.0",
     "reading-time": "^2.0.0-1",
     "sass": "^1.52.2",
-    "tailwindcss": "^3.0.24"
+    "tailwindcss": "^3.0.24",
+    "yet-another-react-lightbox": "^1.4.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

@@ -1,7 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import'src/styling/variables.scss';
+@import 'src/styling/variables.scss';
+@import '../styling/lightbox-styles';
 
 @font-face {
   font-family: 'AddingtonCF Regular';
@@ -67,7 +68,7 @@ html * {
 body {
   background: $background;
   color: $dark;
-  font-family:$font-brown-regular;
+  font-family: $font-brown-regular;
   font-size: 16px;
   font-weight: $body;
   line-height: $default;
@@ -81,7 +82,7 @@ section {
 }
 
 button {
-  display: inline-block;
+  display: block;
   padding: 10px 20px;
   border: 2px solid $dark;
   margin-top: 30px;
@@ -120,8 +121,8 @@ h2 {
 }
 
 h3 {
-   font-size: $text-2xl;
- }
+  font-size: $text-2xl;
+}
 
 a {
   color: currentColor;
@@ -176,4 +177,8 @@ code {
   max-width: $size-max-width;
   margin: 0 auto;
   padding: $space-2xl $size-gutter;
+}
+
+.nav-scrolled {
+  border-bottom: 3px solid $dark !important;
 }
