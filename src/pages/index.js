@@ -115,7 +115,7 @@ class RootIndex extends React.Component {
           </section>
           <section className={styles.crew}>
             <div className={styles.content}>
-              <h2>Meet the crew!</h2>
+              <h2>Meet the crew</h2>
               <div className={styles.members}>
                 {/* eslint-disable-next-line array-callback-return,react/jsx-props-no-spreading */}
                 {/* <Slider dots infinite speed="500" slidesToShow="3" slidesToScroll="3"> */}

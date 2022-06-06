@@ -4,8 +4,8 @@ import get from 'lodash/get';
 
 import Seo from '../layout/seo';
 import Layout from '../layout/layout';
-import Hero from '../components/hero';
 import ArticlePreview from '../components/article-preview';
+import HeroSmall from '../components/hero-small';
 
 class BlogIndex extends React.Component {
   render() {
@@ -15,7 +15,7 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={location}>
         <Seo title="Blog" />
-        <Hero title="Blog" />
+        <HeroSmall title="Blog" />
         <ArticlePreview posts={posts} />
       </Layout>
     );
