@@ -1,16 +1,37 @@
 import React from 'react';
-import { StaticImage } from 'gatsby-plugin-image';
 
 import * as styles from './hero.module.scss';
 
 function Hero() {
   return (
     <div className={styles.hero}>
-      <StaticImage
-        className={styles.image}
-        alt="heroTitle"
-        src="https://ik.imagekit.io/bgmwrkfoi/pexels-maahid-photos-5890136_2__7r42_gIJ7.jpg"
-      />
+      {/* <StaticImage */}
+      {/*   className={styles.image} */}
+      {/*   alt="heroTitle" */}
+      {/*   aling="left" */}
+      {/*   src="https://ik.imagekit.io/bgmwrkfoi/yacht-charter-30_Z3PJvQORi.jpeg" */}
+      {/* /> */}
+      <video
+        poster="https://media.wajer.com/content/images/home/212643/Wajer-Yachts-77-homepage_f9ccbd90f4f2acfc2a27d6de8c4570f2.jpg"
+        playsInline
+        autoPlay
+        muted
+        loop
+      >
+        <source
+          src="https://media.wajer.com/content/videos/home/EDITWEBSITE_HOME_V2_SMALL.mp4"
+          type="video/mp4"
+        />
+        <track default kind="captions" />
+        Sorry, your browser doesnt support embedded videos.
+      </video>
+      <div className={styles.header}>
+        <img
+          className={styles.logo}
+          alt="logo"
+          src="https://ik.imagekit.io/bgmwrkfoi/logo-serendipity_rByrYs-ck.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1654454047082"
+        />
+      </div>
     </div>
   );
 }

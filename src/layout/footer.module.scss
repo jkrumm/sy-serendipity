@@ -1,17 +1,24 @@
+@import'src/styling/variables.scss';
+
 .container {
-  border-top: 1px solid var(--border);
-  font-size: var(--text-sm);
-  margin-top: var(--space-2xl);
-  padding: var(--space-2xl) 0;
-  text-align: right;
+  color: $white;
+  border-top: 1px solid $border;
+  font-size: $text-sm;
+  min-height: 300px;
+  background-image: url('https://ik.imagekit.io/bgmwrkfoi/pexels-magda-ehlers-636353_Kptr7ooNp.jpg');
+  background-position: center bottom;
+  background-size: 100% auto;
+  max-width: $size-max-width-pd;
+  margin: 0 auto;
+  padding: $space-2xl $size-gutter;
 }
 
 .container a {
   border-bottom: 1.5px solid transparent;
-  font-weight: var(--medium);
+  font-weight: $medium;
 }
 
 .container a:hover {
-  border-bottom-color: var(--primary);
-  color: var(--primary);
+  border-bottom-color: $primary;
+  color: $primary;
 }

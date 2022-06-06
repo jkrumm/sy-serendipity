@@ -1,0 +1,23 @@
+@import 'src/styling/variables.scss';
+
+.text-image {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: block;
+
+  .content {
+    display: flex;
+  }
+
+  .text {
+    max-width: calc(50% - 50px);
+    margin-right: 50px;
+    display: inline-block;
+  }
+
+  .img {
+    max-width: 50%;
+    display: inline-block;
+  }
+
+}

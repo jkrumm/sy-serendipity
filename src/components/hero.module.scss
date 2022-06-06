@@ -1,34 +1,59 @@
+@import 'src/styling/variables.scss';
+
 .hero {
-  margin-top: -30px;
-  min-height: calc(100vh + 30px);
-  max-height: calc(100vh + 30px);
+  position: relative;
+  margin-top: 50px;
+  //min-height: calc(100vh);
+  //max-height: calc(100vh);
 }
 
 .image {
-  min-height: calc(100vh + 30px);
-  max-height: calc(100vh + 30px);
+  //min-height: calc(100vh + 30px);
+  //max-height: calc(100vh + 30px);
+  width: 100%;
+}
+
+video {
+  //left: 1px;
+  width: $size-max-width-pd;
 }
 
 .details {
-  background: var(--background);
+  background: $background;
   left: 0;
   max-width: 40rem;
   width: 85%;
-  padding: var(--space-2xl) var(--size-gutter) 0;
+  padding: $space-2xl $size-gutter 0;
   position: absolute;
 }
 
 .title {
   letter-spacing: -0.012em;
-  font-size: var(--text-title);
-  font-weight: var(--extrabold);
-  line-height: var(--solid);
-  margin: 0 0 var(--space-xl);
+  font-size: $text-title;
+  font-weight: $extrabold;
+  line-height: $solid;
+  margin: 0 0 $space-xl;
+}
+
+.header {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  z-index: 100;
+
+  .logo {
+    width: 400px;
+    height: 400px;
+    color: white;
+    -webkit-filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1);
+  }
 }
 
 .content {
-  font-size: var(--text-lead);
-  font-weight: var(--semibold);
+  font-size: $text-lead;
+  font-weight: $semibold;
   margin: 0;
 }
 

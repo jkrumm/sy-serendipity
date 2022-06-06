@@ -3,8 +3,8 @@ import React from 'react';
 import '../styling/variables.scss';
 import '../styling/global.scss';
 import Seo from './seo';
-import Navigation from './navigation';
 import Footer from './footer';
+import Navigation from './navigation';
 
 class Template extends React.Component {
   render() {

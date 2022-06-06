@@ -1,0 +1,98 @@
+@import 'src/styling/variables.scss';
+
+.meta {
+  font-family: $font-serif;
+  font-size: $text-lg;
+  font-style: italic;
+  margin: 0 auto 1em;
+  max-width: $size-max-width;
+  padding-bottom: $size-gutter;
+  padding-left: $size-gutter;
+  position: relative;
+  top: -1em;
+}
+
+.article {
+  display: grid;
+  font-size: $text-prose;
+  gap: $space-xl;
+  letter-spacing: $text-prose-tracking;
+  line-height: $loose;
+  padding: $size-gutter $size-gutter;
+}
+
+.body {
+  max-width: 48rem;
+}
+
+.article h2:first-of-type {
+  margin-top: 0;
+}
+
+.article a {
+  border-bottom: 1.5px solid currentColor;
+  font-weight: $medium;
+}
+
+.article a:hover {
+  border-bottom-color: transparent;
+  color: $primary;
+}
+
+.article p {
+  margin-bottom: 1.5em;
+  margin-top: 0;
+}
+
+.article h1,
+.article h2 {
+  font-size: $text-2xl;
+  margin-top: $space-3xl;
+}
+
+.article h3,
+.article h4,
+.article h5,
+.article h6 {
+  font-size: $text-prose;
+  font-weight: $semibold;
+  margin-bottom: 0.5em;
+  margin-top: 3em;
+}
+
+.article li {
+  margin-bottom: 0.5em;
+}
+
+.articleNavigation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: $size-max-width;
+    margin: 0 auto;
+  }
+
+  .article {
+    gap: $space-xl;
+  }
+}
+
+@media (min-width: 1024px) {
+  .article {
+    gap: $space-3xl;
+    margin: 0 $size-gutter 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+    width: $size-gutter;
+  }
+
+  .article ul {
+    padding-left: 0;
+  }
+}
