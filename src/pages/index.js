@@ -71,20 +71,6 @@ class RootIndex extends React.Component {
           <section>
             <div className={styles.textImage}>
               <div className={styles.content}>
-                <div className={styles.text}>
-                  <div>
-                    <h2>Welcome on board!</h2>
-                    <span>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet
-                      urna feugiat, varius quam quis, scelerisque odio. Pellentesque at feugiat
-                      lorem, ac fermentum velit. Phasellus commodo ornare sem, vel volutpat turpis
-                      congue nec. Pellentesque consequat elit bibendum fringilla rutrum.
-                    </span>
-                    <Link to="/">
-                      <button type="button">Charter now</button>
-                    </Link>
-                  </div>
-                </div>
                 <div className={styles.img}>
                   <img
                     alt="sy-serendipity-top"
@@ -92,16 +78,33 @@ class RootIndex extends React.Component {
                     src="https://ik.imagekit.io/bgmwrkfoi/Erste_Bilder/scale_345_9d288_TqbrTfPtq.jpg"
                   />
                 </div>
+                <div className={styles.text}>
+                  <div>
+                    <h2>Serendipity I. set sails. Now.</h2>
+                    <span>
+                      Some of the world’s most spectacular destinations are best experienced on the
+                      water. Enjoy an unrivalled sense of discovery, promise the highest level of
+                      exclusivity and luxury.
+                      <br />
+                      <br />
+                      For the epitome of adventure, or an elegant effortless family & friends trip,
+                      you discover astounding nature as well as cultural riches of port cities and
+                      remote archipelagos across the globe.
+                    </span>
+                    <div className="button-group">
+                      <Link to="/about/">
+                        <button type="button">View About</button>
+                      </Link>
+                      <Link to="/gallery/">
+                        <button type="button">View Gallery</button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div className={styles.textImageSecond}>
               <div className={styles.content}>
-                <div className={styles.img}>
-                  <StaticImage
-                    alt="text-image-image"
-                    src="https://ik.imagekit.io/bgmwrkfoi/Erste_Bilder/scale_345_69f2d_BwquIQ4-4.jpg"
-                  />
-                </div>
                 <div className={styles.text}>
                   <div>
                     <span>
@@ -109,6 +112,12 @@ class RootIndex extends React.Component {
                       urna feugiat, varius quam quis, scelerisque odio.
                     </span>
                   </div>
+                </div>
+                <div className={styles.img}>
+                  <StaticImage
+                    alt="text-image-image"
+                    src="https://ik.imagekit.io/bgmwrkfoi/Erste_Bilder/scale_345_69f2d_BwquIQ4-4.jpg"
+                  />
                 </div>
               </div>
             </div>

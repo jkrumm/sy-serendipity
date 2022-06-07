@@ -10,20 +10,21 @@
   }
 
   .text {
-    margin: 100px 80px 0 0;
+    max-width: calc(50% + 30px);
+    margin: 90px 0 0 80px;
     display: inline-block;
   }
 
   .img {
-    min-width: 380px;
-    max-width: calc(50% - 80px);
+    min-width: 370px;
+    max-width: calc(50% - 90px);
     display: inline-block;
   }
 }
 
 .text-image-second {
   max-width: 1100px;
-  margin: -30px auto 0 auto;
+  margin: -50px auto 0 auto;
   display: block;
 
   .content {
@@ -31,8 +32,8 @@
   }
 
   .text {
-    margin: 130px 0 0 110px;
-    max-width: calc(50% - 150px);
+    margin: 160px 100px 0px 25px;
+    max-width: calc(50% - 100px);
     display: inline-block;
     text-align: center;
     position: relative;
