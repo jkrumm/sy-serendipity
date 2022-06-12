@@ -118,7 +118,9 @@ h4,
 h5,
 h6 {
   color: $dark;
-  font-family: $font-brown-bold;
+  text-transform: uppercase;
+  //font-family: $font-brown-bold;
+  font-family: $font-rock-star;
   font-weight: $semibold;
   line-height: $dense;
 }

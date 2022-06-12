@@ -75,6 +75,11 @@ function Navigation() {
               Blog
             </Link>
           </li>
+          <li className={styles.navigationItem}>
+            <Link to="/blog/" activeClassName="active">
+              <button>Request Now</button>
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>

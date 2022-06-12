@@ -1,11 +1,11 @@
-@import'src/styling/variables.scss';
+@import 'src/styling/variables.scss';
 
 .container {
-  color: $white;
+  color: $dark;
   border-top: 1px solid $border;
   font-size: $text-sm;
   height: 300px;
-  background-image: url('https://ik.imagekit.io/bgmwrkfoi/pexels-magda-ehlers-636353_Kptr7ooNp.jpg');
+  //background-image: url('https://ik.imagekit.io/bgmwrkfoi/pexels-magda-ehlers-636353_Kptr7ooNp.jpg');
   background-position: center bottom;
   background-size: 100% auto;
   max-width: $size-max-width-pd;
@@ -51,9 +51,19 @@
     transform: translate(-50%, -50%);
     width: 300px;
     height: 300px;
-    color: white;
-    -webkit-filter: brightness(0) invert(1);
-    filter: brightness(0) invert(1);
+    //fill: #AB7C94;
+    //background-color: $dark;
+    //-webkit-filter: brightness(0) invert(1);
+    //filter: brightness(0) invert(1);
+
+    //&:after {
+    //  position: absolute; /* Positions psuedo element relative to .icon */
+    //  width: 100%; /* Same dimensions as .icon */
+    //  height: 100%;
+    //  content: ""; /* Allows psuedo element to show */
+    //  background: #EC008C; /* The color you want the icon to change to */
+    //  mix-blend-mode: multiply; /* Only apply color on top of white, use screen if icon is black */
+    //}
   }
 
   .copyright {

@@ -138,14 +138,8 @@ class RootIndex extends React.Component {
             <div className={styles.textImageThird}>
               <div className={styles.content}>
                 <div className={styles.img}>
-                  <img
-                    alt="sy-serendipity-top"
-                    src="https://ik.imagekit.io/bgmwrkfoi/Erste_Bilder/scale_345_0aca2_BGTlui8la.jpg"
-                  />
-                  <img
-                    alt="sy-serendipity-top"
-                    src="https://ik.imagekit.io/bgmwrkfoi/Erste_Bilder/scale_345_fa4f3_eqe-voKBE.jpg"
-                  />
+                  <img alt="sy-serendipity-top" src={getImg('inside-1', 420)} />
+                  <img alt="sy-serendipity-top" src={getImg('inside-15', 420)} />
                 </div>
                 <div className={styles.text}>
                   <div>
