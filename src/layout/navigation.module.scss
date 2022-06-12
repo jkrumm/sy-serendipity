@@ -4,12 +4,12 @@ nav {
   position: fixed;
   top: 0;
   width: 100vw;
-  z-index: 100;
   font-family: $font-rock-star;
   color: $dark;
+  z-index: 10000;
 
   .container {
-    left: -7px;
+    left: -8px;
     position: relative;
     display: flex;
     justify-content: space-between;

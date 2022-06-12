@@ -39,9 +39,26 @@ module.exports = {
   plugins: [
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sharp',
     'gatsby-plugin-image',
     'gatsby-plugin-postcss',
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`],
+          placeholder: `dominantColor`,
+          quality: 70,
+          breakpoints: [750, 1080, 1366, 1920],
+          backgroundColor: `transparent`,
+          tracedSVGOptions: {},
+          blurredOptions: {},
+          jpgOptions: {},
+          pngOptions: {},
+          webpOptions: {},
+          avifOptions: {},
+        },
+      },
+    },
     {
       resolve: 'gatsby-source-contentful',
       options: contentfulConfig,
@@ -57,3 +74,12 @@ module.exports = {
     },
   ],
 };
+
+// # query MyQuery {
+// #   contentfulAsset(title: {eq: "ship-1"}) {
+//   #       gatsbyImage(layout: FULL_WIDTH, width: 1700, height: 1000, quality: 80)
+//   #       height
+//   #       width
+//   #     }
+// # }
+//

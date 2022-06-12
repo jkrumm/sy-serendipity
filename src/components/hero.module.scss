@@ -7,6 +7,21 @@
   //max-height: calc(100vh);
 }
 
+.imageWrapper {
+  position: relative;
+
+  &:after {
+    content: '\A';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: black;
+    opacity: 0.3;
+  }
+}
+
 .image {
   //min-height: calc(100vh + 30px);
   //max-height: calc(100vh + 30px);

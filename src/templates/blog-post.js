@@ -26,7 +26,7 @@ class BlogPostTemplate extends React.Component {
         <Seo
           title={post.title}
           description={plainTextDescription}
-          image={`http:${post.heroImage.resize.src}`}
+          // image={`http:${post.heroImage.resize.src}`}
         />
         <HeroSmall title={post.title} />
         <section>
@@ -78,12 +78,6 @@ export const pageQuery = graphql`
       }
       publishDate(formatString: "MMMM Do, YYYY")
       rawDate: publishDate
-      heroImage {
-        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, width: 1280)
-        resize(height: 630, width: 1200) {
-          src
-        }
-      }
       body {
         raw
       }
@@ -102,3 +96,10 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+// heroImage {
+//   gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, width: 1280)
+//   resize(height: 630, width: 1200) {
+//     src
+//   }
+// }

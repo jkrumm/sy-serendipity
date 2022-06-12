@@ -1,11 +1,11 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import get from 'lodash/get';
-import { StaticImage } from 'gatsby-plugin-image';
 import Layout from '../layout/layout';
 import Hero from '../components/hero';
 import Container from '../layout/container';
 import * as styles from './index.module.scss';
+import { getImg } from '../util/get-image';
 
 // import ArticlePreview from '../components/article-preview'
 
@@ -15,6 +15,8 @@ class RootIndex extends React.Component {
     // console.log(JSON.stringify(this))
     // const posts = get(this, 'props.data.allContentfulBlogPost.nodes')
     const [home] = get(this, 'props.data.allContentfulHome.nodes');
+    // const ship11 = get(this, 'props.data.ship11.nodes.gatsbyImageData');
+
     // const [author] = get(this, 'props.data.allContentfulPerson.nodes')
 
     // const sliderSettings = {
@@ -25,7 +27,7 @@ class RootIndex extends React.Component {
     //   slidesToScroll: 3,
     // };
 
-    const url = 'https://ik.imagekit.io/bgmwrkfoi/tr:w-225';
+    const url = 'https://ik.imagekit.io/bgmwrkfoi/tr:w-250';
 
     const crew = [
       {
@@ -72,11 +74,7 @@ class RootIndex extends React.Component {
             <div className={styles.textImage}>
               <div className={styles.content}>
                 <div className={styles.img}>
-                  <img
-                    alt="sy-serendipity-top"
-                    width="400"
-                    src="https://ik.imagekit.io/bgmwrkfoi/Erste_Bilder/scale_345_9d288_TqbrTfPtq.jpg"
-                  />
+                  <img alt="sy-serendipity-top" width="400" src={getImg('ship-11', 400)} />
                 </div>
                 <div className={styles.text}>
                   <div>
@@ -114,10 +112,7 @@ class RootIndex extends React.Component {
                   </div>
                 </div>
                 <div className={styles.img}>
-                  <StaticImage
-                    alt="text-image-image"
-                    src="https://ik.imagekit.io/bgmwrkfoi/Erste_Bilder/scale_345_69f2d_BwquIQ4-4.jpg"
-                  />
+                  <img alt="text-image-image" src={getImg('ship-15', 525)} />
                 </div>
               </div>
             </div>
@@ -225,9 +220,18 @@ export const pageQuery = graphql`
       nodes {
         heroTitle
         heroSubtitle
-        heroImage {
-          gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED, width: 1180)
-        }
+      }
+    }
+    ship11: allContentfulAsset(filter: { title: { eq: "ship-11" } }) {
+      nodes {
+        gatsbyImage(height: 585, layout: FULL_WIDTH, width: 390, quality: 80)
+        gatsbyImageData
+      }
+    }
+    ship2: allContentfulAsset(filter: { title: { eq: "ship-2" } }) {
+      nodes {
+        gatsbyImage(height: 1000, layout: FULL_WIDTH, width: 1700, quality: 80)
+        gatsbyImageData
       }
     }
   }
