@@ -89,6 +89,7 @@ button {
   margin-top: 40px;
   border-radius: 5px;
   font-family: $font-brown-bold;
+  transition: all 1s ease;
 
   &:hover {
     color: $primary;
@@ -126,13 +127,32 @@ h6 {
 }
 
 h1 {
-  text-transform: uppercase;
   font-size: $text-3xl;
 }
 
 h2 {
   font-size: $text-3xl;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+h1, h2 {
+  position: relative;
+  transition: all 1s ease;
+
+  &:after {
+    content: "";
+    width: 50px;
+    background-color: $dark;
+    height: 3px;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    transition: all 1s ease;
+  }
+
+  &:hover:after {
+    width: 90px;
+  }
 }
 
 h3 {
@@ -142,10 +162,20 @@ h3 {
 a {
   color: currentColor;
   text-decoration: none;
+  cursor: pointer;
+  transition: all 1s ease;
 }
 
 a:hover {
   color: $primary;
+
+  h1, h2 {
+    color: $primary;
+
+    &:after {
+      background-color: $primary;
+    }
+  }
 }
 
 a.active {

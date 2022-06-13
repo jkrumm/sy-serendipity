@@ -7,6 +7,7 @@ nav {
   font-family: $font-rock-star;
   color: $dark;
   z-index: 10000;
+  background: $white;
 
   .container {
     left: -8px;
@@ -94,6 +95,6 @@ nav {
 
   li:last-of-type a:hover {
     border-bottom: none;
-    margin-bottom: 1px;
+    margin-bottom: 0;
   }
 }

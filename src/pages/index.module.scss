@@ -32,7 +32,7 @@
   }
 
   .text {
-    margin: 160px 100px 0px 25px;
+    margin: 160px 100px 0 25px;
     max-width: calc(50% - 100px);
     display: inline-block;
     text-align: center;
@@ -57,7 +57,7 @@
 }
 
 section.crew {
-  height: 640px;
+  height: 580px;
   background-position: center bottom;
   background-size: 100% auto;
   position: relative;
@@ -86,13 +86,17 @@ section.crew {
 
     h2 {
       color: $white;
+
+      &:after {
+        background-color: $white;
+      }
     }
 
     .members {
       display: flex;
       justify-content: space-between;
 
-      > div {
+      > a {
         padding: 15px;
         width: calc(25% - 25px);
         background: $white;
@@ -102,6 +106,10 @@ section.crew {
         &:hover {
           transform: scale(1.03);
         }
+
+        span {
+          color: $grey;
+        }
       }
 
       img {
@@ -110,7 +118,6 @@ section.crew {
     }
   }
 }
-
 
 
 .text-image-third {

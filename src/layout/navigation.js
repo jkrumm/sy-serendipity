@@ -66,17 +66,17 @@ function Navigation() {
             </Link>
           </li>
           <li className={styles.navigationItem}>
+            <Link to="/crew/" activeClassName="active">
+              Crew
+            </Link>
+          </li>
+          <li className={styles.navigationItem}>
             <Link to="/gallery/" activeClassName="active">
               Gallery
             </Link>
           </li>
           <li className={styles.navigationItem}>
-            <Link to="/blog/" activeClassName="active">
-              Blog
-            </Link>
-          </li>
-          <li className={styles.navigationItem}>
-            <Link to="/blog/" activeClassName="active">
+            <Link to="/contact/" activeClassName="active">
               <button>Request Now</button>
             </Link>
           </li>

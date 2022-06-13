@@ -27,23 +27,23 @@ class RootIndex extends React.Component {
     //   slidesToScroll: 3,
     // };
 
-    const url = 'https://ik.imagekit.io/bgmwrkfoi/tr:w-250';
+    // const url = 'https://ik.imagekit.io/bgmwrkfoi/tr:w-250';
 
     const crew = [
       {
-        name: 'Lorem Ipsum',
+        name: 'Lars',
         title: 'Captain',
-        img: `${url}/pexels-yaroslav-shuraev-8916852_AthAIIh9q.jpg`,
+        img: getImg('crew-2', 250),
       },
       {
-        name: 'Lorem Ipsum',
+        name: 'Kerry',
         title: 'Captain',
-        img: `${url}/pexels-cottonbro-4911148_tP1ocsiDL.jpg`,
+        img: getImg('crew-1', 250),
       },
       {
-        name: 'Lorem Ipsum',
+        name: 'Lars',
         title: 'Captain',
-        img: `${url}/pexels-cottonbro-5416484_ebwlIYqwG.jpg`,
+        img: getImg('crew-2', 250),
       },
       // {
       //   name: 'Lorem Ipsum',
@@ -56,9 +56,9 @@ class RootIndex extends React.Component {
       //   img: 'https://ik.imagekit.io/bgmwrkfoi/pexels-cottonbro-4934601_gteTeSivc.jpg',
       // },
       {
-        name: 'Lorem Ipsum',
+        name: 'Kerry',
         title: 'Captain',
-        img: `${url}/pexels-cottonbro-4910960_8rc4FN-5x5.jpg`,
+        img: getImg('crew-1', 250),
       },
     ];
 
@@ -78,7 +78,9 @@ class RootIndex extends React.Component {
                 </div>
                 <div className={styles.text}>
                   <div>
-                    <h2>Serendipity I. set sails. Now.</h2>
+                    <Link to="/about/">
+                      <h2>Serendipity I. set sails. Now.</h2>
+                    </Link>
                     <span>
                       Some of the world’s most spectacular destinations are best experienced on the
                       water. Enjoy an unrivalled sense of discovery, promise the highest level of
@@ -119,16 +121,18 @@ class RootIndex extends React.Component {
           </section>
           <section className={styles.crew}>
             <div className={styles.content}>
-              <h2>Meet the crew</h2>
+              <Link to="/crew/">
+                <h2>Meet the crew</h2>
+              </Link>
               <div className={styles.members}>
                 {/* eslint-disable-next-line array-callback-return,react/jsx-props-no-spreading */}
                 {/* <Slider dots infinite speed="500" slidesToShow="3" slidesToScroll="3"> */}
                 {crew.map((item) => (
-                  <div key={item.name}>
+                  <Link to="/crew/" key={item.name}>
                     <img alt={item.name} src={item.img} width="300px" />
                     <h4>{item.name}</h4>
                     <span>{item.title}</span>
-                  </div>
+                  </Link>
                 ))}
                 {/* </Slider> */}
               </div>
@@ -143,7 +147,9 @@ class RootIndex extends React.Component {
                 </div>
                 <div className={styles.text}>
                   <div>
-                    <h2>Take a look inside</h2>
+                    <Link to="/gallery/">
+                      <h2>Take a look inside</h2>
+                    </Link>
                     <span>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet
                       urna feugiat, varius quam quis, scelerisque odio. Pellentesque at feugiat
