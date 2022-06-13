@@ -47,7 +47,7 @@ export default class BigSlider extends Component {
       <div className={styles.bigSlider}>
         <div
           className={styles.sliderNav}
-          style={settings.slidesToShow === 2 && { padding: '0 0 0 15px' }}
+          style={settings.slidesToShow === 2 ? { padding: '0 0 0 15px' } : { padding: '0' }}
         >
           <div>
             <span>
