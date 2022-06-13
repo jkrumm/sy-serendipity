@@ -7,6 +7,10 @@ export function getImg(name, width, height) {
   } else {
     url += `/tr:f-webp/`;
   }
-  url += `/all/${name}.jpeg`;
+  if (name.includes('technical')) {
+    url += `/all/${name}.jpg`;
+  } else {
+    url += `/all/${name}.jpeg`;
+  }
   return url;
 }

@@ -5,4 +5,47 @@
   padding: $space-2xl $size-gutter;
   display: block;
   margin: 0 auto;
+
+  section {
+    margin-top: 100px;
+  }
+}
+
+.technical {
+  display: flex;
+
+  img {
+    max-width: 500px;
+    margin-right: 80px;
+  }
+}
+
+.data {
+  width: 100%;
+
+  h3 {
+    margin-top: 40px;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  .item {
+    display: flex;
+
+    .subItem {
+      width: 30%;
+      margin-bottom: 50px;
+
+      .value {
+        font-size: $text-md;
+        display: block;
+      }
+
+      .metric {
+        font-size: $text-lg;
+      }
+    }
+  }
 }
