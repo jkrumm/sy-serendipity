@@ -5,4 +5,55 @@
   padding: $space-2xl $size-gutter;
   display: block;
   margin: 0 auto;
+
+  section {
+    margin-top: 100px;
+  }
+}
+
+.cruising {
+  display: flex;
+  justify-content: space-between;
+
+  > div:first-of-type {
+    text-align: right;
+    width: calc(100% - 542px);
+
+    h2:after {
+      left: auto;
+      right: 0;
+    }
+
+    > div {
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-between;
+
+      img {
+        width: calc(50% - 26.5px);
+      }
+    }
+  }
+
+  > div:last-of-type {
+    width: 490px;
+    -webkit-filter: brightness(1.15) contrast(0.9);
+    filter: brightness(1.15) contrast(0.9);
+  }
+}
+
+.accommodation {
+  > div:first-of-type {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+
+    span {
+      width: calc(50% - 25px);
+    }
+  }
+}
+
+.slideshow {
+
 }

@@ -76,6 +76,11 @@ function Navigation() {
             </Link>
           </li>
           <li className={styles.navigationItem}>
+            <Link to="/technical/" activeClassName="active">
+              Technical
+            </Link>
+          </li>
+          <li className={styles.navigationItem}>
             <Link to="/contact/" activeClassName="active">
               <button>Request Now</button>
             </Link>

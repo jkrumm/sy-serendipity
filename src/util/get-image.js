@@ -1,3 +1,7 @@
+function isNameJpg(name) {
+  return name.includes('technical') || name.includes('mediterranean') || name.includes('caribbean');
+}
+
 export function getImg(name, width, height) {
   let url = `https://ik.imagekit.io/bgmwrkfoi`;
   if (width) {
@@ -7,7 +11,7 @@ export function getImg(name, width, height) {
   } else {
     url += `/tr:f-webp/`;
   }
-  if (name.includes('technical')) {
+  if (isNameJpg(name)) {
     url += `/all/${name}.jpg`;
   } else {
     url += `/all/${name}.jpeg`;
@@ -17,7 +21,7 @@ export function getImg(name, width, height) {
 
 export function getImgCropped(name, width, height) {
   let url = `https://ik.imagekit.io/bgmwrkfoi/tr:w-${width},h-${height},c-maintain_ratio,f-webp/`;
-  if (name.includes('technical')) {
+  if (isNameJpg(name)) {
     url += `/all/${name}.jpg`;
   } else {
     url += `/all/${name}.jpeg`;

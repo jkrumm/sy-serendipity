@@ -14,8 +14,8 @@ export default class BigSlider extends Component {
   }
 
   state = {
-    slideNext: 0,
-    slideCurrent: 0,
+    slideNext: 1,
+    slideCurrent: 1,
   };
 
   next() {
@@ -26,7 +26,7 @@ export default class BigSlider extends Component {
   }
 
   render() {
-    const { images, width, height } = this.props;
+    const { images, width, height, addSettings } = this.props;
     const { slideNext, slideCurrent } = this.state;
 
     const settings = {
@@ -37,11 +37,18 @@ export default class BigSlider extends Component {
       slidesToScroll: 1,
       beforeChange: (current, next) => this.setState({ slideNext: next + 1 }),
       afterChange: (current) => this.setState({ slideCurrent: current + 1 }),
+      ...addSettings,
     };
+
+    const imageWidth = settings.slidesToShow === 2 ? width / 2 : width;
+    const imageHeight = settings.slidesToShow === 2 ? height / 2 : height;
 
     return (
       <div className={styles.bigSlider}>
-        <div className={styles.sliderNav}>
+        <div
+          className={styles.sliderNav}
+          style={settings.slidesToShow === 2 && { padding: '0 0 0 15px' }}
+        >
           <div>
             <span>
               {slideCurrent} / {images.length}
@@ -58,14 +65,14 @@ export default class BigSlider extends Component {
         </div>
         <Slider ref={(c) => (this.slider = c)} {...settings}>
           {images.map((image) => (
-            <div className={styles.slide}>
+            <div className={`slide ${settings.slidesToShow === 2 && 'smaller'}`}>
               <img
                 alt={image.name}
-                width={width}
-                height={height}
-                src={getImgCropped(image.name, width, height)}
+                width={imageWidth}
+                height={imageHeight}
+                src={getImgCropped(image.name, imageWidth, imageHeight)}
               />
-              <span>{image.description}</span>
+              {!!image.description && <span>{image.description}</span>}
             </div>
           ))}
         </Slider>
