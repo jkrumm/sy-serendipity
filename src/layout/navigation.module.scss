@@ -39,7 +39,7 @@ nav {
   .navigationItem a {
     font-family: $font-brown-bold;
     font-size: $text-lg;
-    border-bottom: 1.5px solid transparent;
+    border-bottom: 2px solid transparent;
     text-decoration: none;
   }
 
@@ -94,8 +94,14 @@ nav {
     padding: 5px 15px;
   }
 
-  li:last-of-type a:hover {
-    border-bottom: none;
-    margin-bottom: 0;
+  li:last-of-type {
+    a {
+      border-bottom: none;
+
+      &:hover {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+    }
   }
 }

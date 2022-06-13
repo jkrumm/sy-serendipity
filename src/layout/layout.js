@@ -1,5 +1,6 @@
 import React from 'react';
-
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import '../styling/variables.scss';
 import '../styling/global.scss';
 import Seo from './seo';

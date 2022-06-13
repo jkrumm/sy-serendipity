@@ -28,6 +28,7 @@
     "react-slick": "^0.29.0",
     "reading-time": "^2.0.0-1",
     "sass": "^1.52.2",
+    "slick-carousel": "^1.8.1",
     "tailwindcss": "^3.0.24",
     "yet-another-react-lightbox": "^1.4.0"
   },

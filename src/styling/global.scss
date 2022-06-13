@@ -89,7 +89,7 @@ button {
   margin-top: 40px;
   border-radius: 5px;
   font-family: $font-brown-bold;
-  transition: all 1s ease;
+  transition: all 0.5s ease;
 
   &:hover {
     color: $primary;
@@ -164,7 +164,7 @@ a {
   color: currentColor;
   text-decoration: none;
   cursor: pointer;
-  transition: all 1s ease;
+  transition: all 0.5s ease;
 }
 
 a:hover {

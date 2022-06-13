@@ -6,6 +6,7 @@ import HeroSmall from '../components/hero-small';
 
 import * as styles from './about.module.scss';
 import { getImg } from '../util/get-image';
+import BigSlider from '../components/big-slider';
 
 const data = [
   [
@@ -61,6 +62,17 @@ const dataMotor = [
   ],
 ];
 
+const sliderImages = [
+  {
+    name: 'technical-1',
+    description: 'Blueprint of the top floor and the deck',
+  },
+  {
+    name: 'technical-2',
+    description: 'Blueprint of the ground floor and the basement',
+  },
+];
+
 class AboutIndex extends React.Component {
   render() {
     const { location } = this.props;
@@ -107,6 +119,11 @@ class AboutIndex extends React.Component {
                   ))}
                 </div>
               ))}
+            </div>
+          </section>
+          <section>
+            <div className={styles.slideshow}>
+              <BigSlider images={sliderImages} width={1500} height={900} />
             </div>
           </section>
         </div>

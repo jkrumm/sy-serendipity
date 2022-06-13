@@ -126,7 +126,7 @@ class RootIndex extends React.Component {
               </Link>
               <div className={styles.members}>
                 {/* eslint-disable-next-line array-callback-return,react/jsx-props-no-spreading */}
-                {/* <Slider dots infinite speed="500" slidesToShow="3" slidesToScroll="3"> */}
+                {/* <BigSlider dots infinite speed="500" slidesToShow="3" slidesToScroll="3"> */}
                 {crew.map((item) => (
                   <Link to="/crew/" key={item.name}>
                     <img alt={item.name} src={item.img} width="300px" />
@@ -134,7 +134,7 @@ class RootIndex extends React.Component {
                     <span>{item.title}</span>
                   </Link>
                 ))}
-                {/* </Slider> */}
+                {/* </BigSlider> */}
               </div>
             </div>
           </section>
