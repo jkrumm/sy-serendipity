@@ -40,13 +40,13 @@
 
     &:after {
       position: absolute;
-      width: 70%;
+      width: 50%;
       left: 50%;
       transform: translateX(-50%);
       display: block;
       margin-top: 20px;
       content: '';
-      border-bottom: 2px solid $light;
+      border-bottom: 2px solid $dark;
     }
   }
 
@@ -127,6 +127,10 @@ section.crew {
 
   .content {
     display: flex;
+  }
+
+  button {
+    display: block;
   }
 
   .text {

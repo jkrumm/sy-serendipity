@@ -70,7 +70,7 @@ class GalleryIndex extends React.Component {
 
     return (
       <Layout location={location}>
-        <Seo title="Blog" />
+        <Seo title="Gallery" />
         <HeroSmall title="Gallery" />
         <div className={styles.galleryWrapper}>
           <Gallery />

@@ -31,6 +31,7 @@ export default class BigSlider extends Component {
 
     const settings = {
       dots: false,
+      arrows: false,
       infinite: true,
       speed: 500,
       slidesToShow: 1,

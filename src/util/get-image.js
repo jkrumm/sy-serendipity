@@ -1,5 +1,10 @@
 function isNameJpg(name) {
-  return name.includes('technical') || name.includes('mediterranean') || name.includes('caribbean');
+  return (
+    name.includes('technical') ||
+    name.includes('mediterranean') ||
+    name.includes('caribbean') ||
+    name.includes('sport')
+  );
 }
 
 export function getImg(name, width, height) {

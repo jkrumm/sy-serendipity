@@ -80,8 +80,8 @@ class TechnicalIndex extends React.Component {
 
     return (
       <Layout location={location}>
-        <Seo title="Blog" />
-        <HeroSmall title="About" />
+        <Seo title="Technical" />
+        <HeroSmall title="Technical" />
         <div className={styles.technicalWrapper}>
           <section className={styles.technical}>
             <img alt="blueprint" src={getImg('technical-3', 500)} width="500" />
@@ -121,8 +121,8 @@ class TechnicalIndex extends React.Component {
               ))}
             </div>
           </section>
-          <section>
-            <div className={styles.slideshow}>
+          <section className={styles.slideshow}>
+            <div>
               <BigSlider images={sliderImages} width={1500} height={900} />
             </div>
           </section>
