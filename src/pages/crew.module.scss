@@ -1,8 +1,54 @@
 @import 'src/styling/variables.scss';
 
 .crew-wrapper {
-  max-width: $size-max-width;
+  max-width: $size-max-width-slim;
   padding: $space-2xl $size-gutter;
   display: block;
   margin: 0 auto;
+
+  button {
+    display: block;
+  }
+}
+
+.left {
+  display: flex;
+
+  > div:first-of-type {
+    width: 500px;
+  }
+
+  > div:last-of-type {
+    margin-top: 100px;
+    width: calc(100% - 550px);
+    margin-left: 50px;
+  }
+}
+
+.right {
+  display: flex;
+  text-align: right;
+
+  h2:after {
+    left: auto;
+    right: 0;
+  }
+
+  > div:last-of-type {
+    width: 500px;
+  }
+
+  > div:first-of-type {
+    margin-top: 100px;
+    width: calc(100% - 550px);
+    margin-right: 50px;
+
+    button {
+      margin-left: auto;
+    }
+  }
+}
+
+.food {
+  margin-top: -100px;
 }

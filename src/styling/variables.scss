@@ -99,8 +99,9 @@ $text-prose-tracking: -0.011em;
 /* size */
 $size-gutter: $space-2xl;
 $size-logo: $space-2xl;
-$size-max-width: 80rem;
-$size-max-width-pd: $size-max-width - 2 * 1.5rem;
+$size-max-width: 1230px;
+$size-max-width-slim: 1000px;
+$size-max-width-pd: $size-max-width - 2 * 24px;
 
 @media (min-width: 480px) {
   :root {

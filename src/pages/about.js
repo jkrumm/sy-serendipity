@@ -43,7 +43,7 @@ class AboutIndex extends React.Component {
         <div className={styles.aboutWrapper}>
           <section className={styles.cruising}>
             <div>
-              <h2>Cruising</h2>
+              <h2>Tailor your trip</h2>
               <span>
                 If you focus on some of the most romantic destinations to explore by boat or want to
                 discover sacred spaces - the idyllic islands of the Adriatic, Caribbean,
@@ -61,7 +61,7 @@ class AboutIndex extends React.Component {
             </div>
           </section>
           <section className={styles.accommodation}>
-            <h2 className="center">Accommodation</h2>
+            <h2 className="center">slow mode</h2>
             <div>
               <span>
                 The yacht has been designed with relaxation in mind. Natural materials such as wood
@@ -100,7 +100,7 @@ class AboutIndex extends React.Component {
                 </div>
                 <div className={styles.text}>
                   <div>
-                    <h2>Activities</h2>
+                    <h2>Challenge yourself</h2>
                     <span>
                       Serendipity I is packed with a unbearable selection of water toys as well as
                       various amenities to spoil you.
@@ -147,8 +147,32 @@ class AboutIndex extends React.Component {
               />
             </div>
           </section>
+          <section className={styles.technical}>
+            <div>
+              <img alt="technical-4" width="500" src={getImg('technical-4', 500)} />
+            </div>
+            <div>
+              <h2>Blueprints and data</h2>
+              <span>
+                Serendipity I is a 45 m / 147′8″ luxury sailing yacht. She was built by Perini Navi
+                in 2011. With a beam of 9.73 m and a draft of 3.9 m, she has a steel hull and
+                aluminium superstructure. This adds up to a gross tonnage of 325 tons. She is
+                powered by engines of 1100 hp each giving her a maximum speed of 14 knots and a
+                cruising speed of 10.5 knots. The sailing yacht can accommodate 8 guests in 4 cabins
+                including a full-beam owner’s cabin aft, with a queen-size bed, walk-in closets, a
+                desk and a large en suite. There are also two convertible twins, a gym that can
+                convert to a fourth small double as needed and all cabins have en suite shower
+                facilities. The interior design is by Perini Navi and the exterior design by Ron
+                Holland Serendipity I is ABS classed and MCA compliant.
+              </span>
+
+              <Link to="/technical/">
+                <button type="button">View Technical Data</button>
+              </Link>
+            </div>
+          </section>
           <section className={styles.destinations}>
-            <h2 className="center">Destinations</h2>
+            <h2 className="center">Tailor your trip</h2>
             <div>
               <span>
                 A lush yacht holiday on Serendipity I promises freedom, privacy and luxury on the

@@ -156,9 +156,14 @@ class RootIndex extends React.Component {
                       lorem, ac fermentum velit. Phasellus commodo ornare sem, vel volutpat turpis
                       congue nec. Pellentesque consequat elit bibendum fringilla rutrum.
                     </span>
-                    <Link to="/gallery/">
-                      <button type="button">View Gallery</button>
-                    </Link>
+                    <div className="button-group">
+                      <Link to="/about/">
+                        <button type="button">View About</button>
+                      </Link>
+                      <Link to="/gallery/">
+                        <button type="button">View Gallery</button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
