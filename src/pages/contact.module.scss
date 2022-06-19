@@ -3,6 +3,66 @@
 .contact-wrapper {
   max-width: $size-max-width;
   padding: $space-2xl $size-gutter;
-  display: block;
   margin: 0 auto;
+
+  section {
+    display: flex;
+    justify-content: space-between;
+
+    > div:first-of-type {
+      span {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .logo {
+        -webkit-filter: invert(100%);
+        filter: invert(100%);
+        max-width: 220px;
+        margin-top: 50px;
+      }
+    }
+
+    > div:last-of-type {
+      width: 600px;
+      margin-left: 100px;
+    }
+  }
+}
+
+.contact-form {
+  > div {
+    display: flex;
+    justify-content: space-between;
+
+    > div {
+      flex: 1;
+
+      &:first-of-type {
+        margin-right: 20px;
+      }
+
+
+      &:last-of-type {
+        margin-left: 20px;
+      }
+    }
+  }
+
+  label, input, textarea, select {
+    display: block;
+    width: 100%;
+  }
+
+  input, textarea, select {
+    margin-top: 5px;
+    padding: 5px;
+    background-color: $white;
+    border: 1px solid $grey;
+    margin-bottom: 30px;
+
+    &.disabled {
+      background-color: lightgray;
+    }
+  }
 }

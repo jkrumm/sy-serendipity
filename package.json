@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@contentful/rich-text-plain-text-renderer": "^15.12.1",
+    "@formspree/react": "^2.2.5",
     "contentful-import": "^8.0.0",
     "gatsby": "^4.0.0",
     "gatsby-plugin-image": "^2.0.0",

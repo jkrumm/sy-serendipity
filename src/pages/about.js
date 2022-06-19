@@ -53,7 +53,7 @@ class AboutIndex extends React.Component {
               </span>
               <div>
                 <img alt="caribbean-20" src={getImgCropped('caribbean-20', 320, 400)} />
-                <img alt="mediterranean-1" src={getImgCropped('mediterranean-1', 320, 400)} />
+                <img alt="mediterranean-13" src={getImgCropped('mediterranean-13', 320, 400)} />
               </div>
             </div>
             <div>
