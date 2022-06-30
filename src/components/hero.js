@@ -23,11 +23,7 @@ function Hero() {
       {/*  Sorry, your browser doesnt support embedded videos.*/}
       {/*</video>*/}
       <div className={styles.header}>
-        <img
-          className={styles.logo}
-          alt="logo"
-          src="https://ik.imagekit.io/bgmwrkfoi/logo-serendipity_rByrYs-ck.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1654454047082"
-        />
+        <img className={styles.logo} alt="logo" src={getImg('logo-white.svg')} />
       </div>
     </div>
   );

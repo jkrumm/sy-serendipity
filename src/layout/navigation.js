@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useRef, useState } from 'react';
 import { Link } from 'gatsby';
 
 import * as styles from './navigation.module.scss';
+import { getImg } from '../util/get-image';
 
 const isBrowser = typeof window !== `undefined`;
 
@@ -52,7 +53,8 @@ function Navigation() {
       <div className={`${styles.container}${scroll < -25 ? ' nav-scrolled' : ''}`}>
         <Link to="/" className={styles.logoLink}>
           {/* <span className={styles.logo} /> */}
-          <h3 className={styles.navigationItem}>SY Serendipity</h3>
+          <img alt="logo" src={getImg('logo-blue-icon.png', 100)} />
+          <h3 className={styles.navigationItem}>Serendipity I</h3>
         </Link>
         <ul className={styles.navigation}>
           <li className={styles.navigationItem}>

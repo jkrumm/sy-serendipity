@@ -37,28 +37,13 @@ class RootIndex extends React.Component {
       },
       {
         name: 'Kerry',
-        title: 'Captain',
+        title: 'Chief Stewardess',
         img: getImg('crew-1', 250),
       },
       {
-        name: 'Lars',
-        title: 'Captain',
-        img: getImg('crew-2', 250),
-      },
-      // {
-      //   name: 'Lorem Ipsum',
-      //   title: 'Captain',
-      //   img: 'https://ik.imagekit.io/bgmwrkfoi/pexels-cottonbro-5370854_pW_okXTNe.jpg',
-      // },
-      // {
-      //   name: 'Lorem Ipsum',
-      //   title: 'Captain',
-      //   img: 'https://ik.imagekit.io/bgmwrkfoi/pexels-cottonbro-4934601_gteTeSivc.jpg',
-      // },
-      {
-        name: 'Kerry',
-        title: 'Captain',
-        img: getImg('crew-1', 250),
+        name: 'Denis',
+        title: 'Chef',
+        img: getImg('crew-3', 250),
       },
     ];
 
@@ -93,10 +78,10 @@ class RootIndex extends React.Component {
                     </span>
                     <div className="button-group">
                       <Link to="/about/">
-                        <button type="button">View About</button>
+                        <button type="button">About</button>
                       </Link>
                       <Link to="/gallery/">
-                        <button type="button">View Gallery</button>
+                        <button type="button">Gallery</button>
                       </Link>
                     </div>
                   </div>
@@ -108,8 +93,10 @@ class RootIndex extends React.Component {
                 <div className={styles.text}>
                   <div>
                     <span>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet
-                      urna feugiat, varius quam quis, scelerisque odio.
+                      Tell us about your passions, curiosities and motivations, and we will take you
+                      on a once-in-a-lifetime adventure, filled with priceless memories and
+                      unforgettable moments. We craft a perfectly tailored itinerary. Perhaps you
+                      have an experience in mind, but you’re unsure if it exists?
                     </span>
                   </div>
                 </div>
@@ -122,7 +109,7 @@ class RootIndex extends React.Component {
           <section className={styles.crew}>
             <div className={styles.content}>
               <Link to="/crew/">
-                <h2>Meet the crew</h2>
+                <h2 className="center">Meet the crew</h2>
               </Link>
               <div className={styles.members}>
                 {/* eslint-disable-next-line array-callback-return,react/jsx-props-no-spreading */}
@@ -151,17 +138,19 @@ class RootIndex extends React.Component {
                       <h2>Take a look inside</h2>
                     </Link>
                     <span>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet
-                      urna feugiat, varius quam quis, scelerisque odio. Pellentesque at feugiat
-                      lorem, ac fermentum velit. Phasellus commodo ornare sem, vel volutpat turpis
-                      congue nec. Pellentesque consequat elit bibendum fringilla rutrum.
+                      We promise the highest level of exclusivity and luxury on every voyage. The
+                      yacht has been designed with relaxation in mind. Natural materials such as
+                      wood, leather and organic cotton are gentle on the eye, so the real star – the
+                      natural beauty of surrounding nature can take centre stage. Spacious decks
+                      with daybeds, dining areas offer great vantage points to enjoy the spectacular
+                      scenery.
                     </span>
                     <div className="button-group">
                       <Link to="/about/">
-                        <button type="button">View About</button>
+                        <button type="button">About</button>
                       </Link>
                       <Link to="/gallery/">
-                        <button type="button">View Gallery</button>
+                        <button type="button">Gallery</button>
                       </Link>
                     </div>
                   </div>

@@ -18,6 +18,8 @@ export function getImg(name, width, height) {
   }
   if (isNameJpg(name)) {
     url += `/all/${name}.jpg`;
+  } else if (name.includes('.png') || name.includes('.svg')) {
+    url += `/all/${name}`;
   } else {
     url += `/all/${name}.jpeg`;
   }

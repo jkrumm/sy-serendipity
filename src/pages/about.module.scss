@@ -162,6 +162,10 @@
   display: flex;
   justify-content: space-between;
 
+  button {
+    display: block;
+  }
+
   > div:first-of-type {
     width: 500px;
   }

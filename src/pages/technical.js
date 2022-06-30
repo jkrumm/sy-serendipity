@@ -10,55 +10,55 @@ import BigSlider from '../components/big-slider';
 
 const data = [
   [
-    { value: 'Yard', metric: 'Perini Navi', imperial: 'Perini Navi' },
-    { value: 'Type', metric: 'Sailing Yacht', imperial: 'Sailing Yacht' },
+    { value: 'Yard', metric: 'Perini Navi' },
+    { value: 'Type', metric: 'Sailing Yacht' },
   ],
   [
-    { value: 'Guests', metric: '7', imperial: '7' },
-    { value: 'Crew', metric: '6', imperial: '6' },
-    { value: 'Cabins', metric: '4', imperial: '4' },
+    { value: 'Guests', metric: '8' },
+    { value: 'Crew', metric: '6' },
+    { value: 'Cabins', metric: '4' },
   ],
   [
-    { value: 'Length', metric: '45 m', imperial: '147′8″' },
-    { value: 'Beam', metric: '9.73 m', imperial: '32′0″' },
-    { value: 'Draft', metric: '3.9 m', imperial: '12′10″' },
+    { value: 'Length', metric: '45 m / 147′8″ ft' },
+    { value: 'Beam', metric: '9.73 m / 32′0″ ft' },
+    { value: 'Draft', metric: '3.9 m / 12′10″ ft' },
   ],
   [
-    { value: 'Year of build', metric: '2011', imperial: '2011' },
-    { value: 'Classification', metric: 'ABS', imperial: 'ABS' },
-    { value: 'Displacement', metric: 'Sailing Yacht', imperial: 'Sailing Yacht' },
+    { value: 'Year of build', metric: '2011' },
+    { value: 'Classification', metric: 'ABS' },
+    { value: 'Displacement', metric: 'Sailing Yacht' },
   ],
 ];
 
 const dataDesign = [
   [
-    { value: 'Gross tonage', metric: '325', imperial: '325' },
-    { value: 'Hull', metric: 'Steel', imperial: 'Steel' },
-    { value: 'Superstructure', metric: 'Aluminium', imperial: 'Aluminium' },
+    { value: 'Gross tonage', metric: '325' },
+    { value: 'Hull', metric: 'Steel' },
+    { value: 'Superstructure', metric: 'Aluminium' },
   ],
   [
-    { value: 'Decking', metric: 'Teak', imperial: 'Teak' },
-    { value: 'Decks', metric: '3', imperial: '3' },
+    { value: 'Decking', metric: 'Teak' },
+    { value: 'Decks', metric: '3' },
   ],
   [
-    { value: 'Interior designer', metric: 'Perini Navi', imperial: 'Perini Navi' },
-    { value: 'Exterior designer', metric: 'Ron Holland', imperial: 'Ron Holland' },
+    { value: 'Interior designer', metric: 'Perini Navi' },
+    { value: 'Exterior designer', metric: 'Ron Holland' },
   ],
 ];
 
 const dataMotor = [
   [
-    { value: 'Model', metric: 'C32', imperial: 'C32' },
-    { value: 'Engine power', metric: '1100 hp', imperial: '1100 hp' },
-    { value: 'Total power', metric: '1100 hp', imperial: '1100 hp' },
+    { value: 'Model', metric: 'C32' },
+    { value: 'Engine power', metric: '1100 hp' },
+    { value: 'Total power', metric: '1100 hp' },
   ],
   [
-    { value: 'Maximum Speed', metric: '14 knots', imperial: '14 knots' },
-    { value: 'Cruising speed', metric: '10,5 knots', imperial: '10,5 knots' },
+    { value: 'Maximum Speed', metric: '14 knots' },
+    { value: 'Cruising speed', metric: '10,5 knots' },
   ],
   [
-    { value: 'Tender', metric: 'Conrad Pischel', imperial: 'Conrad Pischel' },
-    { value: 'Water capacity', metric: '8200 l', imperial: '8200 l' },
+    { value: 'Tender', metric: 'Conrad Pischel' },
+    { value: 'Water capacity', metric: '8200 l' },
   ],
 ];
 

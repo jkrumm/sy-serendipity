@@ -47,7 +47,7 @@ class AboutIndex extends React.Component {
               <span>
                 If you focus on some of the most romantic destinations to explore by boat or want to
                 discover sacred spaces - the idyllic islands of the Adriatic, Caribbean,
-                Mediterranean and Indian Ocean await you in comfort and with style. The world most
+                Mediterranean and Indian Ocean welcome you in comfort and with style. The world most
                 exceptional places await you. Set sail to dive, snorkel or surf the most beat
                 beautiful islands in the world!
               </span>
@@ -167,7 +167,7 @@ class AboutIndex extends React.Component {
               </span>
 
               <Link to="/technical/">
-                <button type="button">View Technical Data</button>
+                <button type="button">Technical Data</button>
               </Link>
             </div>
           </section>

@@ -61,10 +61,6 @@ section.crew {
   background-position: center bottom;
   background-size: 100% auto;
   position: relative;
-  //border: 15px solid $white;
-  //background-image: url('https://ik.imagekit.io/bgmwrkfoi/pexels-magda-ehlers-636353_Kptr7ooNp.jpg');
-  //background-position: center bottom;
-  //background-size: 100% auto;
 
   &:before {
     content: "";
@@ -74,7 +70,7 @@ section.crew {
     top: 0;
     left: 0;
     z-index: -1;
-    background-position: center top;
+    background-position: center bottom;
     background-size: 100% auto;
     background-image: url("https://ik.imagekit.io/bgmwrkfoi/Tork-Website-Background_5OsWWSK3K.png");
     -webkit-filter: brightness(1.6) saturate(1.2);
@@ -82,10 +78,12 @@ section.crew {
   }
 
   .content {
-    padding: 60px;
+    padding: 50px 60px 60px 60px;
 
     h2 {
       color: $white;
+      margin-bottom: 60px;
+      text-shadow: 0 0 4px #000000;
 
       &:after {
         background-color: $white;
@@ -95,10 +93,12 @@ section.crew {
     .members {
       display: flex;
       justify-content: space-between;
+      max-width: 800px;
+      margin: 0 auto;
 
       > a {
         padding: 15px;
-        width: calc(25% - 25px);
+        width: calc(33% - 25px);
         background: $white;
         transform: scale(1);
         transition: 0.5s all ease;

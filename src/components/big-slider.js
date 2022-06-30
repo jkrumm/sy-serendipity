@@ -41,14 +41,14 @@ export default class BigSlider extends Component {
       ...addSettings,
     };
 
-    const imageWidth = settings.slidesToShow === 2 ? width / 2 : width;
-    const imageHeight = settings.slidesToShow === 2 ? height / 2 : height;
+    const imageWidth = settings.slidesToShow > 1 ? width / settings.slidesToShow : width;
+    const imageHeight = settings.slidesToShow > 1 ? height / settings.slidesToShow : height;
 
     return (
       <div className={styles.bigSlider}>
         <div
           className={styles.sliderNav}
-          style={settings.slidesToShow === 2 ? { padding: '0 0 0 15px' } : { padding: '0' }}
+          style={settings.slidesToShow > 1 ? { padding: '0 0 0 15px' } : { padding: '0' }}
         >
           <div>
             <span>
@@ -66,7 +66,7 @@ export default class BigSlider extends Component {
         </div>
         <Slider ref={(c) => (this.slider = c)} {...settings}>
           {images.map((image) => (
-            <div className={`slide ${settings.slidesToShow === 2 && 'smaller'}`}>
+            <div className={`slide ${settings.slidesToShow > 1 && 'smaller'}`}>
               <img
                 alt={image.name}
                 width={imageWidth}

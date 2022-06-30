@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import * as styles from './footer.module.scss';
 import Container from './container';
+import { getImg } from '../util/get-image';
 
 function Footer() {
   return (
@@ -23,11 +24,7 @@ function Footer() {
             </span>
           </div>
           <div>
-            <img
-              className={styles.logo}
-              alt="logo"
-              src="https://ik.imagekit.io/bgmwrkfoi/logo-serendipity_rByrYs-ck.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1654454047082"
-            />
+            <img className={styles.logo} alt="logo" src={getImg('logo-blue.svg')} />
             <span className={styles.copyright}>Ⓒ 2022 - SY Serendipity</span>
           </div>
           <div>
