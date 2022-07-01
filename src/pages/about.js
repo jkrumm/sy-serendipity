@@ -7,6 +7,7 @@ import HeroSmall from '../components/hero-small';
 import * as styles from './about.module.scss';
 import BigSlider from '../components/big-slider';
 import { getImg, getImgCropped } from '../util/get-image';
+import H2 from '../components/h2';
 
 function mapSliderImages() {
   const images = [];
@@ -20,16 +21,23 @@ function mapSliderImages() {
   return images;
 }
 
-// const sliderImages = [
-//   {
-//     name: 'technical-1',
-//     description: 'Blueprint of the top floor and the deck',
-//   },
-//   {
-//     name: 'technical-2',
-//     description: 'Blueprint of the ground floor and the basement',
-//   },
-// ];
+const crew = [
+  {
+    name: 'Lars',
+    title: 'Captain',
+    img: getImg('crew-2', 250),
+  },
+  {
+    name: 'Kerry',
+    title: 'Chief Stewardess',
+    img: getImg('crew-1', 250),
+  },
+  {
+    name: 'Denis',
+    title: 'Chef',
+    img: getImg('crew-3', 250),
+  },
+];
 
 class AboutIndex extends React.Component {
   render() {
@@ -43,7 +51,7 @@ class AboutIndex extends React.Component {
         <div className={styles.aboutWrapper}>
           <section className={styles.cruising}>
             <div>
-              <h2>Tailor your trip</h2>
+              <H2 title="Tailor your trip" subtitle="Cruising" />
               <span>
                 If you focus on some of the most romantic destinations to explore by boat or want to
                 discover sacred spaces - the idyllic islands of the Adriatic, Caribbean,
@@ -61,7 +69,7 @@ class AboutIndex extends React.Component {
             </div>
           </section>
           <section className={styles.accommodation}>
-            <h2 className="center">slow mode</h2>
+            <H2 title="Slow Mode" subtitle="Accommodation" addClassName={'center'} />
             <div>
               <span>
                 The yacht has been designed with relaxation in mind. Natural materials such as wood
@@ -69,6 +77,7 @@ class AboutIndex extends React.Component {
                 surrounding nature can take centre stage. Spacious decks with daybeds, dining areas
                 offer great vantage points to enjoy the spectacular scenery.
               </span>
+              <br />
               <span>
                 She also offers ample space for socialising, both inside and out. Her generous
                 saloon includes U-shaped sofas, formal dining, an office area and a chic corner bar.
@@ -100,7 +109,7 @@ class AboutIndex extends React.Component {
                 </div>
                 <div className={styles.text}>
                   <div>
-                    <h2>Challenge yourself</h2>
+                    <H2 title="Challenge yourself" subtitle="Activities" />
                     <span>
                       Serendipity I is packed with a unbearable selection of water toys as well as
                       various amenities to spoil you.
@@ -127,6 +136,7 @@ class AboutIndex extends React.Component {
               </div>
             </div>
             <div className={styles.threeImages}>
+              {/*TODO: remove*/}
               <img
                 alt="sy-serendipity-top"
                 width="400"
@@ -147,12 +157,31 @@ class AboutIndex extends React.Component {
               />
             </div>
           </section>
+          <section className={styles.crew}>
+            <div className={styles.content}>
+              <Link to="/crew/">
+                <h2 className="center">Meet the crew</h2>
+              </Link>
+              <div className={styles.members}>
+                {/* eslint-disable-next-line array-callback-return,react/jsx-props-no-spreading */}
+                {/* <BigSlider dots infinite speed="500" slidesToShow="3" slidesToScroll="3"> */}
+                {crew.map((item) => (
+                  <Link to="/crew/" key={item.name}>
+                    <img alt={item.name} src={item.img} width="300px" />
+                    <h4>{item.name}</h4>
+                    <span>{item.title}</span>
+                  </Link>
+                ))}
+                {/* </BigSlider> */}
+              </div>
+            </div>
+          </section>
           <section className={styles.technical}>
             <div>
               <img alt="technical-4" width="500" src={getImg('technical-4', 500)} />
             </div>
             <div>
-              <h2>Blueprints and data</h2>
+              <H2 title="Blueprints and data" subtitle="Technical" />
               <span>
                 Serendipity I is a 45 m / 147′8″ luxury sailing yacht. She was built by Perini Navi
                 in 2011. With a beam of 9.73 m and a draft of 3.9 m, she has a steel hull and
@@ -170,65 +199,6 @@ class AboutIndex extends React.Component {
                 <button type="button">Technical Data</button>
               </Link>
             </div>
-          </section>
-          <section className={styles.destinations}>
-            <h2 className="center">Tailor your trip</h2>
-            <div>
-              <span>
-                A lush yacht holiday on Serendipity I promises freedom, privacy and luxury on the
-                open ocean. Moor up in exclusive marinas. Hop between charming harbour towns.
-                Explore hidden coves, dive spots and archipelagos – all at your own pace.
-              </span>
-              <span>
-                Imagine golden sand, the sound of gentle rolling waves and a warm sea breeze. Add
-                attentive service and a stress-free itinerary planned down to the smallest detail
-                and you have arrived in your unparalled private trip.
-              </span>
-            </div>
-            <div className={styles.destinationsHeadlines}>
-              <div>
-                <h3>Mediterranean</h3>
-                <span>In the summer from May to November</span>
-                <span>Italy, Greece, South France</span>
-              </div>
-              <div>
-                <h3>Caribbean</h3>
-                <span>In the winter from November to April</span>
-                <span>Caribbean, Maldives, Seychelles</span>
-              </div>
-            </div>
-            <div className={styles.months}>
-              <div>May</div>
-              <div>June</div>
-              <div>Juli</div>
-              <div>September</div>
-              <div>October</div>
-              <div>November</div>
-              <div>December</div>
-              <div>January</div>
-              <div>February</div>
-              <div>March</div>
-              <div>April</div>
-            </div>
-            <div className={styles.destinationsImages}>
-              <img
-                alt="sy-serendipity-top"
-                width="600"
-                height="400"
-                src={getImgCropped('mediterranean-14', 600, 400)}
-              />
-              <img
-                alt="sy-serendipity-top"
-                width="600"
-                height="400"
-                src={getImgCropped('caribbean-31', 600, 400)}
-              />
-            </div>
-            <Link to="/contact/">
-              <button className="action">
-                <h2>REQUEST NOW</h2>
-              </button>
-            </Link>
           </section>
         </div>
       </Layout>

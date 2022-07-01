@@ -17,7 +17,8 @@ nav {
     max-width: $size-max-width-pd;
     align-items: center;
     margin: 0 auto;
-    padding: $space-2xl;
+    padding: 37px 35px 35px 35px;
+    transition: all ease 0.5s;
     background: $white;
     border-bottom: 3px solid rgba(255, 255, 255, 0);
   }
@@ -33,13 +34,13 @@ nav {
     display: inline-flex;
     align-items: center;
     flex-direction: row;
-  }
 
-  .navigationItem a {
-    font-family: $font-brown-bold;
-    font-size: $text-lg;
-    border-bottom: 2px solid transparent;
-    text-decoration: none;
+    a {
+      font-family: $font-brown-bold;
+      font-size: $text-lg;
+      border-bottom: 2px solid transparent;
+      text-decoration: none;
+    }
   }
 
   a:hover {
@@ -54,7 +55,8 @@ nav {
     font-family: $font-rock-star;
 
     h3 {
-      margin: 3px 0 0 60px;
+      transition: all ease 0.5s;
+      margin: 3px 0 0 73px;
     }
 
     &:hover {
@@ -68,9 +70,10 @@ nav {
 
     img {
       position: fixed;
-      top: 7px;
-      height: 70px;
+      top: 9px;
+      height: 90px;
       width: auto;
+      transition: all ease 0.5s;
     }
   }
 

@@ -9,6 +9,14 @@
   button {
     display: block;
   }
+
+  section {
+    margin: 120px auto;
+
+    &:first-of-type {
+      margin-top: 200px;
+    }
+  }
 }
 
 .intro {
@@ -18,27 +26,31 @@
 
   img {
     width: 570px;
-    margin: 0 auto 50px auto;
+    margin: 0 auto 40px auto;
   }
 }
 
 .left {
   display: flex;
+  max-width: 900px;
 
   > div:first-of-type {
-    width: 500px;
+    width: 350px;
   }
 
   > div:last-of-type {
     margin-top: 100px;
-    width: calc(100% - 550px);
+    width: calc(100% - 450px);
     margin-left: 50px;
+    margin-right: auto;
   }
 }
 
 .right {
   display: flex;
   text-align: right;
+  margin-left: auto;
+  max-width: 900px;
 
   h2:after {
     left: auto;
@@ -46,13 +58,12 @@
   }
 
   > div:last-of-type {
-    width: 500px;
+    width: 350px;
   }
 
   > div:first-of-type {
-    margin-top: 100px;
-    width: calc(100% - 550px);
-    margin-right: 50px;
+    width: calc(100% - 450px);
+    margin: 100px 50px 0 auto;
 
     button {
       margin-left: auto;
@@ -60,6 +71,20 @@
   }
 }
 
+.chef {
+  margin-bottom: 50px !important;
+}
+
 .food {
-  margin-top: -100px;
+  display: flex;
+  max-width: 900px;
+  margin: 0 auto 200px auto !important;
+
+  > img {
+    margin-right: 50px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
 }

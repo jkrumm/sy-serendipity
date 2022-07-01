@@ -6,17 +6,7 @@ import HeroSmall from '../components/hero-small';
 
 import * as styles from './crew.module.scss';
 import { getImg } from '../util/get-image';
-import BigSlider from '../components/big-slider';
-
-function mapSliderImages() {
-  const images = [];
-  for (let i = 1; i <= 5; i++) {
-    images.push({
-      name: `food-${i}`,
-    });
-  }
-  return images;
-}
+import H2 from '../components/h2';
 
 class CrewIndex extends React.Component {
   render() {
@@ -41,10 +31,10 @@ class CrewIndex extends React.Component {
           </section>
           <section className={styles.left}>
             <div>
-              <img alt="captain" width="500" src={getImg('crew-2', 500)} />
+              <img alt="captain" width="350" src={getImg('crew-2', 350)} />
             </div>
             <div>
-              <h2>Captain</h2>
+              <H2 title="Lars" subtitle="Captain" />
               <span>
                 Lars has more than 36 years of sailing experience, being passionate about boats and
                 sailing since he was a little boy. Racing yachts or dinghys or taking part in World
@@ -54,7 +44,7 @@ class CrewIndex extends React.Component {
           </section>
           <section className={styles.right}>
             <div>
-              <h2>Chief Stewardess</h2>
+              <H2 title="Kerry" subtitle="Chief Stewardess" />
               <span>
                 Kerry is highly motivated and has long years of experience in hospitality. She enyos
                 meeting people, planning itineraries or events but does also take care of your
@@ -62,15 +52,15 @@ class CrewIndex extends React.Component {
               </span>
             </div>
             <div>
-              <img alt="captain" width="500" src={getImg('crew-1', 500)} />
+              <img alt="captain" width="350" src={getImg('crew-1', 350)} />
             </div>
           </section>
-          <section className={styles.left}>
+          <section className={`${styles.left} ${styles.chef}`}>
             <div>
-              <img alt="chef" width="500" src={getImg('crew-3', 500)} />
+              <img alt="chef" width="350" src={getImg('crew-3', 350)} />
             </div>
             <div>
-              <h2>Chef</h2>
+              <H2 title="Denis" subtitle="Chef" />
               <span>
                 Your are most welcome if you are a high end foody! Denis, our energetic chef with
                 his blend of creativity, passion for food and exceptional cooking skills will source
@@ -80,19 +70,9 @@ class CrewIndex extends React.Component {
             </div>
           </section>
           <section className={styles.food}>
-            <BigSlider
-              images={mapSliderImages()}
-              width={850}
-              height={1300}
-              addSettings={{
-                slidesToShow: 3,
-                autoplay: true,
-                speed: 1000,
-                autoplaySpeed: 3500,
-                pauseOnHover: true,
-                cssEase: 'ease',
-              }}
-            />
+            <img alt="food-2" src={getImg('food-2', 300)} width={300} height={500} />
+            <img alt="food-1" src={getImg('food-1', 300)} width={300} height={500} />
+            <img alt="food-3" src={getImg('food-3', 300)} width={300} height={500} />
           </section>
         </div>
       </Layout>

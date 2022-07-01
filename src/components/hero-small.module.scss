@@ -1,6 +1,8 @@
 @import 'src/styling/variables.scss';
 
 .hero-small {
+  // TODO: remove
+  display: none;
   max-width: $size-max-width-pd;
   padding: $layout-padding;
   margin: 130px auto 0 auto;

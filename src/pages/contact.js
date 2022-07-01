@@ -40,7 +40,7 @@ function ContactForm() {
           <input id="numberOfPeople" type="number" name="numberOfPeople" />
         </div>
       </div>
-      <label htmlFor="message">Message</label>
+      <label htmlFor="message">Additional Comments</label>
       <textarea id="message" name="message" />
       <ValidationError prefix="Message" field="message" errors={state.errors} />
       <button type="submit" disabled={state.submitting}>

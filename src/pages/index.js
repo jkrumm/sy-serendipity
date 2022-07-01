@@ -5,7 +5,8 @@ import Layout from '../layout/layout';
 import Hero from '../components/hero';
 import Container from '../layout/container';
 import * as styles from './index.module.scss';
-import { getImg } from '../util/get-image';
+import { getImg, getImgCropped } from '../util/get-image';
+import H2 from '../components/h2';
 
 // import ArticlePreview from '../components/article-preview'
 
@@ -29,32 +30,14 @@ class RootIndex extends React.Component {
 
     // const url = 'https://ik.imagekit.io/bgmwrkfoi/tr:w-250';
 
-    const crew = [
-      {
-        name: 'Lars',
-        title: 'Captain',
-        img: getImg('crew-2', 250),
-      },
-      {
-        name: 'Kerry',
-        title: 'Chief Stewardess',
-        img: getImg('crew-1', 250),
-      },
-      {
-        name: 'Denis',
-        title: 'Chef',
-        img: getImg('crew-3', 250),
-      },
-    ];
-
     return (
       <Layout location={location}>
+        <Hero
+          heroTitle={home.heroTitle}
+          heroImage={home.heroImage}
+          heroSubtitle={home.heroSubtitle}
+        />
         <Container as="main">
-          <Hero
-            heroTitle={home.heroTitle}
-            heroImage={home.heroImage}
-            heroSubtitle={home.heroSubtitle}
-          />
           <section>
             <div className={styles.textImage}>
               <div className={styles.content}>
@@ -64,7 +47,7 @@ class RootIndex extends React.Component {
                 <div className={styles.text}>
                   <div>
                     <Link to="/about/">
-                      <h2>Serendipity I. set sails. Now.</h2>
+                      <H2 title="Serendipity I. set sails. Now." />
                     </Link>
                     <span>
                       Some of the world’s most spectacular destinations are best experienced on the
@@ -79,9 +62,6 @@ class RootIndex extends React.Component {
                     <div className="button-group">
                       <Link to="/about/">
                         <button type="button">About</button>
-                      </Link>
-                      <Link to="/gallery/">
-                        <button type="button">Gallery</button>
                       </Link>
                     </div>
                   </div>
@@ -106,25 +86,6 @@ class RootIndex extends React.Component {
               </div>
             </div>
           </section>
-          <section className={styles.crew}>
-            <div className={styles.content}>
-              <Link to="/crew/">
-                <h2 className="center">Meet the crew</h2>
-              </Link>
-              <div className={styles.members}>
-                {/* eslint-disable-next-line array-callback-return,react/jsx-props-no-spreading */}
-                {/* <BigSlider dots infinite speed="500" slidesToShow="3" slidesToScroll="3"> */}
-                {crew.map((item) => (
-                  <Link to="/crew/" key={item.name}>
-                    <img alt={item.name} src={item.img} width="300px" />
-                    <h4>{item.name}</h4>
-                    <span>{item.title}</span>
-                  </Link>
-                ))}
-                {/* </BigSlider> */}
-              </div>
-            </div>
-          </section>
           <section>
             <div className={styles.textImageThird}>
               <div className={styles.content}>
@@ -134,8 +95,8 @@ class RootIndex extends React.Component {
                 </div>
                 <div className={styles.text}>
                   <div>
-                    <Link to="/gallery/">
-                      <h2>Take a look inside</h2>
+                    <Link to="/about/">
+                      <H2 title="Take a look inside" />
                     </Link>
                     <span>
                       We promise the highest level of exclusivity and luxury on every voyage. The
@@ -149,14 +110,72 @@ class RootIndex extends React.Component {
                       <Link to="/about/">
                         <button type="button">About</button>
                       </Link>
-                      <Link to="/gallery/">
-                        <button type="button">Gallery</button>
-                      </Link>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </section>
+          <section className={styles.destinations}>
+            <H2 title="Tailor your trip" subtitle="Destinations" addClassName="center" />
+            <div>
+              <span>
+                A lush yacht holiday on Serendipity I promises freedom, privacy and luxury on the
+                open ocean. Moor up in exclusive marinas. Hop between charming harbour towns.
+                Explore hidden coves, dive spots and archipelagos – all at your own pace.
+              </span>
+              <br />
+              <span>
+                Imagine golden sand, the sound of gentle rolling waves and a warm sea breeze. Add
+                attentive service and a stress-free itinerary planned down to the smallest detail
+                and you have arrived in your unparalled private trip.
+              </span>
+            </div>
+            <div className={styles.destinationsHeadlines}>
+              <div>
+                <h3>Mediterranean</h3>
+                <span>From June to November</span>
+                <span>Italy, Greece, France or islands</span>
+              </div>
+              <div>
+                <h3>Caribbean</h3>
+                <span>From December to May</span>
+                <span>Caribbean, Maldives, Seychelles</span>
+              </div>
+            </div>
+            {/*TODO: remove*/}
+            <div className={styles.months}>
+              <div>May</div>
+              <div>June</div>
+              <div>Juli</div>
+              <div>September</div>
+              <div>October</div>
+              <div>November</div>
+              <div>December</div>
+              <div>January</div>
+              <div>February</div>
+              <div>March</div>
+              <div>April</div>
+            </div>
+            <div className={styles.destinationsImages}>
+              <img
+                alt="sy-serendipity-top"
+                width="600"
+                height="400"
+                src={getImgCropped('mediterranean-14', 600, 400)}
+              />
+              <img
+                alt="sy-serendipity-top"
+                width="600"
+                height="400"
+                src={getImgCropped('caribbean-31', 600, 400)}
+              />
+            </div>
+            <Link to="/contact/">
+              <button className="action">
+                <h2>REQUEST NOW</h2>
+              </button>
+            </Link>
           </section>
         </Container>
       </Layout>

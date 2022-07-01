@@ -51,7 +51,7 @@ function Navigation() {
   return (
     <nav role="navigation" aria-label="Main">
       <div className={`${styles.container}${scroll < -25 ? ' nav-scrolled' : ''}`}>
-        <Link to="/" className={styles.logoLink}>
+        <Link to="/" className={`${styles.logoLink}${scroll < -25 ? ' nav-scrolled-logo' : ''}`}>
           {/* <span className={styles.logo} /> */}
           <img alt="logo" src={getImg('logo-blue-icon.png', 100)} />
           <h3 className={styles.navigationItem}>Serendipity I</h3>
@@ -83,7 +83,7 @@ function Navigation() {
             </Link>
           </li>
           <li className={styles.navigationItem}>
-            <Link to="/contact/" activeClassName="active">
+            <Link to="/contact/">
               <button>Request Now</button>
             </Link>
           </li>
