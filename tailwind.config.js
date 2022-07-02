@@ -7,6 +7,9 @@ module.exports = {
       //   base: "'RockStar', Arial",
       //   sans: "'RockStar', Arial",
       // },
+      // colors: {
+      //   gray: '#6d6d6d',
+      // },
     },
   },
   plugins: [],

@@ -328,12 +328,52 @@ code {
   }
 }
 
-nav a.active {
-  border-bottom: 2px solid $dark !important;
+.main-navigation a.active {
+  font-family: $font-brown-bold;
+
+  &:after {
+    background-color: $dark;
+  }
 
   &:hover {
-    border-bottom: 2px solid $primary !important;
+    color: $primary;
+
+    &:after {
+      background-color: $primary !important;
+    }
   }
+}
+
+.main-navigation a.active-button button {
+  font-family: $font-brown-bold;
+
+  &:after, &:before {
+    border: 3px solid;
+  }
+}
+
+.gallery-tab-active {
+  font-family: $font-brown-bold;
+  color: $dark;
+}
+
+.gallery-tab {
+  font-family: $font-brown-regular;
+  color: $grey;
+}
+
+.gallery-active-border {
+  background-color: $dark;
+}
+
+.yarl__button {
+  &:after, &:before {
+    border: none !important;
+  }
+}
+
+.yarl__container {
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .slide.smaller img {

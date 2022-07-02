@@ -6,7 +6,7 @@ nav {
   width: 100vw;
   font-family: $font-rock-star;
   color: $dark;
-  z-index: 10000;
+  z-index: 9000;
   background: $white;
 
   .container {
@@ -36,23 +36,41 @@ nav {
     flex-direction: row;
 
     a {
-      font-family: $font-brown-bold;
+      font-family: $font-brown-regular;
       font-size: $text-lg;
       border-bottom: 2px solid transparent;
       text-decoration: none;
+      position: relative;
+      transition: all 0.5s ease;
+
+      &:after {
+        content: "";
+        width: 25px;
+        border-radius: 1px;
+        background-color: $white;
+        height: 2px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -3px;
+        transition: all 0.3s ease;
+      }
     }
   }
 
   a:hover {
-    border-bottom: 2px solid $primary;
     color: $primary;
+
+    &:after {
+      background-color: $primary;
+    }
   }
 
   .logoLink {
     text-transform: uppercase;
     font-weight: $medium;
     width: 300px;
-    font-family: $font-rock-star;
+    font-family: $font-brown-regular;
 
     h3 {
       transition: all ease 0.5s;
@@ -94,7 +112,7 @@ nav {
   li:last-of-type {
     button {
       margin: 0 0 0 10px;
-      padding: 5px 15px;
+      padding: 3px 15px 7px 15px;
       color: $dark;
       transition: color 0.5s ease;
 
@@ -111,8 +129,11 @@ nav {
     a {
       border-bottom: none;
 
+      &:after {
+        display: none;
+      }
+
       &:hover {
-        border-bottom: none;
         margin-bottom: 0;
       }
     }

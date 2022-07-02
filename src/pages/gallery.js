@@ -1,53 +1,27 @@
 import React, { useState } from 'react';
-import { graphql } from 'gatsby';
 
 import PhotoAlbum from 'react-photo-album';
 import { Lightbox } from 'yet-another-react-lightbox';
 import Seo from '../layout/seo';
 import Layout from '../layout/layout';
-import HeroSmall from '../components/hero-small';
 
 import * as styles from './gallery.module.scss';
 
 // eslint-disable-next-line import/no-unresolved
 import 'yet-another-react-lightbox/styles.css';
-
-const unsplashLink = (id, width, height) => `https://source.unsplash.com/${id}/${width}x${height}`;
-
-const unsplashPhotos = [
-  { id: 'Osq7UAVxIOI', width: 1080, height: 780 },
-  { id: 'Dhmn6ete6g8', width: 1080, height: 1620 },
-  { id: 'RkBTPqPEGDo', width: 1080, height: 720 },
-  { id: 'Yizrl9N_eDA', width: 1080, height: 721 },
-  { id: 'KG3TyFi0iTU', width: 1080, height: 1620 },
-  { id: 'Jztmx9yqjBw', width: 1080, height: 607 },
-  { id: '-heLWtuAN3c', width: 1080, height: 608 },
-  { id: 'xOigCUcFdA8', width: 1080, height: 720 },
-  { id: '1azAjl8FTnU', width: 1080, height: 1549 },
-  { id: 'ALrCdq-ui_Q', width: 1080, height: 720 },
-  { id: 'twukN12EN7c', width: 1080, height: 694 },
-  { id: '9UjEyzA6pP4', width: 1080, height: 1620 },
-  { id: 'sEXGgun3ZiE', width: 1080, height: 720 },
-  { id: 'S-cdwrx-YuQ', width: 1080, height: 1440 },
-  { id: 'q-motCAvPBM', width: 1080, height: 1620 },
-  { id: 'Xn4L310ztMU', width: 1080, height: 810 },
-  { id: 'ls94iFAQerE', width: 1080, height: 1620 },
-  { id: 'X48pUOPKf7A', width: 1080, height: 160 },
-  { id: 'GbLS6YVXj0U', width: 1080, height: 810 },
-  { id: '9CRd1J1rEOM', width: 1080, height: 720 },
-  { id: 'xKhtkhc9HbQ', width: 1080, height: 1440 },
-];
+import { getImg } from '../util/get-image';
+import { images } from '../util/images';
 
 const breakpoints = [1080, 640, 384, 256, 128, 96, 64, 48];
 
-const photos = unsplashPhotos.map((photo) => ({
-  src: unsplashLink(photo.id, photo.width, photo.height),
+const photos = images.map((photo) => ({
+  src: getImg(photo.id, photo.width, photo.height),
   width: photo.width,
   height: photo.height,
   images: breakpoints.map((breakpoint) => {
     const height = Math.round((photo.height / photo.width) * breakpoint);
     return {
-      src: unsplashLink(photo.id, breakpoint, height),
+      src: getImg(photo.id, breakpoint, height),
       width: breakpoint,
       height,
     };
@@ -63,57 +37,123 @@ const slides = photos.map(({ src, width, height, images }) => ({
   })),
 }));
 
+const tabs = [
+  { name: 'Ship', key: 'ship' },
+  { name: 'Outside', key: 'outside' },
+  { name: 'Inside', key: 'inside' },
+  { name: 'Cuisine', key: 'food' },
+  { name: 'Technical', key: 'technical' },
+];
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
+
 class GalleryIndex extends React.Component {
+  state = { currentTab: 'ship', photosFiltered: [], slidesFiltered: [] };
+
+  componentDidMount() {
+    this.filterPhotos(this.state.currentTab);
+  }
+
+  filterPhotos(newTab) {
+    this.setState({
+      currentTab: newTab,
+      photosFiltered: photos.filter((item) => item.src.includes(newTab)),
+      slidesFiltered: slides.filter((item) => item.src.includes(newTab)),
+    });
+    console.log(this.state);
+  }
+
+  filterPhotosSelect(newTab) {
+    this.filterPhotos(tabs.find((item) => item.name === newTab).key);
+  }
+
   render() {
     const { location } = this.props;
-    // const posts = get(this, 'props.data.allContentfulBlogPost.nodes');
 
     return (
       <Layout location={location}>
         <Seo title="Gallery" />
-        <HeroSmall title="Gallery" />
         <div className={styles.galleryWrapper}>
-          <Gallery />
+          <section className={styles.gallery}>
+            <div className={styles.tabs}>
+              <div className="sm:hidden">
+                <label htmlFor="tabs" className="sr-only">
+                  Select a tab
+                </label>
+                <select
+                  onChange={(e) => this.filterPhotosSelect(e.target.value)}
+                  id="tabs"
+                  name="tabs"
+                  className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                  defaultValue={tabs.find((tab) => tab.key === this.state.currentTab).name}
+                >
+                  {tabs.map((tab) => (
+                    <option key={tab.name}>{tab.name}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="hidden sm:block">
+                <nav
+                  className="relative z-0  flex divide-x divide-gray-200 border"
+                  aria-label="Tabs"
+                >
+                  {tabs.map((tab) => (
+                    <div
+                      key={tab.name}
+                      onClick={() => this.filterPhotos(tab.key)}
+                      className={classNames(
+                        this.state.currentTab === tab.key ? 'gallery-tab-active' : 'gallery-tab',
+                        'group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center hover:bg-gray-50 focus:z-10',
+                      )}
+                      aria-current={tab.current ? 'page' : undefined}
+                    >
+                      <span>{tab.name}</span>
+                      <span
+                        aria-hidden="true"
+                        className={classNames(
+                          this.state.currentTab === tab.key
+                            ? 'gallery-active-border'
+                            : 'bg-transparent',
+                          'absolute inset-x-0 bottom-0 h-0.5',
+                        )}
+                      />
+                    </div>
+                  ))}
+                </nav>
+              </div>
+            </div>
+            <Gallery
+              photosFiltered={this.state.photosFiltered}
+              slidesFiltered={this.state.slidesFiltered}
+            />
+          </section>
         </div>
       </Layout>
     );
   }
 }
 
-function Gallery() {
+function Gallery({ photosFiltered, slidesFiltered }) {
   const [index, setIndex] = useState(-1);
   return (
     <>
       <PhotoAlbum
-        photos={photos}
+        photos={photosFiltered}
         layout="rows"
         targetRowHeight={250}
         onClick={(event, photo, newIndex) => setIndex(newIndex)}
       />
 
-      <Lightbox slides={slides} open={index >= 0} index={index} close={() => setIndex(-1)} />
+      <Lightbox
+        slides={slidesFiltered}
+        open={index >= 0}
+        index={index}
+        close={() => setIndex(-1)}
+      />
     </>
   );
 }
 
 export default GalleryIndex;
-
-export const pageQuery = graphql`
-  query GalleryIndexQuery {
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
-      nodes {
-        title
-        slug
-        publishDate(formatString: "MMMM Do, YYYY")
-        tags
-        description {
-          raw
-        }
-      }
-    }
-  }
-`;
-
-// heroImage {
-//   gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, width: 424, height: 212)
-// }

@@ -76,16 +76,15 @@ class AboutIndex extends React.Component {
                 and organic cotton are gentle on the eye, so the real star – the natural beauty of
                 surrounding nature can take centre stage. Spacious decks with daybeds, dining areas
                 offer great vantage points to enjoy the spectacular scenery.
-              </span>
-              <br />
-              <span>
+                <br />
+                <br />
                 She also offers ample space for socialising, both inside and out. Her generous
                 saloon includes U-shaped sofas, formal dining, an office area and a chic corner bar.
                 This space connects via sliding doors to the large al fresco dining and lounge area
                 in the aft cockpit.
               </span>
             </div>
-            <div className={styles.slideshow}>
+            <div>
               <BigSlider
                 images={mapSliderImages()}
                 width={1500}
@@ -187,12 +186,15 @@ class AboutIndex extends React.Component {
                 in 2011. With a beam of 9.73 m and a draft of 3.9 m, she has a steel hull and
                 aluminium superstructure. This adds up to a gross tonnage of 325 tons. She is
                 powered by engines of 1100 hp each giving her a maximum speed of 14 knots and a
-                cruising speed of 10.5 knots. The sailing yacht can accommodate 8 guests in 4 cabins
-                including a full-beam owner’s cabin aft, with a queen-size bed, walk-in closets, a
-                desk and a large en suite. There are also two convertible twins, a gym that can
-                convert to a fourth small double as needed and all cabins have en suite shower
-                facilities. The interior design is by Perini Navi and the exterior design by Ron
-                Holland Serendipity I is ABS classed and MCA compliant.
+                cruising speed of 10.5 knots.
+                <br />
+                <br />
+                The sailing yacht can accommodate 8 guests in 4 cabins including a full-beam owner’s
+                cabin aft, with a queen-size bed, walk-in closets, a desk and a large en suite.
+                There are also two convertible twins, a gym that can convert to a fourth small
+                double as needed and all cabins have en suite shower facilities. The interior design
+                is by Perini Navi and the exterior design by Ron Holland Serendipity I is ABS
+                classed and MCA compliant.
               </span>
 
               <Link to="/technical/">

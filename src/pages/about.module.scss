@@ -156,11 +156,6 @@
     max-width: 850px;
     text-align: center;
     margin: 50px auto;
-
-    span:first-of-type {
-      display: block;
-      margin-bottom: 10px;
-    }
   }
 }
 
@@ -186,11 +181,11 @@
   }
 
   .content {
-    padding: 50px 60px 60px 60px;
+    padding: 40px 60px 70px 60px;
 
     h2 {
       color: $white;
-      margin-bottom: 50px;
+      margin-bottom: 60px;
       text-shadow: 0 0 4px #000000;
 
       &:after {

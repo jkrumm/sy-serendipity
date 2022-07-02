@@ -123,9 +123,8 @@ class RootIndex extends React.Component {
                 A lush yacht holiday on Serendipity I promises freedom, privacy and luxury on the
                 open ocean. Moor up in exclusive marinas. Hop between charming harbour towns.
                 Explore hidden coves, dive spots and archipelagos – all at your own pace.
-              </span>
-              <br />
-              <span>
+                <br />
+                <br />
                 Imagine golden sand, the sound of gentle rolling waves and a warm sea breeze. Add
                 attentive service and a stress-free itinerary planned down to the smallest detail
                 and you have arrived in your unparalled private trip.
