@@ -5,6 +5,7 @@ import { Lightbox } from 'yet-another-react-lightbox';
 import Seo from '../layout/seo';
 import Layout from '../layout/layout';
 
+import '../styling/lightbox-styles.scss';
 import * as styles from './gallery.module.scss';
 
 // eslint-disable-next-line import/no-unresolved
