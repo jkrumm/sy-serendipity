@@ -17,10 +17,24 @@ nav.main-navigation {
     max-width: $size-max-width-pd;
     align-items: center;
     margin: 0 auto;
-    padding: 42px 35px 35px 35px;
+    padding: 42px 20px 35px 20px;
     transition: all ease 0.5s;
     background: $white;
-    border-bottom: 3px solid rgba(255, 255, 255, 0);
+    //border-bottom: 3px solid rgba(255, 255, 255, 0);
+
+    &:after {
+      content: "";
+      width: 100%;
+      border-radius: 1px;
+      background-color: transparent;
+      height: 3px;
+      z-index: 99;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -3px;
+      transition: all 0.3s ease;
+    }
   }
 
   .navigation {
@@ -88,7 +102,7 @@ nav.main-navigation {
 
     img {
       position: fixed;
-      top: 14px;
+      top: 10px;
       height: 90px;
       width: auto;
       transition: all ease 0.5s;

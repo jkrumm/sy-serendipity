@@ -123,8 +123,12 @@ button {
 }
 
 .nav-scrolled {
-  border-bottom: 3px solid $dark !important;
-  padding: $space-2xl !important;
+  //border-bottom: 3px solid $dark !important;
+  padding: 26px 20px 26px 20px !important;
+
+  &:after {
+    background-color: $dark !important;
+  }
 }
 
 .nav-scrolled-logo {
