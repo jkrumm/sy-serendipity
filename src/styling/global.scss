@@ -352,6 +352,10 @@ code {
   }
 }
 
+.footer a.active {
+  font-family: $font-brown-bold !important;
+}
+
 .gallery-tab-active {
   font-family: $font-brown-bold;
   color: $dark;

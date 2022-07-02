@@ -1,11 +1,10 @@
 import React from 'react';
 import { useForm, ValidationError } from '@formspree/react';
-import { graphql } from 'gatsby';
 import Seo from '../layout/seo';
 import Layout from '../layout/layout';
 import HeroSmall from '../components/hero-small';
 
-import * as styles from './contact.module.scss';
+import * as styles from './request.module.scss';
 
 function ContactForm() {
   const [state, handleSubmit] = useForm('xknyanvw');
@@ -50,10 +49,9 @@ function ContactForm() {
   );
 }
 
-class ContactIndex extends React.Component {
+class RequestIndex extends React.Component {
   render() {
     const { location } = this.props;
-    // const posts = get(this, 'props.data.allContentfulBlogPost.nodes');
 
     return (
       <Layout location={location}>
@@ -83,20 +81,4 @@ class ContactIndex extends React.Component {
   }
 }
 
-export default ContactIndex;
-
-export const pageQuery = graphql`
-  query ContactIndexQuery {
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
-      nodes {
-        title
-        slug
-        publishDate(formatString: "MMMM Do, YYYY")
-        tags
-        description {
-          raw
-        }
-      }
-    }
-  }
-`;
+export default RequestIndex;

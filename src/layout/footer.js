@@ -6,21 +6,29 @@ import { getImg } from '../util/get-image';
 
 function Footer() {
   return (
-    <footer className={styles.container}>
+    <footer className={`${styles.container} footer`}>
       <Container as="div">
         <div className={styles.flexbox}>
           <div>
             <span>
-              <Link to="/">Lorem Ipsum</Link>
+              <Link to="/" activeClassName="active">
+                Home
+              </Link>
             </span>
             <span>
-              <Link to="/">Lorem Ipsum</Link>
+              <Link to="/about/" activeClassName="active">
+                About
+              </Link>
             </span>
             <span>
-              <Link to="/">Lorem Ipsum</Link>
+              <Link to="/crew/" activeClassName="active">
+                Crew
+              </Link>
             </span>
             <span>
-              <Link to="/">Lorem Ipsum</Link>
+              <Link to="/gallery/" activeClassName="active">
+                Gallery
+              </Link>
             </span>
           </div>
           <div>
@@ -29,16 +37,24 @@ function Footer() {
           </div>
           <div>
             <span>
-              <Link to="/">Lorem Ipsum</Link>
+              <Link to="/request" activeClassName="active">
+                Request
+              </Link>
             </span>
             <span>
-              <Link to="/">Lorem Ipsum</Link>
+              <Link to="/technical/" activeClassName="active">
+                Technical
+              </Link>
             </span>
             <span>
-              <Link to="/">Lorem Ipsum</Link>
+              <Link to="#" activeClassName="active">
+                Legal Disclaimer
+              </Link>
             </span>
             <span>
-              <Link to="/">Lorem Ipsum</Link>
+              <Link to="#" activeClassName="active">
+                Privacy Policy
+              </Link>
             </span>
           </div>
         </div>

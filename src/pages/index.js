@@ -170,7 +170,7 @@ class RootIndex extends React.Component {
                 src={getImgCropped('caribbean-31', 600, 400)}
               />
             </div>
-            <Link to="/contact/">
+            <Link to="/request/">
               <button className="action">
                 <h2>REQUEST NOW</h2>
               </button>

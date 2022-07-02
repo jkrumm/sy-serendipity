@@ -199,6 +199,11 @@
       max-width: 800px;
       margin: 0 auto;
 
+      h4 {
+        font-size: 19px;
+        color: $dark;
+      }
+
       > a {
         padding: 15px;
         width: calc(33% - 25px);

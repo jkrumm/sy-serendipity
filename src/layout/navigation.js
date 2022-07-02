@@ -82,7 +82,7 @@ function Navigation() {
             </Link>
           </li>
           <li className={styles.navigationItem}>
-            <Link to="/contact/" activeClassName="active-button">
+            <Link to="/request/" activeClassName="active-button">
               <button>Request Now</button>
             </Link>
           </li>
