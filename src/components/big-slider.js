@@ -66,7 +66,7 @@ export default class BigSlider extends Component {
         </div>
         <Slider ref={(c) => (this.slider = c)} {...settings}>
           {images.map((image) => (
-            <div className={`slide ${settings.slidesToShow > 1 && 'smaller'}`}>
+            <div className={`slide ${settings.slidesToShow > 1 && 'smaller'}`} key={image.name}>
               <img
                 alt={image.name}
                 width={imageWidth}

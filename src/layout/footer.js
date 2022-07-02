@@ -32,8 +32,10 @@ function Footer() {
             </span>
           </div>
           <div>
-            <img className={styles.logo} alt="logo" src={getImg('logo-blue.svg')} />
-            <span className={styles.copyright}>Ⓒ 2022 - SY Serendipity</span>
+            <Link to="/">
+              <img className={styles.logo} alt="logo" src={getImg('logo-blue.svg')} />
+              <span className={styles.copyright}>Ⓒ 2022 - SY Serendipity</span>
+            </Link>
           </div>
           <div>
             <span>

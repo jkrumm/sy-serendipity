@@ -33,6 +33,10 @@
     width: calc(33% - 15px);
     position: relative;
 
+    &:nth-of-type(2) a:hover {
+      color: $dark;
+    }
+
     &:nth-of-type(3) {
       text-align: right;
     }

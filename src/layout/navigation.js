@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Link } from 'gatsby';
 
 import * as styles from './navigation.module.scss';
@@ -42,16 +42,37 @@ export const useScrollPosition = (effect, deps, element, useWindow, wait) => {
 };
 
 function Navigation() {
-  const [scroll, setScroll] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
+  const [isInit, setIsInit] = useState(true);
+  const [highest, setHighest] = useState(-9999999);
 
   useScrollPosition(({ currentPosition }) => {
-    setScroll(currentPosition.y);
+    if (currentPosition.y > highest) {
+      setHighest(currentPosition.y);
+    }
+
+    if (currentPosition.y > -25 && highest > -25) {
+      setScrolled(false);
+    } else if (!isInit) {
+      setScrolled(true);
+    }
   });
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsInit(false);
+      if (window.pageYOffset > 25) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    }, 550);
+  }, []);
 
   return (
     <nav role="navigation" aria-label="Main" className={`${styles.mainNavigation} main-navigation`}>
-      <div className={`${styles.container}${scroll < -25 ? ' nav-scrolled' : ''}`}>
-        <Link to="/" className={`${styles.logoLink}${scroll < -25 ? ' nav-scrolled-logo' : ''}`}>
+      <div className={`${styles.container}${scrolled ? ' nav-scrolled' : ''}`}>
+        <Link to="/" className={`${styles.logoLink}${scrolled ? ' nav-scrolled-logo' : ''}`}>
           <img alt="logo" src={getImg('logo-blue-icon.png', 100)} />
           <h3 className={styles.navigationItem}>Serendipity I</h3>
         </Link>
