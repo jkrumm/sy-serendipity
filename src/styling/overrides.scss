@@ -1,0 +1,197 @@
+@import 'src/styling/variables.scss';
+
+
+button {
+  box-sizing: border-box;
+  position: relative;
+  padding: 15px 25px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  font-size: 18px;
+  margin-top: 42px;
+  color: $dark;
+
+  &:after, &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 45%;
+    height: 35%;
+    border: 2px solid;
+    transition: all 0.6s ease;
+    border-radius: 2px;
+  }
+
+  &:after {
+    bottom: 0;
+    right: 0;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: $dark;
+    border-right-color: $dark;
+  }
+
+  &:before {
+    top: 0;
+    left: 0;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-top-color: $dark;
+    border-left-color: $dark;
+  }
+
+  &:hover {
+    color: $primary;
+  }
+
+  &:hover:after,
+  &:hover:before {
+    width: 100%;
+    height: 100%;
+  }
+
+
+  &:hover:after {
+    border-bottom-color: $primary;
+    border-right-color: $primary;
+  }
+
+  &:hover:before {
+    border-top-color: $primary;
+    border-left-color: $primary;
+  }
+
+  &.action {
+    display: block;
+    margin: 50px auto;
+    padding: 20px 30px;
+
+    h2 {
+      font-size: 28px;
+    }
+
+    &:after, &:before {
+      border: 3px solid;
+    }
+
+    &:after {
+      border-top-color: transparent;
+      border-left-color: transparent;
+    }
+
+    &:before {
+      border-bottom-color: transparent;
+      border-right-color: transparent;
+    }
+
+    &:hover {
+      h2 {
+        color: $primary !important;
+      }
+
+      &:hover:after {
+        border-bottom-color: $primary !important;
+        border-right-color: $primary !important;
+      }
+
+      &:hover:before {
+        border-top-color: $primary !important;
+        border-left-color: $primary !important;
+      }
+    }
+
+    h2 {
+      margin: 0;
+
+      &:after {
+        display: none;
+      }
+    }
+  }
+}
+
+.button-group {
+  width: 100%;
+  display: flex;
+
+  button {
+    display: inline-block;
+    margin-right: 60px;
+  }
+}
+
+.nav-scrolled {
+  border-bottom: 3px solid $dark !important;
+  padding: $space-2xl !important;
+}
+
+.nav-scrolled-logo {
+  h3 {
+    margin: 3px 0 0 60px !important;
+  }
+
+  img {
+    top: 7px !important;
+    height: 70px !important;
+  }
+}
+
+nav.main-navigation a.active {
+  font-family: $font-brown-bold !important;
+
+  &:after {
+    background-color: $dark !important;
+  }
+
+  &:hover {
+    color: $primary !important;
+
+    &:after {
+      background-color: $primary !important;
+    }
+  }
+}
+
+.main-navigation a.active-button button {
+  font-family: $font-brown-bold;
+
+  &:after, &:before {
+    border: 3px solid;
+  }
+}
+
+.footer a.active {
+  font-family: $font-brown-bold !important;
+}
+
+.gallery-tab-active {
+  font-family: $font-brown-bold;
+  color: $dark;
+  border-color: $dark !important;
+
+  &:hover {
+    color: $primary;
+    border-color: $primary !important;
+  }
+}
+
+.gallery-tab {
+  font-family: $font-brown-regular;
+  color: $grey;
+}
+
+.yarl__button {
+  &:after, &:before {
+    border: none !important;
+  }
+}
+
+.yarl__container {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.slide.smaller img {
+  padding: 0 10px;
+}

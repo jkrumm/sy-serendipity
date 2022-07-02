@@ -95,30 +95,17 @@ class GalleryIndex extends React.Component {
                 </select>
               </div>
               <div className="hidden sm:block">
-                <nav
-                  className="relative z-0  flex divide-x divide-gray-200 border"
-                  aria-label="Tabs"
-                >
+                <nav aria-label="Tabs">
                   {tabs.map((tab) => (
                     <div
                       key={tab.name}
                       onClick={() => this.filterPhotos(tab.key)}
                       className={classNames(
                         this.state.currentTab === tab.key ? 'gallery-tab-active' : 'gallery-tab',
-                        'group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center hover:bg-gray-50 focus:z-10',
                       )}
                       aria-current={tab.current ? 'page' : undefined}
                     >
                       <span>{tab.name}</span>
-                      <span
-                        aria-hidden="true"
-                        className={classNames(
-                          this.state.currentTab === tab.key
-                            ? 'gallery-active-border'
-                            : 'bg-transparent',
-                          'absolute inset-x-0 bottom-0 h-0.5',
-                        )}
-                      />
                     </div>
                   ))}
                 </nav>

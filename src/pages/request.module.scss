@@ -30,39 +30,59 @@
   }
 }
 
-.contact-form {
-  > div {
-    display: flex;
-    justify-content: space-between;
-
+.form {
+  .contact-form {
     > div {
-      flex: 1;
+      display: flex;
+      justify-content: space-between;
 
-      &:first-of-type {
-        margin-right: 20px;
+      > div {
+        flex: 1;
+
+        &:first-of-type {
+          margin-right: 20px;
+        }
+
+
+        &:last-of-type {
+          margin-left: 20px;
+        }
       }
+    }
 
+    label, input, textarea, select {
+      display: block;
+      width: 100%;
+    }
 
-      &:last-of-type {
-        margin-left: 20px;
+    input, textarea, select {
+      margin-top: 5px;
+      padding: 5px;
+      background-color: $white;
+      border: 1px solid $grey;
+      margin-bottom: 30px;
+
+      &.disabled {
+        background-color: lightgray;
       }
     }
   }
 
-  label, input, textarea, select {
-    display: block;
-    width: 100%;
+  button {
+    border: 2px solid $dark;
+    margin: 20px 0 40px 0;
+
+    &:before, &:after {
+      display: none;
+    }
   }
 
-  input, textarea, select {
-    margin-top: 5px;
-    padding: 5px;
-    background-color: $white;
-    border: 1px solid $grey;
-    margin-bottom: 30px;
-
-    &.disabled {
-      background-color: lightgray;
-    }
+  .success {
+    padding: 20px 30px;
+    border-radius: 3px;
+    background-color: rgb(5, 138, 85);
+    color: $white;
+    margin-top: 40px;
+    display: inline-block;
   }
 }

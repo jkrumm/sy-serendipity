@@ -49,7 +49,7 @@ function Navigation() {
   });
 
   return (
-    <nav role="navigation" aria-label="Main" className="main-navigation">
+    <nav role="navigation" aria-label="Main" className={`${styles.mainNavigation} main-navigation`}>
       <div className={`${styles.container}${scroll < -25 ? ' nav-scrolled' : ''}`}>
         <Link to="/" className={`${styles.logoLink}${scroll < -25 ? ' nav-scrolled-logo' : ''}`}>
           <img alt="logo" src={getImg('logo-blue-icon.png', 100)} />

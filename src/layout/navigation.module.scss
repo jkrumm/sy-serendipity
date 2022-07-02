@@ -1,6 +1,6 @@
 @import 'src/styling/variables.scss';
 
-nav {
+nav.main-navigation {
   position: fixed;
   top: 0;
   width: 100vw;
@@ -17,7 +17,7 @@ nav {
     max-width: $size-max-width-pd;
     align-items: center;
     margin: 0 auto;
-    padding: 37px 35px 35px 35px;
+    padding: 42px 35px 35px 35px;
     transition: all ease 0.5s;
     background: $white;
     border-bottom: 3px solid rgba(255, 255, 255, 0);
@@ -88,7 +88,7 @@ nav {
 
     img {
       position: fixed;
-      top: 9px;
+      top: 14px;
       height: 90px;
       width: auto;
       transition: all ease 0.5s;

@@ -12,40 +12,43 @@ function ContactForm() {
     return <p>Thanks for requesting!</p>;
   }
   return (
-    <form onSubmit={handleSubmit} className={styles.contactForm}>
-      <div>
+    <div className={styles.form}>
+      <form onSubmit={handleSubmit} className={styles.contactForm}>
         <div>
-          <label htmlFor="firstName">Firstname</label>
-          <input id="firstName" type="firstName" name="firstName" />
+          <div>
+            <label htmlFor="firstName">Firstname</label>
+            <input id="firstName" type="firstName" name="firstName" />
+          </div>
+          <div>
+            <label htmlFor="lastName">Lastname</label>
+            <input id="lastName" type="lastName" name="lastName" />
+          </div>
         </div>
+        <label htmlFor="email">Email Address</label>
+        <input id="email" type="email" name="email" />
+        <ValidationError prefix="Email" field="email" errors={state.errors} />
         <div>
-          <label htmlFor="lastName">Lastname</label>
-          <input id="lastName" type="lastName" name="lastName" />
+          <div>
+            <label htmlFor="destination">Destination</label>
+            <select name="destination" id="destination" disabled={true} className={styles.disabled}>
+              <option value="caribbean">Caribbean</option>
+              <option value="mediterranean">Mediterranean</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="numberOfPeople">Number of people</label>
+            <input id="numberOfPeople" type="number" name="numberOfPeople" />
+          </div>
         </div>
-      </div>
-      <label htmlFor="email">Email Address</label>
-      <input id="email" type="email" name="email" />
-      <ValidationError prefix="Email" field="email" errors={state.errors} />
-      <div>
-        <div>
-          <label htmlFor="destination">Destination</label>
-          <select name="destination" id="destination" disabled={true} className={styles.disabled}>
-            <option value="caribbean">Caribbean</option>
-            <option value="mediterranean">Mediterranean</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="numberOfPeople">Number of people</label>
-          <input id="numberOfPeople" type="number" name="numberOfPeople" />
-        </div>
-      </div>
-      <label htmlFor="message">Additional Comments</label>
-      <textarea id="message" name="message" />
-      <ValidationError prefix="Message" field="message" errors={state.errors} />
-      <button type="submit" disabled={state.submitting}>
-        Submit
-      </button>
-    </form>
+        <label htmlFor="message">Additional Comments</label>
+        <textarea id="message" name="message" />
+        <ValidationError prefix="Message" field="message" errors={state.errors} />
+        <button type="submit" disabled={state.submitting}>
+          Submit
+        </button>
+      </form>
+      {state.succeeded && <div className={styles.success}>Thanks for your request!</div>}
+    </div>
   );
 }
 

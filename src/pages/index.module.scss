@@ -129,6 +129,10 @@
     }
   }
 
+  a:hover h2 {
+    color: $dark;
+  }
+
   > .months {
     // TODO: remove
     // display: flex;

@@ -4,7 +4,10 @@ import Seo from '../layout/seo';
 import Layout from '../layout/layout';
 import HeroSmall from '../components/hero-small';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import * as styles from './technical.module.scss';
+
 import { getImg } from '../util/get-image';
 import BigSlider from '../components/big-slider';
 

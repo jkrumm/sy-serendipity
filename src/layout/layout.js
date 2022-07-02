@@ -1,8 +1,7 @@
 import React from 'react';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import '../styling/variables.scss';
+
 import '../styling/global.scss';
+import '../styling/overrides.scss';
 import Seo from './seo';
 import Footer from './footer';
 import Navigation from './navigation';
