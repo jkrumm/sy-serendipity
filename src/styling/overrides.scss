@@ -240,4 +240,8 @@ nav.main-navigation a.active {
     background-color: $white;
     border: 1px solid $grey;
   }
+
+  .react-tel-input input {
+    border-radius: 0;
+  }
 }

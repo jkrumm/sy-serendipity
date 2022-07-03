@@ -11,6 +11,7 @@ import 'react-phone-input-2/lib/style.css';
 import * as styles from './request.module.scss';
 import DateRange from 'react-date-range/dist/components/DateRange';
 import PhoneInput from 'react-phone-input-2';
+import { differenceInDays, getMonth } from 'date-fns';
 
 function ContactForm() {
   const [state, handleSubmit] = useForm('xknyanvw');
@@ -85,21 +86,37 @@ class RequestIndex extends React.Component {
   state = {
     dateRange: [{ startDate: null, endDate: new Date(''), key: 'selection' }],
   };
-  handleSelect(ranges) {
-    console.log(ranges);
-    // {
-    //   selection: {
-    //     startDate: [native Date Object],
-    //     endDate: [native Date Object],
-    //   }
-    // }
+
+  getDuration() {
+    if (this.state.dateRange[0].startDate === null) {
+      return '0';
+    }
+    const duration =
+      differenceInDays(this.state.dateRange[0].endDate, this.state.dateRange[0].startDate) + 1;
+
+    if (duration === 1) {
+      return '0';
+    }
+
+    return String(duration);
   }
+
+  getDestination() {
+    if (this.getDuration() === '0') {
+      return 'error';
+    }
+
+    console.log(getMonth(this.state.dateRange[0].startDate));
+
+    const month = getMonth(this.state.dateRange[0].startDate) + 1;
+
+    if (month >= 11 || month <= 5) {
+      return 'caribbeans';
+    }
+    return 'mediterranean sea';
+  }
+
   render() {
-    // const selectionRange = {
-    //   startDate: new Date(),
-    //   endDate: new Date(),
-    //   key: 'selection',
-    // };
     const { location } = this.props;
 
     return (
@@ -153,6 +170,13 @@ class RequestIndex extends React.Component {
               </span>
               <div className={styles.dateRange}>
                 <div>
+                  {this.getDuration() > 0 && (
+                    <span>
+                      Duration of {this.getDuration()} days in the {this.getDestination()}
+                    </span>
+                  )}
+                </div>
+                <div>
                   <div>
                     <span>Start Date</span>
                   </div>
@@ -162,7 +186,6 @@ class RequestIndex extends React.Component {
                 </div>
                 <DateRange
                   onChange={(item) => {
-                    console.log(item.selection);
                     this.setState({ dateRange: [item.selection] });
                   }}
                   showSelectionPreview={true}

@@ -59,6 +59,7 @@
 
 .rdrMonthAndYearPickers {
   font-weight: 600;
+  justify-content: space-evenly;
 }
 
 .rdrMonthAndYearPickers select {
@@ -83,14 +84,30 @@
 }
 
 .rdrMonthPicker, .rdrYearPicker {
-  margin: 0 5px
+  margin: 0 10px
+}
+
+.rdrMonthAndYearPickers .rdrMonthPicker {
+  width: 50%;
+
+  > select {
+    float: right;
+    margin-right: 10px;
+  }
+}
+
+.rdrMonthAndYearPickers .rdrYearPicker {
+  width: 50%;
+
+  > select {
+    margin-left: 10px;
+  }
 }
 
 .rdrNextPrevButton {
   display: block;
-  width: 24px;
-  height: 24px;
-  margin: 0 0.833em;
+  width: 26px;
+  height: 26px;
   padding: 0;
   border: 0;
   border-radius: 5px;
@@ -131,9 +148,21 @@
 
 .rdrMonth {
   background-color: $white;
-  padding: 0 0.833em 1.666em 0.833em;
+  padding: 0 25px 0 10px;
   width: 100%;
 }
+
+.rdrMonths {
+
+  > div:first-of-type {
+    padding-left: 0;
+  }
+
+  > div:last-of-type {
+    padding-right: 0;
+  }
+}
+
 
 .rdrMonth .rdrWeekDays {
   padding: 0;
