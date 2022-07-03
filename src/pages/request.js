@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import Seo from '../layout/seo';
 import Layout from '../layout/layout';
 import HeroSmall from '../components/hero-small';
 
+// eslint-disable-next-line import/no-unresolved
+import 'react-date-range/dist/styles.css'; // main style file
+import '../styling/date-range.scss'; // theme css file
+import 'react-phone-input-2/lib/style.css';
 import * as styles from './request.module.scss';
+import DateRange from 'react-date-range/dist/components/DateRange';
+import PhoneInput from 'react-phone-input-2';
 
 function ContactForm() {
   const [state, handleSubmit] = useForm('xknyanvw');
+  const [phoneEnabled, setPhoneEnabled] = useState(false);
+  const [phone, setPhone] = useState('');
   if (state.succeeded) {
     return <p>Thanks for requesting!</p>;
   }
@@ -24,25 +32,46 @@ function ContactForm() {
             <input id="lastName" type="lastName" name="lastName" />
           </div>
         </div>
-        <label htmlFor="email">Email Address</label>
-        <input id="email" type="email" name="email" />
-        <ValidationError prefix="Email" field="email" errors={state.errors} />
         <div>
           <div>
-            <label htmlFor="destination">Destination</label>
-            <select name="destination" id="destination" disabled={true} className={styles.disabled}>
-              <option value="caribbean">Caribbean</option>
-              <option value="mediterranean">Mediterranean</option>
-            </select>
+            <label htmlFor="email">Email Address</label>
+            <input id="email" type="email" name="email" />
+            <ValidationError prefix="Email" field="email" errors={state.errors} />
           </div>
           <div>
             <label htmlFor="numberOfPeople">Number of people</label>
             <input id="numberOfPeople" type="number" name="numberOfPeople" />
           </div>
         </div>
+        <div>
+          <div className={styles.toggle}>
+            <label
+              htmlFor="default-toggle"
+              className="inline-flex relative items-center cursor-pointer"
+            >
+              <input
+                type="checkbox"
+                checked={phoneEnabled}
+                id="default-toggle"
+                className="sr-only peer"
+                onChange={() => setPhoneEnabled(!phoneEnabled)}
+              />
+              <div className="w-11 h-6 peer-focus:outline-none  rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600" />
+              <span className="ml-3">Prefer to be contacted by Phone?</span>
+            </label>
+          </div>
+          <div className={`${phoneEnabled ? 'phone-shown' : 'phone-hidden'} phone-input`}>
+            <label htmlFor="phone">Telephone</label>
+            <PhoneInput country={'us'} onChange={setPhone} value={phone} />
+          </div>
+        </div>
         <label htmlFor="message">Additional Comments</label>
         <textarea id="message" name="message" />
         <ValidationError prefix="Message" field="message" errors={state.errors} />
+        <span className={styles.submitNotice}>
+          With submitting the form I allow to transfer my personal details so that my request can be
+          further processed.
+        </span>
         <button type="submit" disabled={state.submitting}>
           Submit
         </button>
@@ -53,7 +82,24 @@ function ContactForm() {
 }
 
 class RequestIndex extends React.Component {
+  state = {
+    dateRange: [{ startDate: null, endDate: new Date(''), key: 'selection' }],
+  };
+  handleSelect(ranges) {
+    console.log(ranges);
+    // {
+    //   selection: {
+    //     startDate: [native Date Object],
+    //     endDate: [native Date Object],
+    //   }
+    // }
+  }
   render() {
+    // const selectionRange = {
+    //   startDate: new Date(),
+    //   endDate: new Date(),
+    //   key: 'selection',
+    // };
     const { location } = this.props;
 
     return (
@@ -63,10 +109,27 @@ class RequestIndex extends React.Component {
         <div className={styles.contactWrapper}>
           <section>
             <div>
+              <img
+                className={styles.barbara}
+                alt="barbara-mueller"
+                src="https://www.oceanindependence.com/sites/default/files/images/person/Barbara-web.jpg"
+                width="130"
+              />
               <span>Barbara Mueller</span>
               <span>Senior Charter Broker</span>
               <span>OCEAN Independence Palma</span>
-              <span>Tel: +34 690 672 916</span>
+              <br />
+              <span>
+                Telephone:
+                <br />
+                +34 690 672 916
+              </span>
+              <br />
+              <span>
+                Languages Spoken:
+                <br />
+                English, German, Spanish
+              </span>
               <div className={styles.logo}>
                 <img
                   alt="logo"
@@ -75,6 +138,47 @@ class RequestIndex extends React.Component {
               </div>
             </div>
             <div>
+              <h2>Request your trip</h2>
+              <span>
+                Personally tailored, special requests are taken into account, professional booking
+                agents, no final booking, get in contact over phone or email ...
+              </span>
+              <br />
+              <br />
+              <span>
+                Between November and May the yacht is in the caribbeans and otherwise in the
+                mediterranean sea. Depending on your selected dates you are requesting a trip for
+                either regions. These dates vary from year to year. Of course special requests for a
+                desired location may be possible.
+              </span>
+              <div className={styles.dateRange}>
+                <div>
+                  <div>
+                    <span>Start Date</span>
+                  </div>
+                  <div>
+                    <span>End Date</span>
+                  </div>
+                </div>
+                <DateRange
+                  onChange={(item) => {
+                    console.log(item.selection);
+                    this.setState({ dateRange: [item.selection] });
+                  }}
+                  showSelectionPreview={true}
+                  moveRangeOnFirstSelection={false}
+                  startDatePlaceholder=""
+                  endDatePlaceholder=""
+                  minDate={new Date()}
+                  ranges={this.state.dateRange}
+                  months={2}
+                  direction="horizontal"
+                  rangeColors={['#3e5769']}
+                />
+              </div>
+              {/*<span className={styles.personalInfoDescription}>*/}
+              {/*  Please provide some personal information and how you would prefer to be contacted*/}
+              {/*</span>*/}
               <ContactForm />
             </div>
           </section>

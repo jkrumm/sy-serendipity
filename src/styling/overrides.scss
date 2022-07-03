@@ -199,3 +199,39 @@ nav.main-navigation a.active {
 .slide.smaller img {
   padding: 0 10px;
 }
+
+.rdrCalendarWrapper button {
+  &:before, &:after {
+    display: none;
+  }
+}
+
+.peer:checked ~ .peer-checked\:bg-blue-600 {
+  background-color: $primary;
+}
+
+
+.phone-input {
+  input {
+    padding-left: 48px !important;
+  }
+
+  label {
+    margin-bottom: 5px;
+  }
+
+  &.phone-hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  &.phone-shown {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }
+
+  .react-tel-input .flag-dropdown {
+    background-color: $white;
+    border: 1px solid $grey;
+  }
+}
