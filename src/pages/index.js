@@ -1,6 +1,5 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
-import get from 'lodash/get';
+import { Link } from 'gatsby';
 import Layout from '../layout/layout';
 import Hero from '../components/hero';
 import Container from '../layout/container';
@@ -15,7 +14,7 @@ class RootIndex extends React.Component {
     const { location } = this.props;
     // console.log(JSON.stringify(this))
     // const posts = get(this, 'props.data.allContentfulBlogPost.nodes')
-    const [home] = get(this, 'props.data.allContentfulHome.nodes');
+    // const [home] = get(this, 'props.data.allContentfulHome.nodes');
     // const ship11 = get(this, 'props.data.ship11.nodes.gatsbyImageData');
 
     // const [author] = get(this, 'props.data.allContentfulPerson.nodes')
@@ -33,9 +32,9 @@ class RootIndex extends React.Component {
     return (
       <Layout location={location}>
         <Hero
-          heroTitle={home.heroTitle}
-          heroImage={home.heroImage}
-          heroSubtitle={home.heroSubtitle}
+        // heroTitle={home.heroTitle}
+        // heroImage={home.heroImage}
+        // heroSubtitle={home.heroSubtitle}
         />
         <Container as="main">
           <section>
@@ -47,7 +46,7 @@ class RootIndex extends React.Component {
                 <div className={styles.text}>
                   <div>
                     <Link to="/about/">
-                      <H2 title="Serendipity I. set sails. Now." />
+                      <H2 title="Serendipity I. Set sails. Now." />
                     </Link>
                     <span>
                       Some of the world’s most spectacular destinations are best experienced on the
@@ -226,25 +225,26 @@ export default RootIndex;
 //   }
 // `
 
-export const pageQuery = graphql`
-  query HomeQuery {
-    allContentfulHome {
-      nodes {
-        heroTitle
-        heroSubtitle
-      }
-    }
-    ship11: allContentfulAsset(filter: { title: { eq: "ship-11" } }) {
-      nodes {
-        gatsbyImage(height: 585, layout: FULL_WIDTH, width: 390, quality: 80)
-        gatsbyImageData
-      }
-    }
-    ship2: allContentfulAsset(filter: { title: { eq: "ship-2" } }) {
-      nodes {
-        gatsbyImage(height: 1000, layout: FULL_WIDTH, width: 1700, quality: 80)
-        gatsbyImageData
-      }
-    }
-  }
-`;
+// export const pageQuery = graphql`
+//   query HomeQuery {
+//     allContentfulHome {
+//       nodes {
+//         heroTitle
+//         heroSubtitle
+//       }
+//     }
+// `;
+
+// ship11: allContentfulAsset(filter: { title: { eq: "ship-11" } }) {
+//   nodes {
+//     gatsbyImage(height: 585, layout: FULL_WIDTH, width: 390, quality: 80)
+//     gatsbyImageData
+//   }
+// }
+// ship2: allContentfulAsset(filter: { title: { eq: "ship-2" } }) {
+//   nodes {
+//     gatsbyImage(height: 1000, layout: FULL_WIDTH, width: 1700, quality: 80)
+//     gatsbyImageData
+//   }
+// }
+// }

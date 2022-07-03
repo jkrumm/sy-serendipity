@@ -63,7 +63,7 @@ class GalleryIndex extends React.Component {
       photosFiltered: photos.filter((item) => item.src.includes(newTab)),
       slidesFiltered: slides.filter((item) => item.src.includes(newTab)),
     });
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   filterPhotosSelect(newTab) {

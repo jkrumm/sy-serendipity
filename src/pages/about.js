@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { Link } from 'gatsby';
 import Seo from '../layout/seo';
 import Layout from '../layout/layout';
 import HeroSmall from '../components/hero-small';
@@ -213,18 +213,18 @@ class AboutIndex extends React.Component {
 
 export default AboutIndex;
 
-export const pageQuery = graphql`
-  query AboutIndexQuery {
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
-      nodes {
-        title
-        slug
-        publishDate(formatString: "MMMM Do, YYYY")
-        tags
-        description {
-          raw
-        }
-      }
-    }
-  }
-`;
+// export const pageQuery = graphql`
+//   query AboutIndexQuery {
+//     allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
+//       nodes {
+//         title
+//         slug
+//         publishDate(formatString: "MMMM Do, YYYY")
+//         tags
+//         description {
+//           raw
+//         }
+//       }
+//     }
+//   }
+// `;

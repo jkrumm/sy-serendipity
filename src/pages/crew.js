@@ -1,5 +1,4 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 import Seo from '../layout/seo';
 import Layout from '../layout/layout';
 import HeroSmall from '../components/hero-small';
@@ -82,18 +81,18 @@ class CrewIndex extends React.Component {
 
 export default CrewIndex;
 
-export const pageQuery = graphql`
-  query CrewIndexQuery {
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
-      nodes {
-        title
-        slug
-        publishDate(formatString: "MMMM Do, YYYY")
-        tags
-        description {
-          raw
-        }
-      }
-    }
-  }
-`;
+// export const pageQuery = graphql`
+//   query CrewIndexQuery {
+//     allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
+//       nodes {
+//         title
+//         slug
+//         publishDate(formatString: "MMMM Do, YYYY")
+//         tags
+//         description {
+//           raw
+//         }
+//       }
+//     }
+//   }
+// `;

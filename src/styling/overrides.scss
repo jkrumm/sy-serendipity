@@ -228,12 +228,12 @@ nav.main-navigation a.active {
 
   &.phone-hidden {
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.3s ease;
   }
 
   &.phone-shown {
     opacity: 1;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.3s ease;
   }
 
   .react-tel-input .flag-dropdown {
@@ -242,6 +242,10 @@ nav.main-navigation a.active {
   }
 
   .react-tel-input input {
+    border-radius: 0;
+  }
+
+  .react-tel-input .flag-dropdown {
     border-radius: 0;
   }
 }

@@ -93,11 +93,9 @@ class RequestIndex extends React.Component {
     }
     const duration =
       differenceInDays(this.state.dateRange[0].endDate, this.state.dateRange[0].startDate) + 1;
-
     if (duration === 1) {
       return '0';
     }
-
     return String(duration);
   }
 
@@ -105,11 +103,7 @@ class RequestIndex extends React.Component {
     if (this.getDuration() === '0') {
       return 'error';
     }
-
-    console.log(getMonth(this.state.dateRange[0].startDate));
-
     const month = getMonth(this.state.dateRange[0].startDate) + 1;
-
     if (month >= 11 || month <= 5) {
       return 'caribbeans';
     }

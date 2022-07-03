@@ -1,15 +1,15 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { Link } from 'gatsby';
 import get from 'lodash/get';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
 import readingTime from 'reading-time';
 
-import Seo from '../layout/seo';
-import Layout from '../layout/layout';
-import Tags from '../components/tags';
+import Seo from '../../layout/seo';
+import Layout from '../../layout/layout';
+import Tags from '../../components/tags';
 import * as styles from './blog-post.module.scss';
-import HeroSmall from '../components/hero-small';
+import HeroSmall from '../../components/hero-small';
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -66,36 +66,36 @@ class BlogPostTemplate extends React.Component {
   }
 }
 
-export default BlogPostTemplate;
-
-export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!, $previousPostSlug: String, $nextPostSlug: String) {
-    contentfulBlogPost(slug: { eq: $slug }) {
-      slug
-      title
-      author {
-        name
-      }
-      publishDate(formatString: "MMMM Do, YYYY")
-      rawDate: publishDate
-      body {
-        raw
-      }
-      tags
-      description {
-        raw
-      }
-    }
-    previous: contentfulBlogPost(slug: { eq: $previousPostSlug }) {
-      slug
-      title
-    }
-    next: contentfulBlogPost(slug: { eq: $nextPostSlug }) {
-      slug
-      title
-    }
-  }
-`;
+// export default BlogPostTemplate;
+//
+// export const pageQuery = graphql`
+//   query BlogPostBySlug($slug: String!, $previousPostSlug: String, $nextPostSlug: String) {
+//     contentfulBlogPost(slug: { eq: $slug }) {
+//       slug
+//       title
+//       author {
+//         name
+//       }
+//       publishDate(formatString: "MMMM Do, YYYY")
+//       rawDate: publishDate
+//       body {
+//         raw
+//       }
+//       tags
+//       description {
+//         raw
+//       }
+//     }
+//     previous: contentfulBlogPost(slug: { eq: $previousPostSlug }) {
+//       slug
+//       title
+//     }
+//     next: contentfulBlogPost(slug: { eq: $nextPostSlug }) {
+//       slug
+//       title
+//     }
+//   }
+// `;
 
 // heroImage {
 //   gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, width: 1280)

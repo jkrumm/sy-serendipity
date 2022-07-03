@@ -1,5 +1,4 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 import Seo from '../layout/seo';
 import Layout from '../layout/layout';
 import HeroSmall from '../components/hero-small';
@@ -137,18 +136,18 @@ class TechnicalIndex extends React.Component {
 
 export default TechnicalIndex;
 
-export const pageQuery = graphql`
-  query TechnicalIndexQuery {
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
-      nodes {
-        title
-        slug
-        publishDate(formatString: "MMMM Do, YYYY")
-        tags
-        description {
-          raw
-        }
-      }
-    }
-  }
-`;
+// export const pageQuery = graphql`
+//   query TechnicalIndexQuery {
+//     allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
+//       nodes {
+//         title
+//         slug
+//         publishDate(formatString: "MMMM Do, YYYY")
+//         tags
+//         description {
+//           raw
+//         }
+//       }
+//     }
+//   }
+// `;
