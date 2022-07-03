@@ -206,8 +206,12 @@ nav.main-navigation a.active {
   }
 }
 
+.peer {
+  background-color: $grey !important;
+}
+
 .peer:checked ~ .peer-checked\:bg-blue-600 {
-  background-color: $primary;
+  background-color: $dark !important;
 }
 
 
@@ -218,6 +222,8 @@ nav.main-navigation a.active {
 
   label {
     margin-bottom: 5px;
+    font-weight: normal !important;
+    font-family: $font-brown-regular !important;
   }
 
   &.phone-hidden {
