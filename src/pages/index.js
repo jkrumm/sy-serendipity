@@ -80,7 +80,7 @@ class RootIndex extends React.Component {
                   </div>
                 </div>
                 <div className={styles.img}>
-                  <img alt="text-image-image" src={getImg('ship-15', 525)} />
+                  <img alt="ship-15" src={getImg('ship-15', 525)} />
                 </div>
               </div>
             </div>
@@ -116,7 +116,11 @@ class RootIndex extends React.Component {
             </div>
           </section>
           <section className={styles.destinations}>
-            <H2 title="Tailor your trip" subtitle="Destinations" addClassName="center" />
+            <H2
+              title="History Hopping or Blissed Beaches"
+              subtitle="Destinations"
+              addClassName="center"
+            />
             <div>
               <span>
                 A lush yacht holiday on Serendipity I promises freedom, privacy and luxury on the
@@ -126,7 +130,7 @@ class RootIndex extends React.Component {
                 <br />
                 Imagine golden sand, the sound of gentle rolling waves and a warm sea breeze. Add
                 attentive service and a stress-free itinerary planned down to the smallest detail
-                and you have arrived in your unparalled private trip.
+                and you have arrived in your unparalleled private trip.
               </span>
             </div>
             <div className={styles.destinationsHeadlines}>
@@ -141,7 +145,7 @@ class RootIndex extends React.Component {
                 <span>Caribbean, Maldives, Seychelles</span>
               </div>
             </div>
-            {/*TODO: remove*/}
+            {/* TODO: remove */}
             <div className={styles.months}>
               <div>May</div>
               <div>June</div>
@@ -170,7 +174,7 @@ class RootIndex extends React.Component {
               />
             </div>
             <Link to="/request/">
-              <button className="action">
+              <button className="action" type="button">
                 <h2>REQUEST NOW</h2>
               </button>
             </Link>
