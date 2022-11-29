@@ -72,38 +72,41 @@ function Navigation() {
   return (
     <nav role="navigation" aria-label="Main" className={`${styles.mainNavigation} main-navigation`}>
       <div className={`${styles.container}${scrolled ? ' nav-scrolled' : ''}`}>
-        <Link to="/" className={`${styles.logoLink}${scrolled ? ' nav-scrolled-logo' : ''}`}>
+        <Link
+          to="/"
+          className={`${styles.logoLink}${scrolled ? ' nav-scrolled-logo' : ''} nav-home-logo`}
+        >
           <img alt="logo" src={getImg('logo-blue-icon.png', 100)} />
           <h3 className={styles.navigationItem}>Serendipity I</h3>
         </Link>
         <ul className={styles.navigation}>
           <li className={styles.navigationItem}>
-            <Link to="/" activeClassName="active">
+            <Link to="/" activeClassName="active" className="nav-home">
               Home
             </Link>
           </li>
           <li className={styles.navigationItem}>
-            <Link to="/about/" activeClassName="active">
+            <Link to="/about/" activeClassName="active" className="nav-about">
               About
             </Link>
           </li>
           <li className={styles.navigationItem}>
-            <Link to="/crew/" activeClassName="active">
+            <Link to="/crew/" activeClassName="active" className="nav-crew">
               Crew
             </Link>
           </li>
           <li className={styles.navigationItem}>
-            <Link to="/gallery/" activeClassName="active">
+            <Link to="/gallery/" activeClassName="active" className="nav-gallery">
               Gallery
             </Link>
           </li>
           <li className={styles.navigationItem}>
-            <Link to="/technical/" activeClassName="active">
+            <Link to="/technical/" activeClassName="active" className="nav-technical">
               Technical
             </Link>
           </li>
           <li className={styles.navigationItem}>
-            <Link to="/request/" activeClassName="active-button">
+            <Link to="/request/" activeClassName="active-button" className="nav-request">
               <button>Request Now</button>
             </Link>
           </li>
