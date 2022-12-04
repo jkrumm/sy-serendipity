@@ -10,7 +10,7 @@ nav.main-navigation {
   background: $white;
 
   .container {
-    left: -8px;
+    left: 0;
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -151,6 +151,75 @@ nav.main-navigation {
       &:hover {
         margin-bottom: 0;
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  nav.main-navigation {
+    .container {
+      left: 0;
+
+      &:after {
+        height: 2px;
+        bottom: -2px;
+      }
+    }
+
+    h3 {
+      margin-left: 60px;
+    }
+
+    .logoLink img {
+      position: fixed;
+      top: 12px;
+      height: 80px;
+      width: auto;
+      transition: all ease 0.3s;
+    }
+
+    .navigationItem a {
+      font-size: $text-md;
+    }
+
+    li:last-of-type button {
+      font-size: $text-md;
+      min-width: 130px;
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  nav.main-navigation {
+    .container {
+      display: block;
+      padding: 42px 20px 35px 20px;
+    }
+
+    .logoLink {
+      margin: 0 auto;
+      display: block;
+      width: 225px;
+      opacity: 1;
+    }
+
+    .navigation {
+      justify-content: space-between;
+      gap: unset;
+      margin-top: 50px;
+
+      li:last-of-type button {
+        margin-left: 0;
+        padding: 3px 5px 7px 5px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  nav.main-navigation {
+    .container {
+      padding: 42px 10px 35px 5px;
     }
   }
 }

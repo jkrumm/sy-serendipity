@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
-import { useStaticQuery, graphql } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 
 function Seo({ description = '', lang = 'en', meta = [], title, image }) {
   const { site } = useStaticQuery(
@@ -16,8 +16,12 @@ function Seo({ description = '', lang = 'en', meta = [], title, image }) {
     `,
   );
 
-  const metaDescription = description || site.siteMetadata.description;
-  const defaultTitle = site.siteMetadata?.title;
+  // const metaDescription = description || site.siteMetadata.description;
+  // const defaultTitle = site.siteMetadata?.title;
+
+  const metaDescription =
+    'A lush yacht holiday on the 45m long SY Serendipity I for 8 guests. Experience freedom, privacy and luxury in the Mediterranean and Caribbean sea.';
+  const defaultTitle = 'SY SERENDIPITY I';
 
   return (
     <Helmet
@@ -26,7 +30,7 @@ function Seo({ description = '', lang = 'en', meta = [], title, image }) {
       }}
       title={title}
       defaultTitle={defaultTitle}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      titleTemplate={defaultTitle ? `${defaultTitle} | %s` : null}
       meta={[
         {
           name: `description`,
@@ -69,7 +73,10 @@ function Seo({ description = '', lang = 'en', meta = [], title, image }) {
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+      <meta id="vp" name="viewport" content="width=device-width, initial-scale=1" />
+      <script>{`window.onload=function(){if(screen.width<450){var mvp=document.getElementById('vp');mvp.setAttribute('content','user-scalable=no,width=450')}};`}</script>
+    </Helmet>
   );
 }
 

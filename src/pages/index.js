@@ -6,6 +6,7 @@ import Container from '../layout/container';
 import * as styles from './index.module.scss';
 import { getImg, getImgCropped } from '../util/get-image';
 import H2 from '../components/h2';
+import Seo from '../layout/seo';
 
 // import ArticlePreview from '../components/article-preview'
 
@@ -31,6 +32,7 @@ class RootIndex extends React.Component {
 
     return (
       <Layout location={location}>
+        <Seo title="Charter Sailing Yacht | Set Sails. Now." />
         <Hero
         // heroTitle={home.heroTitle}
         // heroImage={home.heroImage}
@@ -133,45 +135,33 @@ class RootIndex extends React.Component {
                 and you have arrived in your unparalleled private trip.
               </span>
             </div>
-            <div className={styles.destinationsHeadlines}>
+            <div className={styles.destinationOptions}>
               <div>
-                <h3>Mediterranean</h3>
-                <span>From June to November</span>
-                <span>Italy, Greece, France or islands</span>
+                <div>
+                  <h3>Mediterranean</h3>
+                  <span>From June to November</span>
+                  <span>Italy, Greece, France or islands</span>
+                </div>
+                <img
+                  alt="sy-serendipity-top"
+                  width="600"
+                  height="400"
+                  src={getImgCropped('mediterranean-14', 600, 400)}
+                />
               </div>
               <div>
-                <h3>Caribbean</h3>
-                <span>From December to May</span>
-                <span>Caribbean, Maldives, Seychelles</span>
+                <div>
+                  <h3>Caribbean</h3>
+                  <span>From December to May</span>
+                  <span>Caribbean, Maldives, Seychelles</span>
+                </div>
+                <img
+                  alt="sy-serendipity-top"
+                  width="600"
+                  height="400"
+                  src={getImgCropped('caribbean-31', 600, 400)}
+                />
               </div>
-            </div>
-            {/* TODO: remove */}
-            <div className={styles.months}>
-              <div>May</div>
-              <div>June</div>
-              <div>Juli</div>
-              <div>September</div>
-              <div>October</div>
-              <div>November</div>
-              <div>December</div>
-              <div>January</div>
-              <div>February</div>
-              <div>March</div>
-              <div>April</div>
-            </div>
-            <div className={styles.destinationsImages}>
-              <img
-                alt="sy-serendipity-top"
-                width="600"
-                height="400"
-                src={getImgCropped('mediterranean-14', 600, 400)}
-              />
-              <img
-                alt="sy-serendipity-top"
-                width="600"
-                height="400"
-                src={getImgCropped('caribbean-31', 600, 400)}
-              />
             </div>
             <Link to="/request/">
               <button className="action" type="button">

@@ -31,10 +31,9 @@ function Footer() {
               </Link>
             </span>
           </div>
-          <div>
+          <div className={styles.logoWrapper}>
             <Link to="/">
               <img className={styles.logo} alt="logo" src={getImg('logo-blue.svg')} />
-              <span className={styles.copyright}>Ⓒ 2022 - SY Serendipity</span>
             </Link>
           </div>
           <div>
@@ -60,6 +59,7 @@ function Footer() {
             </span>
           </div>
         </div>
+        <span className={styles.copyright}>Ⓒ {new Date().getFullYear()} - SY SERENDIPITY I</span>
       </Container>
     </footer>
   );

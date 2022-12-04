@@ -50,6 +50,7 @@ body {
   -webkit-font-smoothing: antialiased;
   max-width: 100vw;
   overflow-x: hidden;
+  min-width: 450px;
 }
 
 section {
@@ -204,4 +205,44 @@ code {
   max-width: $size-max-width;
   margin: 0 auto;
   padding: $space-2xl $size-gutter;
+}
+
+@media only screen and (max-width: 1150px) {
+  h1 {
+    font-size: $text-2xl;
+  }
+
+  h2 {
+    font-size: $text-2xl;
+    margin-bottom: 40px;
+  }
+
+
+  h3 {
+    font-size: $text-xl;
+    margin-bottom: 20px;
+  }
+
+  h1, h2 {
+    &:after {
+      height: 2px;
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  h1 {
+    font-size: $text-xl;
+  }
+
+  h2 {
+    font-size: $text-xl;
+    margin-bottom: 40px;
+  }
+
+
+  h3 {
+    font-size: $text-lg;
+    margin-bottom: 20px;
+  }
 }

@@ -107,24 +107,29 @@
     margin: 50px auto;
   }
 
-  .destinations-headlines {
+  h3 {
+    margin-bottom: 0;
+  }
+
+  span {
+    display: block;
+  }
+
+  .destination-options {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 30px;
-
-    h3 {
-      margin-bottom: 0;
-    }
-
-    span {
-      display: block;
-    }
+    margin-bottom: 70px;
 
     > div {
       width: calc(50% - 25px);
+      display: block;
 
       &:first-of-type {
         text-align: right;
+      }
+
+      > div {
+        margin-bottom: 30px;
       }
     }
   }
@@ -132,35 +137,73 @@
   a:hover h2 {
     color: $dark;
   }
+}
 
-  > .months {
-    // TODO: remove
-    // display: flex;
-    justify-content: space-evenly;
-    margin-bottom: 20px;
-    opacity: 0.5;
-    display: none;
+@media only screen and (max-width: 1150px) {
+  .text-image, .text-image-second, .text-image-third {
+    .content {
+      display: block;
 
-    > div {
-      text-align: center;
-      width: 100%;
-      border-top: 1px solid $grey;
-      border-right: 1px solid $grey;
-      border-bottom: none;
+      .img {
+        display: block;
+        margin: 0 auto;
+      }
 
-      &:first-of-type {
-        border-left: 1px solid $grey;
+      .text {
+        max-width: 700px;
+        display: block;
+        margin: 50px auto;
       }
     }
   }
 
-  > .destinations-images {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 70px;
+  .text-image-second {
+    .content {
+      margin-top: 200px;
 
-    img {
-      width: calc(50% - 25px);
+      .img {
+        max-width: 550px;
+      }
+
+      .text {
+        max-width: 500px;
+        margin-bottom: 80px;
+      }
+    }
+  }
+
+  .destinations {
+    margin-bottom: 120px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .destinations {
+    margin-bottom: 100px;
+
+    .destination-options {
+      display: block;
+      margin-bottom: 90px;
+
+      > div {
+        width: 100%;
+        text-align: center;
+
+        &:first-of-type {
+          text-align: center;
+          margin-top: 70px;
+          margin-bottom: 70px;
+        }
+
+        > div {
+          margin-bottom: 30px;
+        }
+
+        img {
+          max-width: 450px;
+          margin: 0 auto;
+        }
+      }
     }
   }
 }
