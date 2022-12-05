@@ -4,6 +4,7 @@ nav.main-navigation {
   position: fixed;
   top: 0;
   width: 100vw;
+  min-width: 450px;
   font-family: $font-rock-star;
   color: $dark;
   z-index: 9000;
@@ -194,6 +195,8 @@ nav.main-navigation {
     .container {
       display: block;
       padding: 42px 20px 35px 20px;
+      //position: relative;
+      //top: 0;
     }
 
     .logoLink {
@@ -201,6 +204,7 @@ nav.main-navigation {
       display: block;
       width: 225px;
       opacity: 1;
+      transition: opacticy 200ms;
     }
 
     .navigation {

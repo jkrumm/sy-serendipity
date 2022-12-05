@@ -72,10 +72,30 @@ function Seo({ description = '', lang = 'en', meta = [], title, image }) {
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          name: `viewport`,
+          content: 'width=device-width, initial-scale=1',
+          id: 'vp',
+        },
       ].concat(meta)}
     >
-      <meta id="vp" name="viewport" content="width=device-width, initial-scale=1" />
-      <script>{`window.onload=function(){if(screen.width<450){var mvp=document.getElementById('vp');mvp.setAttribute('content','user-scalable=no,width=450')}};`}</script>
+      <script>{`function ready(callback) {
+        if (document.readyState != 'loading') callback();
+        else if (document.addEventListener) document.addEventListener('DOMContentLoaded', callback);
+        else
+          document.attachEvent('onreadystatechange', function () {
+            if (document.readyState == 'complete') callback();
+          });
+      }
+      function resize() {
+        const mvp = document.getElementById('vp');
+        mvp.setAttribute('content', 'user-scalable=no,width=450');
+      }
+      ready(function () {
+        if (screen.width < 450) {
+          setInterval(resize, 250);
+        }
+      });`}</script>
     </Helmet>
   );
 }
