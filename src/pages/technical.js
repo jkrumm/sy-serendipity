@@ -82,7 +82,10 @@ class TechnicalIndex extends React.Component {
 
     return (
       <Layout location={location}>
-        <Seo title="Technical" />
+        <Seo
+          title="Technical"
+          description="Serendipity I is a 45m luxury sailing yacht, built by Perini Navi in 2011."
+        />
         <HeroSmall title="Technical" />
         <div className={styles.technicalWrapper}>
           <section className={styles.technical}>

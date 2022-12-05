@@ -115,7 +115,10 @@ class RequestIndex extends React.Component {
 
     return (
       <Layout location={location}>
-        <Seo title="Contact" />
+        <Seo
+          title="Contact"
+          description="Request your personally tailored and unforgettable sailing yacht experience."
+        />
         <HeroSmall title="Contact" />
         <div className={styles.contactWrapper}>
           <section>

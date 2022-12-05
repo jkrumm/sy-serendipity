@@ -75,7 +75,10 @@ class GalleryIndex extends React.Component {
 
     return (
       <Layout location={location}>
-        <Seo title="Gallery" />
+        <Seo
+          title="Gallery"
+          description="Take a look inside and see the highest level of exclusivity and luxury."
+        />
         <div className={styles.galleryWrapper}>
           <section className={styles.gallery}>
             <div className={styles.tabs}>

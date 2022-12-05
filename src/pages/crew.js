@@ -15,7 +15,10 @@ class CrewIndex extends React.Component {
     return (
       <Layout location={location}>
         <Seo title="Crew" />
-        <HeroSmall title="Crew" />
+        <HeroSmall
+          title="Crew"
+          description="Meet the highly trained who will guide you through your journey."
+        />
         <div className={styles.crewWrapper}>
           <section className={styles.intro}>
             <img alt="crew-sailing" src={getImg('ship-21', 700)} />

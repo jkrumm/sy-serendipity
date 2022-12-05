@@ -26,6 +26,13 @@ function Seo({ description = '', lang = 'en', meta = [], title, image }) {
     'A lush yacht holiday on the 45m long SY Serendipity I for 8 guests. Experience freedom, privacy and luxury in the Mediterranean and Caribbean sea.';
   const defaultTitle = 'SY SERENDIPITY I';
 
+  const fullTitle =
+    title === 'Charter Sailing Yacht | Set Sails. Now.'
+      ? `${defaultTitle} | %s`
+      : defaultTitle
+      ? `%s | ${defaultTitle}`
+      : null;
+
   return (
     <Helmet
       htmlAttributes={{
@@ -51,7 +58,7 @@ function Seo({ description = '', lang = 'en', meta = [], title, image }) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: fullTitle,
         },
         {
           property: `og:description`,
@@ -75,7 +82,7 @@ function Seo({ description = '', lang = 'en', meta = [], title, image }) {
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: fullTitle,
         },
         {
           name: `twitter:description`,

@@ -49,7 +49,7 @@ class AboutIndex extends React.Component {
 
     return (
       <Layout location={location}>
-        <Seo title="About" />
+        <Seo title="About" description="See what amazing destinations and activities await you." />
         <HeroSmall title="About" />
         <div className={styles.aboutWrapper}>
           <section className={styles.cruising}>
