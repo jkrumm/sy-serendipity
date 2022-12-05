@@ -17,7 +17,7 @@ function Seo({ description = '', lang = 'en', meta = [], title, image }) {
   );
 
   const seoImage =
-    'https://ik.imagekit.io/bgmwrkfoi/tr:f-webp,w-1200,h-600,c-maintain_ratio/all/ship-16.jpeg';
+    'https://ik.imagekit.io/bgmwrkfoi/tr:f-jpg,w-1200,h-630,c-maintain_ratio/all/ship-16.jpeg';
 
   // const metaDescription = description || site.siteMetadata.description;
   // const defaultTitle = site.siteMetadata?.title;

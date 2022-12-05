@@ -3,14 +3,22 @@
 .contact-wrapper {
   max-width: $size-max-width;
   padding: $space-2xl $size-gutter;
-  margin: 0 auto;
+  margin: 200px auto 0 auto;
+
+  > div:first-of-type {
+    width: calc(100% - 373px);
+    margin-left: auto;
+  }
 
   section {
+    margin-top: 0;
     display: flex;
     justify-content: space-between;
 
     > div:first-of-type {
       width: 400px;
+      position: relative;
+      top: -78px;
 
       span {
         display: block;
@@ -114,6 +122,11 @@
 
     > label {
       display: flex;
+      max-height: 24px;
+
+      > div {
+        min-width: 44px;
+      }
     }
   }
 
@@ -142,5 +155,112 @@
     color: $white;
     margin-top: 40px;
     display: inline-block;
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  .contact-wrapper {
+    max-width: 750px;
+    margin: 120px auto 0 auto;
+
+    > div:first-of-type {
+      width: 100%;
+      margin-left: auto;
+    }
+
+    section {
+      display: block;
+      justify-content: unset;
+      margin: 0 0 100px 0;
+
+      > div:first-of-type {
+        width: 100%;
+        position: relative;
+        top: 0;
+        display: flex;
+        margin: 60px 0 50px;
+
+        > div:nth-of-type(1) {
+          margin-left: 20px;
+          margin-top: 22px;
+        }
+
+        > div:nth-of-type(2) {
+          margin-left: auto;
+        }
+
+        .logo {
+          display: none;
+        }
+      }
+
+      > div:last-of-type {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .contact-wrapper {
+    margin: 200px auto 0 auto;
+
+    section {
+      margin: 0 0 100px 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .contact-wrapper {
+    margin: 200px auto 0 auto;
+
+    section {
+      margin: 0 0 100px 0;
+      display: block;
+      justify-content: unset;
+
+      > div:first-of-type {
+        width: 100%;
+        position: relative;
+        top: 0;
+        display: block;
+        margin: 50px 0 70px 0;
+
+        > div:nth-of-type(1) {
+          margin-left: 0;
+          margin-top: 0;
+        }
+
+        > div:nth-of-type(2) {
+          margin-left: 0;
+        }
+
+        .logo {
+          display: block;
+          max-width: 150px;
+        }
+      }
+
+      > div:last-of-type {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  }
+
+  .form .toggle {
+    margin: 0 0 60px 0;
+
+    > label {
+      margin: 20px 0;
+      display: flex;
+      max-height: 24px;
+
+      > div {
+        min-width: 44px;
+      }
+    }
   }
 }

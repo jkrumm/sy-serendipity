@@ -121,6 +121,9 @@ class RequestIndex extends React.Component {
         />
         <HeroSmall title="Contact" />
         <div className={styles.contactWrapper}>
+          <div>
+            <h2>Request your trip</h2>
+          </div>
           <section>
             <div>
               <img
@@ -129,21 +132,25 @@ class RequestIndex extends React.Component {
                 src="https://www.oceanindependence.com/sites/default/files/images/person/Barbara-web.jpg"
                 width="130"
               />
-              <span>Barbara Mueller</span>
-              <span>Senior Charter Broker</span>
-              <span>OCEAN Independence Palma</span>
-              <br />
-              <span>
-                Telephone:
+              <div>
+                <span>Barbara Mueller</span>
+                <span>Senior Charter Broker</span>
+                <span>OCEAN Independence Palma</span>
                 <br />
-                +34 690 672 916
-              </span>
-              <br />
-              <span>
-                Languages Spoken:
+              </div>
+              <div>
+                <span>
+                  Telephone:
+                  <br />
+                  <a href="tel:+34690672916">+34 690 672 916</a>
+                </span>
                 <br />
-                English, German, Spanish
-              </span>
+                <span>
+                  Languages Spoken:
+                  <br />
+                  English, German, Spanish
+                </span>
+              </div>
               <div className={styles.logo}>
                 <img
                   alt="logo"
@@ -152,7 +159,6 @@ class RequestIndex extends React.Component {
               </div>
             </div>
             <div>
-              <h2>Request your trip</h2>
               <span>
                 Personally tailored, special requests are taken into account, professional booking
                 agents, no final booking, get in contact over phone or email ...
