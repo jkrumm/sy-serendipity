@@ -28,10 +28,10 @@ function Seo({ description = '', lang = 'en', meta = [], title, image }) {
 
   const fullTitle =
     title === 'Charter Sailing Yacht | Set Sails. Now.'
-      ? `${defaultTitle} | %s`
-      : defaultTitle
-      ? `%s | ${defaultTitle}`
-      : null;
+      ? `${defaultTitle} | ${title}`
+      : title
+      ? `${title} | ${defaultTitle}`
+      : defaultTitle;
 
   return (
     <Helmet
