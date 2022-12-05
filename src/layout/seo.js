@@ -16,6 +16,9 @@ function Seo({ description = '', lang = 'en', meta = [], title, image }) {
     `,
   );
 
+  const seoImage =
+    'https://ik.imagekit.io/bgmwrkfoi/tr:f-webp,w-1200,h-600,c-maintain_ratio/all/ship-16.jpeg';
+
   // const metaDescription = description || site.siteMetadata.description;
   // const defaultTitle = site.siteMetadata?.title;
 
@@ -30,7 +33,13 @@ function Seo({ description = '', lang = 'en', meta = [], title, image }) {
       }}
       title={title}
       defaultTitle={defaultTitle}
-      titleTemplate={defaultTitle ? `${defaultTitle} | %s` : null}
+      titleTemplate={
+        title === 'Charter Sailing Yacht | Set Sails. Now.'
+          ? `${defaultTitle} | %s`
+          : defaultTitle
+          ? `%s | ${defaultTitle}`
+          : null
+      }
       meta={[
         {
           name: `description`,
@@ -38,7 +47,7 @@ function Seo({ description = '', lang = 'en', meta = [], title, image }) {
         },
         {
           name: `image`,
-          content: image,
+          content: seoImage,
         },
         {
           property: `og:title`,
@@ -54,7 +63,7 @@ function Seo({ description = '', lang = 'en', meta = [], title, image }) {
         },
         {
           property: `og:image`,
-          content: image,
+          content: seoImage,
         },
         {
           name: `twitter:card`,
