@@ -26,7 +26,7 @@
 
         &:last-of-type {
           position: relative;
-          top: -3px;
+          top: -2px;
           display: inline-block;
           transform: rotate(180deg);
         }
@@ -42,11 +42,17 @@
   }
 }
 
-@media (min-width: 480px) {
+@media only screen and (max-width: 1150px) {
+  .big-slider .slider-nav {
+    margin-bottom: 20px;
+
+    .arrows:last-of-type {
+      height: 39px;
+    }
+  }
 }
 
-@media (min-width: 768px) {
+
+@media only screen and (max-width: 800px) {
 }
 
-@media (min-width: 1024px) {
-}

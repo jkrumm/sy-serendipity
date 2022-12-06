@@ -18,7 +18,7 @@
 }
 
 .slideshow {
-  margin-top: 0;
+  margin-top: 60px;
 }
 
 .data {
@@ -36,7 +36,7 @@
     display: flex;
 
     .subItem {
-      width: 30%;
+      width: 33.33%;
       margin-bottom: 50px;
 
       .value {
@@ -46,6 +46,63 @@
 
       .metric {
         font-size: $text-lg;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  .technical-wrapper {
+    max-width: 700px;
+    margin: 120px auto 0 auto;
+
+    > section {
+      display: block;
+      justify-content: unset;
+      margin: 0 0 50px 0;
+
+      &:last-of-type {
+        margin: 0 0 140px 0;
+      }
+
+      > img {
+        margin: 0 auto 70px auto;
+      }
+
+      .data {
+        margin-left: 20px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .technical-wrapper {
+    margin: 200px auto 0 auto;
+
+    section {
+      margin: 0 0 60px 0;
+
+      &:last-of-type {
+        margin: 0 0 130px 0;
+      }
+
+      .data {
+        margin-left: 0;
+
+        .item .subItem {
+          width: 33.33%;
+          margin-bottom: 40px;
+
+          .value {
+            font-size: $text-sm;
+            display: block;
+          }
+
+          .metric {
+            font-size: $text-md;
+          }
+        }
       }
     }
   }
