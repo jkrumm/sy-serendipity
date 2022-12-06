@@ -39,22 +39,23 @@ class CrewIndex extends React.Component {
               <H2 title="Lars" subtitle="Captain" />
               <span>
                 Lars has more than 36 years of sailing experience, being passionate about boats and
-                sailing since he was a little boy. Racing yachts or dinghys or taking part in World
-                or European Championchips - you are in best hands!
+                sailing since he was a little boy. Racing yachts or dinghies or taking part in World
+                or European Championships - you are in best hands!
               </span>
             </div>
           </section>
           <section className={styles.right}>
             <div>
-              <H2 title="Kerry" subtitle="Chief Stewardess" />
-              <span>
-                Kerry is highly motivated and has long years of experience in hospitality. She enyos
-                meeting people, planning itineraries or events but does also take care of your
-                laundry or any other aspect of your holidays.
-              </span>
+              <img alt="chief_stewardess" width="350" src={getImg('crew-1', 350)} />
             </div>
             <div>
-              <img alt="captain" width="350" src={getImg('crew-1', 350)} />
+              <H2 title="Gabi" subtitle="Chief Stewardess" />
+              <span>
+                Gabi is highly motivated and has long years of experience in hospitality. She is
+                passionate meeting people, planning itineraries and events but does also take care
+                of your laundry or any other aspect of your holidays. She is also a qualified yoga
+                instructor and
+              </span>
             </div>
           </section>
           <section className={`${styles.left} ${styles.chef}`}>
@@ -62,9 +63,9 @@ class CrewIndex extends React.Component {
               <img alt="chef" width="350" src={getImg('crew-3', 350)} />
             </div>
             <div>
-              <H2 title="Denis" subtitle="Chef" />
+              <H2 title="Antonio" subtitle="Chef" />
               <span>
-                Your are most welcome if you are a high end foody! Denis, our energetic chef with
+                You are most welcome if you are a high end foody! Antonio, our energetic chef with
                 his blend of creativity, passion for food and exceptional cooking skills will source
                 the best ingredients on local markets and serve the most delicious meals ever. Let
                 him spoil you!

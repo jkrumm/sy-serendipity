@@ -1,4 +1,8 @@
 function isNameJpg(name) {
+  if (name.includes('food') && parseInt(name.split('-')[1]) > 5) {
+    return true;
+  }
+
   return (
     name.includes('technical') ||
     name.includes('mediterranean') ||

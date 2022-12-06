@@ -30,7 +30,7 @@
   }
 }
 
-.left {
+.left, .right {
   display: flex;
   max-width: 900px;
 
@@ -47,27 +47,19 @@
 }
 
 .right {
-  display: flex;
   text-align: right;
-  margin-left: auto;
-  max-width: 900px;
+
+  > div:first-of-type {
+    order: 2;
+  }
+
+  > div:last-of-type {
+    order: 1;
+  }
 
   h2:after {
     left: auto;
     right: 0;
-  }
-
-  > div:last-of-type {
-    width: 350px;
-  }
-
-  > div:first-of-type {
-    width: calc(100% - 450px);
-    margin: 100px 50px 0 auto;
-
-    button {
-      margin-left: auto;
-    }
   }
 }
 
@@ -86,5 +78,85 @@
     &:last-of-type {
       margin-right: 0;
     }
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  .crew-wrapper section {
+    &:first-of-type {
+      margin-top: 120px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 110px !important;
+    }
+  }
+
+  //.crew-wrapper {
+  //  max-width: 700px;
+  //  margin: 120px auto 0 auto;
+  //
+  //  > section {
+  //    margin: 0 0 50px 0;
+  //  }
+  //}
+
+  .food {
+    max-width: 630px;
+
+    img {
+      max-width: calc(50% - 25px);
+
+      &:first-of-type {
+        display: none;
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 800px) {
+  .crew-wrapper section {
+    &:first-of-type {
+      margin-top: 155px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 120px !important;
+    }
+  }
+
+  .left, .right {
+    display: block;
+
+    > div:first-of-type {
+      width: 100%;
+      max-width: 250px;
+      margin: 0 auto;
+    }
+
+    > div:last-of-type {
+      width: 100%;
+      max-width: 400px;
+      margin: 50px auto 0 auto;
+    }
+  }
+
+  h2 {
+    margin-bottom: 25px;
+  }
+
+  .right {
+    text-align: left;
+
+    h2:after {
+      left: 0;
+      right: unset;
+    }
+  }
+
+
+  .food {
+    max-width: 500px;
   }
 }
