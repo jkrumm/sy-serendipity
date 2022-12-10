@@ -137,27 +137,26 @@ class AboutIndex extends React.Component {
                 </div>
               </div>
             </div>
-            <div className={styles.threeImages}>
-              {/*TODO: remove*/}
-              <img
-                alt="sy-serendipity-top"
-                width="400"
-                height="600"
-                src={getImgCropped('sport-3', 400, 600)}
-              />
-              <img
-                alt="sy-serendipity-top"
-                width="400"
-                height="600"
-                src={getImgCropped('mediterranean-3', 400, 600)}
-              />
-              <img
-                alt="sy-serendipity-top"
-                width="400"
-                height="600"
-                src={getImgCropped('sport-9', 400, 600)}
-              />
-            </div>
+            {/*<div className={styles.threeImages}>*/}
+            {/*  <img*/}
+            {/*    alt="sy-serendipity-top"*/}
+            {/*    width="400"*/}
+            {/*    height="600"*/}
+            {/*    src={getImgCropped('sport-3', 400, 600)}*/}
+            {/*  />*/}
+            {/*  <img*/}
+            {/*    alt="sy-serendipity-top"*/}
+            {/*    width="400"*/}
+            {/*    height="600"*/}
+            {/*    src={getImgCropped('mediterranean-3', 400, 600)}*/}
+            {/*  />*/}
+            {/*  <img*/}
+            {/*    alt="sy-serendipity-top"*/}
+            {/*    width="400"*/}
+            {/*    height="600"*/}
+            {/*    src={getImgCropped('sport-9', 400, 600)}*/}
+            {/*  />*/}
+            {/*</div>*/}
           </section>
           <section className={styles.crew}>
             <div className={styles.content}>

@@ -4,7 +4,7 @@ import Layout from '../layout/layout';
 import HeroSmall from '../components/hero-small';
 
 import * as styles from './crew.module.scss';
-import { getImg } from '../util/get-image';
+import { getImg, getImgCropped } from '../util/get-image';
 import H2 from '../components/h2';
 
 class CrewIndex extends React.Component {
@@ -27,13 +27,13 @@ class CrewIndex extends React.Component {
               excursions and experiences to the tastes of you and your travel companions. Tell us
               about your passions, curiosities and motivations, and we will take you on a
               once-in-a-lifetime adventure, filled with priceless memories and unforgettable
-              moments. Do you celebrate a speccial occasion? Let us know and we will present ideas
-              to you.
+              moments. Do you celebrate a special occasion? Let us know and we will present ideas to
+              you.
             </span>
           </section>
           <section className={styles.left}>
             <div>
-              <img alt="captain" width="350" src={getImg('crew-2', 350)} />
+              <img alt="captain" width="350" height="460" src={getImgCropped('crew-2', 350, 460)} />
             </div>
             <div>
               <H2 title="Lars" subtitle="Captain" />
@@ -46,7 +46,12 @@ class CrewIndex extends React.Component {
           </section>
           <section className={styles.right}>
             <div>
-              <img alt="chief_stewardess" width="350" src={getImg('crew-1', 350)} />
+              <img
+                alt="chief_stewardess"
+                width="350"
+                height="460"
+                src={getImgCropped('crew-1', 350, 460)}
+              />
             </div>
             <div>
               <H2 title="Gabi" subtitle="Chief Stewardess" />
@@ -60,7 +65,7 @@ class CrewIndex extends React.Component {
           </section>
           <section className={`${styles.left} ${styles.chef}`}>
             <div>
-              <img alt="chef" width="350" src={getImg('crew-3', 350)} />
+              <img alt="chef" width="350" height="460" src={getImgCropped('crew-3', 350, 460)} />
             </div>
             <div>
               <H2 title="Antonio" subtitle="Chef" />

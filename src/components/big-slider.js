@@ -41,6 +41,41 @@ export default class BigSlider extends Component {
       ...addSettings,
     };
 
+    if (settings.slidesToShow > 2) {
+      settings.responsive = [
+        {
+          breakpoint: 1150,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            infinite: settings.infinite,
+            dots: settings.dots,
+          },
+        },
+        {
+          breakpoint: 800,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: settings.infinite,
+            dots: settings.dots,
+          },
+        },
+      ];
+    } else if (settings.slidesToShow > 1) {
+      settings.responsive = [
+        {
+          breakpoint: 800,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: settings.infinite,
+            dots: settings.dots,
+          },
+        },
+      ];
+    }
+
     const imageWidth = settings.slidesToShow > 1 ? width / settings.slidesToShow : width;
     const imageHeight = settings.slidesToShow > 1 ? height / settings.slidesToShow : height;
 
