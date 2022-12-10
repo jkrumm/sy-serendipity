@@ -208,6 +208,10 @@ code {
 }
 
 @media only screen and (max-width: 1150px) {
+  section {
+    margin: 180px 0;
+  }
+
   h1 {
     font-size: $text-2xl;
   }
@@ -231,6 +235,10 @@ code {
 }
 
 @media only screen and (max-width: 800px) {
+  section {
+    margin: 160px 0;
+  }
+  
   h1 {
     font-size: $text-xl;
   }

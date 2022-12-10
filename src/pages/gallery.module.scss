@@ -40,7 +40,17 @@
 
 
 @media only screen and (max-width: 1150px) {
+  .gallery {
+    margin-bottom: 150px;
+  }
 }
 
 @media only screen and (max-width: 800px) {
+  .gallery-wrapper {
+    margin-top: 25px;
+  }
+
+  .gallery {
+    margin-bottom: 130px;
+  }
 }

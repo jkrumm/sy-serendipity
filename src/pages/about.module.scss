@@ -243,6 +243,14 @@
 }
 
 @media only screen and (max-width: 1150px) {
+  .about-wrapper {
+    margin-bottom: 0;
+  }
+
+  .technical {
+    margin-bottom: 150px;
+  }
+
   .cruising {
     display: block;
 
@@ -328,9 +336,7 @@
       }
     }
   }
-}
 
-@media only screen and (max-width: 1015px) {
   .crew {
     height: unset;
     background: none;
@@ -376,8 +382,13 @@
 }
 
 @media only screen and (max-width: 800px) {
+  .about-wrapper {
+    margin-top: 30px;
+  }
+
   .technical {
     display: block;
+    margin-bottom: 120px;
 
     > div:first-of-type {
       width: 400px;
