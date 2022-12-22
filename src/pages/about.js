@@ -28,17 +28,17 @@ const crew = [
   {
     name: 'Lars',
     title: 'Captain',
-    img: getImg('crew-2', 250),
+    img: getImgCropped('crew-2', 210, 270),
   },
   {
-    name: 'Kerry',
+    name: 'Gabi',
     title: 'Chief Stewardess',
-    img: getImg('crew-1', 250),
+    img: getImgCropped('crew-1', 210, 270),
   },
   {
-    name: 'Denis',
+    name: 'Antonio',
     title: 'Chef',
-    img: getImg('crew-3', 250),
+    img: getImgCropped('crew-3', 210, 270),
   },
 ];
 

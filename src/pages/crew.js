@@ -23,9 +23,9 @@ class CrewIndex extends React.Component {
           <section className={styles.intro}>
             <img alt="crew-sailing" src={getImg('ship-21', 700)} />
             <span>
-              Our highly trained crew will unobtrusively guide you during your journey, tailoring
-              excursions and experiences to the tastes of you and your travel companions. Tell us
-              about your passions, curiosities and motivations, and we will take you on a
+              Our highly trained crew of 7 will unobtrusively guide you during your journey,
+              tailoring excursions and experiences to the tastes of you and your travel companions.
+              Tell us about your passions, curiosities and motivations, and we will take you on a
               once-in-a-lifetime adventure, filled with priceless memories and unforgettable
               moments. Do you celebrate a special occasion? Let us know and we will present ideas to
               you.
