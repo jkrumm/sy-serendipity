@@ -23,12 +23,11 @@ class CrewIndex extends React.Component {
           <section className={styles.intro}>
             <img alt="crew-sailing" src={getImg('ship-21', 700)} />
             <span>
-              Our highly trained crew of 7 will unobtrusively guide you during your journey,
+              Our highly trained crew of seven will unobtrusively guide you during your journey,
               tailoring excursions and experiences to the tastes of you and your travel companions.
               Tell us about your passions, curiosities and motivations, and we will take you on a
               once-in-a-lifetime adventure, filled with priceless memories and unforgettable
-              moments. Do you celebrate a special occasion? Let us know and we will present ideas to
-              you.
+              moments. Do you celebrate a special occasion? Let us know and we will present ideas to you.
             </span>
           </section>
           <section className={styles.left}>
@@ -56,10 +55,9 @@ class CrewIndex extends React.Component {
             <div>
               <H2 title="Gabi" subtitle="Chief Stewardess" />
               <span>
-                Gabi is highly motivated and has long years of experience in hospitality. She is
-                passionate meeting people, planning itineraries and events but does also take care
-                of your laundry or any other aspect of your holidays. She is also a qualified yoga
-                instructor and
+                Gabi is highly motivated and has long years of experience in hospitality. She enjoys meeting
+                people, planning itineraries or events but does also take care of your laundry or any other
+                aspect of your holidays.
               </span>
             </div>
           </section>
@@ -70,7 +68,7 @@ class CrewIndex extends React.Component {
             <div>
               <H2 title="Antonio" subtitle="Chef" />
               <span>
-                You are most welcome if you are a high end foody! Antonio, our energetic chef with
+                You are most welcome if you are a high end foody! Our energetic chef Antonio with
                 his blend of creativity, passion for food and exceptional cooking skills will source
                 the best ingredients on local markets and serve the most delicious meals ever. Let
                 him spoil you!

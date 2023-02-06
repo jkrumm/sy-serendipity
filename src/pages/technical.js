@@ -17,7 +17,7 @@ const data = [
   ],
   [
     { value: 'Guests', metric: '8' },
-    { value: 'Crew', metric: '6' },
+    { value: 'Crew', metric: '7' },
     { value: 'Cabins', metric: '4' },
   ],
   [
@@ -43,7 +43,7 @@ const dataDesign = [
     { value: 'Decks', metric: '3' },
   ],
   [
-    { value: 'Interior designer', metric: 'Perini Navi' },
+    { value: 'Interior designer', metric: 'km design' },
     { value: 'Exterior designer', metric: 'Ron Holland' },
   ],
 ];

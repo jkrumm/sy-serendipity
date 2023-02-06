@@ -18,7 +18,7 @@ function ContactForm() {
   const [phoneEnabled, setPhoneEnabled] = useState(false);
   const [phone, setPhone] = useState('');
   if (state.succeeded) {
-    return <p>Thanks for requesting!</p>;
+    return <p>Thank you for your request, we are looking forward to spoil you very soon!</p>;
   }
   return (
     <div className={styles.form}>
@@ -66,7 +66,7 @@ function ContactForm() {
             <PhoneInput country={'us'} onChange={setPhone} value={phone} />
           </div>
         </div>
-        <label htmlFor="message">Additional Comments</label>
+        <label htmlFor="message">Your message to us or special requests</label>
         <textarea id="message" name="message" />
         <ValidationError prefix="Message" field="message" errors={state.errors} />
         <span className={styles.submitNotice}>
@@ -145,11 +145,9 @@ class RequestIndex extends React.Component {
                   <a href="tel:+34690672916">+34 690 672 916</a>
                 </span>
                 <br />
-                <span>
-                  Languages Spoken:
-                  <br />
-                  English, German, Spanish
-                </span>
+                <a href="https://www.oceanindependence.com/" target="_blank">
+                  Ocean Independence | Leading Global Superyacht Brokers
+                </a>
               </div>
               <div className={styles.logo}>
                 <img
@@ -160,16 +158,11 @@ class RequestIndex extends React.Component {
             </div>
             <div>
               <span>
-                Personally tailored, special requests are taken into account, professional booking
-                agents, no final booking, get in contact over phone or email ...
-              </span>
-              <br />
-              <br />
-              <span>
-                Between November and May the yacht is in the caribbeans and otherwise in the
-                mediterranean sea. Depending on your selected dates you are requesting a trip for
-                either regions. These dates vary from year to year. Of course special requests for a
-                desired location may be possible.
+                Let your dream come true and explore the most spectacular places on our beautiful planet
+                that have always been on your bucket list.
+                Choose your preferred dates below and we will get back to you. Let us take you to the
+                Carribean between December and April and discover the magic Mediterranean between
+                June and October!
               </span>
               <div className={styles.dateRange}>
                 <div>
@@ -181,10 +174,10 @@ class RequestIndex extends React.Component {
                 </div>
                 <div>
                   <div>
-                    <span>Start Date</span>
+                    <span>Arrival date</span>
                   </div>
                   <div>
-                    <span>End Date</span>
+                    <span>Departure date</span>
                   </div>
                 </div>
                 <DateRange
