@@ -4,7 +4,7 @@ import Layout from '../layout/layout';
 import HeroSmall from '../components/hero-small';
 
 import * as styles from './crew.module.scss';
-import { getImg, getImgCropped } from '../util/get-image';
+import { getImg, getImgCropped, getImgCroppedOld, getImgOld } from '../util/get-image';
 import H2 from '../components/h2';
 
 class CrewIndex extends React.Component {
@@ -21,7 +21,7 @@ class CrewIndex extends React.Component {
         />
         <div className={styles.crewWrapper}>
           <section className={styles.intro}>
-            <img alt="crew-sailing" src={getImg('ship-21', 700)} />
+            <img alt="crew-sailing" src={getImgOld('ship-21', 700)} />
             <span>
               Our highly trained crew of seven will unobtrusively guide you during your journey,
               tailoring excursions and experiences to the tastes of you and your travel companions.
@@ -33,7 +33,7 @@ class CrewIndex extends React.Component {
           </section>
           <section className={styles.left}>
             <div>
-              <img alt="captain" width="350" height="460" src={getImgCropped('crew-2', 350, 460)} />
+              <img alt="captain" width="350" height="460" src={getImgCropped('crew-6', 350, 460)} />
             </div>
             <div>
               <H2 title="Lars" subtitle="Captain" />
@@ -50,7 +50,7 @@ class CrewIndex extends React.Component {
                 alt="chief_stewardess"
                 width="350"
                 height="460"
-                src={getImgCropped('crew-1', 350, 460)}
+                src={getImgCroppedOld('crew-1', 350, 460)}
               />
             </div>
             <div>
@@ -64,7 +64,7 @@ class CrewIndex extends React.Component {
           </section>
           <section className={`${styles.left} ${styles.chef}`}>
             <div>
-              <img alt="chef" width="350" height="460" src={getImgCropped('crew-3', 350, 460)} />
+              <img alt="chef" width="350" height="460" src={getImgCropped('crew-7', 350, 460)} />
             </div>
             <div>
               <H2 title="Antonio" subtitle="Chef" />
@@ -77,9 +77,9 @@ class CrewIndex extends React.Component {
             </div>
           </section>
           <section className={styles.food}>
-            <img alt="food-2" src={getImg('food-2', 300)} width={300} height={500} />
-            <img alt="food-1" src={getImg('food-1', 300)} width={300} height={500} />
-            <img alt="food-3" src={getImg('food-3', 300)} width={300} height={500} />
+            <img alt="food-2" src={getImg('food-11', 300)} width={300} height={500} />
+            <img alt="food-1" src={getImg('food-16', 300)} width={300} height={500} />
+            <img alt="food-3" src={getImgOld('food-3', 300)} width={300} height={500} />
           </section>
         </div>
       </Layout>

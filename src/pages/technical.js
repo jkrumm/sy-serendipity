@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import * as styles from './technical.module.scss';
 
-import { getImg } from '../util/get-image';
+import { getImgOld } from '../util/get-image';
 import BigSlider from '../components/big-slider';
 
 const data = [
@@ -75,6 +75,24 @@ const sliderImages = [
   },
 ];
 
+const smallSliderImages = [
+  {
+    name: 'cockpit-1',
+  },
+  {
+    name: 'cockpit-3',
+  },
+  {
+    name: 'cockpit-4',
+  },
+  {
+    name: 'cockpit-6',
+  },
+  {
+    name: 'cockpit-7',
+  },
+];
+
 class TechnicalIndex extends React.Component {
   render() {
     const { location } = this.props;
@@ -89,7 +107,7 @@ class TechnicalIndex extends React.Component {
         <HeroSmall title="Technical" />
         <div className={styles.technicalWrapper}>
           <section className={styles.technical}>
-            <img alt="blueprint" src={getImg('technical-3', 500)} width="500" />
+            <img alt="blueprint" src={getImgOld('technical-3', 500)} width="500" />
             <div className={styles.data}>
               <h3>Technical Data</h3>
               {data.map((itemData, index) => (
@@ -129,6 +147,23 @@ class TechnicalIndex extends React.Component {
           <section className={styles.slideshow}>
             <div>
               <BigSlider images={sliderImages} width={1500} height={900} />
+            </div>
+          </section>
+          <section className={styles.slideshowSmall}>
+            <div>
+              <BigSlider
+                images={smallSliderImages}
+                width={1500}
+                height={900}
+                addSettings={{
+                  slidesToShow: 2,
+                  autoplay: true,
+                  speed: 1000,
+                  autoplaySpeed: 3500,
+                  pauseOnHover: true,
+                  cssEase: 'ease',
+                }}
+              />
             </div>
           </section>
         </div>

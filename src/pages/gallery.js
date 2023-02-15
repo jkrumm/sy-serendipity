@@ -10,19 +10,19 @@ import * as styles from './gallery.module.scss';
 
 // eslint-disable-next-line import/no-unresolved
 import 'yet-another-react-lightbox/styles.css';
-import { getImg } from '../util/get-image';
+import { getImgOld } from '../util/get-image';
 import { images } from '../util/images';
 
 const breakpoints = [1080, 640, 384, 256, 128, 96, 64, 48];
 
 const photos = images.map((photo) => ({
-  src: getImg(photo.id, photo.width, photo.height),
+  src: getImgOld(photo.id, photo.width, photo.height),
   width: photo.width,
   height: photo.height,
   imagesMapped: breakpoints.map((breakpoint) => {
     const height = Math.round((photo.height / photo.width) * breakpoint);
     return {
-      src: getImg(photo.id, breakpoint, height),
+      src: getImgOld(photo.id, breakpoint, height),
       width: breakpoint,
       height,
     };

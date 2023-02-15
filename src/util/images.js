@@ -1,3 +1,4 @@
+// brew install imagemagick
 // identify -format '{id: "%f", width: "%w", height: "%h"},\n' *jpg
 
 export const images = [

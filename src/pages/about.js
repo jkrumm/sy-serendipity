@@ -9,13 +9,18 @@ import 'slick-carousel/slick/slick-theme.css';
 import * as styles from './about.module.scss';
 
 import BigSlider from '../components/big-slider';
-import { getImg, getImgCropped } from '../util/get-image';
+import { getImg, getImgCropped, getImgCroppedOld, getImgOld } from '../util/get-image';
 import H2 from '../components/h2';
 
 function mapSliderImages() {
   const images = [];
-  for (let i = 1; i <= 25; i += 1) {
-    if (i !== 10 && i !== 12 && i !== 20 && i !== 25 && i !== 18) {
+  const skippedImages = [
+    2, 6, 9, 10, 11, 14, 15, 16, 17, 18, 20, 19, 22, 23, 24, 25, 27, 28, 30, 31, 36, 38, 41, 42, 44,
+    45, 46, 47, 49, 50, 51, 52, 53, 55, 57, 58, 59, 60, 64, 65, 68, 71, 73, 74, 7679, 80, 82, 84,
+    85, 86, 87, 88, 89,
+  ];
+  for (let i = 1; i <= 91; i += 1) {
+    if (!skippedImages.includes(i)) {
       images.push({
         name: `inside-${i}`,
       });
@@ -28,17 +33,17 @@ const crew = [
   {
     name: 'Lars',
     title: 'Captain',
-    img: getImgCropped('crew-2', 210, 270),
+    img: getImgCropped('crew-6', 210, 270),
   },
   {
     name: 'Gabi',
     title: 'Chief Stewardess',
-    img: getImgCropped('crew-1', 210, 270),
+    img: getImgCropped('crew-2', 210, 270),
   },
   {
     name: 'Antonio',
     title: 'Chef',
-    img: getImgCropped('crew-3', 210, 270),
+    img: getImgCropped('crew-7', 210, 270),
   },
 ];
 
@@ -63,12 +68,12 @@ class AboutIndex extends React.Component {
                 islands in the world!
               </span>
               <div>
-                <img alt="caribbean-20" src={getImgCropped('caribbean-20', 320, 400)} />
-                <img alt="mediterranean-13" src={getImgCropped('mediterranean-13', 320, 400)} />
+                <img alt="caribbean-20" src={getImgCroppedOld('caribbean-20', 320, 400)} />
+                <img alt="mediterranean-13" src={getImgCroppedOld('mediterranean-13', 320, 400)} />
               </div>
             </div>
             <div>
-              <img alt="mediterranean-11" src={getImg('mediterranean-11', 550)} />
+              <img alt="mediterranean-11" src={getImgOld('mediterranean-11', 550)} />
             </div>
           </section>
           <section className={styles.accommodation}>
@@ -107,7 +112,12 @@ class AboutIndex extends React.Component {
             <div className={styles.textImage}>
               <div className={styles.content}>
                 <div className={styles.img}>
-                  <img alt="sport-snorkeling" width="400" src={getImg('sport-2', 400)} />
+                  <img
+                    alt="sport-9"
+                    width="400"
+                    height="520"
+                    src={getImgCropped('sport-11', 400, 520)}
+                  />
                 </div>
                 <div className={styles.text}>
                   <div>
@@ -127,7 +137,7 @@ class AboutIndex extends React.Component {
                         <li>Wakeboard</li>
                         <li>Water skis (kids & adults)</li>
                         <li>wet suits</li>
-                        <li>water donught</li>
+                        <li>water doughnut</li>
                         <li>weights, skip, therabands</li>
                         <li>yoga mats</li>
                         <li>volleyball, football, ping pong rackets</li>
@@ -135,6 +145,24 @@ class AboutIndex extends React.Component {
                     </span>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div className={styles.sportImages}>
+              <div>
+                <img
+                  alt="sport-snorkeling"
+                  width="460"
+                  height="307"
+                  src={getImg('ship-38', 460, 307)}
+                />
+              </div>
+              <div>
+                <img
+                  alt="sport-snorkeling"
+                  width="460"
+                  height="307"
+                  src={getImgCroppedOld('sport-11', 460, 307)}
+                />
               </div>
             </div>
             {/* <div className={styles.threeImages}> */}
@@ -179,7 +207,7 @@ class AboutIndex extends React.Component {
           </section>
           <section className={styles.technical}>
             <div>
-              <img alt="technical-4" width="500" src={getImg('technical-4', 500)} />
+              <img alt="technical-4" width="500" src={getImgOld('technical-4', 500)} />
             </div>
             <div>
               <H2 title="Blueprints and data" subtitle="Technical" />

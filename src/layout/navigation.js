@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Link } from 'gatsby';
 
 import * as styles from './navigation.module.scss';
-import { getImg } from '../util/get-image';
+import { getImgOld } from '../util/get-image';
 
 const isBrowser = typeof window !== `undefined`;
 
@@ -76,7 +76,7 @@ function Navigation() {
           to="/"
           className={`${styles.logoLink}${scrolled ? ' nav-scrolled-logo' : ''} nav-home-logo`}
         >
-          <img alt="logo" src={getImg('logo-blue-icon.png', 100)} />
+          <img alt="logo" src={getImgOld('logo-blue-icon.png', 100)} />
           <h3 className={styles.navigationItem}>Serendipity I</h3>
         </Link>
         <ul className={styles.navigation}>

@@ -1,12 +1,20 @@
 import React from 'react';
 import * as styles from './hero.module.scss';
 import { getImg } from '../util/get-image';
+import useWindowDimensions from '../util/window-dimensions';
 
 function Hero() {
+  const { height, width } = useWindowDimensions('fix');
   return (
     <div className={styles.hero}>
       <div className={styles.imageWrapper}>
-        <img className={styles.image} alt="heroTitle" src={getImg('ship-16')} />
+        <img
+          width={width}
+          height={height - 250}
+          className={styles.image}
+          alt="heroTitle"
+          src={getImg('ship-6', width, height)}
+        />
       </div>
       {/* <video */}
       {/*  poster="https://media.wajer.com/content/images/home/212643/Wajer-Yachts-77-homepage_f9ccbd90f4f2acfc2a27d6de8c4570f2.jpg" */}

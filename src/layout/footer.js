@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import * as styles from './footer.module.scss';
 import Container from './container';
-import { getImg } from '../util/get-image';
+import { getImgOld } from '../util/get-image';
 
 function Footer() {
   return (
@@ -33,7 +33,7 @@ function Footer() {
           </div>
           <div className={styles.logoWrapper}>
             <Link to="/">
-              <img className={styles.logo} alt="logo" src={getImg('logo-blue.svg')} />
+              <img className={styles.logo} alt="logo" src={getImgOld('logo-blue.svg')} />
             </Link>
           </div>
           <div>

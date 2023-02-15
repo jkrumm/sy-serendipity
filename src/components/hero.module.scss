@@ -9,22 +9,24 @@
 .imageWrapper {
   position: relative;
 
-  &:after {
-    content: '\A';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: black;
-    opacity: 0.1;
-  }
+  //&:after {
+  //  content: '\A';
+  //  position: absolute;
+  //  width: 100%;
+  //  height: 100%;
+  //  top: 0;
+  //  left: 0;
+  //  background: black;
+  //  opacity: 0.1;
+  //}
 }
 
 .image {
   //min-height: calc(100vh + 30px);
-  //max-height: calc(100vh + 30px);
+  max-height: calc(100vh - 250px);
   width: 100%;
+  object-fit: cover;
+  object-position: top;
 }
 
 video {

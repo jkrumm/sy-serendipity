@@ -4,7 +4,7 @@ import Layout from '../layout/layout';
 import Hero from '../components/hero';
 import Container from '../layout/container';
 import * as styles from './index.module.scss';
-import { getImg, getImgCropped } from '../util/get-image';
+import { getImg, getImgCropped, getImgCroppedOld, getImgOld } from '../util/get-image';
 import H2 from '../components/h2';
 import Seo from '../layout/seo';
 
@@ -43,7 +43,7 @@ class RootIndex extends React.Component {
             <div className={styles.textImage}>
               <div className={styles.content}>
                 <div className={styles.img}>
-                  <img alt="sy-serendipity-top" width="400" src={getImg('ship-11', 400)} />
+                  <img alt="sy-serendipity-top" width="400" src={getImgOld('ship-11', 400)} />
                 </div>
                 <div className={styles.text}>
                   <div>
@@ -82,7 +82,12 @@ class RootIndex extends React.Component {
                   </div>
                 </div>
                 <div className={styles.img}>
-                  <img alt="ship-15" src={getImg('ship-15', 525)} />
+                  <img
+                    alt="ship-15"
+                    src={getImgCropped('outside-3', 525, 328)}
+                    width={525}
+                    height={328}
+                  />
                 </div>
               </div>
             </div>
@@ -91,8 +96,8 @@ class RootIndex extends React.Component {
             <div className={styles.textImageThird}>
               <div className={styles.content}>
                 <div className={styles.img}>
-                  <img alt="sy-serendipity-top" src={getImg('inside-1', 420)} />
-                  <img alt="sy-serendipity-top" src={getImg('inside-15', 420)} />
+                  <img alt="inside-1" src={getImg('inside-1', 420)} width={420} height={253} />
+                  <img alt="inside-37" src={getImg('inside-37', 420)} width={420} height={253} />
                 </div>
                 <div className={styles.text}>
                   <div>
@@ -146,7 +151,7 @@ class RootIndex extends React.Component {
                   alt="sy-serendipity-top"
                   width="600"
                   height="400"
-                  src={getImgCropped('mediterranean-14', 600, 400)}
+                  src={getImgCroppedOld('mediterranean-14', 600, 400)}
                 />
               </div>
               <div>
@@ -159,7 +164,7 @@ class RootIndex extends React.Component {
                   alt="sy-serendipity-top"
                   width="600"
                   height="400"
-                  src={getImgCropped('caribbean-31', 600, 400)}
+                  src={getImgCroppedOld('caribbean-31', 600, 400)}
                 />
               </div>
             </div>
