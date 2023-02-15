@@ -1,6 +1,6 @@
 import React from 'react';
-import Layout from '../layout/layout';
 import { Link } from 'gatsby';
+import Layout from '../layout/layout';
 
 class NotFoundIndex extends React.Component {
   render() {
@@ -18,7 +18,7 @@ class NotFoundIndex extends React.Component {
         >
           <h3>Page not found</h3>
           <Link to="/">
-            <button>Go Back Home</button>
+            <button type="button">Go Back Home</button>
           </Link>
         </section>
       </Layout>

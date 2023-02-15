@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
+import PhoneInput from 'react-phone-input-2';
+import DateRange from 'react-date-range/dist/components/DateRange';
+import { differenceInDays, getMonth } from 'date-fns';
 import Seo from '../layout/seo';
 import Layout from '../layout/layout';
 import HeroSmall from '../components/hero-small';
@@ -9,9 +12,6 @@ import 'react-date-range/dist/styles.css'; // main style file
 import '../styling/date-range.scss'; // theme css file
 import 'react-phone-input-2/lib/style.css';
 import * as styles from './request.module.scss';
-import DateRange from 'react-date-range/dist/components/DateRange';
-import PhoneInput from 'react-phone-input-2';
-import { differenceInDays, getMonth } from 'date-fns';
 
 function ContactForm() {
   const [state, handleSubmit] = useForm('xknyanvw');
@@ -57,13 +57,19 @@ function ContactForm() {
                 className="sr-only peer"
                 onChange={() => setPhoneEnabled(!phoneEnabled)}
               />
-              <div className="w-11 h-6 peer-focus:outline-none  rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600" />
+              <div
+                className="w-11 h-6 peer-focus:outline-none  rounded-full peer dark:bg-gray-700
+              peer-checked:after:translate-x-full peer-checked:after:border-white after:content-['']
+              after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300
+              after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600
+              peer-checked:bg-blue-600"
+              />
               <span className="ml-3">Prefer to be contacted by Phone?</span>
             </label>
           </div>
           <div className={`${phoneEnabled ? 'phone-shown' : 'phone-hidden'} phone-input`}>
             <label htmlFor="phone">Telephone</label>
-            <PhoneInput country={'us'} onChange={setPhone} value={phone} />
+            <PhoneInput country="us" onChange={setPhone} value={phone} />
           </div>
         </div>
         <label htmlFor="message">Your message to us or special requests</label>
@@ -83,16 +89,19 @@ function ContactForm() {
 }
 
 class RequestIndex extends React.Component {
-  state = {
-    dateRange: [{ startDate: null, endDate: new Date(''), key: 'selection' }],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      dateRange: [{ startDate: null, endDate: new Date(''), key: 'selection' }],
+    };
+  }
 
   getDuration() {
-    if (this.state.dateRange[0].startDate === null) {
+    const { dateRange } = this.state;
+    if (dateRange[0].startDate === null) {
       return '0';
     }
-    const duration =
-      differenceInDays(this.state.dateRange[0].endDate, this.state.dateRange[0].startDate) + 1;
+    const duration = differenceInDays(dateRange[0].endDate, dateRange[0].startDate) + 1;
     if (duration === 1) {
       return '0';
     }
@@ -100,10 +109,11 @@ class RequestIndex extends React.Component {
   }
 
   getDestination() {
+    const { dateRange } = this.state;
     if (this.getDuration() === '0') {
       return 'error';
     }
-    const month = getMonth(this.state.dateRange[0].startDate) + 1;
+    const month = getMonth(dateRange[0].startDate) + 1;
     if (month >= 11 || month <= 5) {
       return 'caribbeans';
     }
@@ -112,6 +122,7 @@ class RequestIndex extends React.Component {
 
   render() {
     const { location } = this.props;
+    const { dateRange } = this.state;
 
     return (
       <Layout location={location}>
@@ -145,7 +156,7 @@ class RequestIndex extends React.Component {
                   <a href="tel:+34690672916">+34 690 672 916</a>
                 </span>
                 <br />
-                <a href="https://www.oceanindependence.com/" target="_blank">
+                <a href="https://www.oceanindependence.com/" target="_blank" rel="noreferrer">
                   Ocean Independence | Leading Global Superyacht Brokers
                 </a>
               </div>
@@ -158,11 +169,10 @@ class RequestIndex extends React.Component {
             </div>
             <div>
               <span>
-                Let your dream come true and explore the most spectacular places on our beautiful planet
-                that have always been on your bucket list.
-                Choose your preferred dates below and we will get back to you. Let us take you to the
-                Carribean between December and April and discover the magic Mediterranean between
-                June and October!
+                Let your dream come true and explore the most spectacular places on our beautiful
+                planet that have always been on your bucket list. Choose your preferred dates below
+                and we will get back to you. Let us take you to the Carribean between December and
+                April and discover the magic Mediterranean between June and October!
               </span>
               <div className={styles.dateRange}>
                 <div>
@@ -184,20 +194,20 @@ class RequestIndex extends React.Component {
                   onChange={(item) => {
                     this.setState({ dateRange: [item.selection] });
                   }}
-                  showSelectionPreview={true}
+                  showSelectionPreview
                   moveRangeOnFirstSelection={false}
                   startDatePlaceholder=""
                   endDatePlaceholder=""
                   minDate={new Date()}
-                  ranges={this.state.dateRange}
+                  ranges={dateRange}
                   months={2}
                   direction="horizontal"
                   rangeColors={['#3e5769']}
                 />
               </div>
-              {/*<span className={styles.personalInfoDescription}>*/}
-              {/*  Please provide some personal information and how you would prefer to be contacted*/}
-              {/*</span>*/}
+              {/* <span className={styles.personalInfoDescription}> */}
+              {/*  Please provide some personal information and how you would prefer to be contacted */}
+              {/* </span> */}
               <ContactForm />
             </div>
           </section>

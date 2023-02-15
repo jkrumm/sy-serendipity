@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 import * as styles from './big-slider.module.scss';
@@ -21,6 +23,7 @@ export default class BigSlider extends Component {
   next() {
     this.slider.slickNext();
   }
+
   previous() {
     this.slider.slickPrev();
   }

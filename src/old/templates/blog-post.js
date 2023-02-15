@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 import { Link } from 'gatsby';
 import get from 'lodash/get';

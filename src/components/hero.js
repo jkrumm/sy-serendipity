@@ -8,23 +8,23 @@ function Hero() {
       <div className={styles.imageWrapper}>
         <img className={styles.image} alt="heroTitle" src={getImg('ship-16')} />
       </div>
-      {/*<video*/}
-      {/*  poster="https://media.wajer.com/content/images/home/212643/Wajer-Yachts-77-homepage_f9ccbd90f4f2acfc2a27d6de8c4570f2.jpg"*/}
-      {/*  playsInline*/}
-      {/*  autoPlay*/}
-      {/*  muted*/}
-      {/*  loop*/}
-      {/*>*/}
-      {/*  <source*/}
-      {/*    src="https://media.wajer.com/content/videos/home/EDITWEBSITE_HOME_V2_SMALL.mp4"*/}
-      {/*    type="video/mp4"*/}
-      {/*  />*/}
-      {/*  <track default kind="captions" />*/}
-      {/*  Sorry, your browser doesnt support embedded videos.*/}
-      {/*</video>*/}
-      {/*<div className={styles.header}>*/}
-      {/*  <img className={styles.logo} alt="logo" src={getImg('logo-white.svg')} />*/}
-      {/*</div>*/}
+      {/* <video */}
+      {/*  poster="https://media.wajer.com/content/images/home/212643/Wajer-Yachts-77-homepage_f9ccbd90f4f2acfc2a27d6de8c4570f2.jpg" */}
+      {/*  playsInline */}
+      {/*  autoPlay */}
+      {/*  muted */}
+      {/*  loop */}
+      {/* > */}
+      {/*  <source */}
+      {/*    src="https://media.wajer.com/content/videos/home/EDITWEBSITE_HOME_V2_SMALL.mp4" */}
+      {/*    type="video/mp4" */}
+      {/*  /> */}
+      {/*  <track default kind="captions" /> */}
+      {/*  Sorry, your browser doesnt support embedded videos. */}
+      {/* </video> */}
+      {/* <div className={styles.header}> */}
+      {/*  <img className={styles.logo} alt="logo" src={getImg('logo-white.svg')} /> */}
+      {/* </div> */}
     </div>
   );
 }

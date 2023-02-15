@@ -48,11 +48,13 @@ function Footer() {
               </Link>
             </span>
             <span>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <Link to="#" activeClassName="active">
                 Legal Disclaimer
               </Link>
             </span>
             <span>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <Link to="#" activeClassName="active">
                 Privacy Policy
               </Link>

@@ -19,7 +19,7 @@ const photos = images.map((photo) => ({
   src: getImg(photo.id, photo.width, photo.height),
   width: photo.width,
   height: photo.height,
-  images: breakpoints.map((breakpoint) => {
+  imagesMapped: breakpoints.map((breakpoint) => {
     const height = Math.round((photo.height / photo.width) * breakpoint);
     return {
       src: getImg(photo.id, breakpoint, height),
@@ -29,10 +29,10 @@ const photos = images.map((photo) => ({
   }),
 }));
 
-const slides = photos.map(({ src, width, height, images }) => ({
+const slides = photos.map(({ src, width, height, imagesMapped }) => ({
   src,
   aspectRatio: width / height,
-  srcSet: images.map((image) => ({
+  srcSet: imagesMapped.map((image) => ({
     src: image.src,
     width: image.width,
   })),
@@ -51,9 +51,13 @@ function classNames(...classes) {
 }
 
 class GalleryIndex extends React.Component {
-  state = { currentTab: 'ship', photosFiltered: [], slidesFiltered: [] };
+  constructor() {
+    super();
+    this.state = { currentTab: 'ship', photosFiltered: [], slidesFiltered: [] };
+  }
 
   componentDidMount() {
+    // eslint-disable-next-line react/destructuring-assignment
     this.filterPhotos(this.state.currentTab);
   }
 
@@ -72,6 +76,7 @@ class GalleryIndex extends React.Component {
 
   render() {
     const { location } = this.props;
+    const { photosFiltered, slidesFiltered, currentTab } = this.state;
 
     return (
       <Layout location={location}>
@@ -91,7 +96,7 @@ class GalleryIndex extends React.Component {
                   id="tabs"
                   name="tabs"
                   className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-                  defaultValue={tabs.find((tab) => tab.key === this.state.currentTab).name}
+                  defaultValue={tabs.find((tab) => tab.key === currentTab).name}
                 >
                   {tabs.map((tab) => (
                     <option key={tab.name}>{tab.name}</option>
@@ -105,7 +110,7 @@ class GalleryIndex extends React.Component {
                       key={tab.name}
                       onClick={() => this.filterPhotos(tab.key)}
                       className={classNames(
-                        this.state.currentTab === tab.key ? 'gallery-tab-active' : 'gallery-tab',
+                        currentTab === tab.key ? 'gallery-tab-active' : 'gallery-tab',
                       )}
                       aria-current={tab.current ? 'page' : undefined}
                     >
@@ -115,10 +120,7 @@ class GalleryIndex extends React.Component {
                 </nav>
               </div>
             </div>
-            <Gallery
-              photosFiltered={this.state.photosFiltered}
-              slidesFiltered={this.state.slidesFiltered}
-            />
+            <Gallery photosFiltered={photosFiltered} slidesFiltered={slidesFiltered} />
           </section>
         </div>
       </Layout>

@@ -107,7 +107,7 @@ function Navigation() {
           </li>
           <li className={styles.navigationItem}>
             <Link to="/request/" activeClassName="active-button" className="nav-request">
-              <button>Request Now</button>
+              <button type="button">Request Now</button>
             </Link>
           </li>
         </ul>

@@ -1,5 +1,5 @@
 function isNameJpg(name) {
-  if (name.includes('food') && parseInt(name.split('-')[1]) > 5) {
+  if (name.includes('food') && parseInt(name.split('-')[1], 10) > 5) {
     return true;
   }
 

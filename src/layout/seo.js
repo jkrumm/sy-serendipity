@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql, useStaticQuery } from 'gatsby';
 
-function Seo({ description = '', lang = 'en', meta = [], title, image }) {
+function Seo({ lang = 'en', meta = [], title }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -27,6 +27,7 @@ function Seo({ description = '', lang = 'en', meta = [], title, image }) {
   const defaultTitle = 'SY SERENDIPITY I';
 
   const fullTitle =
+    // eslint-disable-next-line no-nested-ternary
     title === 'Charter Sailing Yacht | Set Sails. Now.'
       ? `${defaultTitle} | ${title}`
       : title
@@ -41,6 +42,7 @@ function Seo({ description = '', lang = 'en', meta = [], title, image }) {
       title={title}
       defaultTitle={defaultTitle}
       titleTemplate={
+        // eslint-disable-next-line no-nested-ternary
         title === 'Charter Sailing Yacht | Set Sails. Now.'
           ? `${defaultTitle} | %s`
           : defaultTitle
