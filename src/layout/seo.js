@@ -95,6 +95,10 @@ function Seo({ lang = 'en', meta = [], title }) {
           content: 'width=device-width, initial-scale=1',
           id: 'vp',
         },
+        {
+          httpEquiv: 'Accept-CH',
+          content: 'DPR, Width',
+        },
       ].concat(meta)}
     >
       <script>{`function ready(callback) {

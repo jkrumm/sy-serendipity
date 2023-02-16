@@ -10,11 +10,11 @@ export function getImg(name, width, height) {
   // https://ik.imagekit.io/bgmwrkfoi/new/ship-6.jpeg?ik-sdk-version=javascript-1.4.3&updatedAt=1676418090522
   let url = `https://ik.imagekit.io/bgmwrkfoi/`;
   if (width) {
-    url += `/tr:w-${width},f-webp,dpr-2/`;
+    url += `/tr:w-${width},f-webp,dpr-auto/`;
   } else if (height) {
-    url += `/tr:h-${height},f-webp,dpr-2/`;
+    url += `/tr:h-${height},f-webp,dpr-auto/`;
   } else {
-    url += `/tr:f-webp,dpr-2/`;
+    url += `/tr:f-webp,dpr-auto/`;
   }
   if (isNameJpg(name)) {
     url += `/new/${name}.jpg`;
@@ -27,7 +27,7 @@ export function getImg(name, width, height) {
 }
 
 export function getImgCropped(name, width, height) {
-  let url = `https://ik.imagekit.io/bgmwrkfoi/tr:w-${width},h-${height},c-maintain_ratio,f-webp,dpr-2/`;
+  let url = `https://ik.imagekit.io/bgmwrkfoi/tr:w-${width},h-${height},c-maintain_ratio,f-webp,dpr-auto/`;
   if (isNameJpg(name)) {
     url += `/new/${name}.jpg`;
   } else {
