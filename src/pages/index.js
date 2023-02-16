@@ -43,7 +43,12 @@ class RootIndex extends React.Component {
             <div className={styles.textImage}>
               <div className={styles.content}>
                 <div className={styles.img}>
-                  <img alt="sy-serendipity-top" width="400" src={getImgOld('ship-11', 400)} />
+                  <img
+                    alt="sy-serendipity-top"
+                    width="400"
+                    src={getImgOld('ship-11', 400)}
+                    loading="lazy"
+                  />
                 </div>
                 <div className={styles.text}>
                   <div>
@@ -87,6 +92,7 @@ class RootIndex extends React.Component {
                     src={getImgCropped('outside-3', 525, 328)}
                     width={525}
                     height={328}
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -96,8 +102,20 @@ class RootIndex extends React.Component {
             <div className={styles.textImageThird}>
               <div className={styles.content}>
                 <div className={styles.img}>
-                  <img alt="inside-1" src={getImg('inside-1', 420)} width={420} height={253} />
-                  <img alt="inside-37" src={getImg('inside-37', 420)} width={420} height={253} />
+                  <img
+                    alt="inside-1"
+                    src={getImg('inside-1', 420)}
+                    width={420}
+                    height={253}
+                    loading="lazy"
+                  />
+                  <img
+                    alt="inside-37"
+                    src={getImg('inside-37', 420)}
+                    width={420}
+                    height={253}
+                    loading="lazy"
+                  />
                 </div>
                 <div className={styles.text}>
                   <div>
@@ -152,6 +170,7 @@ class RootIndex extends React.Component {
                   width="600"
                   height="400"
                   src={getImgCroppedOld('mediterranean-14', 600, 400)}
+                  loading="lazy"
                 />
               </div>
               <div>
@@ -164,6 +183,7 @@ class RootIndex extends React.Component {
                   alt="sy-serendipity-top"
                   width="600"
                   height="400"
+                  loading="lazy"
                   src={getImgCroppedOld('caribbean-31', 600, 400)}
                 />
               </div>
