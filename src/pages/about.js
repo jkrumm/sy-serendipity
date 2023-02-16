@@ -68,12 +68,27 @@ class AboutIndex extends React.Component {
                 islands in the world!
               </span>
               <div>
-                <img alt="caribbean-20" src={getImgCroppedOld('caribbean-20', 320, 400)} />
-                <img alt="mediterranean-13" src={getImgCroppedOld('mediterranean-13', 320, 400)} />
+                <img
+                  alt="caribbean-20"
+                  src={getImgCroppedOld('caribbean-20', 320, 400)}
+                  width="320"
+                  height="400"
+                />
+                <img
+                  alt="mediterranean-13"
+                  src={getImgCroppedOld('mediterranean-13', 320, 400)}
+                  width="320"
+                  height="400"
+                />
               </div>
             </div>
             <div>
-              <img alt="mediterranean-11" src={getImgOld('mediterranean-11', 550)} />
+              <img
+                alt="mediterranean-11"
+                src={getImgOld('mediterranean-11', 500, 625)}
+                width="500"
+                height="625"
+              />
             </div>
           </section>
           <section className={styles.accommodation}>
@@ -116,6 +131,7 @@ class AboutIndex extends React.Component {
                     alt="sport-9"
                     width="400"
                     height="520"
+                    loading="lazy"
                     src={getImgCropped('sport-11', 400, 520)}
                   />
                 </div>
@@ -153,6 +169,7 @@ class AboutIndex extends React.Component {
                   alt="sport-snorkeling"
                   width="460"
                   height="307"
+                  loading="lazy"
                   src={getImg('ship-38', 460, 307)}
                 />
               </div>
@@ -161,6 +178,7 @@ class AboutIndex extends React.Component {
                   alt="sport-snorkeling"
                   width="460"
                   height="307"
+                  loading="lazy"
                   src={getImgCroppedOld('sport-11', 460, 307)}
                 />
               </div>
@@ -196,7 +214,7 @@ class AboutIndex extends React.Component {
                 {/* <BigSlider dots infinite speed="500" slidesToShow="3" slidesToScroll="3"> */}
                 {crew.map((item) => (
                   <Link to="/crew/" key={item.name}>
-                    <img alt={item.name} src={item.img} width="300px" />
+                    <img alt={item.name} src={item.img} loading="lazy" width="210" height="270" />
                     <h4>{item.name}</h4>
                     <span>{item.title}</span>
                   </Link>
@@ -207,7 +225,13 @@ class AboutIndex extends React.Component {
           </section>
           <section className={styles.technical}>
             <div>
-              <img alt="technical-4" width="500" src={getImgOld('technical-4', 500)} />
+              <img
+                alt="technical-4"
+                width="500"
+                height="553"
+                loading="lazy"
+                src={getImgOld('technical-4', 500, 553)}
+              />
             </div>
             <div>
               <H2 title="Blueprints and data" subtitle="Technical" />

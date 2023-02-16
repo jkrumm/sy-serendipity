@@ -107,7 +107,12 @@ class TechnicalIndex extends React.Component {
         <HeroSmall title="Technical" />
         <div className={styles.technicalWrapper}>
           <section className={styles.technical}>
-            <img alt="blueprint" src={getImgOld('technical-3', 500)} width="500" />
+            <img
+              alt="blueprint"
+              src={getImgOld('technical-3', 500, 1225)}
+              width="500"
+              height="1225"
+            />
             <div className={styles.data}>
               <h3>Technical Data</h3>
               {data.map((itemData, index) => (

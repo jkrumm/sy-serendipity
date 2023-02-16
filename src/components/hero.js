@@ -12,6 +12,7 @@ function Hero() {
           width={width}
           height={height - 250}
           className={styles.image}
+          loading="eager"
           alt="heroTitle"
           src={getImg('ship-6', width, height)}
         />

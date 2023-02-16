@@ -142,6 +142,7 @@ class RequestIndex extends React.Component {
                 alt="barbara-mueller"
                 src="https://www.oceanindependence.com/sites/default/files/images/person/Barbara-web.jpg"
                 width="130"
+                height="130"
               />
               <div>
                 <span>Barbara Mueller</span>
@@ -164,6 +165,8 @@ class RequestIndex extends React.Component {
                 <img
                   alt="logo"
                   src="https://ik.imagekit.io/bgmwrkfoi/tr:w-230,f-webp/OI_Logo_-_white_thick.png"
+                  width="230"
+                  height="69"
                 />
               </div>
             </div>

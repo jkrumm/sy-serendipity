@@ -21,7 +21,7 @@ class CrewIndex extends React.Component {
         />
         <div className={styles.crewWrapper}>
           <section className={styles.intro}>
-            <img alt="crew-sailing" src={getImgOld('ship-21', 700)} />
+            <img alt="crew-sailing" src={getImgOld('ship-21', 700, 394)} width="700" height="394" />
             <span>
               Our highly trained crew of seven will unobtrusively guide you during your journey,
               tailoring excursions and experiences to the tastes of you and your travel companions.
@@ -50,6 +50,7 @@ class CrewIndex extends React.Component {
                 alt="chief_stewardess"
                 width="350"
                 height="460"
+                loading="lazy"
                 src={getImgCroppedOld('crew-1', 350, 460)}
               />
             </div>
@@ -64,7 +65,13 @@ class CrewIndex extends React.Component {
           </section>
           <section className={`${styles.left} ${styles.chef}`}>
             <div>
-              <img alt="chef" width="350" height="460" src={getImgCropped('crew-7', 350, 460)} />
+              <img
+                alt="chef"
+                width="350"
+                height="460"
+                loading="lazy"
+                src={getImgCropped('crew-7', 350, 460)}
+              />
             </div>
             <div>
               <H2 title="Antonio" subtitle="Chef" />
@@ -77,9 +84,27 @@ class CrewIndex extends React.Component {
             </div>
           </section>
           <section className={styles.food}>
-            <img alt="food-2" src={getImg('food-11', 300)} width={300} height={500} />
-            <img alt="food-1" src={getImg('food-16', 300)} width={300} height={500} />
-            <img alt="food-3" src={getImgOld('food-3', 300)} width={300} height={500} />
+            <img
+              alt="food-2"
+              loading="lazy"
+              src={getImg('food-11', 300)}
+              width={300}
+              height={500}
+            />
+            <img
+              alt="food-1"
+              loading="lazy"
+              src={getImg('food-16', 300)}
+              width={300}
+              height={500}
+            />
+            <img
+              alt="food-3"
+              loading="lazy"
+              src={getImgOld('food-3', 300)}
+              width={300}
+              height={500}
+            />
           </section>
         </div>
       </Layout>

@@ -44,9 +44,10 @@ class RootIndex extends React.Component {
               <div className={styles.content}>
                 <div className={styles.img}>
                   <img
-                    alt="sy-serendipity-top"
+                    alt="ship-11"
                     width="400"
-                    src={getImgOld('ship-11', 400)}
+                    height="585"
+                    src={getImgOld('ship-11', 400, 585)}
                     loading="lazy"
                   />
                 </div>
@@ -88,7 +89,7 @@ class RootIndex extends React.Component {
                 </div>
                 <div className={styles.img}>
                   <img
-                    alt="ship-15"
+                    alt="outside-3"
                     src={getImgCropped('outside-3', 525, 328)}
                     width={525}
                     height={328}
