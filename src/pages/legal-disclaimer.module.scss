@@ -1,0 +1,10 @@
+@import 'src/styling/variables.scss';
+
+.legal-wrapper {
+  max-width: $size-max-width;
+  padding: $space-2xl $size-gutter;
+  display: block;
+  margin: 0 auto;
+}
+
+.legal {}
