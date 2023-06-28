@@ -10,19 +10,19 @@ import * as styles from './gallery.module.scss';
 
 // eslint-disable-next-line import/no-unresolved
 import 'yet-another-react-lightbox/styles.css';
-import { getImgOld } from '../util/get-image';
-import { images } from '../util/images';
+import { getImg } from '../util/get-image';
+import { images } from '../util/imagesOld';
 
 const breakpoints = [1080, 640, 384, 256, 128, 96, 64, 48];
 
 const photos = images.map((photo) => ({
-  src: getImgOld(photo.id, photo.width, photo.height),
+  src: getImg(photo.id, photo.width, photo.height),
   width: photo.width,
   height: photo.height,
   imagesMapped: breakpoints.map((breakpoint) => {
     const height = Math.round((photo.height / photo.width) * breakpoint);
     return {
-      src: getImgOld(photo.id, breakpoint, height),
+      src: getImg(photo.id, breakpoint, height),
       width: breakpoint,
       height,
     };
@@ -129,21 +129,21 @@ class GalleryIndex extends React.Component {
 }
 
 function Gallery({ photosFiltered, slidesFiltered }) {
-  const [index, setIndex] = useState(-1);
+  const [galleryIndex, setGalleryIndex] = useState(-1);
   return (
     <>
       <PhotoAlbum
         photos={photosFiltered}
         layout="rows"
         targetRowHeight={250}
-        onClick={(event, photo, newIndex) => setIndex(newIndex)}
+        onClick={({ index }) => setGalleryIndex(index)}
       />
 
       <Lightbox
         slides={slidesFiltered}
-        open={index >= 0}
-        index={index}
-        close={() => setIndex(-1)}
+        open={galleryIndex >= 0}
+        index={galleryIndex}
+        close={() => setGalleryIndex(-1)}
       />
     </>
   );
