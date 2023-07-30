@@ -13,12 +13,20 @@ import '../styling/date-range.scss'; // theme css file
 import 'react-phone-input-2/lib/style.css';
 import * as styles from './request.module.scss';
 
-function ContactForm() {
+function ContactForm(props) {
+  const { destination, duration, arrivalDate, departureDate } = props;
   const [state, handleSubmit] = useForm('xknyanvw');
+
   const [phoneEnabled, setPhoneEnabled] = useState(false);
   const [phone, setPhone] = useState('');
+  const [mail, setMail] = useState('');
+
   if (state.succeeded) {
-    return <p>Thank you for your request, we are looking forward to spoil you very soon!</p>;
+    return (
+      <div className={styles.success}>
+        Thank you for your request, we are looking forward to spoil you very soon!
+      </div>
+    );
   }
   return (
     <div className={styles.form}>
@@ -35,14 +43,33 @@ function ContactForm() {
         </div>
         <div>
           <div>
-            <label htmlFor="email">Email Address</label>
-            <input id="email" type="email" name="email" />
+            <label htmlFor="email">Email Address (required)</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              onChange={(event) => {
+                setMail(event.target.value);
+              }}
+              value={mail}
+            />
             <ValidationError prefix="Email" field="email" errors={state.errors} />
           </div>
           <div>
             <label htmlFor="numberOfPeople">Number of people</label>
             <input id="numberOfPeople" type="number" name="numberOfPeople" />
           </div>
+        </div>
+        <div className={styles.hiddenFields}>
+          <input id="destination" type="destination" name="destination" value={destination} />
+          <input id="duration" type="duration" name="duration" value={`${duration} days`} />
+          <input id="arrivalDate" type="arrivalDate" name="arrivalDate" value={arrivalDate} />
+          <input
+            id="departureDate"
+            type="departureDate"
+            name="departureDate"
+            value={departureDate}
+          />
         </div>
         <div>
           <div className={styles.toggle}>
@@ -79,7 +106,7 @@ function ContactForm() {
           With submitting the form I allow to transfer my personal details so that my request can be
           further processed.
         </span>
-        <button type="submit" disabled={state.submitting}>
+        <button type="submit" disabled={!mail || state.submitting}>
           Submit
         </button>
       </form>
@@ -93,6 +120,9 @@ class RequestIndex extends React.Component {
     super(props);
     this.state = {
       dateRange: [{ startDate: null, endDate: new Date(''), key: 'selection' }],
+      duration: 0,
+      arrivalDate: null,
+      departureDate: null,
     };
   }
 
@@ -122,7 +152,7 @@ class RequestIndex extends React.Component {
 
   render() {
     const { location } = this.props;
-    const { dateRange } = this.state;
+    const { dateRange, duration, arrivalDate, departureDate } = this.state;
 
     return (
       <Layout location={location}>
@@ -195,7 +225,12 @@ class RequestIndex extends React.Component {
                 </div>
                 <DateRange
                   onChange={(item) => {
-                    this.setState({ dateRange: [item.selection] });
+                    this.setState({
+                      dateRange: [item.selection],
+                      duration: differenceInDays(item.selection.endDate, item.selection.startDate),
+                      arrivalDate: new Date(item.selection.startDate).toDateString(),
+                      departureDate: new Date(item.selection.endDate).toDateString(),
+                    });
                   }}
                   showSelectionPreview
                   moveRangeOnFirstSelection={false}
@@ -211,7 +246,12 @@ class RequestIndex extends React.Component {
               {/* <span className={styles.personalInfoDescription}> */}
               {/*  Please provide some personal information and how you would prefer to be contacted */}
               {/* </span> */}
-              <ContactForm />
+              <ContactForm
+                destination={this.getDestination()}
+                duration={duration}
+                arrivalDate={arrivalDate}
+                departureDate={departureDate}
+              />
             </div>
           </section>
         </div>

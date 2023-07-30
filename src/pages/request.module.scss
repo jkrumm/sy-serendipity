@@ -85,6 +85,10 @@
       display: flex;
       justify-content: space-between;
 
+      &.hidden-fields {
+        display: none !important;
+      }
+
       > div {
         flex: 1;
 
@@ -145,6 +149,15 @@
 
     &:hover {
       border-color: $primary;
+    }
+
+    &:disabled {
+      border-color: lightgray;
+      color: lightgray;
+
+      &:hover {
+        border-color: lightgray;
+      }
     }
   }
 
