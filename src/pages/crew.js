@@ -4,7 +4,7 @@ import Layout from '../layout/layout';
 import HeroSmall from '../components/hero-small';
 
 import * as styles from './crew.module.scss';
-import { getImg, getImgCropped, getImgCroppedOld, getImgOld } from '../util/get-image';
+import { getImg, getImgCropped, getImgOld } from '../util/get-image';
 import H2 from '../components/h2';
 
 class CrewIndex extends React.Component {
@@ -33,14 +33,22 @@ class CrewIndex extends React.Component {
           </section>
           <section className={styles.left}>
             <div>
-              <img alt="captain" width="350" height="460" src={getImgCropped('crew-6', 350, 460)} />
+              <img alt="captain" width="350" height="460" src={getImgCropped('crew-8', 350, 460)} />
             </div>
             <div>
-              <H2 title="Lars" subtitle="Captain" />
+              <H2 title="Scott" subtitle="Captain" />
               <span>
-                Lars has more than 36 years of sailing experience, being passionate about boats and
-                sailing since he was a little boy. Racing yachts or dinghies or taking part in World
-                or European Championships - you are in best hands!
+                Scott has been boating since he was 6 months old, started competitive windsurfing at
+                15, bought his first keel boat at 19 and spent more than a decade racing as
+                owner/driver in New Zealand’s top one design fleet racing class. His experience in
+                superyachts has taken him around the traditional Mediterranean / Caribbean/Newport
+                circuit but also to far flung places like the Amazon delta, Easter Island and the NZ
+                sub-Antarctic islands. His strong safety focus has allowed him to sail nearly
+                200,000 nautical miles worldwide without incident and holds the safety of guest and
+                crew foremost – but also while having fun and encouraging a co-operative team
+                spirit. He loves sharing his love for sailing and the ocean with guests on board.
+                When he&#39;s not working you will find him sailing on his own high performance
+                catamaran somewhere around the Pacific.
               </span>
             </div>
           </section>
@@ -51,15 +59,20 @@ class CrewIndex extends React.Component {
                 width="350"
                 height="460"
                 loading="lazy"
-                src={getImgCroppedOld('crew-1', 350, 460)}
+                src={getImgCropped('crew-9', 350, 460)}
               />
             </div>
             <div>
-              <H2 title="Gabi" subtitle="Chief Stewardess" />
+              <H2 title="Katerina" subtitle="Chief Stewardess" />
               <span>
-                Gabi is highly motivated and has long years of experience in hospitality. She enjoys
-                meeting people, planning itineraries or events but does also take care of your
-                laundry or any other aspect of your holidays.
+                Born in Skopje, Katerina was lured into the yachting industry in 2019 where she
+                discovered a new passion, allowing her to show her hospitality skills and ability to
+                make the boat feel like a home for crew and guests. Her Bachelor’s degree in
+                Industrial Design has been an influence in giving her the aptness to understand the
+                glamourous detail of the interior along with the ability to find solutions and
+                overcome any obstacles that may arise. She prioritises serving the guests at the
+                highest standard to ensure that they are happy. She is positive, friendly and always
+                happy to help out.
               </span>
             </div>
           </section>
@@ -70,16 +83,22 @@ class CrewIndex extends React.Component {
                 width="350"
                 height="460"
                 loading="lazy"
-                src={getImgCropped('crew-7', 350, 460)}
+                src={getImgCropped('crew-10', 350, 460)}
               />
             </div>
             <div>
-              <H2 title="Antonio" subtitle="Chef" />
+              <H2 title="Gustavo" subtitle="Chef" />
               <span>
-                You are most welcome if you are a high end foody! Our energetic chef Antonio with
-                his blend of creativity, passion for food and exceptional cooking skills will source
-                the best ingredients on local markets and serve the most delicious meals ever. Let
-                him spoil you!
+                Gustavo was brought up in a farmlike lifestyle, which promised endless surplus of
+                fresh fruit and vegetables, amongst other farm produce. From a young age, he enjoyed
+                practicing sustainable living through the inspiration from his grandmother, where
+                his love for food was cultivated. He then decided to study at a culinary school in
+                Lima, Peru. Kicking off his career in Mexico, he quickly developed a passion for
+                Mexican cuisine. Now, with 23 years of culinary experience, cooking in high-end
+                restaurants between Madrid, Mallorca, Barcelona and Ibiza, he has specialized
+                working in private homes and superyachts as the head chef. He values sourcing the
+                freshest and best quality produce, as well as takes care in the presentation of his
+                food.
               </span>
             </div>
           </section>
