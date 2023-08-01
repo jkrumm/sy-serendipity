@@ -33,7 +33,12 @@ class CrewIndex extends React.Component {
           </section>
           <section className={styles.left}>
             <div>
-              <img alt="captain" width="350" height="460" src={getImgCropped('crew-6', 350, 460)} />
+              <img
+                alt="captain"
+                width="350"
+                height="460"
+                src={getImgCropped('crew-11', 350, 460)}
+              />
             </div>
             <div>
               <H2 title="Scott" subtitle="Captain" />
