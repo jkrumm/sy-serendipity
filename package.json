@@ -7,7 +7,7 @@
   "dependencies": {
     "@contentful/rich-text-plain-text-renderer": "^16.0.5",
     "@formspree/react": "^2.4.1",
-    "contentful-import": "^8.5.12",
+    "contentful-import": "^9.0.9",
     "date-fns": "^2.29.3",
     "gatsby": "^5.2.0",
     "gatsby-plugin-google-gtag": "^5.2.0",
