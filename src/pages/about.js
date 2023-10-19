@@ -31,19 +31,19 @@ function mapSliderImages() {
 
 const crew = [
   {
-    name: 'Lars',
+    name: 'Scott',
     title: 'Captain',
-    img: getImgCropped('crew-6', 210, 270),
+    img: getImgCropped('crew-11', 210, 270),
   },
   {
-    name: 'Gabi',
+    name: 'Katerina',
     title: 'Chief Stewardess',
-    img: getImgCropped('crew-2', 210, 270),
+    img: getImgCropped('crew-9', 210, 270),
   },
   {
-    name: 'Antonio',
+    name: 'Simon',
     title: 'Chef',
-    img: getImgCropped('crew-7', 210, 270),
+    img: getImgCropped('crew-12', 210, 270),
   },
 ];
 

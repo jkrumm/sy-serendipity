@@ -88,13 +88,13 @@ class CrewIndex extends React.Component {
                 width="350"
                 height="460"
                 loading="lazy"
-                src={getImgCropped('crew-10', 350, 460)}
+                src={getImgCropped('crew-12', 350, 460)}
               />
             </div>
             <div>
-              <H2 title="Gustavo" subtitle="Chef" />
+              <H2 title="Simon" subtitle="Chef" />
               <span>
-                Gustavo was brought up in a farmlike lifestyle, which promised endless surplus of
+                Simon was brought up in a farmlike lifestyle, which promised endless surplus of
                 fresh fruit and vegetables, amongst other farm produce. From a young age, he enjoyed
                 practicing sustainable living through the inspiration from his grandmother, where
                 his love for food was cultivated. He then decided to study at a culinary school in
