@@ -94,16 +94,16 @@ class CrewIndex extends React.Component {
             <div>
               <H2 title="Simon" subtitle="Chef" />
               <span>
-                Simon was brought up in a farmlike lifestyle, which promised endless surplus of
-                fresh fruit and vegetables, amongst other farm produce. From a young age, he enjoyed
-                practicing sustainable living through the inspiration from his grandmother, where
-                his love for food was cultivated. He then decided to study at a culinary school in
-                Lima, Peru. Kicking off his career in Mexico, he quickly developed a passion for
-                Mexican cuisine. Now, with 23 years of culinary experience, cooking in high-end
-                restaurants between Madrid, Mallorca, Barcelona and Ibiza, he has specialized
-                working in private homes and superyachts as the head chef. He values sourcing the
-                freshest and best quality produce, as well as takes care in the presentation of his
-                food.
+                Cooking became essential for Simon at a very young age, having seen his mother
+                acting as the family chef with love and passion. Early on in school, he attended
+                cooking classes and had his mind set on becoming a Professional Chef. Starting his
+                career in world-renowned Hotel in Zermatt he moved to London, refining and improving
+                his skillset. His taste for Cruising developed on cruise ship and this period in
+                life led the path to become a YachtChef later on. His cooking style has always been
+                focused on fine dining, taking the utmost care in sourcing the best available
+                products.His extensive experience enables him to serve whatever the clients is
+                asking for. Working for so many years in the yachting industry, this is the most
+                important part of his job – making his guests happy whatever cuisine they wish for.
               </span>
             </div>
           </section>
