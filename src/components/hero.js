@@ -1,21 +1,28 @@
 import React from 'react';
 import * as styles from './hero.module.scss';
-import { getImg } from '../util/get-image';
 import useWindowDimensions from '../util/window-dimensions';
+import { getImg } from '../util/get-image';
 
 function Hero() {
   const { height, width } = useWindowDimensions('fix');
   return (
     <div className={styles.hero}>
       <div className={styles.imageWrapper}>
-        <img
-          width={width}
-          height={height - 250}
-          className={styles.image}
-          loading="eager"
-          alt="heroTitle"
-          src={getImg('ship-6', width, height)}
-        />
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video width={width} height={height} autoPlay muted>
+          <source
+            src="https://ik.imagekit.io/bgmwrkfoi/sy-serendipty-1080.mov?updatedAt=1717936116217"
+            type="video/mp4"
+          />
+          <img
+            width={width}
+            height={height - 250}
+            className={styles.image}
+            loading="eager"
+            alt="heroTitle"
+            src={getImg('ship-6', width, height)}
+          />
+        </video>
       </div>
       {/* <video */}
       {/*  poster="https://media.wajer.com/content/images/home/212643/Wajer-Yachts-77-homepage_f9ccbd90f4f2acfc2a27d6de8c4570f2.jpg" */}
