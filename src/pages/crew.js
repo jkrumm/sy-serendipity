@@ -46,12 +46,15 @@ class CrewIndex extends React.Component {
                 Scott has been boating since he was 6 months old, started competitive windsurfing at
                 15, bought his first keel boat at 19 and spent more than a decade racing as
                 owner/driver in New Zealand’s top one design fleet racing class. His experience in
-                superyachts has taken him around the traditional Mediterranean / Caribbean/Newport
+                superyachts has taken him around the traditional Mediterranean / Caribbean / Newport
                 circuit but also to far flung places like the Amazon delta, Easter Island and the NZ
-                sub-Antarctic islands. His strong safety focus has allowed him to sail nearly
-                200,000 nautical miles worldwide without incident and holds the safety of guest and
-                crew foremost – but also while having fun and encouraging a co-operative team
-                spirit. He loves sharing his love for sailing and the ocean with guests on board.
+                sub-Antarctic islands.
+                <br />
+                His strong safety focus has allowed him to sail nearly 200,000 nautical miles
+                worldwide without incident and holds the safety of guest and crew foremost – but
+                also while having fun and encouraging a co-operative team spirit. He loves sharing
+                his love for sailing and the ocean with guests on board.
+                <br />
                 When he&#39;s not working you will find him sailing on his own high performance
                 catamaran somewhere around the Pacific.
               </span>
@@ -64,20 +67,21 @@ class CrewIndex extends React.Component {
                 width="350"
                 height="460"
                 loading="lazy"
-                src={getImgCropped('crew-9', 350, 460)}
+                src={getImgCropped('crew-13', 350, 460)}
               />
             </div>
             <div>
-              <H2 title="Katerina" subtitle="Chief Stewardess" />
+              <H2 title="Alanna" subtitle="Chief Stewardess" />
               <span>
-                Born in Skopje, Katerina was lured into the yachting industry in 2019 where she
-                discovered a new passion, allowing her to show her hospitality skills and ability to
-                make the boat feel like a home for crew and guests. Her Bachelor’s degree in
-                Industrial Design has been an influence in giving her the aptness to understand the
-                glamourous detail of the interior along with the ability to find solutions and
-                overcome any obstacles that may arise. She prioritises serving the guests at the
-                highest standard to ensure that they are happy. She is positive, friendly and always
-                happy to help out.
+                Alanna was born and raised in a coastal town in South Africa. She completed her
+                Honors degree in Physiotherapy, where her passion for serving others began. With
+                several years of experience working with high-end clients, she decided to transfer
+                her knowledge and skills onboard, knowing that it would pair well with her
+                adventurous and adaptable personality. <br />
+                When Alanna is not practicing her skills of massage, dry needling, as well as guest
+                relations in the hospitality sector, she loves exploring new places, especially
+                beautiful beaches and hiking spots. She tries to stay fit and enjoys a good run/
+                cycle or swim in and around the area.
               </span>
             </div>
           </section>

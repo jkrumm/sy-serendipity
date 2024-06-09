@@ -36,9 +36,9 @@ const crew = [
     img: getImgCropped('crew-11', 210, 270),
   },
   {
-    name: 'Katerina',
+    name: 'Alanna',
     title: 'Chief Stewardess',
-    img: getImgCropped('crew-9', 210, 270),
+    img: getImgCropped('crew-13', 210, 270),
   },
   {
     name: 'Simon',

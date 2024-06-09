@@ -40,7 +40,7 @@ const slides = photos.map(({ src, width, height, imagesMapped }) => ({
 
 const tabs = [
   { name: 'Ship', key: 'ship' },
-  { name: 'Outside', key: 'outside' },
+  { name: 'Decks', key: 'outside' },
   { name: 'Inside', key: 'inside' },
   { name: 'Cuisine', key: 'food' },
   { name: 'Technical', key: 'technical' },
