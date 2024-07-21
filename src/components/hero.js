@@ -59,6 +59,7 @@ function Hero() {
         </video>
         {!isPlaying && (
           <div className={styles.overlay} onClick={startVideo}>
+            {/* eslint-disable-next-line react/button-has-type */}
             <button className={styles.playButton}>Play Video</button>
           </div>
         )}
