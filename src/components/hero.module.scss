@@ -18,27 +18,6 @@
     object-position: top;
     min-height: 400px;
   }
-
-  //&:after {
-  //  content: '';
-  //  position: absolute;
-  //  height: 100px;
-  //  width: 100vw;
-  //  bottom: 0;
-  //  left: 0;
-  //  background-color: white;
-  //}
-
-  //&:after {
-  //  content: '\A';
-  //  position: absolute;
-  //  width: 100%;
-  //  height: 100%;
-  //  top: 0;
-  //  left: 0;
-  //  background: black;
-  //  opacity: 0.1;
-  //}
 }
 
 .image {
@@ -89,39 +68,6 @@ video {
   font-size: $text-lead;
   font-weight: $semibold;
   margin: 0;
-}
-
-video {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  object-fit: cover;
-  z-index: 1; /* Ensure video stays above other elements */
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  z-index: 2; /* Ensure overlay stays above video */
-}
-
-.playButton {
-  padding: 1rem 2rem;
-  font-size: 1.5rem;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 0.3rem;
-  cursor: pointer;
 }
 
 //@media only screen and (max-width: 1150px) {
