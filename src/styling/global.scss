@@ -238,6 +238,10 @@ code {
   section {
     margin: 160px 0;
   }
+
+  section.home {
+    margin-top: -80px;
+  }
   
   h1 {
     font-size: $text-xl;

@@ -39,7 +39,7 @@ class RootIndex extends React.Component {
         // heroSubtitle={home.heroSubtitle}
         />
         <Container as="main">
-          <section>
+          <section className="home">
             <div className={styles.textImage}>
               <div className={styles.content}>
                 <div className={styles.img}>

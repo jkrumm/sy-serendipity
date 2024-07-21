@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as styles from './hero.module.scss';
 import useWindowDimensions from '../util/window-dimensions';
 import { getImg } from '../util/get-image';
@@ -6,22 +6,27 @@ import { getImg } from '../util/get-image';
 function Hero() {
   const { height, width } = useWindowDimensions('fix');
   const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const startVideo = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+  };
 
   useEffect(() => {
     const video = videoRef.current;
 
     const handlePlay = () => {
-      video.play();
+      setIsPlaying(true);
     };
 
-    // Add event listeners for click and touch events
-    video.addEventListener('click', handlePlay);
-    video.addEventListener('touchstart', handlePlay);
+    video.addEventListener('play', handlePlay);
 
     // Cleanup event listeners on unmount
     return () => {
-      video.removeEventListener('click', handlePlay);
-      video.removeEventListener('touchstart', handlePlay);
+      video.removeEventListener('play', handlePlay);
     };
   }, []);
 
@@ -37,6 +42,7 @@ function Hero() {
           controls // Allows user to interact with play button
           autoPlay
           muted
+          // style={{ display: isPlaying ? 'block' : 'none' }}
         >
           <source
             src="https://ik.imagekit.io/bgmwrkfoi/sy-serendipty-1080.mov?updatedAt=1717936116217"
@@ -51,6 +57,11 @@ function Hero() {
             src={getImg('ship-6', width, height)}
           />
         </video>
+        {!isPlaying && (
+          <div className={styles.overlay} onClick={startVideo}>
+            <button className={styles.playButton}>Play Video</button>
+          </div>
+        )}
       </div>
       {/* <video */}
       {/*  poster="https://media.wajer.com/content/images/home/212643/Wajer-Yachts-77-homepage_f9ccbd90f4f2acfc2a27d6de8c4570f2.jpg" */}
