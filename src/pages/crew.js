@@ -37,7 +37,7 @@ class CrewIndex extends React.Component {
                 alt="captain"
                 width="350"
                 height="460"
-                src={getImgCropped('crew-11', 350, 460)}
+                src={getImgCropped('crew-14', 350, 460)}
               />
             </div>
             <div>
@@ -45,12 +45,12 @@ class CrewIndex extends React.Component {
               <span>
                 Scott has been boating since he was 6 months old, started competitive windsurfing at
                 15, bought his first keel boat at 19 and spent more than a decade racing as
-                owner/driver in New Zealand’s top one design fleet racing class. His experience in
+                owner/driver in New Zealand's top one design fleet racing class. His experience in
                 superyachts has taken him around the traditional Mediterranean / Caribbean / Newport
                 circuit but also to far flung places like the Amazon delta, Easter Island and the NZ
                 sub-Antarctic islands.
                 <br />
-                His strong safety focus has allowed him to sail nearly 200,000 nautical miles
+                His strong safety focus has allowed him to sail over 200,000 nautical miles
                 worldwide without incident and holds the safety of guest and crew foremost – but
                 also while having fun and encouraging a co-operative team spirit. He loves sharing
                 his love for sailing and the ocean with guests on board.
@@ -71,17 +71,16 @@ class CrewIndex extends React.Component {
               />
             </div>
             <div>
-              <H2 title="Alanna" subtitle="Chief Stewardess" />
+              <H2 title="Renee" subtitle="Chief Stewardess" />
               <span>
-                Alanna was born and raised in a coastal town in South Africa. She completed her
-                Honors degree in Physiotherapy, where her passion for serving others began. With
-                several years of experience working with high-end clients, she decided to transfer
-                her knowledge and skills onboard, knowing that it would pair well with her
-                adventurous and adaptable personality. <br />
-                When Alanna is not practicing her skills of massage, dry needling, as well as guest
-                relations in the hospitality sector, she loves exploring new places, especially
-                beautiful beaches and hiking spots. She tries to stay fit and enjoys a good run/
-                cycle or swim in and around the area.
+                Renee is a Kiwi who loves to travel and meet new people. She grew up on a small town
+                near the beach where she learnt to sail. While studying for her degree in visual
+                arts, Renee worked in fine dining restaurants working her way up to hostess and bar
+                manager. This provided a natural pathway to becoming a chief stewardess onboard
+                yachts where she seeks to provide the highest level of service to the guests. <br />
+                When she's not working, Renee loves to go hiking and explore the areas we are
+                visiting and practices yoga and meditation. She also studies wine making with hopes
+                to become a sommelier.
               </span>
             </div>
           </section>
@@ -96,18 +95,20 @@ class CrewIndex extends React.Component {
               />
             </div>
             <div>
-              <H2 title="Simon" subtitle="Chef" />
+              <H2 title="Taryne" subtitle="Chef" />
               <span>
-                Cooking became essential for Simon at a very young age, having seen his mother
-                acting as the family chef with love and passion. Early on in school, he attended
-                cooking classes and had his mind set on becoming a Professional Chef. Starting his
-                career in world-renowned Hotel in Zermatt he moved to London, refining and improving
-                his skillset. His taste for Cruising developed on cruise ship and this period in
-                life led the path to become a YachtChef later on. His cooking style has always been
-                focused on fine dining, taking the utmost care in sourcing the best available
-                products.His extensive experience enables him to serve whatever the clients is
-                asking for. Working for so many years in the yachting industry, this is the most
-                important part of his job – making his guests happy whatever cuisine they wish for.
+                Taryne was raised in Durban, South Africa spending most of her time in the ocean
+                boogie boarding & surfing. She studied graphic and web design and worked for a
+                multimedia production company. While taking some time off to travel Europe she found
+                her love for food. She took some basic cooking classes and then started her career
+                as a chef on yachts. She continued on to complete her Advanced Diploma in Culinary
+                Training at Silwood School of Cookery.
+                <br />
+                She now has over ten years experience working on motor and sail yachts and raced the
+                Transatlantic RORC, Middle Sea race and St Barts bucket. Tayrne has worked at a few
+                recognized restaurants, wine estates, as well as a fine dining safari lodges in
+                South Africa – but her passion is now at sea. In her spare time Taryne loves to
+                travel, surf, hike & mountain bike.
               </span>
             </div>
           </section>
