@@ -31,19 +31,19 @@ function mapSliderImages() {
 
 const crew = [
   {
-    name: 'Scott',
+    name: 'Scott Waterfield',
     title: 'Captain',
-    img: getImgCropped('crew-11', 210, 270),
+    img: getImgCropped('crew-21', 210, 270),
   },
   {
-    name: 'Alanna',
+    name: 'Renee Weatherall',
     title: 'Chief Stewardess',
-    img: getImgCropped('crew-13', 210, 270),
+    img: getImgCropped('crew-20', 210, 270),
   },
   {
-    name: 'Simon',
+    name: 'Taryne Evans',
     title: 'Chef',
-    img: getImgCropped('crew-12', 210, 270),
+    img: getImgCropped('crew-22', 210, 270),
   },
 ];
 
