@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import HeroSmall from '@/components/HeroSmall.astro';
 import RequestForm from '@/islands/RequestForm';
+import { BROKER_LOGO } from '@/util/get-image';
 import styles from './request.module.scss';
 ---
 
@@ -40,12 +41,7 @@ import styles from './request.module.scss';
           </a>
         </div>
         <div class={styles.logo}>
-          <img
-            alt="logo"
-            src="https://ik.imagekit.io/bgmwrkfoi/tr:w-230,f-webp/OI_Logo_-_white_thick.png"
-            width="230"
-            height="69"
-          />
+          <img alt="logo" src={BROKER_LOGO} width="230" height="69" />
         </div>
       </div>
       <div>

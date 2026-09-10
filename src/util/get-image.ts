@@ -1,20 +1,14 @@
-// Single seam for the image CDN. Every image URL on the site goes through here,
-// so moving hosts (ImageKit -> img.jkrumm.com) is a change to this file only.
-const CDN = 'https://ik.imagekit.io/bgmwrkfoi';
+// Single seam for the image CDN (imgproxy over B2, see the `img` skill).
+// Every image URL on the site goes through here, so a host move is a change to this file only.
+const CDN = 'https://img.jkrumm.com';
+const PREFIX = 'sy-serendipity';
 
+type Folder = 'new' | 'all';
 type Size = { width?: number; height?: number };
 
-function extensionFor(name: string, jpgNames: (name: string) => boolean): string {
+function fileFor(name: string, jpgNames: (name: string) => boolean): string {
   if (name.includes('.png') || name.includes('.svg')) return name;
   return jpgNames(name) ? `${name}.jpg` : `${name}.jpeg`;
-}
-
-function transform({ width, height }: Size, extra: string): string {
-  const parts: string[] = [];
-  if (width) parts.push(`w-${width}`);
-  if (height) parts.push(`h-${height}`);
-  parts.push(extra);
-  return `tr:${parts.join(',')}`;
 }
 
 function isNewJpg(name: string): boolean {
@@ -26,28 +20,44 @@ function isOldJpg(name: string): boolean {
   return ['technical', 'mediterranean', 'caribbean', 'sport'].some((key) => name.includes(key));
 }
 
-/** Scaled by width (or height when no width), from the `new/` folder. */
+function url(options: string[], folder: Folder, file: string): string {
+  const path = [PREFIX, folder, file].join('/');
+  return options.length ? `${CDN}/${options.join('/')}/${path}` : `${CDN}/${path}`;
+}
+
+function format(file: string): string[] {
+  return file.endsWith('.svg') || file.endsWith('.png') ? [] : ['f:webp'];
+}
+
+function fit({ width, height }: Size): string[] {
+  if (width) return [`rs:fit:${width}`];
+  if (height) return [`h:${height}`];
+  return [];
+}
+
+/** Scaled to fit the given width (or height when no width), from the `new/` folder. */
 export function getImg(name: string, width?: number, height?: number): string {
-  const size: Size = width ? { width } : { height };
-  return `${CDN}/${transform(size, 'f-webp,dpr-auto')}/new/${extensionFor(name, isNewJpg)}`;
+  const file = fileFor(name, isNewJpg);
+  return url([...fit({ width, height }), ...format(file)], 'new', file);
 }
 
-/** Cropped to width x height, from the `new/` folder. */
+/** Centre-cropped to exactly width x height, from the `new/` folder. */
 export function getImgCropped(name: string, width: number, height: number): string {
-  const tr = transform({ width, height }, 'c-maintain_ratio,f-webp,dpr-auto');
-  return `${CDN}/${tr}/new/${extensionFor(name, isNewJpg)}`;
+  const file = fileFor(name, isNewJpg);
+  return url([`rs:fill:${width}:${height}`, ...format(file)], 'new', file);
 }
 
-/** Scaled by width (or height when no width), from the legacy `all/` folder. */
+/** Scaled to fit the given width (or height when no width), from the legacy `all/` folder. */
 export function getImgOld(name: string, width?: number, height?: number): string {
-  const size: Size = width ? { width } : { height };
-  return `${CDN}/${transform(size, 'f-webp')}/all/${extensionFor(name, isOldJpg)}`;
+  const file = fileFor(name, isOldJpg);
+  return url([...fit({ width, height }), ...format(file)], 'all', file);
 }
 
-/** Cropped to width x height, from the legacy `all/` folder. */
+/** Centre-cropped to exactly width x height, from the legacy `all/` folder. */
 export function getImgCroppedOld(name: string, width: number, height: number): string {
-  const tr = transform({ width, height }, 'c-maintain_ratio,f-webp');
-  return `${CDN}/${tr}/all/${extensionFor(name, isOldJpg)}`;
+  const file = fileFor(name, isOldJpg);
+  return url([`rs:fill:${width}:${height}`, ...format(file)], 'all', file);
 }
 
-export const SEO_IMAGE = `${CDN}/tr:f-jpg,w-1200,h-630,c-maintain_ratio/all/ship-16.jpeg`;
+export const SEO_IMAGE = `${CDN}/rs:fill:1200:630/f:jpg/${PREFIX}/all/ship-16.jpeg`;
+export const BROKER_LOGO = `${CDN}/rs:fit:230/${PREFIX}/OI_Logo_-_white_thick.png`;
