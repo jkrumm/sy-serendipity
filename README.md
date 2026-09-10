@@ -37,7 +37,8 @@ Env:
 
 - `.env` (see `.env.example`): `PUBLIC_GA_TRACKING_ID` — when set, the Layout injects gtag.
 - `.dev.vars` (see `.dev.vars.example`): `BEA_SECRET_KEY` for the request route under `astro dev`.
-  `BEA_BASE_URL` is a plain var in `wrangler.jsonc`. In production the key is a Worker secret:
+  `BEA_BASE_URL` is a plain var in `wrangler.jsonc`, secrets are declared there under
+  `secrets.required`. In production the key is a Worker secret:
   `bunx wrangler secret put BEA_SECRET_KEY` (value from `op://vps/bun-email-api/SECRET_KEY`).
 
 ## Deploy

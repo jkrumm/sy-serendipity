@@ -25,8 +25,9 @@ herdr pane read <pane_id> --source recent --lines 80   # logs, incl. /api/reques
   `server.allowedHosts`; add any new one there too.
 - Under `astro dev` the adapter runs pages in workerd; `/api/request` reads
   `BEA_BASE_URL` from `wrangler.jsonc` `vars` and `BEA_SECRET_KEY` from `.dev.vars`
-  (gitignored, `chmod 600`; `.dev.vars.example` is the template). Restart the pane after
-  editing `.dev.vars`.
+  (gitignored, `chmod 600`; `.dev.vars.example` is the template). Every secret must also be
+  listed under `secrets.required` in `wrangler.jsonc`, otherwise wrangler silently drops it
+  in dev (and `wrangler types` won't type it). Restart the pane after editing `.dev.vars`.
 - Verify the form end to end:
   ```bash
   curl -s -X POST http://localhost:7734/api/request -H 'Content-Type: application/json' \

@@ -13,5 +13,6 @@
   // Non-secret config for the /api/request route. BEA_SECRET_KEY is a Worker secret:
   //   bunx wrangler secret put BEA_SECRET_KEY   (value: op://vps/bun-email-api/SECRET_KEY)
   "vars": { "BEA_BASE_URL": "https://bun-email-api.jkrumm.com" },
+  "secrets": { "required": ["BEA_SECRET_KEY"] },
   "routes": [{ "pattern": "sy-serendipity.org", "custom_domain": true }],
 }
