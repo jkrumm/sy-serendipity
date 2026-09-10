@@ -41,6 +41,8 @@ export default defineConfig({
   server: { port: 7734, allowedHosts: ['sy-serendipity.test', 'sy-serendipity.mini.jkrumm.com'] },
   vite: {
     plugins: [tailwindcss()],
+    // The workerd dev runner crashes when this dep is discovered late and re-optimized.
+    ssr: { optimizeDeps: { include: ['astro/assets/services/noop'] } },
     server: {
       strictPort: true,
       allowedHosts: ['sy-serendipity.test', 'sy-serendipity.mini.jkrumm.com'],
