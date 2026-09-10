@@ -1,0 +1,16 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Gallery from '@/islands/Gallery';
+import styles from './gallery.module.scss';
+---
+
+<Layout
+  title="Gallery"
+  description="Take a look inside and see the highest level of exclusivity and luxury."
+>
+  <div class={styles.galleryWrapper}>
+    <section class={styles.gallery}>
+      <Gallery client:load />
+    </section>
+  </div>
+</Layout>

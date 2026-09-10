@@ -1,4 +1,4 @@
-@import 'src/styling/variables.scss';
+@use 'styles/variables' as *;
 
 .hero {
   position: relative;
@@ -9,7 +9,6 @@
 .imageWrapper {
   position: relative;
   min-width: 100vw;
-
 
   video {
     max-height: calc(100vh - 250px);

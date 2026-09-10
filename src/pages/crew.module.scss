@@ -1,4 +1,4 @@
-@import 'src/styling/variables.scss';
+@use 'styles/variables' as *;
 
 .crew-wrapper {
   max-width: $size-max-width-slim;
@@ -30,7 +30,8 @@
   }
 }
 
-.left, .right {
+.left,
+.right {
   display: flex;
   max-width: 900px;
 
@@ -114,7 +115,6 @@
   }
 }
 
-
 @media only screen and (max-width: 800px) {
   .crew-wrapper section {
     &:first-of-type {
@@ -126,7 +126,8 @@
     }
   }
 
-  .left, .right {
+  .left,
+  .right {
     display: block;
 
     > div:first-of-type {
@@ -154,7 +155,6 @@
       right: unset;
     }
   }
-
 
   .food {
     max-width: 500px;

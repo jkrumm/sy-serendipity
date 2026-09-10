@@ -1,0 +1,7 @@
+---
+type Props = { title: string; subtitle?: string; class?: string };
+const { title, subtitle, class: className } = Astro.props;
+---
+
+{subtitle && <h4 class={className}>{subtitle}</h4>}
+<h2 class={className}>{title}</h2>

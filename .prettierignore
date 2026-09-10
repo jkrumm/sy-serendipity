@@ -1,2 +1,5 @@
-.cache
-public
+dist
+.astro
+.wrangler
+node_modules
+bun.lock

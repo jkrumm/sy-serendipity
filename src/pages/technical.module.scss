@@ -1,4 +1,4 @@
-@import 'src/styling/variables.scss';
+@use 'styles/variables' as *;
 
 .technical-wrapper {
   max-width: $size-max-width;

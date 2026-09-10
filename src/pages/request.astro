@@ -1,0 +1,62 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import HeroSmall from '@/components/HeroSmall.astro';
+import RequestForm from '@/islands/RequestForm';
+import styles from './request.module.scss';
+---
+
+<Layout
+  title="Contact"
+  description="Request your personally tailored and unforgettable sailing yacht experience."
+>
+  <HeroSmall title="Contact" />
+  <div class={styles.contactWrapper}>
+    <div>
+      <h2>Request your trip</h2>
+    </div>
+    <section>
+      <div>
+        <img
+          class={styles.barbara}
+          alt="barbara-mueller"
+          src="https://www.oceanindependence.com/sites/default/files/images/person/Barbara-web.jpg"
+          width="130"
+          height="130"
+        />
+        <div>
+          <span>Barbara Mueller</span>
+          <span>Senior Charter Broker</span>
+          <span>OCEAN Independence Palma</span>
+          <br />
+        </div>
+        <div>
+          <span>
+            Telephone:<br />
+            <a href="tel:+34690672916">+34 690 672 916</a>
+          </span>
+          <br />
+          <a href="https://www.oceanindependence.com/" target="_blank" rel="noreferrer">
+            Ocean Independence | Leading Global Superyacht Brokers
+          </a>
+        </div>
+        <div class={styles.logo}>
+          <img
+            alt="logo"
+            src="https://ik.imagekit.io/bgmwrkfoi/tr:w-230,f-webp/OI_Logo_-_white_thick.png"
+            width="230"
+            height="69"
+          />
+        </div>
+      </div>
+      <div>
+        <span>
+          Let your dream come true and explore the most spectacular places on our beautiful planet
+          that have always been on your bucket list. Choose your preferred dates below and we will
+          get back to you. Let us take you to the Carribean between December and April and discover
+          the magic Mediterranean between June and October!
+        </span>
+        <RequestForm client:load />
+      </div>
+    </section>
+  </div>
+</Layout>

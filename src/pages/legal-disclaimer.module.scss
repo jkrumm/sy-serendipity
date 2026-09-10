@@ -1,4 +1,4 @@
-@import 'src/styling/variables.scss';
+@use 'styles/variables' as *;
 
 .legal-wrapper {
   max-width: $size-max-width;
@@ -7,4 +7,5 @@
   margin: 0 auto;
 }
 
-.legal {}
+.legal {
+}

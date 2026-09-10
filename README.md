@@ -1,64 +1,58 @@
-# Contentful Gatsby Starter Blog
+# SY Serendipity
 
-Create a [Gatsby](http://gatsbyjs.com/) blog powered by [Contentful](https://www.contentful.com).
+Marketing site for the charter sailing yacht SY Serendipity I — <https://sy-serendipity.org>.
 
-![An article page of the starter blog](./screenshot.png 'An article page of the starter blog')
+Fully static: Astro 7 renders every page at build time, React 19 islands hydrate only the
+three interactive spots (gallery lightbox, request form, image carousels). No CMS, no server.
 
-Static sites are scalable, secure and have very little required maintenance. They come with a drawback though. Not everybody feels good editing files, building a project and uploading it somewhere. This is where Contentful comes into play.
+## Stack
 
-With Contentful and Gatsby you can connect your favorite static site generator with an API that provides an easy to use interface for people writing content and automate the publishing using services like [Travis CI](https://travis-ci.org/) or [Netlify](https://www.netlify.com/).
+| Concern      | Choice                                                                                                                  |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| Framework    | Astro 7, `output: 'static'`, directory URLs (`/about/`)                                                                 |
+| Islands      | React 19 via `@astrojs/react` — `src/islands/*.tsx` only                                                                |
+| Styles       | SCSS modules per page/component (`sass-embedded`, `@use`), Tailwind 4 via `@tailwindcss/vite` for the few utility spots |
+| Images       | ImageKit transform URLs, built by the single seam `src/util/get-image.ts`                                               |
+| Carousel     | `embla-carousel-react` + autoplay plugin                                                                                |
+| Gallery      | `react-photo-album` + `yet-another-react-lightbox`                                                                      |
+| Request form | `react-day-picker` (range), `react-international-phone`, plain `fetch` to Formspree                                     |
+| Hosting      | Cloudflare Workers static assets (`wrangler.jsonc`), no adapter                                                         |
+| Runtime / PM | Bun                                                                                                                     |
 
-## Features
+## Develop
 
-- Simple content model and structure. Easy to adjust to your needs.
-- Use the [synchronization feature](https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/synchronization) of our [Delivery API](https://www.contentful.com/developers/docs/references/content-delivery-api/).
-- Responsive/adaptive images via [gatsby-plugin-image](https://www.gatsbyjs.org/packages/gatsby-plugin-image/) and our [Images API](https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/synchronization/initial-synchronization-of-entries-of-a-specific-content-type).
+```sh
+bun install
+bun run dev        # http://localhost:4321
+bun run build      # dist/
+bun run preview
+bun run check      # astro check (types)
+bun run lint       # eslint, incl. .astro
+bun run format
+```
 
-## Getting started
+Optional env (see `.env.example`): `PUBLIC_GA_TRACKING_ID` — when set, the Layout injects gtag.
 
-See our [official Contentful getting started guide](https://www.contentful.com/developers/docs/tutorials/general/get-started/).
+## Deploy
 
-### Get the source code and install dependencies.
+Two lanes, both driven by `wrangler.jsonc`:
+
+- **Workers Builds (default)** — connect the GitHub repo in the Cloudflare dashboard
+  (Workers & Pages → Create → Import a repository). Build command `bun run build`, deploy
+  command `bunx wrangler deploy`. Every push to `master` deploys; the custom domain route
+  in `wrangler.jsonc` binds `sy-serendipity.org` once the zone lives on Cloudflare.
+- **Manual** — `bun run deploy` (`astro build && wrangler deploy`) with a logged-in wrangler.
+
+## Layout
 
 ```
-$ git clone https://github.com/contentful/starter-gatsby-blog.git
-$ npm install
+src/
+  layouts/Layout.astro    head (SEO, GA), nav, footer, global CSS
+  components/*.astro      static building blocks + their .module.scss
+  islands/*.tsx           React, hydrated with client:* directives
+  pages/*.astro           one file per route + its .module.scss
+  styles/                 global.scss, overrides.scss, variables.scss, tailwind.css
+  util/get-image.ts       every image URL on the site goes through here
+  util/images.ts          gallery image list with intrinsic sizes
+public/                   fonts, favicon, robots.txt
 ```
-
-Or use the [Gatsby CLI](https://www.npmjs.com/package/gatsby-cli).
-
-```
-$ gatsby new contentful-starter-blog https://github.com/contentful/starter-gatsby-blog/
-```
-
-### Set up of the needed content model and create a configuration file
-
-This project comes with a Contentful setup command `npm run setup`.
-
-This command will ask you for a space ID, and access tokens for the Contentful Management and Delivery API and then import the needed content model into the space you define and write a config file (`./.contentful.json`).
-
-`npm run setup` automates that for you but if you want to do it yourself rename `.contentful.json.sample` to `.contentful.json` and add your configuration in this file.
-
-## Crucial Commands
-
-### `npm run dev`
-
-Run the project locally with live reload in development mode.
-
-### `npm run build`
-
-Run a production build into `./public`. The result is ready to be put on any static hosting you prefer.
-
-### `npm run serve`
-
-Spin up a production-ready server with your blog. Don't forget to build your page beforehand.
-
-## Deployment
-
-See the [official Contentful getting started guide](https://www.contentful.com/developers/docs/tutorials/general/get-started/).
-
-## Contribution
-
-Feel free to open pull requests to fix bugs. If you want to add features, please have a look at the [original version](https://github.com/contentful-userland/gatsby-contentful-starter). It is always open to contributions and pull requests.
-
-You can learn more about how Contentful userland is organized by visiting [our about repository](https://github.com/contentful-userland/about).

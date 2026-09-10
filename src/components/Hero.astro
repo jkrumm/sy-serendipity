@@ -1,0 +1,28 @@
+---
+import { getImg } from '@/util/get-image';
+import styles from './hero.module.scss';
+---
+
+<div class={styles.hero}>
+  <div class={styles.imageWrapper}>
+    <video id="hero-video" playsinline controls autoplay muted>
+      <source
+        src="https://ik.imagekit.io/bgmwrkfoi/sy-serendipty-1080.mov?updatedAt=1717936116217"
+        type="video/mp4"
+      />
+      <img
+        class={styles.image}
+        loading="eager"
+        alt="SY Serendipity I"
+        src={getImg('ship-6', 1920)}
+      />
+    </video>
+  </div>
+</div>
+
+<script>
+  const video = document.getElementById('hero-video') as HTMLVideoElement | null;
+  const play = () => void video?.play();
+  video?.addEventListener('click', play);
+  video?.addEventListener('touchstart', play, { passive: true });
+</script>

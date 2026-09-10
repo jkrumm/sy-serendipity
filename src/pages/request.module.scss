@@ -1,4 +1,4 @@
-@import 'src/styling/variables.scss';
+@use 'styles/variables' as *;
 
 .contact-wrapper {
   max-width: $size-max-width;
@@ -47,10 +47,13 @@
     .date-range {
       margin: 50px 0 50px 0;
 
+      :global(.rdp-root) {
+        --rdp-accent-color: #{$dark};
+      }
+
       > div:first-of-type {
         height: 35px;
       }
-
 
       > div:nth-of-type(2) {
         display: flex;
@@ -63,7 +66,6 @@
           &:first-of-type {
             margin-right: 20px;
           }
-
 
           &:last-of-type {
             margin-left: 20px;
@@ -96,19 +98,23 @@
           margin-right: 20px;
         }
 
-
         &:last-of-type {
           margin-left: 20px;
         }
       }
     }
 
-    label, input, textarea, select {
+    label,
+    input,
+    textarea,
+    select {
       display: block;
       width: 100%;
     }
 
-    input, textarea, select {
+    input,
+    textarea,
+    select {
       margin-top: 5px;
       padding: 5px 7px;
       background-color: $white;
@@ -143,7 +149,8 @@
     border: 2px solid $dark;
     margin: 20px 0 40px 0;
 
-    &:before, &:after {
+    &:before,
+    &:after {
       display: none;
     }
 

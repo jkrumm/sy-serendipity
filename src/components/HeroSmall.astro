@@ -1,0 +1,10 @@
+---
+import styles from './hero-small.module.scss';
+
+type Props = { title: string };
+const { title } = Astro.props;
+---
+
+<div class={styles.heroSmall}>
+  <h1>{title}</h1>
+</div>

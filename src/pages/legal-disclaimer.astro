@@ -1,0 +1,32 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import HeroSmall from '@/components/HeroSmall.astro';
+import styles from './legal-disclaimer.module.scss';
+---
+
+<Layout
+  title="Legal Disclaimer"
+  description="Legal disclaimer and privacy policy of SY Serendipity I."
+>
+  <HeroSmall title="Legal Disclaimer" />
+  <div class={styles.legalWrapper}>
+    <section class={styles.legal}>
+      <h3>Legal Disclaimer</h3>
+      <div>
+        <strong>WFD Holdings ltd</strong>
+        <br />
+        375 Advanced House <br />
+        Level 2 <br />
+        Manwel Dimech Street <br />
+        1058 Sliema <br />
+        Malta <br />
+        <br />
+        Telephone: tbc <br />
+        E-Mail: info@sy-serendipity.org <br />
+        <br />
+        Company registration - tbc <br />
+        VAT IDMT 288 581 28
+      </div>
+    </section>
+  </div>
+</Layout>

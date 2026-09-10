@@ -1,0 +1,66 @@
+---
+import '@/styles/tailwind.css';
+import '@/styles/global.scss';
+import '@/styles/overrides.scss';
+
+import Footer from '@/components/Footer.astro';
+import GoogleTag from '@/components/GoogleTag.astro';
+import Navigation from '@/components/Navigation.astro';
+import { SEO_IMAGE } from '@/util/get-image';
+
+type Props = {
+  title?: string;
+  description?: string;
+};
+
+const DEFAULT_TITLE = 'SY SERENDIPITY I';
+const HOME_TITLE = 'Charter Sailing Yacht | Set Sails. Now.';
+const DEFAULT_DESCRIPTION =
+  'A lush yacht holiday on the 45m long SY Serendipity I for 8 guests. Experience freedom, privacy and luxury in the Mediterranean and Caribbean sea.';
+
+const { title, description = DEFAULT_DESCRIPTION } = Astro.props;
+
+function fullTitle(): string {
+  if (!title) return DEFAULT_TITLE;
+  if (title === HOME_TITLE) return `${DEFAULT_TITLE} | ${title}`;
+  return `${title} | ${DEFAULT_TITLE}`;
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta id="vp" name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Accept-CH" content="DPR, Width" />
+    <title>{fullTitle()}</title>
+    <meta name="description" content={description} />
+    <meta name="image" content={SEO_IMAGE} />
+    <meta property="og:title" content={fullTitle()} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={SEO_IMAGE} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle()} />
+    <meta name="twitter:description" content={description} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <GoogleTag />
+    <script is:inline>
+      // Pin a fixed 450px viewport on very narrow screens (legacy layout guard).
+      if (screen.width < 450) {
+        setInterval(function () {
+          document.getElementById('vp').setAttribute('content', 'user-scalable=no,width=450');
+        }, 250);
+      }
+    </script>
+  </head>
+  <body>
+    <Navigation />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

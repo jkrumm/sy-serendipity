@@ -1,0 +1,66 @@
+---
+import { getImgOld } from '@/util/get-image';
+import { isActive } from '@/util/is-active';
+import styles from './navigation.module.scss';
+
+const links = [
+  { href: '/', label: 'Home', className: 'nav-home' },
+  { href: '/about/', label: 'About', className: 'nav-about' },
+  { href: '/crew/', label: 'Crew', className: 'nav-crew' },
+  { href: '/gallery/', label: 'Gallery', className: 'nav-gallery' },
+  { href: '/technical/', label: 'Technical', className: 'nav-technical' },
+];
+---
+
+<nav role="navigation" aria-label="Main" class={`${styles.mainNavigation} main-navigation`}>
+  <div id="nav-container" class={styles.container}>
+    <a id="nav-logo" href="/" class={`${styles.logoLink} nav-home-logo`}>
+      <img alt="logo" src={getImgOld('logo-blue-icon.png', 100)} />
+      <h3 class={styles.navigationItem}>Serendipity I</h3>
+    </a>
+    <ul class={styles.navigation}>
+      {
+        links.map((link) => (
+          <li class={styles.navigationItem}>
+            <a
+              href={link.href}
+              class:list={[link.className, { active: isActive(Astro.url.pathname, link.href) }]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class={styles.navigationItem}>
+        <a
+          href="/request/"
+          class:list={[
+            'nav-request',
+            { 'active-button': isActive(Astro.url.pathname, '/request/') },
+          ]}
+        >
+          <button type="button">Request Now</button>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+  const container = document.getElementById('nav-container');
+  const logo = document.getElementById('nav-logo');
+  let ready = false;
+
+  const update = () => {
+    if (!ready) return;
+    const scrolled = window.scrollY > 25;
+    container?.classList.toggle('nav-scrolled', scrolled);
+    logo?.classList.toggle('nav-scrolled-logo', scrolled);
+  };
+
+  window.addEventListener('scroll', update, { passive: true });
+  setTimeout(() => {
+    ready = true;
+    update();
+  }, 550);
+</script>

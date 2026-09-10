@@ -1,4 +1,4 @@
-@import 'src/styling/variables.scss';
+@use 'styles/variables' as *;
 
 .gallery-wrapper {
   max-width: $size-max-width;
@@ -6,7 +6,6 @@
   display: block;
   margin: 0 auto;
 }
-
 
 .gallery {
   .tabs {
@@ -37,7 +36,6 @@
     }
   }
 }
-
 
 @media only screen and (max-width: 1150px) {
   .gallery {

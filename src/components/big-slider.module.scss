@@ -1,4 +1,4 @@
-@import 'src/styling/variables.scss';
+@use 'styles/variables' as *;
 
 .big-slider {
   .slider-nav {
@@ -7,15 +7,18 @@
     margin-bottom: 10px;
 
     .arrows {
+      display: flex;
+
       img {
         width: 25px;
         display: inline-block;
       }
 
-      span {
+      button {
+        all: unset;
+        cursor: pointer;
         position: relative;
         top: -5px;
-        cursor: pointer;
         padding: 5px 10px;
         margin: 0 5px;
         transition: padding 0.5s ease;
@@ -34,25 +37,37 @@
     }
   }
 
-  .slide {
-    &.smaller {
-      margin-right: 20px;
-      max-width: 100px;
-    }
+  .viewport {
+    overflow: hidden;
   }
+
+  .container {
+    display: flex;
+  }
+}
+
+:global(.slide) {
+  flex: 0 0 calc(100% / var(--slides-to-show, 1));
+  min-width: 0;
 }
 
 @media only screen and (max-width: 1150px) {
   .big-slider .slider-nav {
     margin-bottom: 20px;
 
-    .arrows:last-of-type {
+    .arrows button:last-of-type {
       height: 39px;
     }
   }
-}
 
+  .container[data-tier='multiple'] {
+    --slides-to-show: 2 !important;
+  }
+}
 
 @media only screen and (max-width: 800px) {
+  .container[data-tier='double'],
+  .container[data-tier='multiple'] {
+    --slides-to-show: 1 !important;
+  }
 }
-

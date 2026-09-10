@@ -1,0 +1,22 @@
+---
+// Google Analytics via gtag. Rendered only when PUBLIC_GA_TRACKING_ID is set.
+const gaId = import.meta.env.PUBLIC_GA_TRACKING_ID as string | undefined;
+
+const snippet = gaId
+  ? [
+      'window.dataLayer = window.dataLayer || [];',
+      'function gtag(){dataLayer.push(arguments);}',
+      "gtag('js', new Date());",
+      `gtag('config', ${JSON.stringify(gaId)}, { anonymize_ip: true, cookie_expires: 0 });`,
+    ].join('\n')
+  : '';
+---
+
+{
+  gaId && (
+    <>
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+      <script is:inline set:html={snippet} />
+    </>
+  )
+}

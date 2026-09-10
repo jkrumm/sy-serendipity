@@ -1,0 +1,58 @@
+---
+import Container from './Container.astro';
+import { getImgOld } from '@/util/get-image';
+import { isActive } from '@/util/is-active';
+import styles from './footer.module.scss';
+
+const left = [
+  { href: '/', label: 'Home' },
+  { href: '/about/', label: 'About' },
+  { href: '/crew/', label: 'Crew' },
+  { href: '/gallery/', label: 'Gallery' },
+];
+const right = [
+  { href: '/request/', label: 'Request' },
+  { href: '/technical/', label: 'Technical' },
+  { href: '/legal-disclaimer/', label: 'Legal Disclaimer' },
+  { href: '/legal-disclaimer/', label: 'Privacy Policy' },
+];
+---
+
+<footer class={`${styles.container} footer`}>
+  <Container>
+    <div class={styles.flexbox}>
+      <div>
+        {
+          left.map((link) => (
+            <span>
+              <a
+                href={link.href}
+                class:list={[{ active: isActive(Astro.url.pathname, link.href) }]}
+              >
+                {link.label}
+              </a>
+            </span>
+          ))
+        }
+      </div>
+      <div class={styles.logoWrapper}>
+        <a href="/"><img class={styles.logo} alt="logo" src={getImgOld('logo-blue.svg')} /></a>
+      </div>
+      <div>
+        {
+          right.map((link) => (
+            <span>
+              <a
+                href={link.href}
+                class:list={[{ active: isActive(Astro.url.pathname, link.href) }]}
+              >
+                {link.label}
+              </a>
+            </span>
+          ))
+        }
+      </div>
+    </div>
+    <span class={styles.copyright}>Ⓒ {new Date().getFullYear()} - SY SERENDIPITY I</span>
+  </Container>
+</footer>

@@ -1,0 +1,8 @@
+---
+interface Props {
+  as?: 'div' | 'main' | 'section';
+}
+const { as: Tag = 'div' } = Astro.props;
+---
+
+<Tag class="wrapper"><slot /></Tag>

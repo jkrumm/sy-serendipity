@@ -1,4 +1,4 @@
-@import 'src/styling/variables.scss';
+@use 'styles/variables' as *;
 
 .about-wrapper {
   max-width: $size-max-width;
@@ -175,7 +175,7 @@
   position: relative;
 
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     width: 100%;
     height: 100%;
@@ -184,7 +184,7 @@
     z-index: -1;
     background-position: center bottom;
     background-size: 100% auto;
-    background-image: url("https://ik.imagekit.io/bgmwrkfoi/Tork-Website-Background_5OsWWSK3K.png");
+    background-image: url('https://ik.imagekit.io/bgmwrkfoi/Tork-Website-Background_5OsWWSK3K.png');
     -webkit-filter: brightness(1.6) saturate(1.2);
     filter: brightness(1.6) saturate(1.2);
   }
@@ -415,4 +415,3 @@
     }
   }
 }
-

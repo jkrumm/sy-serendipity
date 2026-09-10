@@ -1,0 +1,257 @@
+@use 'normalize';
+@use 'styles/variables' as *;
+
+@font-face {
+  font-family: 'RockStar';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  src: url('/fonts/RockStar-NarrowMedium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'BrownBold';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  src: url('/fonts/Brown Bold.woff') format('woff');
+  src: url('/fonts/Brown Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'BrownRegular';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  src: url('/fonts/Brown Regular.woff') format('woff');
+  src: url('/fonts/Brown Regular.woff2') format('woff2');
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html * {
+  box-sizing: border-box;
+}
+
+body {
+  background: $background;
+  color: $grey;
+  font-family: $font-brown-regular;
+  font-size: 16px;
+  font-weight: $body;
+  line-height: $default;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  max-width: 100vw;
+  overflow-x: hidden;
+  min-width: 450px;
+}
+
+section {
+  margin: 200px 0;
+}
+
+main {
+  padding-top: 30px;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $dark;
+  text-transform: uppercase;
+  font-family: $font-rock-star;
+  font-weight: $semibold;
+  line-height: $dense;
+}
+
+h1 {
+  font-size: $text-3xl;
+}
+
+h2 {
+  font-size: $text-3xl;
+  margin-bottom: 40px;
+}
+
+h1,
+h2 {
+  position: relative;
+  transition: all 1s ease;
+
+  &:after {
+    content: '';
+    width: 50px;
+    background-color: $dark;
+    height: 3px;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    transition: all 1s ease;
+  }
+
+  &:hover:after {
+    width: 90px;
+  }
+
+  &.center {
+    text-align: center;
+
+    &:after {
+      width: 100px;
+      left: calc(50% - 100px);
+      transform: translateX(50%);
+    }
+
+    &:hover:after {
+      width: 150px;
+      left: calc(50% - 150px);
+    }
+  }
+}
+
+h3 {
+  font-size: $text-2xl;
+  margin-bottom: 20px;
+}
+
+h4 {
+  color: $grey;
+  font-size: 16px;
+  font-family: $font-brown-regular;
+  font-weight: normal;
+  text-transform: none;
+  margin-bottom: 5px;
+
+  &.center {
+    text-align: center;
+  }
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+a:hover {
+  color: $primary;
+
+  h1,
+  h2 {
+    color: $primary;
+
+    &:after {
+      background-color: $primary;
+    }
+  }
+}
+
+strong {
+  font-family: $font-brown-bold;
+}
+
+tt,
+code,
+kbd {
+  background: $black-fade-5;
+  padding-bottom: 0.2em;
+  padding-top: 0.2em;
+}
+
+tt,
+code,
+kbd {
+  font-family: $font-monospace;
+  font-size: 90%;
+}
+
+tt,
+code {
+  background-color: $black-fade-5;
+  border-radius: $radius-sm;
+  font-weight: $medium;
+  padding: 0.2em 0;
+}
+
+code:before,
+code:after,
+tt:before,
+tt:after {
+  content: ' ';
+  letter-spacing: -0.2em;
+}
+
+pre,
+code {
+  font-family: $font-monospace;
+}
+
+.wrapper {
+  max-width: $size-max-width;
+  margin: 0 auto;
+  padding: $space-2xl $size-gutter;
+}
+
+@media only screen and (max-width: 1150px) {
+  section {
+    margin: 180px 0;
+  }
+
+  h1 {
+    font-size: $text-2xl;
+  }
+
+  h2 {
+    font-size: $text-2xl;
+    margin-bottom: 40px;
+  }
+
+  h3 {
+    font-size: $text-xl;
+    margin-bottom: 20px;
+  }
+
+  h1,
+  h2 {
+    &:after {
+      height: 2px;
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  section {
+    margin: 160px 0;
+  }
+
+  section.home {
+    margin-top: -80px;
+  }
+
+  h1 {
+    font-size: $text-xl;
+  }
+
+  h2 {
+    font-size: $text-xl;
+    margin-bottom: 40px;
+  }
+
+  h3 {
+    font-size: $text-lg;
+    margin-bottom: 20px;
+  }
+}

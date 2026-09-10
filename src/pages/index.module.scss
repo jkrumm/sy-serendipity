@@ -1,4 +1,4 @@
-@import 'src/styling/variables.scss';
+@use 'styles/variables' as *;
 
 .text-image {
   max-width: 1000px;
@@ -56,7 +56,6 @@
   }
 }
 
-
 .text-image-third {
   max-width: 1000px;
   margin: 0 auto;
@@ -85,7 +84,6 @@
     }
   }
 }
-
 
 .accommodation {
   > div:first-of-type {
@@ -140,7 +138,9 @@
 }
 
 @media only screen and (max-width: 1150px) {
-  .text-image, .text-image-second, .text-image-third {
+  .text-image,
+  .text-image-second,
+  .text-image-third {
     .content {
       display: block;
 
