@@ -1,6 +1,7 @@
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
+import cloudflare from '@astrojs/cloudflare';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
@@ -28,6 +29,8 @@ function gitLastModified(file: string): string | undefined {
 export default defineConfig({
   site,
   output: 'static',
+  adapter: cloudflare({ imageService: 'passthrough' }),
+  session: false,
   build: { format: 'directory' },
   integrations: [
     react(),
@@ -35,8 +38,13 @@ export default defineConfig({
       serialize: (item) => ({ ...item, lastmod: gitLastModified(pageFileForUrl(item.url)) }),
     }),
   ],
+  server: { port: 7734, allowedHosts: ['sy-serendipity.test', 'sy-serendipity.mini.jkrumm.com'] },
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      strictPort: true,
+      allowedHosts: ['sy-serendipity.test', 'sy-serendipity.mini.jkrumm.com'],
+    },
     css: {
       modules: { localsConvention: 'camelCase' },
       preprocessorOptions: {

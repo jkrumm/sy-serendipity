@@ -9,20 +9,20 @@ import 'react-international-phone/style.css';
 
 import styles from '@/pages/request.module.scss';
 
-const FORM_ENDPOINT = 'https://formspree.io/f/xknyanvw';
+const FORM_ENDPOINT = '/api/request';
 
-type FormspreeError = { field?: string; message: string };
+type FieldError = { field?: string; message: string };
 
-function parseErrors(data: unknown): FormspreeError[] {
+function parseErrors(data: unknown): FieldError[] {
   const errors = (data as { errors?: unknown })?.errors;
   if (!Array.isArray(errors)) return [{ message: 'Submission failed. Please try again.' }];
   return errors.filter(
-    (error): error is FormspreeError =>
+    (error): error is FieldError =>
       typeof error === 'object' && error !== null && typeof error.message === 'string',
   );
 }
 
-function FieldErrors({ field, errors }: { field: string; errors: FormspreeError[] }) {
+function FieldErrors({ field, errors }: { field: string; errors: FieldError[] }) {
   const matching = errors.filter((error) => error.field === field);
   if (matching.length === 0) return null;
   return (
@@ -51,7 +51,7 @@ export default function RequestForm() {
   const [mail, setMail] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [succeeded, setSucceeded] = useState(false);
-  const [errors, setErrors] = useState<FormspreeError[]>([]);
+  const [errors, setErrors] = useState<FieldError[]>([]);
 
   const duration = useMemo(() => getDuration(range), [range]);
   const destination = useMemo(() => getDestination(range, duration), [range, duration]);
@@ -67,8 +67,8 @@ export default function RequestForm() {
     try {
       const res = await fetch(FORM_ENDPOINT, {
         method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: new FormData(form),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
       });
       if (res.ok) {
         setSucceeded(true);
@@ -77,7 +77,7 @@ export default function RequestForm() {
       const data: unknown = await res.json();
       setErrors(parseErrors(data));
     } catch (error) {
-      console.error('Formspree submission failed', error);
+      console.error('Request submission failed', error);
       setErrors([{ message: 'Submission failed. Please check your connection and try again.' }]);
     } finally {
       setSubmitting(false);
@@ -174,6 +174,13 @@ export default function RequestForm() {
                 readOnly
               />
               {phoneEnabled && <input type="hidden" name="phone" value={phone} readOnly />}
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
             </div>
             <div>
               <div className={styles.toggle}>

@@ -2,10 +2,16 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "sy-serendipity",
   "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  // The @astrojs/cloudflare adapter supplies the worker entry; `wrangler deploy` follows
+  // .wrangler/deploy/config.json to the generated dist/server/wrangler.json.
   "assets": {
     "directory": "./dist/",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash",
   },
+  // Non-secret config for the /api/request route. BEA_SECRET_KEY is a Worker secret:
+  //   bunx wrangler secret put BEA_SECRET_KEY   (value: op://vps/bun-email-api/SECRET_KEY)
+  "vars": { "BEA_BASE_URL": "https://bun-email-api.jkrumm.com" },
   "routes": [{ "pattern": "sy-serendipity.org", "custom_domain": true }],
 }
