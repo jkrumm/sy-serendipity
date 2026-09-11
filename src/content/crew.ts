@@ -12,14 +12,13 @@ type CrewPortrait = {
 
 export const MAX_PORTRAIT_IMAGE = {
   name: 'polynesia-24',
-  alt: 'Chef Max smiling on deck, with a Polynesian lagoon behind him',
-  width: 400,
-  height: 360,
+  alt: 'Chef Max in his white jacket on deck, a Polynesian lagoon behind him',
+  width: 800,
+  height: 1000,
   folder: 'polynesia',
   gravity: 'no',
   sourceWidth: 960,
   sourceHeight: 1280,
-  maxWidth: 400,
 } satisfies CrewPortrait;
 
 export const crewImages = {
@@ -86,7 +85,8 @@ export const crewContent = {
       role: 'Chef',
       image: crewImages.chef,
       paragraphs: [
-        'Max is the yacht’s chef. He sources ingredients from local markets and prepares meals on board.',
+        'You are most welcome if you are a high-end foodie! Our energetic chef Max, with his blend of creativity, passion for food and exceptional cooking skills, will source the best ingredients on local markets and serve the most delicious meals ever.',
+        'Let him spoil you!',
       ],
     },
   ],
