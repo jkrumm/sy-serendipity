@@ -40,7 +40,6 @@
     "react-day-picker": "9",
     "react-dom": "19.2.8",
     "react-international-phone": "4.8.0",
-    "react-photo-album": "3.6.1",
     "tailwindcss": "4.3.3",
     "yet-another-react-lightbox": "3.32.2"
   },
