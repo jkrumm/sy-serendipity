@@ -14,16 +14,19 @@ The main action is a charter enquiry through Ocean Independence.
   Mobile Request stays visible; the disclosure supports keyboard use and Escape.
 - **Home:** a side-on sailing photograph on desktop and an aerial portrait on phones.
   The hero states the yacht name, type and cruising area, with one charter invitation.
-  Yacht facts lead into accommodation, decks, South Pacific destinations and service.
-  Hero and lower-page film controls open the original video in a keyboard-accessible dialog;
-  neither video nor poster loads beforehand.
-- **About:** large aft-deck, cabin and yoga photographs; full accommodation details, equipment
-  list, cruising areas, design credits and technical facts remain available in distinct sections.
-- **Crew:** Scott and Renee retain their biographies; Max has the new client introduction.
-  Portrait 24 uses a tight 400 × 360 crop from the top, removing the chest sticker.
-- **Gallery:** 36 selected photographs in five chapters. The six-photo Yacht chapter opens
-  first; All photographs exposes the complete selection. Static HTML shows the initial photos;
-  the existing lightbox supplies keyboard navigation and full-size responsive images.
+  Yacht facts lead into accommodation, decks, South Pacific destinations and service; large
+  aft-deck, cabin and yoga photographs, full accommodation details, equipment list, cruising
+  areas, design credits and technical facts remain available in distinct sections — this is
+  the former About content, now part of the home page. Hero and lower-page film controls open
+  the original video in a keyboard-accessible dialog; neither video nor poster loads
+  beforehand. `/about/` is a 301 redirect to `/`.
+- **Activities:** an intro paragraph and equipment lists, illustrated by 4–5 muted,
+  lazy-initialised video loops with posters; reduced motion shows the poster only.
+- **Crew:** Scott and Renee retain their biographies; Max's client-facing introduction is
+  restored. Portrait 24 uses a 4:5 portrait crop from the top, removing the chest sticker.
+- **Gallery:** 36 selected photographs in five chapters, all rendered on the page with a sticky
+  chapter navigation and scroll-spy. Static HTML shows the photos; the existing lightbox
+  supplies keyboard navigation and full-size responsive images.
 - **Technical:** grouped specification tables, complete uncropped drawings and wheelhouse details.
 - **Request:** email is the only required field; dates, guests and phone preference are optional.
   The calendar adapts to its available width. Native country selection retains phone formatting

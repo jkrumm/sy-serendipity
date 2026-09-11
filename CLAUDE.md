@@ -60,7 +60,15 @@ before a commit. `/check` covers them.
 ## Deploy
 
 Netlify. Production: `bun run deploy` (`astro build && netlify-cli deploy --prod --dir=dist
---no-build`, needs `NETLIFY_AUTH_TOKEN` and a linked site). Previews:
-`ALIAS=<name> bun run deploy:preview` → `https://<name>--sy-serendipity.netlify.app`.
-`BEA_SECRET_KEY` is a Netlify site environment variable (scope: Functions), set in the
-Netlify dashboard.
+--no-build`, needs `NETLIFY_AUTH_TOKEN` and a linked site). Previews build with `PREVIEW=1`
+set (`PREVIEW=1 ALIAS=<name> bun run deploy:preview`) so the Layout renders `noindex,
+nofollow` and drops the canonical link — production builds (no `PREVIEW`) are unchanged.
+→ `https://<name>--sy-serendipity.netlify.app`. `BEA_SECRET_KEY` is a Netlify site
+environment variable (scope: Functions), set in the Netlify dashboard.
+
+`/about/` is a 301 redirect to `/` — the About content (accommodation, South Pacific
+destinations) now lives on the home page.
+
+Videos ship from `public/video/` as static Netlify assets. Encoding contract for anything
+added there: H.264 high profile, `yuv420p`, 1280 px wide, 30 fps, ≤ 9 s, no audio, `+faststart`,
+≤ 2.5 MB.

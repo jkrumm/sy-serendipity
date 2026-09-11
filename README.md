@@ -38,6 +38,8 @@ Env:
 - `.env` (see `.env.example`): `PUBLIC_GA_TRACKING_ID` — when set, the Layout injects gtag.
   `BEA_BASE_URL` / `BEA_SECRET_KEY` carry the request route under `astro dev`. In production
   `BEA_SECRET_KEY` is a Netlify site environment variable (scope: Functions).
+- `PREVIEW=1` (build-command env, not `.env`): marks a build as a preview — the Layout renders
+  `noindex, nofollow` and drops the canonical link. See `bun run deploy:preview` below.
 
 ## Deploy
 
@@ -47,11 +49,25 @@ Env:
 - The domain sy-serendipity.org already points at Netlify (DNS at the registrar, www CNAME →
   sy-serendipity.netlify.app).
 
+## Routes
+
+| Route                | Content                                                                      |
+| -------------------- | ---------------------------------------------------------------------------- |
+| `/`                  | Home — hero, yacht facts, accommodation, South Pacific destinations, service |
+| `/activities/`       | Activities and equipment                                                     |
+| `/crew/`             | Crew biographies                                                             |
+| `/gallery/`          | Photo gallery, chapters                                                      |
+| `/technical/`        | Specifications                                                               |
+| `/request/`          | Charter request form                                                         |
+| `/legal-disclaimer/` | Legal / privacy                                                              |
+| `/about/`            | 301 redirect to `/` (content merged into home)                               |
+| `404`                | Not found                                                                    |
+
 ## Layout
 
 ```
 src/
-  layouts/Layout.astro    head (SEO, GA), nav, footer, global CSS
+  layouts/Layout.astro    head (SEO, GA, robots/canonical), nav, footer, global CSS
   components/*.astro      static building blocks + their .module.scss
   islands/*.tsx           React, hydrated with client:* directives
   pages/*.astro           one file per route + its .module.scss

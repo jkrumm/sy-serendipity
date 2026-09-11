@@ -1,14 +1,9 @@
 ---
+import { navigationLinks, requestLink } from '@/content/navigation';
 import { getImgOld } from '@/util/get-image';
 import styles from './footer.module.scss';
 
-const links = [
-  { href: '/about/', label: 'The yacht' },
-  { href: '/crew/', label: 'The crew' },
-  { href: '/gallery/', label: 'Gallery' },
-  { href: '/technical/', label: 'Specifications' },
-  { href: '/request/', label: 'Request a charter' },
-];
+const links = [...navigationLinks, requestLink];
 ---
 
 <footer class={styles.footer}>

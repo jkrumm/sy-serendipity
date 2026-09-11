@@ -1,15 +1,10 @@
 ---
 import { getImgOld } from '@/util/get-image';
+import { navigationLinks } from '@/content/navigation';
 import { isActive } from '@/util/is-active';
 import styles from './navigation.module.scss';
 
-const links = [
-  { href: '/about/', label: 'The yacht' },
-  { href: '/#destinations', label: 'Destinations' },
-  { href: '/crew/', label: 'The crew' },
-  { href: '/gallery/', label: 'Gallery' },
-  { href: '/technical/', label: 'Specifications' },
-];
+const links = navigationLinks;
 ---
 
 <header class={styles.header} data-site-header>
