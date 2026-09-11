@@ -4,63 +4,96 @@ import { isActive } from '@/util/is-active';
 import styles from './navigation.module.scss';
 
 const links = [
-  { href: '/', label: 'Home', className: 'nav-home' },
-  { href: '/about/', label: 'About', className: 'nav-about' },
-  { href: '/crew/', label: 'Crew', className: 'nav-crew' },
-  { href: '/gallery/', label: 'Gallery', className: 'nav-gallery' },
-  { href: '/technical/', label: 'Technical', className: 'nav-technical' },
+  { href: '/about/', label: 'The yacht' },
+  { href: '/#destinations', label: 'Destinations' },
+  { href: '/crew/', label: 'The crew' },
+  { href: '/gallery/', label: 'Gallery' },
+  { href: '/technical/', label: 'Specifications' },
 ];
 ---
 
-<nav role="navigation" aria-label="Main" class={`${styles.mainNavigation} main-navigation`}>
-  <div id="nav-container" class={styles.container}>
-    <a id="nav-logo" href="/" class={`${styles.logoLink} nav-home-logo`}>
-      <img alt="logo" src={getImgOld('logo-blue-icon.png', 100)} />
-      <h3 class={styles.navigationItem}>Serendipity I</h3>
+<header class={styles.header} data-site-header>
+  <div class={styles.bar}>
+    <a href="/" class={styles.brand} aria-label="Serendipity I — home">
+      <img src={getImgOld('logo-blue-icon.png', 74)} alt="" width="148" height="242" />
+      <span>Serendipity I</span>
     </a>
-    <ul class={styles.navigation}>
+    <nav class={styles.desktop} aria-label="Main">
+      <ul>
+        {
+          links.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                aria-current={isActive(Astro.url.pathname, link.href) ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a href="/request/" class={`button ${styles.desktopRequest}`}>Request a charter</a>
+    </nav>
+    <div class={styles.mobileActions}>
+      <a href="/request/" class={`button ${styles.mobileRequest}`}>Request</a>
+      <button
+        class={styles.menuButton}
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-navigation"
+        data-menu-toggle
+      >
+        <span data-menu-label>Menu</span>
+        <span class={styles.menuIcon} aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+  <nav id="mobile-navigation" class={styles.mobile} aria-label="Main" hidden>
+    <ul>
       {
         links.map((link) => (
-          <li class={styles.navigationItem}>
+          <li>
             <a
               href={link.href}
-              class:list={[link.className, { active: isActive(Astro.url.pathname, link.href) }]}
+              aria-current={isActive(Astro.url.pathname, link.href) ? 'page' : undefined}
             >
               {link.label}
+              <span aria-hidden="true">↗</span>
             </a>
           </li>
         ))
       }
-      <li class={styles.navigationItem}>
-        <a
-          href="/request/"
-          class:list={[
-            'nav-request',
-            { 'active-button': isActive(Astro.url.pathname, '/request/') },
-          ]}
-        >
-          <button type="button">Request Now</button>
-        </a>
-      </li>
     </ul>
-  </div>
-</nav>
+    <p class="eyebrow">45 metres. Eight guests. Your own horizon.</p>
+  </nav>
+</header>
 
 <script>
-  const container = document.getElementById('nav-container');
-  const logo = document.getElementById('nav-logo');
-  let ready = false;
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  const toggle = header?.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const label = header?.querySelector<HTMLElement>('[data-menu-label]');
+  const menu = document.getElementById('mobile-navigation');
 
-  const update = () => {
-    if (!ready) return;
-    const scrolled = window.scrollY > 25;
-    container?.classList.toggle('nav-scrolled', scrolled);
-    logo?.classList.toggle('nav-scrolled-logo', scrolled);
-  };
+  if (header && toggle && menu && label) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      menu.hidden = !open;
+      label.textContent = open ? 'Close' : 'Menu';
+    };
 
-  window.addEventListener('scroll', update, { passive: true });
-  setTimeout(() => {
-    ready = true;
-    update();
-  }, 550);
+    toggle.addEventListener('click', () => setOpen(menu.hidden));
+    menu.addEventListener('click', (event) => {
+      if (event.target instanceof Element && event.target.closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || menu.hidden) return;
+      setOpen(false);
+      toggle.focus();
+    });
+    document.addEventListener('click', (event) => {
+      if (event.target instanceof Node && !header.contains(event.target)) setOpen(false);
+    });
+    window.matchMedia('(min-width: 1100px)').addEventListener('change', () => setOpen(false));
+  }
 </script>

@@ -11,20 +11,25 @@ $html-font-size: 16px;
 }
 
 // colors
-$white: #fdfcf9;
-$light: #c9e2ef;
-$dark: #3e5769;
-$grey: #6d6d6d;
-$black: #171b31;
+$paper: #f5f2eb;
+$ink: #203b3e;
+$muted: #56615d;
+$rule: #d7d8cf;
+$accent: #95754d;
+$white: $paper;
+$light: #e6e8de;
+$dark: $ink;
+$grey: $muted;
+$black: $ink;
 
 $black-fade-5: rgba(0, 0, 0, 0.05);
 
 // layout
-$layout-width: 1400px;
+$layout-width: 1312px;
 $layout-padding: 24px;
 
 // global
-$border-strength: 3px;
+$border-strength: 1px;
 
 /* primitives */
 /* font-family */
@@ -41,7 +46,8 @@ $font-sans:
   'Segoe UI Symbol';
 $font-monospace:
   SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-$font-rock-star: 'RockStar', 'Times New Roman', Times, Arial;
+$font-display: 'Addington', Georgia, 'Times New Roman', serif;
+$font-rock-star: $font-display;
 $font-brown-bold: 'BrownBold', Arial;
 $font-brown-regular: 'BrownRegular', Arial;
 
@@ -89,9 +95,9 @@ $background: $white;
 
 /* tokens */
 /* colors */
-$primary: #4a90e2;
+$primary: $accent;
 $background: $white;
-$border: $black-fade-5;
+$border: $rule;
 
 /* text */
 /* color */
@@ -106,21 +112,6 @@ $text-prose-tracking: -0.011em;
 /* size */
 $size-gutter: $space-2xl;
 $size-logo: $space-2xl;
-$size-max-width: 1230px;
+$size-max-width: 1312px;
 $size-max-width-slim: 1000px;
 $size-max-width-pd: $size-max-width - 2 * 24px;
-
-@media (min-width: 480px) {
-  :root {
-    $size-gutter: $space-3xl;
-  }
-}
-
-@media (min-width: 768px) {
-  :root {
-    $text-lead: $text-2xl;
-    $text-title: $text-4xl;
-    $text-prose-tracking: -0.014em;
-    $text-prose: $text-lg;
-  }
-}

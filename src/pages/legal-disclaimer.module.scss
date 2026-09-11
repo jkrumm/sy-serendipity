@@ -1,11 +1,66 @@
 @use 'styles/variables' as *;
 
-.legal-wrapper {
-  max-width: $size-max-width;
-  padding: $space-2xl $size-gutter;
-  display: block;
-  margin: 0 auto;
+.legal {
+  display: grid;
+  gap: 40px;
+  padding-top: 40px;
+  padding-bottom: var(--section-space);
+  border-top: 1px solid $rule;
+
+  h2 {
+    margin-top: 18px;
+    font-size: clamp(2.25rem, 4vw, 3.5rem);
+  }
 }
 
-.legal {
+.details {
+  color: $muted;
+  font-size: 16px;
+
+  address {
+    font-style: normal;
+
+    span {
+      display: block;
+    }
+  }
+
+  dl {
+    margin: 32px 0 0;
+  }
+
+  dl > div {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+    padding: 14px 0;
+    border-top: 1px solid $rule;
+  }
+
+  dt {
+    color: $ink;
+    font-size: 13px;
+  }
+
+  dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+@media (min-width: 800px) {
+  .legal {
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    padding-top: 56px;
+  }
+
+  .details dl > div {
+    grid-template-columns: 1fr 1.4fr;
+    gap: 24px;
+  }
 }

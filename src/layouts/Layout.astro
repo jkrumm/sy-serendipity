@@ -16,7 +16,7 @@ type Props = {
 const DEFAULT_TITLE = 'SY SERENDIPITY I';
 const HOME_TITLE = 'Charter Sailing Yacht | Set Sails. Now.';
 const DEFAULT_DESCRIPTION =
-  'A lush yacht holiday on the 45m long SY Serendipity I for 8 guests. Experience freedom, privacy and luxury in the Mediterranean and Caribbean sea.';
+  'Discover Serendipity I, a 45 m Perini Navi sailing yacht for eight guests and a crew of seven. Private charter in the South Pacific until summer 2028.';
 
 const { title, description = DEFAULT_DESCRIPTION } = Astro.props;
 
@@ -31,8 +31,8 @@ function fullTitle(): string {
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta id="vp" name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="Accept-CH" content="DPR, Width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f2eb" />
     <title>{fullTitle()}</title>
     <meta name="description" content={description} />
     <meta name="image" content={SEO_IMAGE} />
@@ -40,25 +40,27 @@ function fullTitle(): string {
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={SEO_IMAGE} />
+    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle()} />
     <meta name="twitter:description" content={description} />
     <link rel="icon" href="/favicon.ico" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link
+      rel="preload"
+      href="/fonts/AddingtonCF-Regular.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
+    <link rel="preload" href="/fonts/Brown Regular.woff2" as="font" type="font/woff2" crossorigin />
     <GoogleTag />
-    <script is:inline>
-      // Pin a fixed 450px viewport on very narrow screens (legacy layout guard).
-      if (screen.width < 450) {
-        setInterval(function () {
-          document.getElementById('vp').setAttribute('content', 'user-scalable=no,width=450');
-        }, 250);
-      }
-    </script>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <Navigation />
-    <main>
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
     <Footer />

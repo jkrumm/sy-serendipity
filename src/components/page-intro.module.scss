@@ -1,0 +1,47 @@
+@use 'styles/variables' as *;
+
+.intro {
+  padding-block: 64px 48px;
+
+  > p {
+    margin-bottom: 24px;
+  }
+}
+
+.heading {
+  display: grid;
+  gap: 28px;
+
+  h1 {
+    max-width: 850px;
+  }
+}
+
+.description {
+  max-width: 530px;
+  color: $muted;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+@media (min-width: 800px) {
+  .intro {
+    padding-block: 96px 72px;
+  }
+
+  .description {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .heading:has(.description) {
+    grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+    align-items: end;
+    gap: 64px;
+  }
+
+  .description {
+    padding-bottom: 8px;
+  }
+}

@@ -1,0 +1,19 @@
+---
+import styles from './page-intro.module.scss';
+
+type Props = {
+  eyebrow: string;
+  title: string;
+  description?: string;
+};
+
+const { eyebrow, title, description } = Astro.props;
+---
+
+<header class={`section-shell ${styles.intro}`}>
+  <p class="eyebrow">{eyebrow}</p>
+  <div class={styles.heading}>
+    <h1>{title}</h1>
+    {description && <p class={styles.description}>{description}</p>}
+  </div>
+</header>

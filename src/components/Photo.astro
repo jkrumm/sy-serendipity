@@ -1,0 +1,58 @@
+---
+import { getPhoto, getPhotoSrcSet, type PhotoOptions } from '@/util/get-image';
+import styles from './photo.module.scss';
+
+type Props = Omit<PhotoOptions, 'width' | 'height'> & {
+  alt: string;
+  width?: number;
+  height?: number;
+  sizes?: string;
+  eager?: boolean;
+  class?: string;
+  position?: string;
+};
+
+const {
+  name,
+  alt,
+  width = 1600,
+  height = 1000,
+  sizes = '100vw',
+  old = false,
+  folder,
+  quality,
+  gravity,
+  sourceWidth,
+  sourceHeight,
+  maxWidth,
+  eager = false,
+  class: className,
+  position = 'center',
+} = Astro.props;
+const photo = {
+  name,
+  width,
+  height,
+  old,
+  folder,
+  quality,
+  gravity,
+  sourceWidth,
+  sourceHeight,
+  maxWidth,
+};
+---
+
+<img
+  src={getPhoto(photo)}
+  srcset={getPhotoSrcSet(photo)}
+  sizes={sizes}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={eager ? 'eager' : 'lazy'}
+  fetchpriority={eager ? 'high' : undefined}
+  decoding="async"
+  class:list={[styles.photo, className]}
+  style={{ 'object-position': position }}
+/>

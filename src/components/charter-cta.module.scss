@@ -1,0 +1,32 @@
+@use 'styles/variables' as *;
+
+.cta {
+  padding-block: var(--section-space);
+  text-align: center;
+
+  > :global(.eyebrow) {
+    margin-bottom: 24px;
+  }
+
+  h2 {
+    max-width: 850px;
+    margin-inline: auto;
+  }
+
+  > a {
+    margin-top: 32px;
+  }
+}
+
+.body {
+  max-width: 470px;
+  margin: 24px auto 0;
+  color: $muted;
+  font-size: 17px;
+}
+
+@media (min-width: 800px) {
+  .body {
+    font-size: 18px;
+  }
+}

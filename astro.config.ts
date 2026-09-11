@@ -34,6 +34,7 @@ function gitLastModified(file: string): string | undefined {
 export default defineConfig({
   site,
   output: 'static',
+  devToolbar: { enabled: false },
   adapter: cloudflare({ imageService: 'passthrough' }),
   session: false,
   build: { format: 'directory' },

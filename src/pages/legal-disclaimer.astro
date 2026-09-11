@@ -1,32 +1,38 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import HeroSmall from '@/components/HeroSmall.astro';
+import PageIntro from '@/components/PageIntro.astro';
 import styles from './legal-disclaimer.module.scss';
+
+const company = {
+  name: 'WFD Holdings ltd',
+  address: ['375 Advanced House', 'Level 2', 'Manwel Dimech Street', '1058 Sliema', 'Malta'],
+  telephone: 'tbc',
+  email: 'info@sy-serendipity.org',
+  registration: 'tbc',
+  vat: 'MT 288 581 28',
+};
 ---
 
 <Layout
   title="Legal Disclaimer"
   description="Legal disclaimer and privacy policy of SY Serendipity I."
 >
-  <HeroSmall title="Legal Disclaimer" />
-  <div class={styles.legalWrapper}>
-    <section class={styles.legal}>
-      <h3>Legal Disclaimer</h3>
-      <div>
-        <strong>WFD Holdings ltd</strong>
-        <br />
-        375 Advanced House <br />
-        Level 2 <br />
-        Manwel Dimech Street <br />
-        1058 Sliema <br />
-        Malta <br />
-        <br />
-        Telephone: tbc <br />
-        E-Mail: info@sy-serendipity.org <br />
-        <br />
-        Company registration - tbc <br />
-        VAT IDMT 288 581 28
-      </div>
-    </section>
-  </div>
+  <PageIntro eyebrow="Company information" title="Legal disclaimer" />
+  <section class={`section-shell ${styles.legal}`} aria-labelledby="company-name">
+    <div>
+      <p class="eyebrow">Company</p>
+      <h2 id="company-name">{company.name}</h2>
+    </div>
+    <div class={styles.details}>
+      <address>
+        {company.address.map((line) => <span>{line}</span>)}
+      </address>
+      <dl>
+        <div><dt>Telephone</dt><dd>{company.telephone}</dd></div>
+        <div><dt>E-mail</dt><dd><a href={`mailto:${company.email}`}>{company.email}</a></dd></div>
+        <div><dt>Company registration</dt><dd>{company.registration}</dd></div>
+        <div><dt>VAT ID</dt><dd>{company.vat}</dd></div>
+      </dl>
+    </div>
+  </section>
 </Layout>

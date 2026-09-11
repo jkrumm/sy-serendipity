@@ -1,10 +1,37 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import Photo from '@/components/Photo.astro';
+import styles from './404.module.scss';
+
+const content = {
+  title: 'A little off course.',
+  description:
+    'This page couldn’t be found. Return to the yacht, or let us help you plan your time aboard.',
+  image: 'deck-23',
+  imageAlt: 'The bow rail of Serendipity I looking out across the open sea',
+};
 ---
 
-<Layout title="Page not found">
-  <section style="width: 250px; display: block; margin: 200px auto; text-align: center;">
-    <h3>Page not found</h3>
-    <a href="/"><button type="button">Go Back Home</button></a>
+<Layout title="Page not found" description="Find your way back aboard Serendipity I.">
+  <section class={`section-shell ${styles.page}`} aria-labelledby="not-found-title">
+    <div class={styles.copy}>
+      <p class="eyebrow">404 · A change of course</p>
+      <h1 id="not-found-title">{content.title}</h1>
+      <p class={styles.description}>{content.description}</p>
+      <div class={styles.links}>
+        <a href="/" class="button">Back to the yacht <span aria-hidden="true">↗</span></a>
+        <a href="/request/" class="text-link">Request a charter <span aria-hidden="true">↗</span></a
+        >
+      </div>
+    </div>
+    <Photo
+      name={content.image}
+      alt={content.imageAlt}
+      width={1000}
+      height={1100}
+      sizes="(min-width: 800px) 50vw, 100vw"
+      eager
+      class={styles.photo}
+    />
   </section>
 </Layout>

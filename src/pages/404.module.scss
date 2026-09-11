@@ -1,0 +1,52 @@
+@use 'styles/variables' as *;
+
+.page {
+  display: grid;
+  gap: 48px;
+  padding-block: 64px var(--section-space);
+}
+
+.copy {
+  align-self: center;
+
+  h1 {
+    max-width: 600px;
+    margin-top: 24px;
+  }
+}
+
+.description {
+  max-width: 430px;
+  margin-top: 24px;
+  color: $muted;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 28px;
+  margin-top: 32px;
+}
+
+.photo {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+@media (min-width: 800px) {
+  .page {
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    padding-block: 80px;
+  }
+
+  .copy h1 {
+    font-size: clamp(4.75rem, 6.5vw, 6.25rem);
+  }
+
+  .photo {
+    aspect-ratio: 10 / 11;
+    height: 100%;
+  }
+}

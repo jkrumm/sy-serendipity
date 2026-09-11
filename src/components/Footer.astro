@@ -1,58 +1,43 @@
 ---
-import Container from './Container.astro';
 import { getImgOld } from '@/util/get-image';
-import { isActive } from '@/util/is-active';
 import styles from './footer.module.scss';
 
-const left = [
-  { href: '/', label: 'Home' },
-  { href: '/about/', label: 'About' },
-  { href: '/crew/', label: 'Crew' },
+const links = [
+  { href: '/about/', label: 'The yacht' },
+  { href: '/crew/', label: 'The crew' },
   { href: '/gallery/', label: 'Gallery' },
-];
-const right = [
-  { href: '/request/', label: 'Request' },
-  { href: '/technical/', label: 'Technical' },
-  { href: '/legal-disclaimer/', label: 'Legal Disclaimer' },
-  { href: '/legal-disclaimer/', label: 'Privacy Policy' },
+  { href: '/technical/', label: 'Specifications' },
+  { href: '/request/', label: 'Request a charter' },
 ];
 ---
 
-<footer class={`${styles.container} footer`}>
-  <Container>
-    <div class={styles.flexbox}>
-      <div>
-        {
-          left.map((link) => (
-            <span>
-              <a
-                href={link.href}
-                class:list={[{ active: isActive(Astro.url.pathname, link.href) }]}
-              >
-                {link.label}
-              </a>
-            </span>
-          ))
-        }
+<footer class={styles.footer}>
+  <div class={`section-shell ${styles.content}`}>
+    <div class={styles.top}>
+      <a href="/" class={styles.brand} aria-label="Serendipity I — home">
+        <img src={getImgOld('logo-blue.svg')} alt="Serendipity I" width="288" height="288" />
+      </a>
+      <div class={styles.destination}>
+        <p class="eyebrow">Follow the sun</p>
+        <p>The South Pacific.<br />Until summer 2028.</p>
+        <a href="/#destinations">Explore the destinations <span aria-hidden="true">↗</span></a>
       </div>
-      <div class={styles.logoWrapper}>
-        <a href="/"><img class={styles.logo} alt="logo" src={getImgOld('logo-blue.svg')} /></a>
-      </div>
-      <div>
-        {
-          right.map((link) => (
-            <span>
-              <a
-                href={link.href}
-                class:list={[{ active: isActive(Astro.url.pathname, link.href) }]}
-              >
-                {link.label}
-              </a>
-            </span>
-          ))
-        }
-      </div>
+      <nav aria-label="Footer">
+        <ul>
+          {
+            links.map((link) => (
+              <li>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
     </div>
-    <span class={styles.copyright}>Ⓒ {new Date().getFullYear()} - SY SERENDIPITY I</span>
-  </Container>
+    <div class={styles.bottom}>
+      <p>© {new Date().getFullYear()} Serendipity I</p>
+      <a href="/legal-disclaimer/">Legal disclaimer & privacy</a>
+      <span>Set sail. Stay a little longer.</span>
+    </div>
+  </div>
 </footer>

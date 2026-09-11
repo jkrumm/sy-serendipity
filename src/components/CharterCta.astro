@@ -1,0 +1,20 @@
+---
+import styles from './charter-cta.module.scss';
+
+type Props = {
+  title?: string;
+  body?: string;
+};
+
+const {
+  title = 'Your next chapter, at sea.',
+  body = 'A week shaped around you. Let’s start with a conversation.',
+} = Astro.props;
+---
+
+<section class={`section-shell ${styles.cta}`} aria-labelledby="charter-invitation">
+  <p class="eyebrow">Come aboard</p>
+  <h2 id="charter-invitation">{title}</h2>
+  <p class={styles.body}>{body}</p>
+  <a class="button" href="/request/">Request a charter <span aria-hidden="true">↗</span></a>
+</section>
