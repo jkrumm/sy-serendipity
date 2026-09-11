@@ -19,10 +19,14 @@ herdr pane wait-output <pane_id> --regex 'Local|localhost:7734' --timeout 60000
 herdr pane read <pane_id> --source recent --lines 80   # logs, incl. /api/request errors
 ```
 
-- Port is **7734**, `strictPort`, `bunx kill-port 7734` is baked into `dev` and `preview`.
+- Port is **7734** by default, `strictPort`; `PORT=7735 bun run dev` moves it (the kill-port
+  in `dev`/`preview` follows). Parallel worktrees each take their own port and Caddy block:
+  `sy-serendipity-fable.test` → 7735, `sy-serendipity-codex.test` → 7736.
 - Doors: `https://sy-serendipity.test` (Caddy, this machine) and
-  `https://sy-serendipity.mini.jkrumm.com` (tailnet, from the mini). Both hostnames are in
-  `server.allowedHosts`; add any new one there too.
+  `https://sy-serendipity.mini.jkrumm.com` (tailnet, from the mini). `server.allowedHosts`
+  is `.test` + `.mini.jkrumm.com`, so any Caddy door works without a config change.
+- `astro dev` (Astro 7) detaches into a daemon: `bun run dev` returns immediately,
+  `astro dev logs` / `astro dev stop` / `astro dev status` manage it.
 - Under `astro dev` the adapter runs pages in workerd; `/api/request` reads
   `BEA_BASE_URL` from `wrangler.jsonc` `vars` and `BEA_SECRET_KEY` from `.dev.vars`
   (gitignored, `chmod 600`; `.dev.vars.example` is the template). Every secret must also be

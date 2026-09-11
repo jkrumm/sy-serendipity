@@ -9,6 +9,11 @@ import { defineConfig } from 'astro/config';
 
 const site = 'https://sy-serendipity.org';
 
+// PORT lets parallel worktrees run side by side (7734 is the main checkout, see the Caddyfile).
+const port = Number(process.env.PORT ?? 7734);
+// Leading dot = the host and every subdomain: Caddy .test doors and their tailnet mirrors.
+const allowedHosts = ['.test', '.mini.jkrumm.com'];
+
 function pageFileForUrl(url: string): string {
   const path = new URL(url).pathname.replace(/^\/|\/$/g, '');
   return `src/pages/${path === '' ? 'index' : path}.astro`;
@@ -38,15 +43,12 @@ export default defineConfig({
       serialize: (item) => ({ ...item, lastmod: gitLastModified(pageFileForUrl(item.url)) }),
     }),
   ],
-  server: { port: 7734, allowedHosts: ['sy-serendipity.test', 'sy-serendipity.mini.jkrumm.com'] },
+  server: { port, allowedHosts },
   vite: {
     plugins: [tailwindcss()],
     // The workerd dev runner crashes when this dep is discovered late and re-optimized.
     ssr: { optimizeDeps: { include: ['astro/assets/services/noop'] } },
-    server: {
-      strictPort: true,
-      allowedHosts: ['sy-serendipity.test', 'sy-serendipity.mini.jkrumm.com'],
-    },
+    server: { strictPort: true, allowedHosts },
     css: {
       modules: { localsConvention: 'camelCase' },
       preprocessorOptions: {

@@ -12,9 +12,9 @@
     "url": "https://github.com/jkrumm/sy-serendipity"
   },
   "scripts": {
-    "dev": "bunx kill-port 7734 && astro dev",
+    "dev": "bunx kill-port ${PORT:-7734} && astro dev",
     "build": "astro build",
-    "preview": "bunx kill-port 7734 && astro preview --port 7734",
+    "preview": "bunx kill-port ${PORT:-7734} && astro preview --port ${PORT:-7734}",
     "check": "wrangler types && astro check",
     "typecheck": "wrangler types && astro check",
     "lint": "eslint 'src/**/*.{ts,tsx,astro}' astro.config.ts eslint.config.js",
