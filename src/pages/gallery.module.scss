@@ -2,27 +2,42 @@
   padding-bottom: var(--section-space);
 }
 
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0 24px;
-  padding: 8px 0;
-  border-top: 1px solid var(--rule);
+.chapterNav {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 10;
+  background: var(--paper);
   border-bottom: 1px solid var(--rule);
 
-  button {
+  ul {
+    display: flex;
+    gap: 24px;
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  li {
+    flex: 0 0 auto;
+  }
+
+  a {
     position: relative;
+    display: inline-block;
     min-height: 48px;
     padding: 12px 0;
-    border: 0;
-    background: transparent;
     color: var(--muted);
-    font: inherit;
     font-size: 13px;
-    cursor: pointer;
+    white-space: nowrap;
 
-    &[aria-pressed='true'] {
+    &[aria-current='location'] {
       color: var(--ink);
 
       &::after {
@@ -35,17 +50,15 @@
         background: var(--ink);
       }
     }
-
-    span {
-      margin-left: 8px;
-      font-size: 10px;
-      vertical-align: top;
-    }
   }
 }
 
 .chapters {
   padding-top: 48px;
+}
+
+.chapter {
+  scroll-margin-top: calc(var(--chapter-bar-height, 56px) + 16px);
 }
 
 .chapter + .chapter {
@@ -129,10 +142,13 @@
 }
 
 @media (min-width: 700px) {
-  .filters {
-    gap: 36px;
+  .chapterNav {
+    ul {
+      gap: 36px;
+      overflow-x: visible;
+    }
 
-    button {
+    a {
       font-size: 14px;
     }
   }

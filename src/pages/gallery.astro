@@ -3,7 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import PageIntro from '@/components/PageIntro.astro';
 import CharterCta from '@/components/CharterCta.astro';
 import Gallery from '@/islands/Gallery';
-import { GALLERY_COPY } from '@/content/gallery';
+import { GALLERY_CHAPTERS, GALLERY_COPY } from '@/content/gallery';
 import styles from './gallery.module.scss';
 ---
 
@@ -13,8 +13,125 @@ import styles from './gallery.module.scss';
     title={GALLERY_COPY.title}
     description={GALLERY_COPY.intro}
   />
+  <nav class={styles.chapterNav} aria-label="Gallery chapters" data-chapter-nav>
+    <ul class="section-shell">
+      {
+        GALLERY_CHAPTERS.map(({ id, title }, index) => (
+          <li>
+            <a href={`#${id}`}>
+              {String(index + 1).padStart(2, '0')} {title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
   <div class={`section-shell ${styles.gallery}`}>
     <Gallery client:load />
   </div>
   <CharterCta />
 </Layout>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('[data-chapter-nav]');
+  const navList = nav?.querySelector<HTMLElement>('ul');
+  const links = nav ? Array.from(nav.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')) : [];
+  const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-chapter]'));
+
+  if (nav && navList && links.length && sections.length) {
+    let barHeight = 0;
+    let observer: IntersectionObserver | null = null;
+    let resizeTimer: number | undefined;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function headerHeight() {
+      const value = getComputedStyle(document.documentElement).getPropertyValue('--header-height');
+      return parseFloat(value) || 0;
+    }
+
+    function setBarHeight() {
+      barHeight = nav!.offsetHeight;
+      // Set on the root, not the nav element, so sibling chapter sections can read it too.
+      document.documentElement.style.setProperty('--chapter-bar-height', `${barHeight}px`);
+    }
+
+    // Anchors land at scroll-padding-top (header + 24) plus the chapter's scroll-margin-top
+    // (bar + 16); the line sits below that so a freshly targeted chapter counts as active.
+    function activationLine() {
+      return headerHeight() + barHeight + 48;
+    }
+
+    function isAtDocumentBottom() {
+      // -2 tolerance: fractional scroll heights on some browsers land just under scrollHeight.
+      return window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+    }
+
+    function setActive(id: string) {
+      const activeLink = links.find((link) => link.getAttribute('href') === `#${id}`);
+      links.forEach((link) => {
+        if (link === activeLink) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+      if (!activeLink) return;
+
+      const targetLeft =
+        activeLink.offsetLeft - (navList!.clientWidth - activeLink.clientWidth) / 2;
+      navList!.scrollTo({
+        left: Math.max(0, targetLeft),
+        behavior: reduceMotion.matches ? 'auto' : 'smooth',
+      });
+    }
+
+    function createObserver() {
+      observer?.disconnect();
+      const line = activationLine();
+      observer = new IntersectionObserver(
+        (entries) => {
+          const intersecting = entries.filter((entry) => entry.isIntersecting);
+          if (!intersecting.length) return;
+          const top = intersecting.reduce((best, entry) =>
+            entry.boundingClientRect.top > best.boundingClientRect.top ? entry : best,
+          );
+          setActive(top.target.id);
+        },
+        // The trailing -1 closes the 1px band so exactly one section intersects at the line.
+        { rootMargin: `-${line}px 0px -${window.innerHeight - line - 1}px 0px`, threshold: 0 },
+      );
+      sections.forEach((section) => observer!.observe(section));
+    }
+
+    function pickInitial() {
+      if (isAtDocumentBottom()) {
+        setActive(sections[sections.length - 1].id);
+        return;
+      }
+      const line = activationLine();
+      let current = sections[0];
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top <= line) current = section;
+      }
+      setActive(current.id);
+    }
+
+    setBarHeight();
+    createObserver();
+    requestAnimationFrame(pickInitial);
+
+    window.addEventListener('resize', () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        setBarHeight();
+        createObserver();
+        pickInitial();
+      }, 150);
+    });
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (isAtDocumentBottom()) setActive(sections[sections.length - 1].id);
+      },
+      { passive: true },
+    );
+  }
+</script>

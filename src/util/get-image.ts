@@ -117,14 +117,25 @@ export function getPhoto(options: PhotoOptions): string {
   return photoUrl({ ...options, width, height: (width * options.height) / options.width });
 }
 
-/** Crop every candidate to the same ratio and avoid enlarging known source images. */
-export function getPhotoSrcSet(options: PhotoOptions): string {
+/** Crop every candidate to the same ratio, avoiding enlarging known source images. */
+export function getPhotoSrcSetEntries(
+  options: PhotoOptions,
+): { src: string; width: number; height: number }[] {
   const aspect = options.width / options.height;
   const maximum = photoMaximumWidth(options);
   const widths = [390, 640, 960, 1280, 1600, 1920].filter((width) => width < maximum);
   widths.push(maximum);
-  return widths
-    .map((width) => `${photoUrl({ ...options, width, height: width / aspect })} ${width}w`)
+  return widths.map((width) => ({
+    src: photoUrl({ ...options, width, height: width / aspect }),
+    width,
+    height: Math.round(width / aspect),
+  }));
+}
+
+/** Crop every candidate to the same ratio and avoid enlarging known source images. */
+export function getPhotoSrcSet(options: PhotoOptions): string {
+  return getPhotoSrcSetEntries(options)
+    .map((entry) => `${entry.src} ${entry.width}w`)
     .join(', ');
 }
 
