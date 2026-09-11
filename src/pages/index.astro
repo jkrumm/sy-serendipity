@@ -3,7 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import Hero from '@/components/Hero.astro';
 import Photo from '@/components/Photo.astro';
 import CharterCta from '@/components/CharterCta.astro';
-import { home, HOME_DESTINATION_IMAGES } from '@/content/home';
+import { home, HOME_DESTINATION_IMAGES, HOME_TAILOR_PHOTOS } from '@/content/home';
 import styles from './index.module.scss';
 ---
 
@@ -25,12 +25,18 @@ import styles from './index.module.scss';
   <section class={`section-shell ${styles.introduction}`} id="aboard">
     <div class={styles.introCopy}>
       <p class="eyebrow">{home.introduction.eyebrow}</p>
-      <h2>{home.introduction.title}</h2>
-      <p class={styles.lead}>{home.introduction.body}</p>
-      <p>{home.introduction.detail}</p>
-      <a href="/about/" class="text-link"
-        >{home.introduction.link}<span aria-hidden="true">↗</span></a
-      >
+      <h2 id="interior-title">{home.introduction.title}</h2>
+      {home.introduction.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      <div class={styles.introLinks}>
+        {
+          home.introduction.links.map((link) => (
+            <a href={link.href} class="text-link">
+              {link.label}
+              <span aria-hidden="true">↗</span>
+            </a>
+          ))
+        }
+      </div>
     </div>
     <figure>
       <Photo
@@ -75,9 +81,11 @@ import styles from './index.module.scss';
   <section class={`section-shell ${styles.destinations}`} id="destinations">
     <div class={styles.sectionHeading}>
       <div>
-        <p class="eyebrow">{home.destinations.eyebrow}</p><h2>{home.destinations.title}</h2>
+        <p class="eyebrow">{home.destinations.eyebrow}</p><h2 id="cruising-title">
+          {home.destinations.title}
+        </h2>
       </div>
-      <p>{home.destinations.body}</p>
+      <p>{home.destinations.lead}</p>
     </div>
     <figure class={styles.destinationOpener} data-image-slot="home-marquesas-bay">
       <Photo
@@ -110,10 +118,32 @@ import styles from './index.module.scss';
           />
           <figcaption>{home.destinations.reefCaption}</figcaption>
         </figure>
-        <a href="/about/#cruising-title" class="text-link"
-          >{home.destinations.link}<span aria-hidden="true">↗</span></a
-        >
       </div>
+    </div>
+    <div class={styles.tailor}>
+      <p class="eyebrow">{home.destinations.tailor.eyebrow}</p>
+      <h3>{home.destinations.tailor.title}</h3>
+      <div class={styles.tailorPhotographs}>
+        <figure>
+          <Photo
+            {...HOME_TAILOR_PHOTOS.marquesasWaterfall}
+            width={800}
+            height={900}
+            sizes="(min-width: 900px) 39vw, calc(100vw - 48px)"
+          />
+          <figcaption>{home.destinations.tailor.waterfallCaption}</figcaption>
+        </figure>
+        <figure>
+          <Photo
+            {...HOME_TAILOR_PHOTOS.tuamotuReef}
+            width={800}
+            height={900}
+            sizes="(min-width: 900px) 39vw, calc(100vw - 48px)"
+          />
+          <figcaption>{home.destinations.tailor.reefCaption}</figcaption>
+        </figure>
+      </div>
+      {home.destinations.tailor.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
     </div>
   </section>
   <section class={styles.crew}>
@@ -124,6 +154,25 @@ import styles from './index.module.scss';
           {home.crew.body}
         </p><a href="/crew/" class="text-link">{home.crew.link}<span aria-hidden="true">↗</span></a>
       </div>
+    </div>
+  </section>
+  <section class={styles.activities}>
+    <div class={`section-shell ${styles.activitiesInner}`}>
+      <div>
+        <p class="eyebrow">{home.activities.eyebrow}</p><h2 id="activities-title">
+          {home.activities.title}
+        </h2><p>
+          {home.activities.body}
+        </p><a href="/activities/" class="text-link"
+          >{home.activities.link}<span aria-hidden="true">↗</span></a
+        >
+      </div>
+      <Photo
+        {...home.activities.image}
+        width={900}
+        height={950}
+        sizes="(min-width: 800px) 45vw, 100vw"
+      />
     </div>
   </section>
   <section class={styles.film}>

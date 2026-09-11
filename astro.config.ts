@@ -34,6 +34,7 @@ function gitLastModified(file: string): string | undefined {
 export default defineConfig({
   site,
   output: 'static',
+  redirects: { '/about/': '/' },
   devToolbar: { enabled: false },
   adapter: netlify({
     devFeatures: { environmentVariables: false, images: true, edgeFunctions: false },

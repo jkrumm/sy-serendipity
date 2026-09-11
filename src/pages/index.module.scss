@@ -47,13 +47,17 @@
   }
   p {
     max-width: 490px;
-  }
-  .lead {
-    font-size: 19px;
-    color: var(--ink);
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.65;
   }
 }
-.introCopy > :global(.text-link),
+.introLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
 .crewInner :global(.text-link) {
   margin-top: 14px;
 }
@@ -128,6 +132,33 @@
 .reefPhoto {
   padding-top: 8px;
 }
+.tailor {
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--rule);
+  h3 {
+    margin: 12px 0 28px;
+  }
+  p {
+    max-width: 640px;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+}
+.tailorPhotographs {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 28px;
+  figure {
+    margin: 0;
+  }
+  figcaption {
+    padding-top: 12px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+}
 .crew {
   background: var(--ink);
   color: var(--paper);
@@ -154,6 +185,27 @@
   }
   :global(.text-link) {
     border-color: #91a19b;
+  }
+}
+.activities {
+  padding-block: var(--section-space);
+}
+.activitiesInner {
+  display: grid;
+  gap: 40px;
+  align-items: center;
+  h2 {
+    white-space: pre-line;
+    margin-block: 20px 24px;
+  }
+  p {
+    max-width: 460px;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  :global(.text-link) {
+    margin-top: 14px;
   }
 }
 .film {
@@ -237,6 +289,10 @@
     gap: 60px;
     margin-bottom: 55px;
   }
+  .tailorPhotographs {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
 }
 @media (min-width: 900px) {
   .destinationStory {
@@ -251,6 +307,10 @@
     font-size: clamp(44px, 4.5vw, 66px);
   }
   .crewInner {
+    grid-template-columns: 1fr 1fr;
+    gap: 10%;
+  }
+  .activitiesInner {
     grid-template-columns: 1fr 1fr;
     gap: 10%;
   }
