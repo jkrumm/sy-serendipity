@@ -1,154 +1,116 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import HeroSmall from '@/components/HeroSmall.astro';
-import Slider from '@/islands/Slider.tsx';
-import { getImgOld } from '@/util/get-image';
+import PageIntro from '@/components/PageIntro.astro';
+import Photo from '@/components/Photo.astro';
+import CharterCta from '@/components/CharterCta.astro';
+import { TECHNICAL_COPY, TECHNICAL_IMAGES, SPECIFICATIONS } from '@/content/technical';
+import { getImg, getImgOld } from '@/util/get-image';
 import styles from './technical.module.scss';
-
-type DataRow = { value: string; metric: string };
-
-const data: DataRow[][] = [
-  [
-    { value: 'Yard', metric: 'Perini Navi' },
-    { value: 'Type', metric: 'Sailing Yacht' },
-  ],
-  [
-    { value: 'Guests', metric: '8' },
-    { value: 'Crew', metric: '7' },
-    { value: 'Cabins', metric: '4' },
-  ],
-  [
-    { value: 'Length', metric: '45 m / 147′8″ ft' },
-    { value: 'Beam', metric: '9.73 m / 32′0″ ft' },
-    { value: 'Draft', metric: '3.9 m / 12′10″ ft' },
-  ],
-  [
-    { value: 'Year of build', metric: '2011' },
-    { value: 'Classification', metric: 'ABS' },
-    { value: 'Displacement', metric: 'Sailing Yacht' },
-  ],
-];
-
-const dataDesign: DataRow[][] = [
-  [
-    { value: 'Gross tonage', metric: '325' },
-    { value: 'Hull', metric: 'Steel' },
-    { value: 'Superstructure', metric: 'Aluminium' },
-  ],
-  [
-    { value: 'Decking', metric: 'Teak' },
-    { value: 'Decks', metric: '3' },
-  ],
-  [
-    { value: 'Interior designer', metric: 'km design' },
-    { value: 'Exterior designer', metric: 'Ron Holland' },
-  ],
-];
-
-const dataMotor: DataRow[][] = [
-  [
-    { value: 'Model', metric: 'C32' },
-    { value: 'Engine power', metric: '1100 hp' },
-    { value: 'Total power', metric: '1100 hp' },
-  ],
-  [
-    { value: 'Maximum Speed', metric: '14 knots' },
-    { value: 'Cruising speed', metric: '10,5 knots' },
-  ],
-  [
-    { value: 'Tender', metric: 'Conrad Pischel' },
-    { value: 'Water capacity', metric: '8200 l' },
-  ],
-];
-
-type SliderImage = { name: string; description?: string };
-
-const sliderImages: SliderImage[] = [
-  {
-    name: 'technical-1',
-    description: 'Blueprint of the top floor and the deck',
-  },
-  {
-    name: 'technical-2',
-    description: 'Blueprint of the ground floor and the basement',
-  },
-];
-
-const smallSliderImages: SliderImage[] = [
-  { name: 'cockpit-1' },
-  { name: 'cockpit-3' },
-  { name: 'cockpit-4' },
-  { name: 'cockpit-6' },
-  { name: 'cockpit-7' },
-];
 ---
 
-<Layout
-  title="Technical"
-  description="Serendipity I is a 45m luxury sailing yacht, built by Perini Navi in 2011."
->
-  <HeroSmall title="Technical" />
-  <div class={styles.technicalWrapper}>
-    <section class={styles.technical}>
-      <img alt="blueprint" src={getImgOld('technical-3', 500, 1225)} width="500" height="1225" />
-      <div class={styles.data}>
-        <h3>Technical Data</h3>
-        {
-          data.map((itemData) => (
-            <div class={styles.item}>
-              {itemData.map((subItemData) => (
-                <div class={styles.subItem}>
-                  <span class={styles.value}>{subItemData.value}</span>
-                  <span class={styles.metric}>{subItemData.metric}</span>
-                </div>
-              ))}
-            </div>
-          ))
-        }
-        <h3>Design</h3>
-        {
-          dataDesign.map((itemData) => (
-            <div class={styles.item}>
-              {itemData.map((subItemData) => (
-                <div class={styles.subItem}>
-                  <span class={styles.value}>{subItemData.value}</span>
-                  <span class={styles.metric}>{subItemData.metric}</span>
-                </div>
-              ))}
-            </div>
-          ))
-        }
-        <h3>Motor</h3>
-        {
-          dataMotor.map((itemData) => (
-            <div class={styles.item}>
-              {itemData.map((subItemData) => (
-                <div class={styles.subItem}>
-                  <span class={styles.value}>{subItemData.value}</span>
-                  <span class={styles.metric}>{subItemData.metric}</span>
-                </div>
-              ))}
-            </div>
-          ))
-        }
-      </div>
-    </section>
-    <section class={styles.slideshow}>
-      <div>
-        <Slider client:visible images={sliderImages} width={1500} height={900} />
-      </div>
-    </section>
-    <section class={styles.slideshowSmall}>
-      <div>
-        <Slider
-          client:visible
-          images={smallSliderImages}
-          width={1500}
-          height={900}
-          slidesToShow={2}
-          autoplay
+<Layout title="Technical" description={TECHNICAL_COPY.description}>
+  <PageIntro
+    eyebrow={TECHNICAL_COPY.eyebrow}
+    title={TECHNICAL_COPY.title}
+    description={TECHNICAL_COPY.intro}
+  />
+  <div class={`section-shell ${styles.technical}`}>
+    <dl class={styles.highlights} aria-label="Serendipity I at a glance">
+      {
+        TECHNICAL_COPY.highlights.map(({ value, label }) => (
+          <div>
+            <>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </>
+          </div>
+        ))
+      }
+    </dl>
+    <section class={styles.specifications} aria-label="Yacht specifications">
+      <figure class={styles.blueprint}>
+        <img
+          src={getImgOld(TECHNICAL_IMAGES.profile.name, 506)}
+          srcset={[320, 506]
+            .map((width) => `${getImgOld(TECHNICAL_IMAGES.profile.name, width)} ${width}w`)
+            .join(', ')}
+          sizes="(min-width: 900px) 40vw, 90vw"
+          width="506"
+          height="1024"
+          alt={TECHNICAL_IMAGES.profile.alt}
+          loading="lazy"
+          decoding="async"
         />
+        <figcaption>{TECHNICAL_IMAGES.profile.caption}</figcaption>
+      </figure>
+      <div class={styles.tables}>
+        {
+          SPECIFICATIONS.map(({ title, rows }) => (
+            <table>
+              <caption>{title}</caption>
+              <tbody>
+                {rows.map(({ label, value }) => (
+                  <tr>
+                    <th scope="row">{label}</th>
+                    <td>{value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ))
+        }
+      </div>
+    </section>
+    <section class={styles.deckPlans} aria-labelledby="deck-plans-title">
+      <div class={styles.sectionHeading}>
+        <p class="eyebrow">{TECHNICAL_COPY.plansEyebrow}</p>
+        <h2 id="deck-plans-title">{TECHNICAL_COPY.plansTitle}</h2>
+      </div>
+      {
+        TECHNICAL_IMAGES.plans.map(({ name, width, height, alt, caption }, index) => (
+          <figure>
+            <img
+              src={getImg(name, 1440)}
+              srcset={[480, 800, 1200, 1600, 1920]
+                .map((size) => `${getImg(name, size)} ${size}w`)
+                .join(', ')}
+              sizes="(min-width: 1440px) 1312px, 90vw"
+              width={width}
+              height={height}
+              alt={alt}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              <span>0{index + 1}</span>
+              {caption}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </section>
+    <section class={styles.cockpit} aria-labelledby="cockpit-title">
+      <div class={styles.sectionHeading}>
+        <p class="eyebrow">{TECHNICAL_COPY.cockpitEyebrow}</p>
+        <h2 id="cockpit-title">{TECHNICAL_COPY.cockpitTitle}</h2>
+      </div>
+      <div class={styles.cockpitImages}>
+        {
+          TECHNICAL_IMAGES.cockpit.map(({ name, alt, caption }) => (
+            <figure>
+              <Photo
+                name={name}
+                alt={alt}
+                width={1200}
+                height={900}
+                sizes="(min-width: 700px) 45vw, 90vw"
+              />
+              <figcaption>{caption}</figcaption>
+            </figure>
+          ))
+        }
       </div>
     </section>
   </div>
+  <CharterCta />
 </Layout>

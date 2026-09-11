@@ -1,107 +1,149 @@
-import { useMemo, useState } from 'react';
-import type { ChangeEvent, KeyboardEvent } from 'react';
-import { RowsPhotoAlbum } from 'react-photo-album';
-import 'react-photo-album/rows.css';
+import { useState } from 'react';
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 
-import { getImg } from '@/util/get-image';
+import { GALLERY_CHAPTERS, GALLERY_COPY, GALLERY_IMAGES } from '@/content/gallery';
+import type { GalleryChapter } from '@/content/gallery';
+import { getImg, getImgCropped } from '@/util/get-image';
 import { images } from '@/util/images';
 import styles from '@/pages/gallery.module.scss';
 
-const BREAKPOINTS = [1080, 640, 384, 256, 128, 96, 64, 48];
+const IMAGE_WIDTHS = [480, 800, 1200, 1600, 2400];
+const imageDimensions = new Map(images.map((photo) => [photo.id, photo]));
 
-type MappedImage = { src: string; width: number; height: number };
-type MappedPhoto = MappedImage & { srcSet: MappedImage[] };
+const photographs = GALLERY_IMAGES.map((photo, index) => {
+  const original = imageDimensions.get(photo.name);
+  if (!original) throw new Error(`Missing image dimensions for ${photo.name}`);
+  const crop =
+    photo.layout === 'portrait'
+      ? { width: 1000, height: 1250 }
+      : photo.layout === 'full'
+        ? { width: 1600, height: 900 }
+        : { width: 1200, height: 900 };
 
-const photos: MappedPhoto[] = images.map((photo) => ({
-  src: getImg(photo.id, photo.width, photo.height),
-  width: photo.width,
-  height: photo.height,
-  srcSet: BREAKPOINTS.map((breakpoint) => {
-    const height = Math.round((photo.height / photo.width) * breakpoint);
-    return { src: getImg(photo.id, breakpoint, height), width: breakpoint, height };
-  }),
-}));
-
-const tabs = [
-  { name: 'Ship', key: 'ship' },
-  { name: 'Decks', key: 'outside' },
-  { name: 'Inside', key: 'inside' },
-  { name: 'Cuisine', key: 'food' },
-  { name: 'Technical', key: 'technical' },
-];
-
-function classNames(...classes: (string | false)[]): string {
-  return classes.filter(Boolean).join(' ');
-}
+  return {
+    ...photo,
+    index,
+    number: String(index + 1).padStart(2, '0'),
+    crop,
+    thumbnail: getImgCropped(photo.name, crop.width, crop.height),
+    thumbnailSrcSet: IMAGE_WIDTHS.filter((width) => width <= 1600)
+      .map(
+        (width) =>
+          `${getImgCropped(photo.name, width, Math.round((width * crop.height) / crop.width))} ${width}w`,
+      )
+      .join(', '),
+    slide: {
+      src: getImg(photo.name, 2400),
+      alt: photo.alt,
+      width: original.width,
+      height: original.height,
+      srcSet: IMAGE_WIDTHS.map((width) => ({
+        src: getImg(photo.name, width),
+        width,
+        height: Math.round((width * original.height) / original.width),
+      })),
+    },
+  };
+});
 
 export default function Gallery() {
-  const [currentTab, setCurrentTab] = useState('ship');
+  const [chapter, setChapter] = useState<GalleryChapter | 'all'>('underway');
   const [lightboxIndex, setLightboxIndex] = useState(-1);
-
-  const photosFiltered = useMemo(
-    () => photos.filter((item) => item.src.includes(currentTab)),
-    [currentTab],
+  const visibleChapters = GALLERY_CHAPTERS.filter(
+    (item) => chapter === 'all' || item.id === chapter,
+  );
+  const visiblePhotographs = photographs.filter(
+    (photo) => chapter === 'all' || photo.chapter === chapter,
   );
 
-  function handleTabKeyDown(event: KeyboardEvent<HTMLDivElement>, key: string) {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      setCurrentTab(key);
-    }
-  }
-
-  function handleSelectChange(event: ChangeEvent<HTMLSelectElement>) {
-    const tab = tabs.find((item) => item.name === event.target.value);
-    if (tab) setCurrentTab(tab.key);
+  function selectChapter(value: GalleryChapter | 'all') {
+    setChapter(value);
+    setLightboxIndex(-1);
   }
 
   return (
     <>
-      <div className={styles.tabs}>
-        <div className="sm:hidden">
-          <label htmlFor="tabs" className="sr-only">
-            Select a tab
-          </label>
-          <select
-            onChange={handleSelectChange}
-            id="tabs"
-            name="tabs"
-            className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-            defaultValue={tabs.find((tab) => tab.key === currentTab)?.name}
+      <div className={styles.filters} role="group" aria-label={GALLERY_COPY.filterLabel}>
+        <button type="button" aria-pressed={chapter === 'all'} onClick={() => selectChapter('all')}>
+          {GALLERY_COPY.allLabel}
+          <span>{photographs.length}</span>
+        </button>
+        {GALLERY_CHAPTERS.map(({ id, title }) => (
+          <button
+            key={id}
+            type="button"
+            aria-pressed={chapter === id}
+            onClick={() => selectChapter(id)}
           >
-            {tabs.map((tab) => (
-              <option key={tab.name}>{tab.name}</option>
-            ))}
-          </select>
-        </div>
-        <div className="hidden sm:block">
-          <nav aria-label="Tabs">
-            {tabs.map((tab) => (
-              <div
-                key={tab.name}
-                role="button"
-                tabIndex={0}
-                onClick={() => setCurrentTab(tab.key)}
-                onKeyDown={(event) => handleTabKeyDown(event, tab.key)}
-                className={classNames(
-                  currentTab === tab.key ? 'gallery-tab-active' : 'gallery-tab',
-                )}
-              >
-                <span>{tab.name}</span>
-              </div>
-            ))}
-          </nav>
-        </div>
+            {title}
+          </button>
+        ))}
       </div>
-      <RowsPhotoAlbum
-        photos={photosFiltered}
-        targetRowHeight={250}
-        onClick={({ index }) => setLightboxIndex(index)}
-      />
+      <p className="sr-only" aria-live="polite">
+        {visiblePhotographs.length} {GALLERY_COPY.imageLabel}
+      </p>
+      <div className={styles.chapters}>
+        {visibleChapters.map(({ id, title, description }) => (
+          <section key={id} className={styles.chapter} aria-labelledby={`chapter-${id}`}>
+            <div className={styles.chapterHeading}>
+              <div>
+                <p className="eyebrow">
+                  0{GALLERY_CHAPTERS.findIndex((item) => item.id === id) + 1}
+                </p>
+                <h2 id={`chapter-${id}`}>{title}</h2>
+              </div>
+              <p>{description}</p>
+            </div>
+            <div className={styles.imageGrid}>
+              {photographs
+                .filter((photo) => photo.chapter === id)
+                .map((photo) => (
+                  <figure
+                    key={photo.name}
+                    className={styles.photo}
+                    data-layout={photo.layout ?? 'half'}
+                  >
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setLightboxIndex(
+                          visiblePhotographs.findIndex((item) => item.name === photo.name),
+                        )
+                      }
+                      aria-label={`View photograph ${photo.number}: ${photo.alt}`}
+                    >
+                      <img
+                        src={photo.thumbnail}
+                        srcSet={photo.thumbnailSrcSet}
+                        sizes={
+                          photo.layout === 'full'
+                            ? '(min-width: 1440px) 1312px, 90vw'
+                            : '(min-width: 700px) 45vw, 90vw'
+                        }
+                        width={photo.crop.width}
+                        height={photo.crop.height}
+                        alt={photo.alt}
+                        loading={photo.index === 0 ? 'eager' : 'lazy'}
+                        fetchPriority={photo.index === 0 ? 'high' : 'auto'}
+                        decoding="async"
+                      />
+                      <span className={styles.openIcon} aria-hidden="true">
+                        ↗
+                      </span>
+                    </button>
+                    <figcaption>
+                      <span>{photo.number}</span>
+                      <span>{photo.caption}</span>
+                    </figcaption>
+                  </figure>
+                ))}
+            </div>
+          </section>
+        ))}
+      </div>
       <Lightbox
-        slides={photosFiltered}
+        slides={visiblePhotographs.map((photo) => photo.slide)}
         open={lightboxIndex >= 0}
         index={lightboxIndex}
         close={() => setLightboxIndex(-1)}

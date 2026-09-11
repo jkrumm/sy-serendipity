@@ -1,417 +1,471 @@
-@use 'styles/variables' as *;
-
-.about-wrapper {
-  max-width: $size-max-width;
-  padding: $space-2xl $size-gutter;
-  display: block;
+.opening {
   margin: 0 auto;
-  position: relative;
-
-  /* section {
-    position: relative;
-
-    &:before {
-      // TODO: remove
-      position: absolute;
-      content: '';
-      height: calc(100% - 20px);
-      width: 2px;
-      background-color: $grey;
-      left: -70px;
-      bottom: 0;
-      display: none;
-    }
-
-    &:after {
-      position: absolute;
-      content: 'TestTest';
-      background-color: $white;
-      color: $grey;
-      left: -81px;
-      top: 20px;
-      padding-bottom: 20px;
-      font-size: $text-lg;
-      margin: 0;
-      text-transform: uppercase;
-      font-family: $font-rock-star;
-      writing-mode: vertical-rl;
-      text-orientation: upright;
-      //display: block;
-      display: none;
-    }
-
-    &.cruising:after {
-      content: 'Cruising';
-    }
-
-    &.accommodation:after {
-      content: 'Accommodation';
-    }
-
-    &.activities:after {
-      content: 'Activities';
-    }
-
-    &.technical:after {
-      content: 'Technical';
-    }
-
-    &.destinations {
-      &:before {
-        height: calc(100% - 160px);
-        bottom: 139px;
-      }
-
-      &:after {
-        content: 'Destinations';
-      }
-    }
-  }*/
 }
 
-.cruising {
-  display: flex;
-  justify-content: space-between;
+.hero,
+.yoga {
+  margin: 0;
 
-  > div:first-of-type {
-    text-align: right;
-    width: calc(100% - 553px);
+  img {
+    display: block;
+    width: 100%;
+  }
 
-    h2:after {
-      left: auto;
-      right: 0;
-    }
+  figcaption {
+    margin-inline: 24px;
+  }
+}
 
-    > div {
-      margin-top: 40px;
-      display: flex;
-      justify-content: space-between;
+.hero img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
 
-      img {
-        width: calc(50% - 26.5px);
-      }
+.facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: 1312px;
+  margin: 0 24px;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--rule);
+
+  > div {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 8px;
+    padding-left: 12px;
+    border-left: 1px solid var(--rule);
+
+    &:first-child {
+      padding-left: 0;
+      border-left: 0;
     }
   }
 
-  > div:last-of-type {
-    width: 500px;
-    -webkit-filter: brightness(1.15) contrast(0.9);
-    filter: brightness(1.15) contrast(0.9);
+  dt {
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 36px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+}
+
+.interior,
+.activities,
+.cruising,
+.technical,
+.crew {
+  h2 {
+    max-width: 11ch;
+    margin: 16px 0 24px;
+    font-family: var(--font-display);
+    font-size: clamp(48px, 5.5vw, 80px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+  }
+
+  p:not(:global(.eyebrow)) {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  figure {
+    margin: 0;
+  }
+}
+
+.opening,
+.interior,
+.activities {
+  figcaption {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+.interior {
+  padding-block: 72px;
+}
+
+.cabin,
+.saloon {
+  display: grid;
+  gap: 32px;
+}
+
+.cabin {
+  > figure {
+    order: 1;
+  }
+
+  > .copy {
+    order: 0;
+  }
+}
+
+.saloon {
+  margin-top: 72px;
+}
+
+.copy {
+  p + p {
+    margin-top: 20px;
+  }
+
+  :global(.text-link) {
+    margin-top: 28px;
   }
 }
 
 .activities {
-  .text-image {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: block;
-
-    .content {
-      display: flex;
-    }
-
-    .text {
-      max-width: calc(50% + 30px);
-      margin: 0 0 0 80px;
-      display: inline-block;
-
-      strong {
-        margin: 15px 0 5px 0;
-        display: block;
-      }
-
-      ul {
-        list-style: square;
-        margin-left: 30px;
-
-        li {
-          padding-left: 5px;
-        }
-      }
-    }
-
-    .img {
-      min-width: 370px;
-      max-width: calc(50% - 90px);
-      display: inline-block;
-    }
-  }
-
-  .sport-images {
-    max-width: 1000px;
-    margin: 80px auto 0 auto;
-    display: flex;
-    justify-content: space-between;
-
-    > div {
-      width: calc(50% - 40px);
-    }
-  }
-
-  //.three-images {
-  //  display: flex;
-  //  justify-content: space-between;
-  //  max-width: 1000px;
-  //  margin: 40px auto 0;
-  //
-  //  img {
-  //    width: calc(33% - 30px);
-  //  }
-  //}
+  padding-top: 0;
 }
 
-.accommodation {
-  > div:first-of-type {
-    max-width: 850px;
-    text-align: center;
-    margin: 50px auto;
+.activitiesIntro {
+  display: grid;
+  gap: 8px;
+  padding-bottom: 36px;
+}
+
+.yoga img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.activityDetails {
+  display: grid;
+  gap: 40px;
+  padding-top: 40px;
+}
+
+.toys {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-content: start;
+  gap: 24px;
+
+  h3 {
+    margin-bottom: 16px;
   }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding-block: 9px;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+}
+
+.activityDetails > figure img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
 }
 
 .crew {
-  height: 580px;
-  background-position: center bottom;
-  background-size: 100% auto;
-  position: relative;
+  display: grid;
+  gap: 8px;
+  padding-block: 72px;
+}
 
-  &:before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    background-position: center bottom;
-    background-size: 100% auto;
-    background-image: url('https://img.jkrumm.com/sy-serendipity/Tork-Website-Background_5OsWWSK3K.png');
-    -webkit-filter: brightness(1.6) saturate(1.2);
-    filter: brightness(1.6) saturate(1.2);
+.cruising {
+  padding-block: 72px;
+
+  > :global(.text-link) {
+    margin-top: 36px;
   }
 
-  .content {
-    padding: 40px 60px 70px 60px;
+  h2 {
+    max-width: none;
+    font-size: clamp(48px, 5.5vw, 76px);
+  }
+}
 
-    h2 {
-      color: $white;
-      margin-bottom: 60px;
-      text-shadow: 0 0 4px #000000;
+.cruisingHeading {
+  display: grid;
+  gap: 28px;
+  margin-bottom: 40px;
+}
 
-      &:after {
-        background-color: $white;
-      }
-    }
+.cruisingSeason {
+  max-width: 390px;
+}
 
-    .members {
-      display: flex;
-      justify-content: space-between;
-      max-width: 800px;
-      margin: 0 auto;
+.cruisingIntroduction {
+  max-width: 580px;
+}
 
-      h4 {
-        font-size: 19px;
-        color: $dark;
-      }
+.cruisingPhotographs {
+  display: grid;
+  gap: 32px;
+  margin-bottom: 48px;
 
-      > a {
-        padding: 15px;
-        width: calc(33% - 25px);
-        background: $white;
-        transform: scale(1);
-        transition: 0.5s all ease;
+  figcaption {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
 
-        &:hover {
-          transform: scale(1.03);
-        }
+.cruisingPassages {
+  display: grid;
+  gap: 36px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+}
 
-        span {
-          color: $grey;
-        }
-      }
+.cruisingPassage {
+  h3 {
+    margin-bottom: 18px;
+  }
 
-      img {
-        margin-bottom: 15px;
-      }
-    }
+  p + p {
+    margin-top: 22px;
+  }
+
+  figure {
+    margin-bottom: 24px;
+  }
+
+  figcaption {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
   }
 }
 
 .technical {
-  display: flex;
-  justify-content: space-between;
+  padding-block: 64px;
+  background: #ecece3;
+}
 
-  button {
-    display: block;
+.technicalInner {
+  display: grid;
+  gap: 40px;
+}
+
+.specifications {
+  margin: 0;
+
+  > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding-block: 18px;
+    border-top: 1px solid var(--rule);
+
+    &:last-child {
+      border-bottom: 1px solid var(--rule);
+    }
   }
 
-  > div:first-of-type {
-    width: 500px;
+  dt {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.5;
   }
 
-  > div:last-of-type {
-    width: calc(100% - 550px);
+  dd {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
   }
 }
 
-@media only screen and (max-width: 1150px) {
-  .about-wrapper {
-    margin-bottom: 0;
+@media (min-width: 700px) {
+  .hero img {
+    aspect-ratio: 16 / 9;
   }
 
-  .technical {
-    margin-bottom: 150px;
-  }
+  .facts {
+    padding-block: 48px;
 
-  .cruising {
-    display: block;
-
-    > div:first-of-type {
-      text-align: left;
-      width: 100%;
-      margin: 0 auto;
-      max-width: 700px;
-
-      h2:after {
-        left: 0;
-        right: auto;
-      }
+    > div {
+      padding-left: 32px;
     }
 
-    > div:last-of-type {
-      display: none;
-    }
-  }
-
-  .accommodation {
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  .activities {
-    .text-image {
-      max-width: 700px;
-      margin: 0 auto;
-      display: block;
-
-      .content {
-        display: flex;
-      }
-
-      .text {
-        max-width: calc(45% + 70px);
-        margin: 0 0 0 40px;
-        display: inline-block;
-      }
-
-      .img {
-        min-width: unset;
-        max-width: calc(55% - 130px);
-        display: inline-block;
-      }
-    }
-  }
-
-  .technical {
-    > div:first-of-type {
-      width: 300px;
+    dt {
+      font-size: 11px;
     }
 
-    > div:last-of-type {
-      width: calc(100% - 340px);
+    dd {
+      font-size: 52px;
     }
   }
 }
 
-@media only screen and (max-width: 1015px) {
-  .activities {
-    .text-image {
-      max-width: 700px;
-      margin: 0 auto;
-      display: block;
+@media (min-width: 900px) {
+  .hero,
+  .yoga {
+    figcaption {
+      max-width: 1312px;
+      margin-inline: auto;
+      padding-inline: 64px;
+    }
+  }
 
-      .content {
-        display: block;
-      }
+  .hero img {
+    max-height: 790px;
+    aspect-ratio: 1.9;
+  }
 
-      .text {
-        max-width: 500px;
-        margin: 60px auto 0 auto;
-        display: block;
-      }
+  .facts {
+    margin-inline: 64px;
 
-      .img {
-        min-width: unset;
-        max-width: 300px;
-        margin: 0 auto;
-        display: block;
-      }
+    > div {
+      padding-left: 48px;
+    }
+  }
+
+  .interior {
+    padding-block: 112px;
+  }
+
+  .cabin {
+    grid-template-columns: 1.4fr 1fr;
+    align-items: center;
+    gap: clamp(48px, 6vw, 96px);
+
+    > figure,
+    > .copy {
+      order: unset;
+    }
+  }
+
+  .saloon {
+    grid-template-columns: 1fr 1.15fr;
+    align-items: center;
+    gap: clamp(64px, 8vw, 144px);
+    margin-top: 112px;
+    padding-left: 6%;
+  }
+
+  .activitiesIntro {
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: 80px;
+    padding-bottom: 48px;
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    > p {
+      max-width: 430px;
+      margin-bottom: 4px;
+      justify-self: end;
+    }
+  }
+
+  .yoga img {
+    aspect-ratio: 2 / 1;
+  }
+
+  .activityDetails {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: clamp(56px, 7vw, 112px);
+    padding-top: 64px;
+  }
+
+  .activityDetails > figure img {
+    aspect-ratio: 8 / 9;
+  }
+
+  .toys {
+    gap: 36px;
+
+    li {
+      font-size: 16px;
     }
   }
 
   .crew {
-    height: unset;
-    background: none;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 80px;
+    padding-block: 112px;
 
-    &:before {
-      display: none;
+    h2 {
+      margin-bottom: 0;
     }
 
-    .content {
-      h2 {
-        color: $dark;
-        margin-bottom: 60px;
-        text-shadow: none;
-
-        &:after {
-          background-color: $dark;
-        }
-      }
-
-      .members {
-        display: block;
-        max-width: 300px;
-        margin: 0 auto;
-
-        h4 {
-          font-size: 19px;
-          color: $dark;
-        }
-
-        > a {
-          display: block;
-          width: 100%;
-          margin: 0 0 40px 0;
-          border: 2px solid $dark;
-
-          &:last-of-type {
-            margin-bottom: 0;
-          }
-        }
-      }
+    > .copy {
+      max-width: 500px;
+      justify-self: end;
     }
   }
-}
 
-@media only screen and (max-width: 800px) {
-  .about-wrapper {
-    margin-top: 30px;
+  .cruising {
+    padding-block: 112px;
+  }
+
+  .cruisingHeading {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 80px;
+    margin-bottom: 56px;
+  }
+
+  .cruisingPhotographs {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 64px;
+  }
+
+  .cruisingPassages {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: min-content 1fr;
+    gap: 36px 80px;
+    align-items: start;
+    padding-top: 40px;
+  }
+
+  .cruisingPassage[data-destination='fiji'] {
+    grid-column: 2;
+    grid-row: 1 / span 2;
   }
 
   .technical {
-    display: block;
-    margin-bottom: 120px;
+    padding-block: 96px;
+  }
 
-    > div:first-of-type {
-      width: 400px;
-      margin: 0 auto 60px auto;
-      display: block;
-    }
+  .technicalInner {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: clamp(64px, 8vw, 128px);
+  }
+}
 
-    > div:last-of-type {
-      width: 100%;
-      max-width: 500px;
-      display: block;
-      margin: 0 auto;
+@media (min-width: 1440px) {
+  .facts {
+    margin-inline: auto;
+  }
+
+  .hero,
+  .yoga {
+    figcaption {
+      padding-inline: 0;
     }
   }
 }

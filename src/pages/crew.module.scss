@@ -1,162 +1,171 @@
-@use 'styles/variables' as *;
+.profiles {
+  padding-bottom: 72px;
+}
 
-.crew-wrapper {
-  max-width: $size-max-width-slim;
-  padding: $space-2xl $size-gutter;
-  display: block;
-  margin: 0 auto;
+.profile {
+  display: grid;
+  gap: 32px;
 
-  button {
-    display: block;
+  + .profile {
+    margin-top: 64px;
+    padding-top: 64px;
+    border-top: 1px solid var(--rule);
   }
 
-  section {
-    margin: 120px auto;
+  figure {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
 
-    &:first-of-type {
-      margin-top: 200px;
+  figure img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.biography {
+  h2 {
+    margin: 14px 0 24px;
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+  }
+
+  p:not(:global(.eyebrow)) {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+
+    + p {
+      margin-top: 20px;
     }
   }
 }
 
-.intro {
-  text-align: center;
-  max-width: 710px;
-  margin: 200px auto;
-
-  img {
-    width: 570px;
-    margin: 0 auto 40px auto;
-  }
+.dining {
+  padding-block: 72px;
+  background: #ecece3;
 }
 
-.left,
-.right {
-  display: flex;
-  max-width: 900px;
+.diningHeading {
+  max-width: 730px;
+  margin-bottom: 36px;
 
-  > div:first-of-type {
-    width: 350px;
+  h2 {
+    margin: 16px 0 0;
+    font-family: var(--font-display);
+    font-size: clamp(48px, 5.5vw, 80px);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
   }
-
-  > div:last-of-type {
-    // margin-top: 100px;
-    width: calc(100% - 450px);
-    margin-left: 50px;
-    margin-right: auto;
-  }
-}
-
-.right {
-  text-align: right;
-
-  > div:first-of-type {
-    order: 2;
-  }
-
-  > div:last-of-type {
-    order: 1;
-  }
-
-  h2:after {
-    left: auto;
-    right: 0;
-  }
-}
-
-.chef {
-  margin-bottom: 50px !important;
 }
 
 .food {
-  display: flex;
-  max-width: 900px;
-  margin: 0 auto 150px auto !important;
+  display: grid;
+  gap: 32px;
 
-  > img {
-    margin-right: 50px;
+  figure {
+    margin: 0;
+  }
 
-    &:last-of-type {
-      margin-right: 0;
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 6 / 7;
+    object-fit: cover;
+  }
+
+  figcaption {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+.welcome {
+  max-width: 660px;
+  margin: 40px auto 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+@media (min-width: 700px) {
+  .food {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 32px;
+
+    > figure:last-child {
+      padding-top: 64px;
     }
   }
 }
 
-@media only screen and (max-width: 1150px) {
-  .crew-wrapper section {
-    &:first-of-type {
-      margin-top: 185px;
-    }
-
-    &:last-of-type {
-      margin-bottom: 150px !important;
-    }
+@media (min-width: 900px) {
+  .profiles {
+    max-width: 1216px;
+    padding-bottom: 112px;
   }
 
-  //.crew-wrapper {
-  //  max-width: 700px;
-  //  margin: 120px auto 0 auto;
-  //
-  //  > section {
-  //    margin: 0 0 50px 0;
-  //  }
-  //}
+  .profile {
+    grid-template-columns: minmax(280px, 400px) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(64px, 7vw, 112px);
 
-  .food {
-    max-width: 630px;
+    + .profile {
+      margin-top: 96px;
+      padding-top: 96px;
+    }
 
-    img {
-      max-width: calc(50% - 25px);
+    &:nth-child(even) {
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 400px);
 
-      &:first-of-type {
-        display: none;
+      > figure {
+        order: 2;
       }
     }
   }
-}
 
-@media only screen and (max-width: 800px) {
-  .crew-wrapper section {
-    &:first-of-type {
-      margin-top: 200px;
+  .biography {
+    h2 {
+      font-size: 44px;
+      margin-bottom: 28px;
     }
 
-    &:last-of-type {
-      margin-bottom: 120px !important;
-    }
-  }
-
-  .left,
-  .right {
-    display: block;
-
-    > div:first-of-type {
-      width: 100%;
-      max-width: 250px;
-      margin: 0 auto;
-    }
-
-    > div:last-of-type {
-      width: 100%;
-      max-width: 400px;
-      margin: 50px auto 0 auto;
+    p:not(:global(.eyebrow)) {
+      font-size: 17px;
+      line-height: 1.65;
     }
   }
 
-  h2 {
-    margin-bottom: 25px;
+  .dining {
+    padding-block: 112px;
   }
 
-  .right {
-    text-align: left;
-
-    h2:after {
-      left: 0;
-      right: unset;
-    }
+  .diningHeading {
+    margin-bottom: 56px;
   }
 
   .food {
-    max-width: 500px;
+    gap: 64px;
+    max-width: 1100px;
+    margin-inline: auto;
+
+    > figure:last-child {
+      padding-top: 96px;
+    }
+  }
+
+  .welcome {
+    margin-top: 64px;
+    text-align: center;
+    font-size: 18px;
   }
 }

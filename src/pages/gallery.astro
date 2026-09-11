@@ -1,16 +1,20 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import PageIntro from '@/components/PageIntro.astro';
+import CharterCta from '@/components/CharterCta.astro';
 import Gallery from '@/islands/Gallery';
+import { GALLERY_COPY } from '@/content/gallery';
 import styles from './gallery.module.scss';
 ---
 
-<Layout
-  title="Gallery"
-  description="Take a look inside and see the highest level of exclusivity and luxury."
->
-  <div class={styles.galleryWrapper}>
-    <section class={styles.gallery}>
-      <Gallery client:load />
-    </section>
+<Layout title="Gallery" description={GALLERY_COPY.description}>
+  <PageIntro
+    eyebrow={GALLERY_COPY.eyebrow}
+    title={GALLERY_COPY.title}
+    description={GALLERY_COPY.intro}
+  />
+  <div class={`section-shell ${styles.gallery}`}>
+    <Gallery client:load />
   </div>
+  <CharterCta />
 </Layout>

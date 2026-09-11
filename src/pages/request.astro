@@ -1,58 +1,78 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import HeroSmall from '@/components/HeroSmall.astro';
+import PageIntro from '@/components/PageIntro.astro';
+import Photo from '@/components/Photo.astro';
 import RequestForm from '@/islands/RequestForm';
+import { REQUEST_COPY, REQUEST_IMAGE } from '@/content/request';
 import { BROKER_LOGO } from '@/util/get-image';
 import styles from './request.module.scss';
 ---
 
-<Layout
-  title="Contact"
-  description="Request your personally tailored and unforgettable sailing yacht experience."
->
-  <HeroSmall title="Contact" />
-  <div class={styles.contactWrapper}>
-    <div>
-      <h2>Request your trip</h2>
-    </div>
-    <section>
-      <div>
-        <img
-          class={styles.barbara}
-          alt="barbara-mueller"
-          src="https://www.oceanindependence.com/sites/default/files/images/person/Barbara-web.jpg"
-          width="130"
-          height="130"
-        />
-        <div>
-          <span>Barbara Mueller</span>
-          <span>Senior Charter Broker</span>
-          <span>OCEAN Independence Palma</span>
-          <br />
-        </div>
-        <div>
-          <span>
-            Telephone:<br />
-            <a href="tel:+34690672916">+34 690 672 916</a>
-          </span>
-          <br />
-          <a href="https://www.oceanindependence.com/" target="_blank" rel="noreferrer">
-            Ocean Independence | Leading Global Superyacht Brokers
+<Layout title="Request" description={REQUEST_COPY.description}>
+  <PageIntro
+    eyebrow={REQUEST_COPY.eyebrow}
+    title={REQUEST_COPY.title}
+    description={REQUEST_COPY.intro}
+  />
+  <div class={`section-shell ${styles.request}`}>
+    <div class={styles.contactLayout}>
+      <aside class={styles.broker} aria-labelledby="broker-title">
+        <div class={styles.brokerDetails}>
+          <p class="eyebrow">{REQUEST_COPY.broker.eyebrow}</p>
+          <h2 id="broker-title">{REQUEST_COPY.broker.title}</h2>
+          <address>
+            <strong>{REQUEST_COPY.broker.name}</strong>
+            <span>{REQUEST_COPY.broker.role}</span>
+            <span>{REQUEST_COPY.broker.office}</span>
+            <a class={styles.brokerPhone} href={REQUEST_COPY.broker.phoneHref}
+              >{REQUEST_COPY.broker.phone}</a
+            >
+          </address>
+          <a
+            class={styles.brokerLink}
+            href={REQUEST_COPY.broker.link}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {REQUEST_COPY.broker.linkLabel}<span aria-hidden="true">↗</span>
           </a>
+          <img
+            class={styles.brokerLogo}
+            src={BROKER_LOGO}
+            alt={REQUEST_COPY.broker.logoAlt}
+            width="230"
+            height="69"
+            loading="lazy"
+          />
         </div>
-        <div class={styles.logo}>
-          <img alt="logo" src={BROKER_LOGO} width="230" height="69" />
+        <Photo
+          name={REQUEST_IMAGE.name}
+          alt={REQUEST_IMAGE.alt}
+          width={900}
+          height={800}
+          sizes="(min-width: 1000px) 34vw, 90vw"
+        />
+      </aside>
+      <section class={styles.formPanel} aria-labelledby="request-form-title">
+        <div class={styles.formIntro}>
+          <h2 id="request-form-title">{REQUEST_COPY.formTitle}</h2>
+          <p>{REQUEST_COPY.formIntro}</p>
         </div>
-      </div>
-      <div>
-        <span>
-          Let your dream come true and explore the most spectacular places on our beautiful planet
-          that have always been on your bucket list. Choose your preferred dates below and we will
-          get back to you. Let us take you to the Carribean between December and April and discover
-          the magic Mediterranean between June and October!
-        </span>
         <RequestForm client:load />
-      </div>
-    </section>
+        <noscript>
+          <p>{REQUEST_COPY.formFallback}</p>
+          <a class="text-link" href={REQUEST_COPY.broker.phoneHref}>{REQUEST_COPY.broker.phone}</a>
+        </noscript>
+        <div class={styles.cruising}>
+          <p class="eyebrow">{REQUEST_COPY.cruisingLabel}</p>
+          <dl>
+            <div>
+              <dt>{REQUEST_COPY.cruising.destination}</dt>
+              <dd>{REQUEST_COPY.cruising.availability}</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+    </div>
   </div>
 </Layout>
