@@ -1,0 +1,150 @@
+---
+import styles from './video-loop.module.scss';
+
+type Props = {
+  src: string;
+  poster: string;
+  label: string;
+  width: number;
+  height: number;
+  eager?: boolean;
+  class?: string;
+};
+
+const { src, poster, label, width, height, eager = false, class: className } = Astro.props;
+---
+
+<figure class:list={[styles.loop, className]}>
+  {
+    /* muted video: astro/jsx-a11y/media-has-caption does not apply (see eslint-plugin-jsx-a11y). Decorative ambient footage, described by aria-label and the figcaption. */
+  }
+  <video
+    muted
+    playsinline
+    loop
+    preload="none"
+    poster={poster}
+    width={width}
+    height={height}
+    aria-label={label}
+    data-loop-src={src}
+    data-loop-eager={eager ? '' : undefined}
+    style={`aspect-ratio: ${width} / ${height};`}></video>
+  <button type="button" class={styles.play} data-loop-play hidden>Play</button>
+  <figcaption><slot /></figcaption>
+</figure>
+
+<script>
+  if (!document.body.dataset.loopsReady) {
+    document.body.dataset.loopsReady = 'true';
+
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const loops = Array.from(document.querySelectorAll<HTMLVideoElement>('[data-loop-src]'));
+    const intersecting = new Set<HTMLVideoElement>();
+
+    function showPlayButton(video: HTMLVideoElement): void {
+      video.parentElement
+        ?.querySelector<HTMLButtonElement>('[data-loop-play]')
+        ?.removeAttribute('hidden');
+    }
+
+    function hidePlayButton(video: HTMLVideoElement): void {
+      video.parentElement
+        ?.querySelector<HTMLButtonElement>('[data-loop-play]')
+        ?.setAttribute('hidden', '');
+    }
+
+    function loadSource(video: HTMLVideoElement): void {
+      if (video.src) return;
+      video.muted = true;
+      video.src = video.dataset.loopSrc ?? '';
+    }
+
+    function isUserPaused(video: HTMLVideoElement): boolean {
+      return video.closest('[data-user-paused]') !== null;
+    }
+
+    function play(video: HTMLVideoElement): void {
+      if (reduced.matches || isUserPaused(video)) return;
+      loadSource(video);
+      video.play().then(
+        () => hidePlayButton(video),
+        () => showPlayButton(video),
+      );
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target as HTMLVideoElement;
+          if (entry.isIntersecting) {
+            intersecting.add(video);
+            play(video);
+          } else {
+            intersecting.delete(video);
+            video.pause();
+          }
+        });
+      },
+      { rootMargin: '200px 0px' },
+    );
+
+    loops.forEach((video) => {
+      if (video.dataset.loopEager !== undefined) loadSource(video);
+      if (!reduced.matches) observer.observe(video);
+
+      video.parentElement
+        ?.querySelector<HTMLButtonElement>('[data-loop-play]')
+        ?.addEventListener('click', () => {
+          loadSource(video);
+          video.play().then(() => hidePlayButton(video));
+        });
+    });
+
+    reduced.addEventListener('change', () => {
+      loops.forEach((video) => {
+        if (reduced.matches) {
+          video.pause();
+          observer.unobserve(video);
+          if (video.src) {
+            video.removeAttribute('src');
+            video.load();
+          }
+        } else {
+          observer.observe(video);
+        }
+      });
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        loops.forEach((video) => video.pause());
+      } else {
+        intersecting.forEach((video) => play(video));
+      }
+    });
+
+    document.querySelectorAll<HTMLButtonElement>('[data-loops-toggle]').forEach((toggle) => {
+      const onLabel = toggle.dataset.labelOn ?? 'Pause videos';
+      const offLabel = toggle.dataset.labelOff ?? 'Play videos';
+
+      toggle.addEventListener('click', () => {
+        const container = toggle.closest('[data-loops-container]');
+        if (!container) return;
+        const isPaused = container.hasAttribute('data-user-paused');
+
+        if (isPaused) {
+          container.removeAttribute('data-user-paused');
+          toggle.setAttribute('aria-pressed', 'false');
+          toggle.textContent = onLabel;
+          intersecting.forEach((video) => play(video));
+        } else {
+          container.setAttribute('data-user-paused', '');
+          toggle.setAttribute('aria-pressed', 'true');
+          toggle.textContent = offLabel;
+          loops.forEach((video) => video.pause());
+        }
+      });
+    });
+  }
+</script>
