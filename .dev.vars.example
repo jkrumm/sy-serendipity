@@ -1,3 +1,0 @@
-# Local values for the on-demand /api/request route (astro dev / wrangler dev). Never commit.
-BEA_BASE_URL=https://bun-email-api.jkrumm.com
-BEA_SECRET_KEY=

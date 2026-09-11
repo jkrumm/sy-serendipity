@@ -1,11 +1,11 @@
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
-import cloudflare from '@astrojs/cloudflare';
+import netlify from '@astrojs/netlify';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 
 const site = 'https://sy-serendipity.org';
 
@@ -34,7 +34,7 @@ function gitLastModified(file: string): string | undefined {
 export default defineConfig({
   site,
   output: 'static',
-  adapter: cloudflare({ imageService: 'passthrough' }),
+  adapter: netlify(),
   session: false,
   build: { format: 'directory' },
   integrations: [
@@ -44,10 +44,18 @@ export default defineConfig({
     }),
   ],
   server: { port, allowedHosts },
+  env: {
+    schema: {
+      BEA_BASE_URL: envField.string({
+        context: 'server',
+        access: 'public',
+        default: 'https://bun-email-api.jkrumm.com',
+      }),
+      BEA_SECRET_KEY: envField.string({ context: 'server', access: 'secret' }),
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
-    // The workerd dev runner crashes when this dep is discovered late and re-optimized.
-    ssr: { optimizeDeps: { include: ['astro/assets/services/noop'] } },
     server: { strictPort: true, allowedHosts },
     css: {
       modules: { localsConvention: 'camelCase' },

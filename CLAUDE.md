@@ -1,7 +1,7 @@
 # sy-serendipity
 
 Marketing site for the charter yacht SY Serendipity I. Astro 7, `output: 'static'` with
-`@astrojs/cloudflare` for exactly one on-demand route, React 19 islands, Bun, Tailwind 4,
+`@astrojs/netlify` for exactly one on-demand route, React 19 islands, Bun, Tailwind 4,
 SCSS modules. README.md has the stack table and layout; this file only carries what changes
 how you work here.
 
@@ -27,11 +27,10 @@ herdr pane read <pane_id> --source recent --lines 80   # logs, incl. /api/reques
   is `.test` + `.mini.jkrumm.com`, so any Caddy door works without a config change.
 - `astro dev` (Astro 7) detaches into a daemon: `bun run dev` returns immediately,
   `astro dev logs` / `astro dev stop` / `astro dev status` manage it.
-- Under `astro dev` the adapter runs pages in workerd; `/api/request` reads
-  `BEA_BASE_URL` from `wrangler.jsonc` `vars` and `BEA_SECRET_KEY` from `.dev.vars`
-  (gitignored, `chmod 600`; `.dev.vars.example` is the template). Every secret must also be
-  listed under `secrets.required` in `wrangler.jsonc`, otherwise wrangler silently drops it
-  in dev (and `wrangler types` won't type it). Restart the pane after editing `.dev.vars`.
+- `/api/request` reads `BEA_BASE_URL` / `BEA_SECRET_KEY` via `astro:env/server` (schema in
+  `astro.config.ts`), sourced from `.env` (gitignored, see `.env.example`) under `astro dev`
+  and from Netlify's site environment variables (scope: Functions) in production. Restart
+  the pane after editing `.env`.
 - Verify the form end to end:
   ```bash
   curl -s -X POST http://localhost:7734/api/request -H 'Content-Type: application/json' \
@@ -41,8 +40,8 @@ herdr pane read <pane_id> --source recent --lines 80   # logs, incl. /api/reques
 
 ## Validation
 
-`bun run check` (runs `wrangler types` first), `bun run lint`, `bun run format:check`,
-`bun run build`. All four must pass before a commit. `/check` covers them.
+`bun run check`, `bun run lint`, `bun run format:check`, `bun run build`. All four must pass
+before a commit. `/check` covers them.
 
 ## Images and email
 
@@ -50,13 +49,15 @@ herdr pane read <pane_id> --source recent --lines 80   # logs, incl. /api/reques
   `sy-serendipity/`, imgproxy options). New assets: `imgcli sync <dir> sy-serendipity/`
   or `imgcli upload <file> sy-serendipity/` (see the `/img` skill), never a raw CDN path in a page.
 - The hero video still streams from ImageKit; imgproxy is image-only.
-- Charter requests: island → `/api/request` (Worker) → bun-email-api `POST /sy-serendipity`
-  (repo `bun-email-api`, deployed on the VPS by RollHook on push). Template lives there,
-  not here. Receiver/sender addresses are env on the VPS (`vps/apps/bun-email-api/.env.tpl`).
+- Charter requests: island → `/api/request` (Netlify Function) → bun-email-api
+  `POST /sy-serendipity` (repo `bun-email-api`, deployed on the VPS by RollHook on push).
+  Template lives there, not here. Receiver/sender addresses are env on the VPS
+  (`vps/apps/bun-email-api/.env.tpl`).
 
 ## Deploy
 
-Cloudflare Workers. `wrangler deploy` follows `.wrangler/deploy/config.json` to the
-adapter-generated `dist/server/wrangler.json`, so always `bun run build` first
-(`bun run deploy` does both). Production secret: `bunx wrangler secret put BEA_SECRET_KEY`.
-The custom-domain route in `wrangler.jsonc` needs the zone on Cloudflare.
+Netlify. Production: `bun run deploy` (`astro build && netlify-cli deploy --prod --dir=dist
+--no-build`, needs `NETLIFY_AUTH_TOKEN` and a linked site). Previews:
+`ALIAS=<name> bun run deploy:preview` → `https://<name>--sy-serendipity.netlify.app`.
+`BEA_SECRET_KEY` is a Netlify site environment variable (scope: Functions), set in the
+Netlify dashboard.
