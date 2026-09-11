@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { env } from 'cloudflare:workers';
+import { BEA_BASE_URL, BEA_SECRET_KEY } from 'astro:env/server';
 
 export const prerender = false;
 
@@ -54,9 +54,9 @@ export const POST: APIRoute = async ({ request }) => {
   ) as Payload;
   payload.email = email;
 
-  const upstream = await fetch(`${env.BEA_BASE_URL}/sy-serendipity`, {
+  const upstream = await fetch(`${BEA_BASE_URL}/sy-serendipity`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.BEA_SECRET_KEY}` },
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${BEA_SECRET_KEY}` },
     body: JSON.stringify(payload),
     signal: AbortSignal.timeout(10_000),
   });

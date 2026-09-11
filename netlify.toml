@@ -1,0 +1,5 @@
+# Deploys currently run from a developer machine via `bun run deploy` / `bun run deploy:preview`
+# (netlify-cli, --no-build). These settings only matter if the site is connected to GitHub.
+[build]
+  command = "bun run build"
+  publish = "dist"

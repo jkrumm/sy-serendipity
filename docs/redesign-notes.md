@@ -48,7 +48,7 @@ Max's portrait is selected in `crewImages`. The destination photos and Max's por
 `polynesia` folder through `get-image.ts`, with responsive crops and source-size caps.
 Hero stills are in `home.hero.desktop/mobile`; the film and poster are `home.film.source/image`.
 Each is a single named choice. The existing film stays; the unhosted new videos are excluded.
-No runtime dependency was added.
+The redesign adds no runtime dependencies. Hosting uses master's pinned Netlify adapter.
 Decorative captions and taglines have been removed. Remaining photo labels describe places,
 rooms, equipment or activities; introductions and form messages use factual language.
 
@@ -67,4 +67,5 @@ About retains interior design by Perini Navi; Technical retains “km design”.
 “1,100 hp each” while Technical retains engine and total power of 1100 hp. Both need confirmation.
 Legal telephone and company-registration placeholders remain; no missing legal facts or privacy
 terms were invented. The three named crew profiles remain within the stated seven-person crew.
-The live request API test was accepted with HTTP 200 once; later form checks used mocked replies.
+Live requests returned HTTP 200 before and after the Netlify migration, once per verification.
+Other form checks used mocked replies.
