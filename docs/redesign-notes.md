@@ -41,8 +41,8 @@ Legal and 404 copy are small frontmatter objects in their page files. Shared inv
 in `CharterCta.astro`; navigation and footer text are in their corresponding components.
 The September client copy replaces the old seasonal itinerary with the South Pacific until
 summer 2028 across home, About, Request, footer and metadata. Captain/stewardess histories stay.
-`HOME_DESTINATION_IMAGES` selects photos 03, 02 and 12 in that order, with 03 opening the
-destinations section at full width. About's named
+`HOME_DESTINATION_IMAGES` selects photos 03, 02 and 12 in that order. Photo 03 opens the
+destinations section at 16:9, capped at 800 × 450 px and scaled for shorter viewports. About's named
 cruising slots hold the waterfall and reef imagery; Cook Islands/Fiji slots await verified photos.
 Max's portrait is selected in `crewImages`. The destination photos and Max's portrait use the
 `polynesia` folder through `get-image.ts`, with responsive crops and source-size caps.

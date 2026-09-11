@@ -96,7 +96,12 @@
   font-size: 22px;
 }
 .destinationOpener {
-  margin: 0 0 40px;
+  width: min(100%, 800px, 80svh);
+  margin: 0 auto 40px;
+  > img {
+    aspect-ratio: 16 / 9;
+    max-height: 60svh;
+  }
 }
 .destinations figcaption {
   padding-top: 16px;
