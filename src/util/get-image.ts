@@ -5,7 +5,7 @@ import { images } from './images';
 const CDN = 'https://img.jkrumm.com';
 const PREFIX = 'sy-serendipity';
 
-export type Folder = 'new' | 'all' | 'polynesia';
+export type Folder = 'new' | 'all' | 'polynesia' | 'broker';
 type Size = { width?: number; height?: number };
 
 function fileFor(name: string, jpgNames: (name: string) => boolean): string {

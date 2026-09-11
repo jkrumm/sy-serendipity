@@ -37,16 +37,15 @@ const desktopSet = desktopWidths
   <div class={styles.shade}></div>
   <div class={styles.content}>
     <p class="eyebrow">{hero.eyebrow}</p>
-    <h1 id="hero-title">{hero.title[0]}<br />{hero.title[1]}</h1>
+    <h1 id="hero-title">{hero.title}</h1>
     <p class={styles.line}>{hero.line}</p>
     <div class={styles.actions}>
-      <a href="#aboard" class={styles.explore}>{hero.link}<span aria-hidden="true">↓</span></a>
+      <a href="/request/" class={styles.explore}>{hero.link}<span aria-hidden="true">↗</span></a>
       <button type="button" class={styles.watchFilm} data-film-open aria-haspopup="dialog">
         <span aria-hidden="true">▷</span>{home.film.button}
       </button>
     </div>
   </div>
-  <div class={styles.caption}><span>{hero.caption}</span><span>{hero.location}</span></div>
   <dialog
     id="yacht-film"
     class={styles.filmDialog}

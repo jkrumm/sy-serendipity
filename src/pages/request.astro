@@ -3,7 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import PageIntro from '@/components/PageIntro.astro';
 import Photo from '@/components/Photo.astro';
 import RequestForm from '@/islands/RequestForm';
-import { REQUEST_COPY, REQUEST_IMAGE } from '@/content/request';
+import { REQUEST_COPY, REQUEST_IMAGE, REQUEST_BROKER_IMAGE } from '@/content/request';
 import { BROKER_LOGO } from '@/util/get-image';
 import styles from './request.module.scss';
 ---
@@ -18,11 +18,20 @@ import styles from './request.module.scss';
     <div class={styles.contactLayout}>
       <aside class={styles.broker} aria-labelledby="broker-title">
         <div class={styles.brokerDetails}>
-          <p class="eyebrow">{REQUEST_COPY.broker.eyebrow}</p>
-          <h2 id="broker-title">{REQUEST_COPY.broker.title}</h2>
+          <div class={styles.brokerIdentity}>
+            <Photo
+              {...REQUEST_BROKER_IMAGE}
+              width={160}
+              height={160}
+              sizes="160px"
+              class={styles.brokerPortrait}
+            />
+            <div>
+              <h2 id="broker-title">{REQUEST_COPY.broker.name}</h2>
+              <p>{REQUEST_COPY.broker.role}</p>
+            </div>
+          </div>
           <address>
-            <strong>{REQUEST_COPY.broker.name}</strong>
-            <span>{REQUEST_COPY.broker.role}</span>
             <span>{REQUEST_COPY.broker.office}</span>
             <a class={styles.brokerPhone} href={REQUEST_COPY.broker.phoneHref}
               >{REQUEST_COPY.broker.phone}</a

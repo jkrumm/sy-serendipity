@@ -4,22 +4,22 @@ import Photo from '@/components/Photo.astro';
 import styles from './404.module.scss';
 
 const content = {
-  title: 'A little off course.',
+  title: 'Page not found',
   description:
-    'This page couldn’t be found. Return to the yacht, or let us help you plan your time aboard.',
+    'The page you requested could not be found. Return to the home page or contact the charter broker.',
   image: 'deck-23',
   imageAlt: 'The bow rail of Serendipity I looking out across the open sea',
 };
 ---
 
-<Layout title="Page not found" description="Find your way back aboard Serendipity I.">
+<Layout title="Page not found" description="The requested page could not be found.">
   <section class={`section-shell ${styles.page}`} aria-labelledby="not-found-title">
     <div class={styles.copy}>
-      <p class="eyebrow">404 · A change of course</p>
+      <p class="eyebrow">Error 404</p>
       <h1 id="not-found-title">{content.title}</h1>
       <p class={styles.description}>{content.description}</p>
       <div class={styles.links}>
-        <a href="/" class="button">Back to the yacht <span aria-hidden="true">↗</span></a>
+        <a href="/" class="button">Home page <span aria-hidden="true">↗</span></a>
         <a href="/request/" class="text-link">Request a charter <span aria-hidden="true">↗</span></a
         >
       </div>

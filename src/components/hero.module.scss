@@ -39,7 +39,7 @@
   }
   h1 {
     color: inherit;
-    font-size: clamp(60px, 8vw, 112px);
+    font-size: clamp(48px, 7.7vw, 112px);
     line-height: 1.02;
     letter-spacing: -0.045em;
     margin: 25px 0 20px;
@@ -83,21 +83,6 @@
     font-size: 23px;
   }
 }
-.caption {
-  position: absolute;
-  bottom: 27px;
-  left: var(--gutter);
-  right: var(--gutter);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  span:last-child {
-    display: none;
-  }
-}
 @media (min-width: 700px) {
   .hero {
     height: min(780px, calc(100svh - 88px));
@@ -112,9 +97,6 @@
   .line {
     max-width: none;
   }
-  .caption span:last-child {
-    display: block;
-  }
   .shade {
     background:
       linear-gradient(90deg, rgba(12, 33, 36, 0.32), transparent 65%),
@@ -125,11 +107,6 @@
   .content {
     max-width: none;
     padding-left: max(var(--gutter), calc((100vw - 1312px) / 2));
-  }
-}
-@media (max-width: 389px) {
-  .content h1 {
-    font-size: 58px;
   }
 }
 

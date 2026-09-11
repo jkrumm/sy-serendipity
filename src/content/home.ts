@@ -3,33 +3,38 @@ import type { PhotoOptions } from '@/util/get-image';
 type DestinationPhoto = Omit<PhotoOptions, 'width' | 'height'> & { alt: string };
 
 export const HOME_DESTINATION_IMAGES = {
-  southPacific: {
+  marquesasBay: {
+    name: 'polynesia-03',
+    folder: 'polynesia',
+    sourceWidth: 4000,
+    sourceHeight: 2256,
+    alt: 'Serendipity I anchored in a deep blue Marquesas bay below volcanic cliffs',
+  },
+  marquesasAnchorage: {
     name: 'polynesia-02',
     folder: 'polynesia',
     sourceWidth: 2048,
     sourceHeight: 1556,
     alt: 'Serendipity I at anchor in a Marquesas bay beneath green volcanic mountains',
   },
-  frangipani: {
-    name: 'polynesia-06',
+  reefAnchorage: {
+    name: 'polynesia-12',
     folder: 'polynesia',
-    sourceWidth: 2048,
-    sourceHeight: 1536,
-    alt: 'White frangipani flowers frame a blue Marquesas bay, with Serendipity I at anchor beyond',
+    sourceWidth: 2714,
+    sourceHeight: 1530,
+    alt: 'Serendipity I at anchor in deep blue water beside a reef-fringed Polynesian motu',
   },
 } satisfies Record<string, DestinationPhoto>;
 
 export const home = {
-  title: 'Charter Sailing Yacht | Set Sails. Now.',
+  title: 'Private Sailing Yacht Charter',
   description:
-    'Set sail aboard Serendipity I, a 45-metre Perini Navi sailing yacht for eight guests. Discover the South Pacific until summer 2028.',
+    'Serendipity I is a 45-metre Perini Navi sailing yacht for eight guests, available for private charter in the South Pacific until summer 2028.',
   hero: {
-    eyebrow: 'Serendipity I · Private sailing charters',
-    title: ['Let the world', 'wait.'],
-    line: 'Your own course. Your own kind of extraordinary.',
-    link: 'Discover life on board',
-    caption: '45 metres of possibility',
-    location: 'South Pacific · Until summer 2028',
+    eyebrow: '45-metre Perini Navi sailing yacht',
+    title: 'Serendipity I',
+    line: 'South Pacific until summer 2028.',
+    link: 'Enquire about a charter',
     desktop: {
       name: 'ship-16',
       old: true,
@@ -42,33 +47,33 @@ export const home = {
     },
   },
   facts: [
-    { value: '45', unit: 'metres', detail: 'Perini Navi' },
-    { value: '8', unit: 'guests', detail: 'Your inner circle' },
-    { value: '4', unit: 'cabins', detail: 'Room to unwind' },
-    { value: '7', unit: 'crew', detail: 'Every detail considered' },
+    { value: '45', unit: 'metres' },
+    { value: '8', unit: 'guests' },
+    { value: '4', unit: 'cabins' },
+    { value: '7', unit: 'crew' },
   ],
   introduction: {
-    eyebrow: 'A different rhythm',
-    title: 'Somewhere between\nthe sea and yourself.',
-    body: 'A quiet anchorage. A long lunch that becomes an afternoon. The people you love, with nowhere else to be. Aboard Serendipity I, the days follow your lead.',
+    eyebrow: 'Perini Navi · Built in 2011',
+    title: 'Accommodation for eight guests',
+    body: 'Serendipity I has four guest cabins, a saloon, indoor and outdoor dining areas, and open decks.',
     detail:
-      'Built by Perini Navi in 2011, this 45-metre sailing yacht brings eight guests together in the places best reached by sea. Tell us what draws you to the water. We’ll shape the journey around it.',
+      'Seven crew operate the yacht and arrange meals, activities and excursions. Private charters are available in French Polynesia, the Cook Islands and Fiji.',
     link: 'Explore the yacht',
     image: {
       name: 'outside-1',
       alt: 'The shaded aft deck with a teak dining table, cream seating and an open sea view',
     },
-    caption: 'A table with an ever-changing view.',
+    caption: 'Aft deck dining area',
   },
   onboard: {
-    eyebrow: 'Life, beautifully unhurried',
-    title: 'Make yourself at sea.',
-    body: 'Bare feet on teak. A swim before breakfast. A favourite corner to read. There is space here for whatever the day brings.',
+    eyebrow: 'On board',
+    title: 'Cabins and decks',
+    body: 'The full-beam owner’s cabin is aft. Guest cabins have en suite facilities, and the decks have seating, sunbeds and dining space.',
     chapters: [
       {
         number: '01',
-        title: 'A little room to retreat.',
-        label: 'The interiors',
+        title: 'Owner’s cabin',
+        label: 'Accommodation',
         href: '/about/#interior-title',
         image: {
           name: 'inside-37',
@@ -77,8 +82,8 @@ export const home = {
       },
       {
         number: '02',
-        title: 'All the time in the world.',
-        label: 'The open air',
+        title: 'Open decks',
+        label: 'Outdoor spaces',
         href: '/about/#activities-title',
         image: {
           name: 'deck-24',
@@ -89,22 +94,23 @@ export const home = {
   },
   destinations: {
     eyebrow: 'Until summer 2028',
-    title: 'Wild wonders and active adventures in the South Pacific',
-    body: 'Dazzled by a rainbow of colors, French artist Gauguin found endless inspiration in the South Pacific’s romantically remote islands — invitingly blue ocean, deliciously pink frangipani flowers, and precious black pearls darker than the night.',
+    title: 'South Pacific charters',
+    body: 'French artist Gauguin found inspiration in the South Pacific. Its islands have blue lagoons, pink frangipani flowers and black pearls.',
     locations: 'French Polynesia · Cook Islands · Fiji',
     paragraphs: [
-      'Serendipity I will sail the South Pacific until the summer of 2028. Discover the 121 islands of French Polynesia, favored for their pristine beaches and rich culture. Play with dolphins in Rangiroa’s Tiputa Pass, or have a Polynesian tattoo inked by a traditional artist.',
-      'Further afield, the far-flung Marquesas Islands are the heartland of an ancient Polynesian belief system. Spiritually revived by a younger generation, temple ruins and tiki statues serve as a link to seafaring ancestors.',
-      'Even today, life in the archipelago revolves around water. From the humpbacks greeting snorkellers in Moorea between mid-August and mid-October to the Olympics-worthy waves challenging surfers on Tahiti, this is a destination ruled by marine giants.',
+      'Serendipity I will sail the South Pacific until summer 2028. French Polynesia has 121 islands, with beaches and local cultural traditions to explore. See dolphins in Rangiroa’s Tiputa Pass or visit a traditional Polynesian tattoo artist.',
+      'In the Marquesas Islands, temple ruins and tiki statues record ancient Polynesian beliefs and seafaring ancestry. Younger generations are reviving these traditions.',
+      'Humpback whales visit Moorea between mid-August and mid-October, when snorkelling excursions are possible. Tahiti is also a destination for surfing.',
     ],
-    imageCaption: 'An arrival in the Marquesas Islands.',
-    frangipaniCaption: 'The colors of the South Pacific.',
-    link: 'Tailor your trip',
+    openerCaption: 'Marquesas Islands, French Polynesia',
+    anchorageCaption: 'At anchor in the Marquesas Islands',
+    reefCaption: 'At anchor beside a Polynesian motu',
+    link: 'View cruising destinations',
   },
   crew: {
-    eyebrow: 'Thoughtful, by nature',
-    title: 'The art of feeling\nat home.',
-    body: 'Seven experienced crew, one shared instinct: knowing when to step in and when to leave you to the moment. From your first coffee to a celebration under the stars, the details are in good hands.',
+    eyebrow: 'Crew of seven',
+    title: 'Your crew',
+    body: 'Captain Scott Waterfield, Chief Stewardess Renee Weatherall and Chef Max are part of the seven-person crew. They arrange your meals, activities and excursions on board and ashore.',
     link: 'Meet your crew',
     image: {
       name: 'food-11',
@@ -112,8 +118,8 @@ export const home = {
     },
   },
   film: {
-    eyebrow: 'A moment aboard',
-    title: 'This is what freedom feels like.',
+    eyebrow: 'Film',
+    title: 'Serendipity I under sail',
     button: 'Watch the film',
     close: 'Close film',
     source: 'https://ik.imagekit.io/bgmwrkfoi/sy-serendipty-1080.mov',

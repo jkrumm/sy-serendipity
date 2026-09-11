@@ -17,7 +17,6 @@ import styles from './index.module.scss';
             <p>
               <span>{fact.value}</span> {fact.unit}
             </p>
-            <small>{fact.detail}</small>
           </>
         </div>
       ))
@@ -80,27 +79,36 @@ import styles from './index.module.scss';
       </div>
       <p>{home.destinations.body}</p>
     </div>
+    <figure class={styles.destinationOpener} data-image-slot="home-marquesas-bay">
+      <Photo
+        {...HOME_DESTINATION_IMAGES.marquesasBay}
+        width={1600}
+        height={902}
+        sizes="(min-width: 1440px) 1312px, (min-width: 800px) calc(100vw - 128px), calc(100vw - 48px)"
+      />
+      <figcaption>{home.destinations.openerCaption}</figcaption>
+    </figure>
     <div class={styles.destinationStory}>
-      <figure data-image-slot="home-south-pacific">
+      <figure data-image-slot="home-marquesas-anchorage">
         <Photo
-          {...HOME_DESTINATION_IMAGES.southPacific}
+          {...HOME_DESTINATION_IMAGES.marquesasAnchorage}
           width={1000}
           height={1100}
           sizes="(min-width: 900px) 46vw, 100vw"
         />
-        <figcaption>{home.destinations.imageCaption}</figcaption>
+        <figcaption>{home.destinations.anchorageCaption}</figcaption>
       </figure>
       <div class={styles.destinationCopy}>
         <p class="eyebrow">{home.destinations.locations}</p>
         {home.destinations.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-        <figure class={styles.frangipani} data-image-slot="home-frangipani">
+        <figure class={styles.reefPhoto} data-image-slot="home-reef-anchorage">
           <Photo
-            {...HOME_DESTINATION_IMAGES.frangipani}
+            {...HOME_DESTINATION_IMAGES.reefAnchorage}
             width={960}
             height={720}
             sizes="(min-width: 900px) 39vw, 100vw"
           />
-          <figcaption>{home.destinations.frangipaniCaption}</figcaption>
+          <figcaption>{home.destinations.reefCaption}</figcaption>
         </figure>
         <a href="/about/#cruising-title" class="text-link"
           >{home.destinations.link}<span aria-hidden="true">↗</span></a

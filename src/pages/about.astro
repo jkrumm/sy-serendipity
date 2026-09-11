@@ -13,7 +13,6 @@ import styles from './about.module.scss';
   <div class={styles.opening}>
     <figure class={styles.hero}>
       <Photo {...images.aftDeck} width={1920} height={1080} eager sizes="100vw" />
-      <figcaption>{content.heroCaption}</figcaption>
     </figure>
     <dl class={styles.facts}>
       {
@@ -36,7 +35,6 @@ import styles from './about.module.scss';
           height={1080}
           sizes="(min-width: 900px) 57vw, 100vw"
         />
-        <figcaption>{content.interior.caption}</figcaption>
       </figure>
       <div class={styles.copy}>
         <p class="eyebrow">{content.interior.eyebrow}</p>
@@ -57,7 +55,6 @@ import styles from './about.module.scss';
           height={750}
           sizes="(min-width: 900px) 43vw, 100vw"
         />
-        <figcaption>{content.sharedSpaces.caption}</figcaption>
       </figure>
     </div>
   </section>
@@ -72,7 +69,6 @@ import styles from './about.module.scss';
     </div>
     <figure class={styles.yoga}>
       <Photo {...images.yoga} width={1920} height={960} sizes="100vw" />
-      <figcaption>{content.activities.yogaCaption}</figcaption>
     </figure>
     <div class={`section-shell ${styles.activityDetails}`}>
       <div class={styles.toys}>
@@ -92,7 +88,6 @@ import styles from './about.module.scss';
           height={1080}
           sizes="(min-width: 900px) 40vw, 100vw"
         />
-        <figcaption>{content.activities.sailingCaption}</figcaption>
       </figure>
     </div>
   </section>
@@ -117,7 +112,6 @@ import styles from './about.module.scss';
                 height={900}
                 sizes="(min-width: 900px) 45vw, calc(100vw - 48px)"
               />
-              <figcaption>{photograph.caption}</figcaption>
             </figure>
           ) : null,
         )
@@ -142,7 +136,6 @@ import styles from './about.module.scss';
                   height={800}
                   sizes="(min-width: 900px) 45vw, calc(100vw - 48px)"
                 />
-                <figcaption>{passage.image.caption}</figcaption>
               </figure>
             )}
             {passage.paragraphs.map((paragraph) => (

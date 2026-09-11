@@ -1,20 +1,20 @@
 export const TECHNICAL_COPY = {
   eyebrow: 'Serendipity I · Perini Navi · 2011',
-  title: 'Beauty, by design.',
+  title: 'Specifications',
   description:
     'The specifications of Serendipity I: a 45 m Perini Navi sailing yacht, built in 2011 for eight guests and seven crew.',
   intro:
-    'Italian craftsmanship, a steel hull and the unmistakable lines of a Perini Navi. Every detail belongs to the pleasure of being at sea.',
+    'Serendipity I is a 45 m Perini Navi sailing yacht built in 2011, with four cabins for eight guests and a crew of seven.',
   highlights: [
     { value: '45 m', label: 'Length overall' },
     { value: '8', label: 'Guests' },
     { value: '7', label: 'Crew' },
     { value: '4', label: 'Guest cabins' },
   ],
-  plansEyebrow: 'The arrangement',
-  plansTitle: 'Room for life on board.',
-  cockpitEyebrow: 'At the helm',
-  cockpitTitle: 'A different perspective.',
+  plansEyebrow: 'General arrangement',
+  plansTitle: 'Deck plans',
+  cockpitEyebrow: 'Navigation',
+  cockpitTitle: 'Wheelhouse',
 };
 
 export const SPECIFICATIONS = [
@@ -84,13 +84,13 @@ export const TECHNICAL_IMAGES = {
   cockpit: [
     {
       name: 'cockpit-1',
-      alt: 'The light-filled wheelhouse with its navigation console and seating beside the saloon',
-      caption: 'The wheelhouse',
+      alt: 'Wheelhouse navigation console and seating beside the saloon',
+      caption: 'Wheelhouse',
     },
     {
       name: 'cockpit-4',
       alt: 'Engine throttle and navigation screens on the wheelhouse console',
-      caption: 'Precision at the helm',
+      caption: 'Wheelhouse console',
     },
   ],
 };

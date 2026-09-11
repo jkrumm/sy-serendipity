@@ -13,43 +13,49 @@
   min-width: 0;
   background: var(--ink);
   color: var(--paper);
-
-  :global(.eyebrow) {
-    color: var(--paper);
-    opacity: 0.8;
-  }
 }
 
 .brokerDetails {
   padding: 36px 28px;
 
-  h2 {
-    margin: 24px 0 36px;
-    max-width: 340px;
-    color: var(--paper);
-    font-size: 42px;
-    line-height: 1.1;
-  }
-
   address {
+    margin-top: 28px;
     font-size: 14px;
     line-height: 1.7;
     font-style: normal;
 
-    strong,
     span {
       display: block;
-    }
-
-    strong {
-      margin-bottom: 8px;
-      font-size: 19px;
     }
   }
 
   a {
     color: var(--paper);
   }
+}
+
+.brokerIdentity {
+  display: grid;
+  grid-template-columns: min(36%, 160px) minmax(0, 1fr);
+  gap: 20px;
+  align-items: center;
+
+  h2 {
+    margin: 0 0 12px;
+    color: var(--paper);
+    font-size: 32px;
+    line-height: 1.1;
+  }
+
+  p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+
+.brokerPortrait {
+  max-width: 160px;
+  aspect-ratio: 1;
 }
 
 .brokerPhone {
@@ -498,10 +504,6 @@
 
   .brokerDetails {
     padding: 42px 32px;
-
-    h2 {
-      font-size: 46px;
-    }
   }
 
   .formIntro {

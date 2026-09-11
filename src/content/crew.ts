@@ -11,10 +11,10 @@ type CrewPortrait = {
 };
 
 export const MAX_PORTRAIT_IMAGE = {
-  name: 'polynesia-25',
+  name: 'polynesia-24',
   alt: 'Chef Max smiling on deck, with a Polynesian lagoon behind him',
   width: 400,
-  height: 380,
+  height: 360,
   folder: 'polynesia',
   gravity: 'no',
   sourceWidth: 960,
@@ -50,16 +50,16 @@ export const crewContent = {
   meta: {
     title: 'Crew',
     description:
-      'Meet the people who make your passage on Serendipity I exceptional: a highly trained crew of seven, with thoughtful service and a love of the sea.',
+      'Serendipity I has seven crew, including Captain Scott Waterfield, Chief Stewardess Renee Weatherall and Chef Max.',
   },
   intro: {
-    eyebrow: 'The people behind your passage',
-    title: 'In very good hands.',
+    eyebrow: 'Serendipity I',
+    title: 'The crew',
     description:
-      'Seven highly trained crew, one shared purpose: making your time on board your own. Thoughtful, unobtrusive service leaves you free to enjoy every moment.',
+      'Serendipity I has seven trained crew. The team provides unobtrusive service and arranges excursions and experiences around guests’ interests.',
   },
   welcome:
-    'Your passions, curiosities, motivations and the people travelling with you shape the excursions and experiences we arrange. Celebrating a special occasion? Tell us what you have in mind; we will bring ideas to the table.',
+    'Share your interests, the needs of your travel companions and any special occasions so the crew can plan suitable excursions and experiences.',
   profiles: [
     {
       name: 'Scott Waterfield',
@@ -86,15 +86,12 @@ export const crewContent = {
       role: 'Chef',
       image: crewImages.chef,
       paragraphs: [
-        'You are most welcome if you are a high-end foodie!',
-        'Our energetic chef Max, with his blend of creativity, passion for food and exceptional cooking skills, will source the best ingredients on local markets and serve the most delicious meals ever. Let him spoil you!',
+        'Max is the yacht’s chef. He sources ingredients from local markets and prepares meals on board.',
       ],
     },
   ],
   dining: {
-    eyebrow: 'A taste of life on board',
-    title: 'From the first coffee to the last toast.',
-    breakfastCaption: 'Breakfast, with nowhere else to be.',
-    aperitifCaption: 'An aperitif and something to share.',
+    eyebrow: 'Dining',
+    title: 'Meals on board',
   },
 };

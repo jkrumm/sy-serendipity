@@ -1,21 +1,19 @@
 export const REQUEST_COPY = {
-  eyebrow: 'Your private charter',
-  title: 'Where shall we take you?',
+  eyebrow: 'Serendipity I',
+  title: 'Request a charter',
   description:
-    'Plan your South Pacific charter on Serendipity I until summer 2028 with Barbara Mueller at Ocean Independence, Palma.',
+    'Request a charter on Serendipity I in the South Pacific until summer 2028. Contact Barbara Mueller at Ocean Independence, Palma.',
   intro:
-    'Serendipity I is sailing the South Pacific until summer 2028. French Polynesia, the Cook Islands or Fiji — tell us where you dream of going and name your preferred dates. We will shape the journey with you.',
-  formTitle: 'A few details.',
-  formIntro: 'Only your email is required. Everything else helps us make it yours.',
+    'Serendipity I is sailing the South Pacific until summer 2028, including French Polynesia, the Cook Islands and Fiji. Please tell us your preferred dates and destination.',
+  formTitle: 'Charter request',
+  formIntro: 'Only your email address is required. All other details are optional.',
   formFallback: 'Please call Barbara to arrange your charter.',
-  cruisingLabel: 'Your next horizon',
+  cruisingLabel: 'Current cruising area',
   cruising: {
     destination: 'The South Pacific',
     availability: 'Until summer 2028',
   },
   broker: {
-    eyebrow: 'Your charter, personally arranged',
-    title: 'It begins with a conversation.',
     name: 'Barbara Mueller',
     role: 'Senior Charter Broker',
     office: 'Ocean Independence Palma',
@@ -32,6 +30,15 @@ export const REQUEST_IMAGE = {
   alt: 'The teak deck and polished railing beside clear turquoise water',
 };
 
+export const REQUEST_BROKER_IMAGE = {
+  name: 'barbara-mueller.jpeg',
+  folder: 'broker' as const,
+  sourceWidth: 250,
+  sourceHeight: 250,
+  maxWidth: 160,
+  alt: 'Barbara Mueller, Senior Charter Broker at Ocean Independence',
+};
+
 export const REQUEST_FORM_COPY = {
   firstName: 'First name',
   lastName: 'Last name',
@@ -39,7 +46,7 @@ export const REQUEST_FORM_COPY = {
   required: 'Required',
   numberOfPeople: 'Guests',
   guestsPlaceholder: '1–8',
-  destination: 'Where would you like to sail?',
+  destination: 'Preferred destination',
   destinationPlaceholder: 'French Polynesia, the Cook Islands, Fiji…',
   datesTitle: 'Your preferred dates',
   optional: 'Optional',
@@ -48,22 +55,23 @@ export const REQUEST_FORM_COPY = {
   departure: 'Departure',
   datePlaceholder: 'Select a date',
   clearDates: 'Clear dates',
-  datesHint: 'Choose an arrival date, then a departure date. Flexible plans are welcome.',
-  phoneToggle: 'I would prefer a phone call',
+  datesHint:
+    'Select an arrival date followed by a departure date. Leave dates blank if you are flexible.',
+  phoneToggle: 'Please contact me by phone',
   phone: 'Telephone',
   phoneCountry: 'Country calling code',
-  message: 'Anything you would like us to know?',
-  messagePlaceholder: 'Your destinations, occasion or wishes for life on board…',
+  message: 'Message or special requests',
+  messagePlaceholder: 'Include any requirements or questions about your charter.',
   consent:
     'By sending this request, you agree that your details may be shared to arrange your charter.',
-  submit: 'Send your request',
-  submitting: 'Sending your request…',
+  submit: 'Send request',
+  submitting: 'Sending request…',
   errorTitle: 'Your request has not been sent.',
   submissionError: 'Please try again, or call Barbara to discuss your charter.',
   connectionError: 'Please check your connection and try again, or call Barbara.',
-  successEyebrow: 'Your request is on its way',
-  successTitle: 'A lovely place to begin.',
+  successEyebrow: 'Charter request',
+  successTitle: 'Request sent',
   successBody:
-    'Thank you for sharing your plans. Barbara and the charter team will be in touch to talk through your time on Serendipity I.',
-  successCall: 'Speak with Barbara',
+    'Thank you. Barbara Mueller and the charter team will contact you about your request.',
+  successCall: 'Call Barbara Mueller',
 };

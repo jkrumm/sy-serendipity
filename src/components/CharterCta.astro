@@ -7,13 +7,12 @@ type Props = {
 };
 
 const {
-  title = 'Your next chapter, at sea.',
-  body = 'A week shaped around you. Let’s start with a conversation.',
+  title = 'Charter Serendipity I',
+  body = 'Contact Ocean Independence to discuss your preferred dates and destinations.',
 } = Astro.props;
 ---
 
 <section class={`section-shell ${styles.cta}`} aria-labelledby="charter-invitation">
-  <p class="eyebrow">Come aboard</p>
   <h2 id="charter-invitation">{title}</h2>
   <p class={styles.body}>{body}</p>
   <a class="button" href="/request/">Request a charter <span aria-hidden="true">↗</span></a>
