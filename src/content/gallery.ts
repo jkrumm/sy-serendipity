@@ -1,3 +1,5 @@
+import type { ImageId } from '@/util/images';
+
 export const GALLERY_COPY = {
   eyebrow: 'Serendipity I',
   title: 'Gallery',
@@ -17,7 +19,11 @@ export const GALLERY_CHAPTERS: { id: GalleryChapter; title: string; description:
     description: 'Serendipity I in French Polynesia, 2026.',
   },
   { id: 'decks', title: 'Decks', description: 'Outdoor seating, dining areas and the foredeck.' },
-  { id: 'interiors', title: 'Interiors', description: 'The saloon, guest cabins and bathrooms.' },
+  {
+    id: 'interiors',
+    title: 'Interiors',
+    description: 'The saloon, guest cabins, bathrooms and the wheelhouse.',
+  },
   {
     id: 'cuisine',
     title: 'Cuisine',
@@ -27,17 +33,15 @@ export const GALLERY_CHAPTERS: { id: GalleryChapter; title: string; description:
 ];
 
 type PhotoChoice = {
-  name: string;
+  name: ImageId;
   chapter: GalleryChapter;
   caption: string;
   alt: string;
   layout?: 'full' | 'portrait' | 'companion';
-  folder?: 'polynesia';
-  width?: number;
-  height?: number;
 };
 
 export const GALLERY_IMAGES: PhotoChoice[] = [
+  // Yacht
   {
     name: 'ship-1',
     chapter: 'yacht',
@@ -64,6 +68,18 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     alt: 'Serendipity I moving through the sea with a white wake beside her bow',
   },
   {
+    name: 'ship-6',
+    chapter: 'yacht',
+    caption: 'Full profile',
+    alt: 'Serendipity I at anchor under bare poles, full side profile against open sea and sky',
+  },
+  {
+    name: 'ship-23',
+    chapter: 'yacht',
+    caption: 'Underway',
+    alt: 'Serendipity I motoring through open water with a bow wave and no coastline in view',
+  },
+  {
     name: 'ship-45',
     chapter: 'yacht',
     caption: 'Bow platform',
@@ -76,15 +92,14 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     alt: 'Sunlight and rippling reflections along the dark steel hull',
     layout: 'full',
   },
+
+  // South Pacific
   {
     name: 'polynesia-02',
     chapter: 'south-pacific',
     caption: 'Marquesas anchorage',
     alt: 'Serendipity I at anchor in a Marquesas bay beneath green volcanic mountains',
     layout: 'full',
-    folder: 'polynesia',
-    width: 2048,
-    height: 1556,
   },
   {
     name: 'polynesia-21',
@@ -92,18 +107,18 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     caption: 'Aerial view over the reef',
     alt: 'Aerial view straight down on Serendipity I anchored in a deep blue channel surrounded by reef and other yachts',
     layout: 'full',
-    folder: 'polynesia',
-    width: 4000,
-    height: 2256,
   },
   {
     name: 'polynesia-12',
     chapter: 'south-pacific',
     caption: 'Reef drop-off from above',
     alt: 'Aerial view of Serendipity I anchored beside a coral motu where turquoise shallows drop into deep blue water',
-    folder: 'polynesia',
-    width: 2714,
-    height: 1530,
+  },
+  {
+    name: 'polynesia-18',
+    chapter: 'south-pacific',
+    caption: 'Sunset arrival at the atoll',
+    alt: 'Serendipity I approaching a Polynesian atoll at sunset, bow-on with the sun low on the horizon',
   },
   {
     name: 'polynesia-09',
@@ -111,9 +126,6 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     caption: 'Under sail near an atoll',
     alt: 'Serendipity I under sail near a Polynesian atoll with a palm-fringed islet and another yacht in the distance',
     layout: 'portrait',
-    folder: 'polynesia',
-    width: 1152,
-    height: 2048,
   },
   {
     name: 'polynesia-40',
@@ -121,61 +133,41 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     caption: 'Beneath the Marquesas peaks',
     alt: 'Serendipity I anchored in a bay beneath steep, forested Marquesas peaks at sunset with other yachts nearby',
     layout: 'companion',
-    folder: 'polynesia',
-    width: 1600,
-    height: 902,
   },
   {
-    name: 'polynesia-18',
+    name: 'polynesia-36',
     chapter: 'south-pacific',
-    caption: 'Sunset arrival at the atoll',
-    alt: 'Serendipity I approaching a Polynesian atoll at sunset, bow-on with the sun low on the horizon',
-    folder: 'polynesia',
-    width: 4000,
-    height: 2256,
+    caption: 'Still water at first light',
+    alt: 'Serendipity I at anchor on glassy calm water, her mast perfectly reflected at sunrise',
+    layout: 'portrait',
+  },
+  {
+    name: 'polynesia-06',
+    chapter: 'south-pacific',
+    caption: 'Frangipani and the bay',
+    alt: 'A frangipani blossom frames a distant view of Serendipity I anchored off the Marquesas coast',
+    layout: 'companion',
+  },
+  {
+    name: 'polynesia-37',
+    chapter: 'south-pacific',
+    caption: 'Black pearls',
+    alt: 'Black and white Tahitian pearls displayed on an open pearl oyster shell',
+    layout: 'portrait',
   },
   {
     name: 'polynesia-32',
     chapter: 'south-pacific',
     caption: 'Anchored among reef islets',
     alt: 'Serendipity I anchored near small reef islets at sunset with another yacht nearby',
-    folder: 'polynesia',
-    width: 3489,
-    height: 1967,
-  },
-  {
-    name: 'polynesia-36',
-    chapter: 'south-pacific',
-    caption: 'Marquesas coast beyond the flowers',
-    alt: 'A frangipani blossom frames a distant view of Serendipity I anchored off the Marquesas coast',
-    layout: 'portrait',
-    folder: 'polynesia',
-    width: 1152,
-    height: 2048,
-  },
-  {
-    name: 'polynesia-06',
-    chapter: 'south-pacific',
-    caption: 'Black pearls',
-    alt: 'Black and white Tahitian pearls displayed on an open pearl oyster shell',
     layout: 'companion',
-    folder: 'polynesia',
-    width: 2048,
-    height: 1536,
   },
-  {
-    name: 'polynesia-37',
-    chapter: 'south-pacific',
-    caption: 'Still water at first light',
-    alt: 'Serendipity I at anchor on glassy calm water, her mast perfectly reflected at sunrise',
-    folder: 'polynesia',
-    width: 1200,
-    height: 1600,
-  },
+
+  // Decks
   {
     name: 'outside-8',
     chapter: 'decks',
-    caption: 'Aft deck seating and dining',
+    caption: 'Aft deck dining and seating',
     alt: 'The sheltered aft deck with a dining table, white sofas and views across the harbour',
     layout: 'full',
   },
@@ -212,22 +204,22 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     alt: 'Teak side deck bordered by polished railings and sailing rigging',
   },
   {
-    name: 'deck-11',
-    chapter: 'decks',
-    caption: 'Bow seat',
-    alt: 'A small bow seat suspended over clear blue water between steel railings',
-  },
-  {
     name: 'outside-34',
     chapter: 'decks',
     caption: 'Foredeck shade awning',
     alt: 'Turquoise beanbags on the foredeck beneath a white sun awning',
   },
   {
-    name: 'outside-38',
+    name: 'outside-11',
     chapter: 'decks',
-    caption: 'Foredeck cushions',
-    alt: 'A view out to sea between turquoise deck cushions beneath the shade of a sail',
+    caption: 'Aft deck stairs',
+    alt: 'Teak-treaded stairs curving from the aft deck to the flybridge, with the galley bar alongside',
+  },
+  {
+    name: 'outside-20',
+    chapter: 'decks',
+    caption: 'Aft deck lounge',
+    alt: 'Twin lounge sofas on the aft deck facing the flybridge canopy and helm',
   },
   {
     name: 'deck-24',
@@ -241,6 +233,8 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     caption: 'Bow seating and railings',
     alt: 'The curved rail and bow seat pointing towards an empty sea horizon',
   },
+
+  // Interiors
   {
     name: 'inside-8',
     chapter: 'interiors',
@@ -249,16 +243,32 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     layout: 'full',
   },
   {
-    name: 'inside-34',
+    name: 'inside-91',
     chapter: 'interiors',
-    caption: 'Double cabin',
-    alt: 'A spacious double cabin with dark blue bed linen and warm concealed lighting',
+    caption: 'Spa treatment room',
+    alt: 'A massage table dressed in navy towels beneath a round porthole',
+    layout: 'portrait',
   },
   {
-    name: 'inside-37',
+    name: 'inside-18',
     chapter: 'interiors',
-    caption: 'Principal cabin',
-    alt: 'A double bed framed by white cabinetry and a curved sofa in the principal cabin',
+    caption: 'Saloon bar',
+    alt: 'The curved saloon bar counter with fresh flowers and a window onto the water',
+    layout: 'companion',
+  },
+  {
+    name: 'inside-21',
+    chapter: 'interiors',
+    caption: 'Writing desk',
+    alt: 'A notebook and an espresso cup on a dark writing desk beside an orange chair',
+    layout: 'portrait',
+  },
+  {
+    name: 'inside-40',
+    chapter: 'interiors',
+    caption: 'Cabin overview',
+    alt: 'A guest cabin with dark cabinetry and doors open to the ensuite beyond',
+    layout: 'companion',
   },
   {
     name: 'inside-12',
@@ -267,16 +277,16 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     alt: 'The saloon dining counter with orange chairs and wide windows over the water',
   },
   {
-    name: 'inside-21',
+    name: 'inside-37',
     chapter: 'interiors',
-    caption: 'Writing desk',
-    alt: 'A notebook and an espresso cup on a dark writing desk beside an orange chair',
+    caption: 'Principal cabin',
+    alt: 'A double bed framed by white cabinetry and a curved sofa in the principal cabin',
   },
   {
-    name: 'inside-54',
+    name: 'inside-34',
     chapter: 'interiors',
-    caption: 'En suite bathroom',
-    alt: 'A bright en suite bathroom with twin basins, a wide mirror and a sea-facing porthole',
+    caption: 'Double cabin',
+    alt: 'A spacious double cabin with dark blue bed linen and warm concealed lighting',
   },
   {
     name: 'inside-70',
@@ -285,12 +295,50 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     alt: 'A softly lit twin guest cabin with pale walls and navy bed covers',
   },
   {
+    name: 'inside-54',
+    chapter: 'interiors',
+    caption: 'En suite bathroom',
+    alt: 'A bright en suite bathroom with twin basins, a wide mirror and a sea-facing porthole',
+  },
+  {
+    name: 'inside-59',
+    chapter: 'interiors',
+    caption: 'Bathroom vanity',
+    alt: 'A dual-basin bathroom vanity with a mirrored cabinet and woven amenity baskets',
+  },
+  {
+    name: 'inside-51',
+    chapter: 'interiors',
+    caption: 'Library nook',
+    alt: 'A reading sofa beside a built-in bookcase and a round porthole window',
+  },
+  {
+    name: 'inside-55',
+    chapter: 'interiors',
+    caption: 'Ensuite shower',
+    alt: 'A cabin ensuite with a glass shower enclosure and a round porthole',
+  },
+  {
     name: 'inside-66',
     chapter: 'interiors',
     caption: 'Double guest cabin',
     alt: 'A double guest cabin with navy cushions, white cabinetry and a porthole',
     layout: 'full',
   },
+  {
+    name: 'cockpit-1',
+    chapter: 'interiors',
+    caption: 'Wheelhouse',
+    alt: 'Wheelhouse navigation console and seating beside the saloon',
+  },
+  {
+    name: 'cockpit-4',
+    chapter: 'interiors',
+    caption: 'Wheelhouse console',
+    alt: 'Engine throttle and navigation screens on the wheelhouse console',
+  },
+
+  // Cuisine
   {
     name: 'food-4',
     chapter: 'cuisine',
@@ -306,6 +354,13 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     layout: 'portrait',
   },
   {
+    name: 'food-13',
+    chapter: 'cuisine',
+    caption: 'Cocktails on the helm deck',
+    alt: 'Two cocktails and a canapé board on a teak table beside the upper helm',
+    layout: 'companion',
+  },
+  {
     name: 'food-11',
     chapter: 'cuisine',
     caption: 'Fresh juices and pastries',
@@ -316,13 +371,6 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     chapter: 'cuisine',
     caption: 'Juices and fresh bread',
     alt: 'Bottled fresh juices, bread and fruit laid out on the aft deck with the sea beyond',
-  },
-  {
-    name: 'food-13',
-    chapter: 'cuisine',
-    caption: 'Cocktails on the helm deck',
-    alt: 'Two cocktails and a canapé board on a teak table beside the upper helm',
-    layout: 'companion',
   },
   {
     name: 'food-19',
@@ -337,17 +385,25 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     alt: 'Two cocktails in a wooden tray with olives and canapés on the teak deck',
   },
   {
+    name: 'food-6',
+    chapter: 'cuisine',
+    caption: 'Breakfast by the stairs',
+    alt: 'A breakfast spread on the aft deck with the flybridge staircase and galley behind',
+  },
+  {
+    name: 'food-12',
+    chapter: 'cuisine',
+    caption: 'Juice and fresh bread',
+    alt: 'Fresh juice carafes and sliced bread in close-up, the sea beyond',
+  },
+
+  // Activities
+  {
     name: 'ship-38',
     chapter: 'activities',
     caption: 'Tiwal sailing dinghy',
     alt: 'A Tiwal sailing dinghy on the water beside the stern of Serendipity I',
     layout: 'full',
-  },
-  {
-    name: 'sport-3',
-    chapter: 'activities',
-    caption: 'Seabob',
-    alt: 'A red Seabob underwater scooter resting on the teak swim platform',
   },
   {
     name: 'sport-1',
@@ -364,6 +420,12 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     layout: 'companion',
   },
   {
+    name: 'sport-3',
+    chapter: 'activities',
+    caption: 'Seabob',
+    alt: 'A red Seabob underwater scooter resting on the teak swim platform',
+  },
+  {
     name: 'sport-9',
     chapter: 'activities',
     caption: 'Yoga under sail',
@@ -376,13 +438,16 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     alt: 'Two guests stretching on yoga mats on the teak foredeck',
   },
   {
+    name: 'outside-25',
+    chapter: 'activities',
+    caption: 'Water toys aerial',
+    alt: 'Overhead view of the stern with the Seabob, Tiwal dinghy and tender all rigged',
+  },
+  {
     name: 'polynesia-35',
     chapter: 'activities',
     caption: 'Tender at speed',
     alt: 'The RIB tender speeding across the lagoon with an island and reef beyond',
     layout: 'full',
-    folder: 'polynesia',
-    width: 1600,
-    height: 902,
   },
 ];

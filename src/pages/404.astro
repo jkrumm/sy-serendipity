@@ -1,9 +1,10 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Photo from '@/components/Photo.astro';
+import type { ImageId } from '@/util/images';
 import styles from './404.module.scss';
 
-const content = {
+const content: { title: string; description: string; image: ImageId; imageAlt: string } = {
   title: 'Page not found',
   description:
     'The page you requested could not be found. Return to the home page or contact the charter broker.',

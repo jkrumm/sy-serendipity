@@ -1,13 +1,9 @@
-type CrewPortrait = {
-  name: string;
-  alt: string;
-  width: number;
-  height: number;
-  folder?: 'polynesia';
-  gravity?: 'no';
-  sourceWidth?: number;
-  sourceHeight?: number;
-  maxWidth?: number;
+import type { PhotoOptions } from '@/util/get-image';
+
+type CrewPortrait = Omit<PhotoOptions, 'width' | 'height'> & {
+  alt?: string;
+  width?: number;
+  height?: number;
 };
 
 export const MAX_PORTRAIT_IMAGE = {
@@ -15,10 +11,7 @@ export const MAX_PORTRAIT_IMAGE = {
   alt: 'Chef Max in his white jacket on deck, a Polynesian lagoon behind him',
   width: 800,
   height: 1000,
-  folder: 'polynesia',
   gravity: 'no',
-  sourceWidth: 960,
-  sourceHeight: 1280,
 } satisfies CrewPortrait;
 
 export const crewImages = {
@@ -43,7 +36,7 @@ export const crewImages = {
     name: 'food-16',
     alt: 'A cocktail and a selection of small bites served on deck',
   },
-};
+} satisfies Record<string, CrewPortrait>;
 
 export const crewContent = {
   meta: {

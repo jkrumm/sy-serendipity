@@ -1,0 +1,20 @@
+---
+import styles from './facts.module.scss';
+
+type Fact = { value: string; label: string };
+
+type Props = { items: Fact[]; label?: string };
+
+const { items, label = 'The yacht at a glance' } = Astro.props;
+---
+
+<dl class={styles.facts} aria-label={label}>
+  {
+    items.map((fact) => (
+      <div>
+        <dt>{fact.label}</dt>
+        <dd>{fact.value}</dd>
+      </div>
+    ))
+  }
+</dl>

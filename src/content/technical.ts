@@ -1,3 +1,5 @@
+import type { ImageId } from '@/util/images';
+
 export const TECHNICAL_COPY = {
   eyebrow: 'Serendipity I · Perini Navi · 2011',
   title: 'Specifications',
@@ -5,12 +7,6 @@ export const TECHNICAL_COPY = {
     'The specifications of Serendipity I: a 45 m Perini Navi sailing yacht, built in 2011 for eight guests and seven crew.',
   intro:
     'Serendipity I is a 45 m Perini Navi sailing yacht built in 2011, with four cabins for eight guests and a crew of seven.',
-  highlights: [
-    { value: '45 m', label: 'Length overall' },
-    { value: '8', label: 'Guests' },
-    { value: '7', label: 'Crew' },
-    { value: '4', label: 'Guest cabins' },
-  ],
   plansEyebrow: 'General arrangement',
   plansTitle: 'Deck plans',
   cockpitEyebrow: 'Navigation',
@@ -59,28 +55,26 @@ export const SPECIFICATIONS = [
   },
 ];
 
+type TechnicalPhoto = { name: ImageId; alt: string; caption: string };
+
 export const TECHNICAL_IMAGES = {
   profile: {
-    name: 'technical-3',
+    name: 'old-technical-3',
     alt: 'Serendipity I sail profile and four deck drawings, showing the accommodation and machinery layout',
     caption: 'Serendipity I · Profile & general arrangement',
-  },
+  } satisfies TechnicalPhoto,
   plans: [
     {
       name: 'technical-1',
-      width: 1920,
-      height: 1189,
       alt: 'Complete general arrangement drawing of the upper deck and main deck',
       caption: 'Upper deck & main deck',
     },
     {
       name: 'technical-2',
-      width: 1920,
-      height: 1202,
       alt: 'Complete general arrangement drawing of the lower deck and below-deck spaces',
       caption: 'Lower deck & below-deck arrangement',
     },
-  ],
+  ] satisfies TechnicalPhoto[],
   cockpit: [
     {
       name: 'cockpit-1',
@@ -92,5 +86,5 @@ export const TECHNICAL_IMAGES = {
       alt: 'Engine throttle and navigation screens on the wheelhouse console',
       caption: 'Wheelhouse console',
     },
-  ],
+  ] satisfies TechnicalPhoto[],
 };

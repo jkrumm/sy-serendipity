@@ -1,6 +1,6 @@
 ---
 import { navigationLinks, requestLink } from '@/content/navigation';
-import { getImgOld } from '@/util/get-image';
+import { getImg } from '@/util/get-image';
 import styles from './footer.module.scss';
 
 const links = [...navigationLinks, requestLink];
@@ -10,7 +10,7 @@ const links = [...navigationLinks, requestLink];
   <div class={`section-shell ${styles.content}`}>
     <div class={styles.top}>
       <a href="/" class={styles.brand} aria-label="Serendipity I — home">
-        <img src={getImgOld('logo-blue.svg')} alt="Serendipity I" width="288" height="288" />
+        <img src={getImg('old-logo-blue')} alt="Serendipity I" width="288" height="288" />
       </a>
       <div class={styles.destination}>
         <p class="eyebrow">Charter destinations</p>

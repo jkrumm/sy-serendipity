@@ -1,0 +1,182 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { getImg, getOriginalUrl } from '@/util/get-image';
+import { imageUsage } from '@/util/image-usage';
+import { IMAGES, type ImageFolder, type ImageId, type ImageMeta } from '@/util/images';
+import styles from './images.module.scss';
+
+const usage = imageUsage();
+const FOLDERS: ImageFolder[] = ['new', 'polynesia', 'nature', 'all', 'broker'];
+const entries = (Object.entries(IMAGES) as [ImageId, ImageMeta][]).sort(
+  ([aId, aMeta], [bId, bMeta]) => {
+    const folderDiff = FOLDERS.indexOf(aMeta.folder) - FOLDERS.indexOf(bMeta.folder);
+    if (folderDiff !== 0) return folderDiff;
+    return aId.localeCompare(bId, undefined, { numeric: true });
+  },
+);
+
+const folderCounts = new Map<ImageFolder, number>(FOLDERS.map((folder) => [folder, 0]));
+entries.forEach(([, meta]) =>
+  folderCounts.set(meta.folder, (folderCounts.get(meta.folder) ?? 0) + 1),
+);
+
+const tags = [...new Set(entries.flatMap(([, meta]) => meta.tags))].sort((a, b) =>
+  a.localeCompare(b),
+);
+
+const cards = entries.map(([id, meta]) => ({
+  id,
+  meta,
+  placements: usage.get(id) ?? [],
+  thumbnail: getImg(id, 640),
+  original: getOriginalUrl(id),
+}));
+---
+
+<Layout title="Image catalogue" noindex>
+  <div class={`section-shell ${styles.catalogue}`}>
+    <header class={styles.header}>
+      <p class="eyebrow">Internal tool</p>
+      <h1>Image catalogue</h1>
+      <p class={styles.counts}>
+        {entries.length} images total —{' '}
+        {
+          FOLDERS.map((folder, index) => (
+            <>
+              {index > 0 && ', '}
+              {folder} {folderCounts.get(folder)}
+            </>
+          ))
+        }
+      </p>
+    </header>
+
+    <div class={styles.filters}>
+      <input
+        type="search"
+        data-filter="search"
+        placeholder="Search id, subject, description…"
+        aria-label="Search images"
+      />
+      <select data-filter="folder" aria-label="Folder">
+        <option value="">All folders</option>
+        {FOLDERS.map((folder) => <option value={folder}>{folder}</option>)}
+      </select>
+      <select data-filter="tag" aria-label="Tag">
+        <option value="">All tags</option>
+        {tags.map((tag) => <option value={tag}>{tag}</option>)}
+      </select>
+      <select data-filter="quality" aria-label="Minimum quality">
+        <option value="">Any quality</option>
+        {[5, 4, 3, 2, 1].map((quality) => <option value={quality}>{quality}★ and up</option>)}
+      </select>
+      <label class={styles.usedToggle}>
+        <input type="checkbox" data-filter="used" />
+        Used on the site only
+      </label>
+    </div>
+
+    <div class={styles.grid} data-cards>
+      {
+        cards.map(({ id, meta, placements, thumbnail, original }) => (
+          <article
+            class={styles.card}
+            data-card
+            data-folder={meta.folder}
+            data-tags={meta.tags.join(' ')}
+            data-quality={meta.quality}
+            data-used={placements.length > 0 ? '1' : '0'}
+            data-search={`${id} ${meta.subject} ${meta.description}`.toLowerCase()}
+          >
+            <a
+              href={original}
+              target="_blank"
+              rel="noreferrer"
+              class={styles.thumbnail}
+              aria-label={`Open the original file for ${id}`}
+            >
+              <img
+                src={thumbnail}
+                alt={meta.alt}
+                loading="lazy"
+                width={meta.width}
+                height={meta.height}
+                style={{ aspectRatio: `${meta.width} / ${meta.height}` }}
+              />
+            </a>
+            <div class={styles.meta}>
+              <p class={styles.id}>{id}</p>
+              <p class={styles.specs}>
+                {meta.folder} · {meta.width}×{meta.height} · {meta.orientation} · quality ★
+                {meta.quality} · {meta.bestUse}
+              </p>
+              {meta.tags.length > 0 && (
+                <ul class={styles.tags}>
+                  {meta.tags.map((tag) => (
+                    <li>{tag}</li>
+                  ))}
+                </ul>
+              )}
+              <p class={styles.subject}>
+                <strong>{meta.subject}</strong>
+              </p>
+              <p class={styles.description}>{meta.description}</p>
+              {meta.notes && <p class={styles.notes}>{meta.notes}</p>}
+              <p class={styles.usage}>
+                Used on:{' '}
+                {placements.length === 0
+                  ? 'unused'
+                  : placements.map((placement, index) => (
+                      <>
+                        {index > 0 && ', '}
+                        <a href={placement.href}>{placement.label}</a>
+                      </>
+                    ))}
+              </p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const grid = document.querySelector<HTMLElement>('[data-cards]');
+  const search = document.querySelector<HTMLInputElement>('[data-filter="search"]');
+  const folderSelect = document.querySelector<HTMLSelectElement>('[data-filter="folder"]');
+  const tagSelect = document.querySelector<HTMLSelectElement>('[data-filter="tag"]');
+  const qualitySelect = document.querySelector<HTMLSelectElement>('[data-filter="quality"]');
+  const usedCheckbox = document.querySelector<HTMLInputElement>('[data-filter="used"]');
+
+  if (grid && search && folderSelect && tagSelect && qualitySelect && usedCheckbox) {
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>('[data-card]'));
+
+    const apply = () => {
+      const query = search.value.trim().toLowerCase();
+      const folder = folderSelect.value;
+      const tag = tagSelect.value;
+      const quality = Number(qualitySelect.value || 0);
+      const usedOnly = usedCheckbox.checked;
+
+      cards.forEach((card) => {
+        const matchesSearch = !query || (card.dataset.search ?? '').includes(query);
+        const matchesFolder = !folder || card.dataset.folder === folder;
+        const matchesTag = !tag || (card.dataset.tags ?? '').split(' ').includes(tag);
+        const matchesQuality = !quality || Number(card.dataset.quality) >= quality;
+        const matchesUsed = !usedOnly || card.dataset.used === '1';
+        card.hidden = !(
+          matchesSearch &&
+          matchesFolder &&
+          matchesTag &&
+          matchesQuality &&
+          matchesUsed
+        );
+      });
+    };
+
+    [search, folderSelect, tagSelect, qualitySelect, usedCheckbox].forEach((input) =>
+      input.addEventListener('input', apply),
+    );
+  }
+</script>

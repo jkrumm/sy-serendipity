@@ -44,6 +44,7 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
+      filter: (page) => !page.includes('/images/'),
       serialize: (item) => ({ ...item, lastmod: gitLastModified(pageFileForUrl(item.url)) }),
     }),
   ],

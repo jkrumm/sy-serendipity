@@ -1,9 +1,10 @@
 ---
 import { getPhoto, getPhotoSrcSet, type PhotoOptions } from '@/util/get-image';
+import { imageMeta } from '@/util/images';
 import styles from './photo.module.scss';
 
 type Props = Omit<PhotoOptions, 'width' | 'height'> & {
-  alt: string;
+  alt?: string;
   width?: number;
   height?: number;
   sizes?: string;
@@ -14,33 +15,18 @@ type Props = Omit<PhotoOptions, 'width' | 'height'> & {
 
 const {
   name,
-  alt,
+  alt = imageMeta(name).alt,
   width = 1600,
   height = 1000,
   sizes = '100vw',
-  old = false,
-  folder,
   quality,
   gravity,
-  sourceWidth,
-  sourceHeight,
   maxWidth,
   eager = false,
   class: className,
   position = 'center',
 } = Astro.props;
-const photo = {
-  name,
-  width,
-  height,
-  old,
-  folder,
-  quality,
-  gravity,
-  sourceWidth,
-  sourceHeight,
-  maxWidth,
-};
+const photo = { name, width, height, quality, gravity, maxWidth };
 ---
 
 <img

@@ -48,9 +48,13 @@ before a commit. `/check` covers them.
 
 ## Images and email
 
-- Every image URL goes through `src/util/get-image.ts` (img.jkrumm.com, prefix
-  `sy-serendipity/`, imgproxy options). New assets: `imgcli sync <dir> sy-serendipity/`
-  or `imgcli upload <file> sy-serendipity/` (see the `/img` skill), never a raw CDN path in a page.
+- Every image is one entry in `src/content/images.json` (id → folder/file/dims/alt/tags/quality,
+  generated from a vision-model pass; regenerate with `sy-serendipity-compare/catalog/merge.py`).
+  Content files reference ids only; `src/util/get-image.ts` resolves folder, file and dimensions
+  from the registry (`src/util/images.ts`) and is the only place that builds a CDN URL. `/images/`
+  (noindex, excluded from the sitemap) renders the catalogue with per-page usage.
+- New assets: `imgcli sync <dir> sy-serendipity/` or `imgcli upload <file> sy-serendipity/`
+  (see the `/img` skill), never a raw CDN path in a page.
 - The hero video still streams from ImageKit; imgproxy is image-only.
 - Charter requests: island → `/api/request` (Netlify Function) → bun-email-api
   `POST /sy-serendipity` (repo `bun-email-api`, deployed on the VPS by RollHook on push).

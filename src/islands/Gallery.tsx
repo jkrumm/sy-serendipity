@@ -3,32 +3,12 @@ import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 
 import { GALLERY_CHAPTERS, GALLERY_IMAGES } from '@/content/gallery';
-import {
-  getPhoto,
-  getPhotoSrcSet,
-  getPhotoSrcSetEntries,
-  type PhotoOptions,
-} from '@/util/get-image';
-import { images } from '@/util/images';
+import { getPhoto, getPhotoSrcSet, getPhotoSrcSetEntries } from '@/util/get-image';
+import { imageMeta } from '@/util/images';
 import styles from '@/pages/gallery.module.scss';
 
-const imageDimensions = new Map(images.map((photo) => [photo.id, photo]));
-
-function sourceOptions(
-  folder: 'polynesia' | undefined,
-  width: number,
-  height: number,
-): Pick<PhotoOptions, 'folder' | 'sourceWidth' | 'sourceHeight'> {
-  return folder === 'polynesia' ? { folder, sourceWidth: width, sourceHeight: height } : {};
-}
-
 const photographs = GALLERY_IMAGES.map((photo, index) => {
-  const rawOriginal = photo.folder === 'polynesia' ? photo : imageDimensions.get(photo.name);
-  if (!rawOriginal?.width || !rawOriginal?.height) {
-    throw new Error(`Missing image dimensions for ${photo.name}`);
-  }
-  const original = { width: rawOriginal.width, height: rawOriginal.height };
-  const source = sourceOptions(photo.folder, original.width, original.height);
+  const original = imageMeta(photo.name);
 
   const crop =
     photo.layout === 'portrait'
@@ -41,7 +21,6 @@ const photographs = GALLERY_IMAGES.map((photo, index) => {
     name: photo.name,
     width: original.width,
     height: original.height,
-    ...source,
   });
 
   return {
@@ -49,19 +28,17 @@ const photographs = GALLERY_IMAGES.map((photo, index) => {
     index,
     number: String(index + 1).padStart(2, '0'),
     crop,
-    thumbnail: getPhoto({ name: photo.name, width: crop.width, height: crop.height, ...source }),
+    thumbnail: getPhoto({ name: photo.name, width: crop.width, height: crop.height }),
     thumbnailSrcSet: getPhotoSrcSet({
       name: photo.name,
       width: crop.width,
       height: crop.height,
-      ...source,
     }),
     slide: {
       src: getPhoto({
         name: photo.name,
         width: original.width,
         height: original.height,
-        ...source,
       }),
       alt: photo.alt,
       width: original.width,

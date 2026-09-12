@@ -1,3 +1,7 @@
+import type { PhotoOptions } from '@/util/get-image';
+
+type RequestPhoto = Omit<PhotoOptions, 'width' | 'height'> & { alt?: string };
+
 export const REQUEST_COPY = {
   eyebrow: 'Serendipity I',
   title: 'Request a charter',
@@ -28,16 +32,13 @@ export const REQUEST_COPY = {
 export const REQUEST_IMAGE = {
   name: 'deck-24',
   alt: 'The teak deck and polished railing beside clear turquoise water',
-};
+} satisfies RequestPhoto;
 
 export const REQUEST_BROKER_IMAGE = {
-  name: 'barbara-mueller.jpeg',
-  folder: 'broker' as const,
-  sourceWidth: 250,
-  sourceHeight: 250,
+  name: 'barbara-mueller',
   maxWidth: 160,
   alt: 'Barbara Mueller, Senior Charter Broker at Ocean Independence',
-};
+} satisfies RequestPhoto;
 
 export const REQUEST_FORM_COPY = {
   firstName: 'First name',

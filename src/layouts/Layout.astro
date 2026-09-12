@@ -11,6 +11,7 @@ import { SEO_IMAGE } from '@/util/get-image';
 type Props = {
   title?: string;
   description?: string;
+  noindex?: boolean;
 };
 
 const DEFAULT_TITLE = 'SY SERENDIPITY I';
@@ -18,8 +19,9 @@ const HOME_TITLE = 'Private Sailing Yacht Charter';
 const DEFAULT_DESCRIPTION =
   'Serendipity I is a 45 m Perini Navi sailing yacht for eight guests and a crew of seven. Private charter in the South Pacific until summer 2028.';
 
-const { title, description = DEFAULT_DESCRIPTION } = Astro.props;
+const { title, description = DEFAULT_DESCRIPTION, noindex = false } = Astro.props;
 const preview = process.env.PREVIEW === '1';
+const hideFromSearch = preview || noindex;
 
 function fullTitle(): string {
   if (!title) return DEFAULT_TITLE;
@@ -48,7 +50,7 @@ function fullTitle(): string {
     <link rel="icon" href="/favicon.ico" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     {
-      preview ? (
+      hideFromSearch ? (
         <meta name="robots" content="noindex, nofollow" />
       ) : (
         <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />

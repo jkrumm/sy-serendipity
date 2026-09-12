@@ -1,0 +1,148 @@
+@use 'styles/variables' as *;
+
+.catalogue {
+  padding-block: 64px var(--section-space);
+}
+
+.header {
+  margin-bottom: 32px;
+
+  h1 {
+    margin: 8px 0 12px;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+  }
+}
+
+.counts {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.filters {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 32px;
+  padding: 16px;
+  border: 1px solid var(--rule);
+
+  input,
+  select {
+    padding: 8px 10px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 14px;
+  }
+}
+
+.usedToggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.card {
+  display: grid;
+  gap: 12px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.thumbnail {
+  display: block;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.meta {
+  display: grid;
+  gap: 6px;
+}
+
+.id {
+  font-family: $font-monospace;
+  font-size: 13px;
+}
+
+.specs {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 2px 8px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 11px;
+  }
+}
+
+.subject {
+  font-size: 15px;
+}
+
+.description {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.notes {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+}
+
+.usage {
+  font-size: 12px;
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+}
+
+@media (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .filters {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) auto;
+    align-items: center;
+  }
+}

@@ -1,13 +1,10 @@
 import type { PhotoOptions } from '@/util/get-image';
 
-type ActivityPhoto = Omit<PhotoOptions, 'width' | 'height'> & { alt: string };
+type ActivityPhoto = Omit<PhotoOptions, 'width' | 'height'> & { alt?: string };
 
 export const activitiesImages = {
   opener: {
     name: 'polynesia-35',
-    folder: 'polynesia',
-    sourceWidth: 1600,
-    sourceHeight: 902,
     alt: 'Guests aboard the tender at speed, wake fanning out behind, a motu on the horizon',
   },
   seabob: {
@@ -36,17 +33,11 @@ export const activitiesImages = {
   },
   motuBeach: {
     name: 'polynesia-08',
-    folder: 'polynesia',
-    sourceWidth: 900,
-    sourceHeight: 1600,
     maxWidth: 800,
     alt: 'A white-sand beach curving along a palm-lined motu, seen from above',
   },
   waterfall: {
     name: 'polynesia-01',
-    folder: 'polynesia',
-    sourceWidth: 4032,
-    sourceHeight: 3024,
     alt: 'A jungle waterfall falling into a pool in the Marquesas Islands',
   },
 } satisfies Record<string, ActivityPhoto>;
