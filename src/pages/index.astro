@@ -3,25 +3,15 @@ import Layout from '@/layouts/Layout.astro';
 import Hero from '@/components/Hero.astro';
 import Photo from '@/components/Photo.astro';
 import CharterCta from '@/components/CharterCta.astro';
+import Facts from '@/components/Facts.astro';
 import { home, HOME_DESTINATION_IMAGES, HOME_TAILOR_PHOTOS } from '@/content/home';
+import { YACHT_FACTS } from '@/content/facts';
 import styles from './index.module.scss';
 ---
 
 <Layout title={home.title} description={home.description}>
   <Hero />
-  <div class={styles.facts} aria-label="The yacht at a glance">
-    {
-      home.facts.map((fact) => (
-        <div>
-          <>
-            <p>
-              <span>{fact.value}</span> {fact.unit}
-            </p>
-          </>
-        </div>
-      ))
-    }
-  </div>
+  <Facts items={YACHT_FACTS} />
   <section class={`section-shell ${styles.introduction}`} id="aboard">
     <div class={styles.introCopy}>
       <p class="eyebrow">{home.introduction.eyebrow}</p>
@@ -61,7 +51,7 @@ import styles from './index.module.scss';
                 {...chapter.image}
                 width={1000}
                 height={780}
-                sizes="(min-width: 700px) 46vw, 100vw"
+                sizes="(min-width: 700px) 32vw, 100vw"
               />
               <div class={styles.chapterMeta}>
                 <>
@@ -120,30 +110,65 @@ import styles from './index.module.scss';
         </figure>
       </div>
     </div>
-    <div class={styles.tailor}>
+  </section>
+  <section class={`section-shell ${styles.tailor}`} id="tailor">
+    <figure class={styles.tailorOpener}>
+      <Photo
+        {...HOME_TAILOR_PHOTOS.sandbarAerial}
+        width={1920}
+        height={820}
+        sizes="(min-width: 900px) min(1312px, calc(100vw - 128px)), calc(100vw - 48px)"
+      />
+      <figcaption>{home.destinations.tailor.openerCaption}</figcaption>
+    </figure>
+    <div class={styles.tailorHeading}>
       <p class="eyebrow">{home.destinations.tailor.eyebrow}</p>
-      <h3>{home.destinations.tailor.title}</h3>
-      <div class={styles.tailorPhotographs}>
-        <figure>
-          <Photo
-            {...HOME_TAILOR_PHOTOS.marquesasWaterfall}
-            width={800}
-            height={900}
-            sizes="(min-width: 900px) 39vw, calc(100vw - 48px)"
-          />
-          <figcaption>{home.destinations.tailor.waterfallCaption}</figcaption>
-        </figure>
-        <figure>
-          <Photo
-            {...HOME_TAILOR_PHOTOS.tuamotuReef}
-            width={800}
-            height={900}
-            sizes="(min-width: 900px) 39vw, calc(100vw - 48px)"
-          />
-          <figcaption>{home.destinations.tailor.reefCaption}</figcaption>
-        </figure>
+      <h2>{home.destinations.tailor.title}</h2>
+      <p class={styles.tailorLead}>{home.destinations.tailor.paragraphs[0]}</p>
+    </div>
+    <div class={styles.tailorStrip}>
+      <figure>
+        <Photo
+          {...HOME_TAILOR_PHOTOS.blackPearls}
+          width={800}
+          height={800}
+          sizes="(min-width: 700px) 30vw, calc(100vw - 48px)"
+        />
+        <figcaption>{home.destinations.tailor.stripCaptions.blackPearls}</figcaption>
+      </figure>
+      <figure>
+        <Photo
+          {...HOME_TAILOR_PHOTOS.frangipani}
+          width={800}
+          height={800}
+          sizes="(min-width: 700px) 30vw, calc(100vw - 48px)"
+        />
+        <figcaption>{home.destinations.tailor.stripCaptions.frangipani}</figcaption>
+      </figure>
+      <figure>
+        <Photo
+          {...HOME_TAILOR_PHOTOS.lagoonShallows}
+          width={800}
+          height={800}
+          sizes="(min-width: 700px) 30vw, calc(100vw - 48px)"
+        />
+        <figcaption>{home.destinations.tailor.stripCaptions.lagoonShallows}</figcaption>
+      </figure>
+    </div>
+    <div class={styles.tailorFiji}>
+      <figure>
+        <Photo
+          {...HOME_TAILOR_PHOTOS.palmShore}
+          width={800}
+          height={1000}
+          sizes="(min-width: 900px) 39vw, calc(100vw - 48px)"
+        />
+        <figcaption>{home.destinations.tailor.fijiPhotoCaption}</figcaption>
+      </figure>
+      <div class={styles.tailorFijiCopy}>
+        <p class="eyebrow">{home.destinations.tailor.fijiEyebrow}</p>
+        {home.destinations.tailor.paragraphs.slice(1).map((paragraph) => <p>{paragraph}</p>)}
       </div>
-      {home.destinations.tailor.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
     </div>
   </section>
   <section class={styles.crew}>

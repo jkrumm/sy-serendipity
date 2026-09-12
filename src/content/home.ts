@@ -1,47 +1,45 @@
 import type { PhotoOptions } from '@/util/get-image';
 
-type DestinationPhoto = Omit<PhotoOptions, 'width' | 'height'> & { alt: string };
+type HomePhoto = Omit<PhotoOptions, 'width' | 'height'> & { alt?: string };
 
 export const HOME_DESTINATION_IMAGES = {
   marquesasBay: {
     name: 'polynesia-03',
-    folder: 'polynesia',
-    sourceWidth: 4000,
-    sourceHeight: 2256,
     alt: 'Serendipity I anchored in a deep blue Marquesas bay below volcanic cliffs',
   },
   marquesasAnchorage: {
     name: 'polynesia-02',
-    folder: 'polynesia',
-    sourceWidth: 2048,
-    sourceHeight: 1556,
     alt: 'Serendipity I at anchor in a Marquesas bay beneath green volcanic mountains',
   },
   reefAnchorage: {
     name: 'polynesia-12',
-    folder: 'polynesia',
-    sourceWidth: 2714,
-    sourceHeight: 1530,
     alt: 'Serendipity I at anchor in deep blue water beside a reef-fringed Polynesian motu',
   },
-} satisfies Record<string, DestinationPhoto>;
+} satisfies Record<string, HomePhoto>;
 
 export const HOME_TAILOR_PHOTOS = {
-  marquesasWaterfall: {
-    name: 'polynesia-01',
-    folder: 'polynesia',
-    sourceWidth: 4032,
-    sourceHeight: 3024,
-    alt: 'A waterfall descending into a pool beneath lush green cliffs in the Marquesas Islands',
+  sandbarAerial: {
+    name: 'nature-sandbar-aerial',
+    alt: 'Aerial view of a palm-fringed sandbar island in a turquoise lagoon',
   },
-  tuamotuReef: {
-    name: 'polynesia-28',
-    folder: 'polynesia',
-    sourceWidth: 2048,
-    sourceHeight: 1154,
-    alt: 'Serendipity I anchored in deep blue water beside a forested Polynesian motu and turquoise reef',
+  blackPearls: {
+    name: 'polynesia-37',
+    alt: 'Black and white Tahitian pearls displayed on an open pearl oyster shell',
   },
-} satisfies Record<string, DestinationPhoto>;
+  frangipani: {
+    name: 'polynesia-06',
+    gravity: 'fp:0.4:0.45',
+    alt: 'A frangipani blossom framing a distant view of the coast',
+  },
+  lagoonShallows: {
+    name: 'nature-lagoon-shallows',
+    alt: 'A small boat anchored off a palm-lined beach in a turquoise lagoon',
+  },
+  palmShore: {
+    name: 'nature-palm-shore',
+    alt: 'A half-underwater view of a clear lagoon and palm-lined shore',
+  },
+} satisfies Record<string, HomePhoto>;
 
 export const home = {
   title: 'Private Sailing Yacht Charter',
@@ -51,24 +49,16 @@ export const home = {
     eyebrow: '45-metre Perini Navi sailing yacht',
     title: 'Serendipity I',
     line: 'South Pacific until summer 2028.',
-    link: 'Enquire about a charter',
+    link: 'Request a charter',
     desktop: {
-      name: 'ship-16',
-      old: true,
+      name: 'old-ship-16',
       alt: 'Serendipity I under full sail, cutting through the open sea',
-    },
+    } satisfies HomePhoto,
     mobile: {
-      name: 'ship-11',
-      old: true,
+      name: 'old-ship-11',
       alt: 'Serendipity I seen from above, her white sails against the deep sea',
-    },
+    } satisfies HomePhoto,
   },
-  facts: [
-    { value: '45', unit: 'metres' },
-    { value: '8', unit: 'guests' },
-    { value: '4', unit: 'cabins' },
-    { value: '7', unit: 'crew' },
-  ],
   introduction: {
     eyebrow: 'Perini Navi · Built in 2011',
     title: 'Accommodation for eight guests',
@@ -85,13 +75,13 @@ export const home = {
     image: {
       name: 'outside-1',
       alt: 'The shaded aft deck with a teak dining table, cream seating and an open sea view',
-    },
+    } satisfies HomePhoto,
     caption: 'Aft deck dining area',
   },
   onboard: {
     eyebrow: 'On board',
     title: 'Cabins and decks',
-    body: 'The full-beam owner’s cabin is aft. Guest cabins have en suite facilities, and the decks have seating, sunbeds and dining space.',
+    body: 'The full-beam owner’s cabin is aft, the main saloon opens onto the aft cockpit, and the decks have seating, sunbeds and dining space.',
     chapters: [
       {
         number: '01',
@@ -101,7 +91,7 @@ export const home = {
         image: {
           name: 'inside-37',
           alt: 'The full-beam owner’s cabin with a queen-size bed, pale upholstery and soft lighting',
-        },
+        } satisfies HomePhoto,
       },
       {
         number: '02',
@@ -111,7 +101,17 @@ export const home = {
         image: {
           name: 'outside-41',
           alt: 'The foredeck’s shade sail over turquoise bean bags, teak decking and a coastline beyond',
-        },
+        } satisfies HomePhoto,
+      },
+      {
+        number: '03',
+        title: 'Main saloon',
+        label: 'Indoor living',
+        href: '/gallery/#interiors',
+        image: {
+          name: 'inside-8',
+          alt: 'The bright main saloon with white sofas, a red rug and panoramic windows',
+        } satisfies HomePhoto,
       },
     ],
   },
@@ -130,13 +130,19 @@ export const home = {
     tailor: {
       eyebrow: 'Cook Islands · French Polynesia · Fiji',
       title: 'Tailor your trip',
+      openerCaption: 'Sandbar and lagoon',
+      stripCaptions: {
+        blackPearls: 'Black pearls',
+        frangipani: 'Frangipani',
+        lagoonShallows: 'Lagoon shallows',
+      },
+      fijiEyebrow: 'Fiji',
+      fijiPhotoCaption: 'Lagoon',
       paragraphs: [
         'There’s “off the beaten path” … and then there is this: a sailing trip to shine an inspiring new light on some truly extraordinary places, each offering its own vision of paradise on earth. In the Cook Islands, it’s black pearls and a chance to swim in clear waters alive with sea turtles and fish. The names Tahiti and Bora Bora conjure images of tropical beaches and endless coral reefs, yet there is so much more to French Polynesia than water sports and idyllic beachfront resorts. Nothing takes you deeper into the diverse cultures of this intriguing island nation, cruising to the far-flung edges of the Tuamotu, Marquesas and Society Islands to reveal local traditions, artisanal villages, uninhabited atolls and archeological finds seldom experienced by outsiders.',
         'No one sets foot on Fiji without being serenaded with the Bula Muleya, the smiling islanders’ singsong welcome, as they slip salusalu flower garlands over your head. Bula means “life”, but on this tropical archipelago in the South Pacific it’s used as a greeting and a blessing, too. Lean into the kava ceremonies, coconut bowling, and lovo cooking.',
         'The backdrop of castaway islands, white-sand beaches, lush rainforests, limestone caves and soft-coral reefs certainly doesn’t hurt, while rainforest canopy tours or shark dives are waiting around the corner. Fiji is governed by water, and surfers dream of the top-quality barrels at Cloudbreak. Scuba divers can log turtles, sharks, manta rays, marlin and barracuda at over 44 sites including a plane wreck, pinnacles and underwater caves. But far-flung Fiji has also perfected the pursuits of romance and relaxation: adopting the island’s go-with-the-flow attitude will leave space for moments of magic.',
       ],
-      waterfallCaption: 'Marquesas Islands',
-      reefCaption: 'Reef anchorage, French Polynesia',
     },
   },
   crew: {
@@ -147,7 +153,7 @@ export const home = {
     image: {
       name: 'food-11',
       alt: 'Fresh juices and warm pastries laid out for breakfast aboard Serendipity I',
-    },
+    } satisfies HomePhoto,
   },
   activities: {
     eyebrow: 'Activities',
@@ -157,7 +163,7 @@ export const home = {
     image: {
       name: 'sport-11',
       alt: 'Two guests practising yoga on the teak deck beneath the sails',
-    },
+    } satisfies HomePhoto,
   },
   film: {
     eyebrow: 'Film',
@@ -166,9 +172,8 @@ export const home = {
     close: 'Close film',
     source: 'https://ik.imagekit.io/bgmwrkfoi/sy-serendipty-1080.mov',
     image: {
-      name: 'ship-21',
-      old: true,
+      name: 'old-ship-21',
       alt: 'Serendipity I sailing towards the viewer, her bow lifting through the waves',
-    },
+    } satisfies HomePhoto,
   },
 };
