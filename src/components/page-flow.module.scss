@@ -1,0 +1,68 @@
+@use 'styles/variables' as *;
+
+.flow {
+  padding-block: calc(var(--section-space) * 0.6);
+  border-top: 1px solid $rule;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: inherit;
+}
+
+.media {
+  order: 1;
+  width: 100%;
+  max-width: 220px;
+}
+
+.photo {
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+}
+
+.text {
+  order: 2;
+}
+
+.title {
+  margin-top: 10px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 180ms ease;
+}
+
+.row:hover .title,
+.row:focus-visible .title {
+  border-color: currentColor;
+}
+
+.blurb {
+  margin-top: 16px;
+  max-width: 460px;
+  color: $muted;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (min-width: 800px) {
+  .row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+  }
+
+  .media {
+    order: 2;
+    flex: 0 0 320px;
+    max-width: 320px;
+  }
+
+  .text {
+    order: 1;
+    flex: 1;
+  }
+}

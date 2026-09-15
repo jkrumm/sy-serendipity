@@ -1,0 +1,33 @@
+---
+import Photo from '@/components/Photo.astro';
+import { pageFlow } from '@/content/navigation';
+import styles from './page-flow.module.scss';
+
+const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const currentIndex = pageFlow.findIndex((step) => step.href === pathname);
+const next =
+  currentIndex >= 0 && currentIndex < pageFlow.length - 1 ? pageFlow[currentIndex + 1] : undefined;
+---
+
+{
+  next?.image && (
+    <section class={`section-shell ${styles.flow}`} aria-label="Continue">
+      <a href={next.href} class={styles.row}>
+        <div class={styles.media}>
+          <Photo
+            name={next.image}
+            width={640}
+            height={512}
+            sizes="(min-width: 800px) 320px, 100vw"
+            class={styles.photo}
+          />
+        </div>
+        <div class={styles.text}>
+          <p class="eyebrow">Next</p>
+          <h2 class={styles.title}>{next.label}</h2>
+          <p class={styles.blurb}>{next.blurb}</p>
+        </div>
+      </a>
+    </section>
+  )
+}
