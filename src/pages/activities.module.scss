@@ -201,7 +201,7 @@
 }
 
 .ashoreBeach,
-.ashoreWaterfall {
+.ashoreReef {
   margin: 0;
 
   img {
@@ -279,11 +279,5 @@
 
   .ashoreList {
     grid-column: auto;
-  }
-}
-
-@media (min-width: 1100px) {
-  .loops {
-    grid-template-columns: repeat(4, 1fr);
   }
 }

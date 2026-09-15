@@ -32,9 +32,10 @@ export const activitiesImages = {
     maxWidth: 800,
     alt: 'A white-sand beach curving along a palm-lined motu, seen from above',
   },
-  waterfall: {
-    name: 'polynesia-01',
-    alt: 'A jungle waterfall falling into a pool in the Marquesas Islands',
+  reef: {
+    name: 'polynesia-20',
+    gravity: 'fp:0.3:0.6',
+    alt: 'Aerial view of Serendipity I anchored beside a coral reef and a palm-covered motu',
   },
 } satisfies Record<string, ActivityPhoto>;
 

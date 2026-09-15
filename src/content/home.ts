@@ -26,10 +26,10 @@ export const HOME_TAILOR_PHOTOS = {
     name: 'polynesia-37',
     alt: 'Black and white Tahitian pearls displayed on an open pearl oyster shell',
   },
-  frangipani: {
-    name: 'polynesia-06',
-    gravity: 'fp:0.4:0.45',
-    alt: 'A frangipani blossom framing a distant view of the coast',
+  underSail: {
+    name: 'polynesia-04',
+    gravity: 'fp:0.38:0.55',
+    alt: 'Serendipity I under full sail along the green cliffs of a Polynesian island',
   },
   lagoonShallows: {
     name: 'nature-lagoon-shallows',
@@ -69,10 +69,10 @@ export const home = {
       { label: 'Photographs of the interiors', href: '/gallery/#interiors' },
     ],
     image: {
-      name: 'outside-1',
-      alt: 'The shaded aft deck with a teak dining table, cream seating and an open sea view',
+      name: 'polynesia-09',
+      alt: 'Serendipity I at anchor in a deep blue lagoon, a palm-fringed motu beyond',
     } satisfies HomePhoto,
-    caption: 'Aft deck dining area',
+    caption: 'At anchor off a motu',
   },
   onboard: {
     eyebrow: 'On board',
@@ -128,7 +128,7 @@ export const home = {
       title: 'Tailor your trip',
       destinations: [
         { place: 'Cook Islands', subject: 'Black pearls', image: HOME_TAILOR_PHOTOS.blackPearls },
-        { place: 'French Polynesia', subject: 'Frangipani', image: HOME_TAILOR_PHOTOS.frangipani },
+        { place: 'French Polynesia', subject: 'Under sail', image: HOME_TAILOR_PHOTOS.underSail },
         {
           place: 'Fiji',
           subject: 'Lagoon shallows',
