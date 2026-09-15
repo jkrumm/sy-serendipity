@@ -35,10 +35,6 @@ export const HOME_TAILOR_PHOTOS = {
     name: 'nature-lagoon-shallows',
     alt: 'A small boat anchored off a palm-lined beach in a turquoise lagoon',
   },
-  palmShore: {
-    name: 'nature-palm-shore',
-    alt: 'A half-underwater view of a clear lagoon and palm-lined shore',
-  },
 } satisfies Record<string, HomePhoto>;
 
 export const home = {
@@ -80,21 +76,11 @@ export const home = {
   },
   onboard: {
     eyebrow: 'On board',
-    title: 'Cabins and decks',
-    body: 'The full-beam owner’s cabin is aft, the main saloon opens onto the aft cockpit, and the decks have seating, sunbeds and dining space.',
+    title: 'Decks and cabins',
+    body: 'The decks have seating, sunbeds and dining space, the main saloon opens onto the aft cockpit, and the full-beam owner’s cabin is aft.',
     chapters: [
       {
         number: '01',
-        title: 'Owner’s cabin',
-        label: 'Accommodation',
-        href: '/gallery/#interiors',
-        image: {
-          name: 'inside-37',
-          alt: 'The full-beam owner’s cabin with a queen-size bed, pale upholstery and soft lighting',
-        } satisfies HomePhoto,
-      },
-      {
-        number: '02',
         title: 'Open decks',
         label: 'Outdoor spaces',
         href: '/gallery/#decks',
@@ -104,13 +90,23 @@ export const home = {
         } satisfies HomePhoto,
       },
       {
-        number: '03',
+        number: '02',
         title: 'Main saloon',
         label: 'Indoor living',
         href: '/gallery/#interiors',
         image: {
           name: 'inside-8',
           alt: 'The bright main saloon with white sofas, a red rug and panoramic windows',
+        } satisfies HomePhoto,
+      },
+      {
+        number: '03',
+        title: 'Owner’s cabin',
+        label: 'Accommodation',
+        href: '/gallery/#interiors',
+        image: {
+          name: 'inside-37',
+          alt: 'The full-beam owner’s cabin with a queen-size bed, pale upholstery and soft lighting',
         } satisfies HomePhoto,
       },
     ],
@@ -130,14 +126,17 @@ export const home = {
     tailor: {
       eyebrow: 'Cook Islands · French Polynesia · Fiji',
       title: 'Tailor your trip',
-      openerCaption: 'Sandbar and lagoon',
-      stripCaptions: {
-        blackPearls: 'Black pearls',
-        frangipani: 'Frangipani',
-        lagoonShallows: 'Lagoon shallows',
-      },
+      destinations: [
+        { place: 'Cook Islands', subject: 'Black pearls', image: HOME_TAILOR_PHOTOS.blackPearls },
+        { place: 'French Polynesia', subject: 'Frangipani', image: HOME_TAILOR_PHOTOS.frangipani },
+        {
+          place: 'Fiji',
+          subject: 'Lagoon shallows',
+          image: HOME_TAILOR_PHOTOS.lagoonShallows,
+        },
+      ],
       fijiEyebrow: 'Fiji',
-      fijiPhotoCaption: 'Lagoon',
+      fijiPhotoCaption: 'Sandbar and lagoon',
       paragraphs: [
         'There’s “off the beaten path” … and then there is this: a sailing trip to shine an inspiring new light on some truly extraordinary places, each offering its own vision of paradise on earth. In the Cook Islands, it’s black pearls and a chance to swim in clear waters alive with sea turtles and fish. The names Tahiti and Bora Bora conjure images of tropical beaches and endless coral reefs, yet there is so much more to French Polynesia than water sports and idyllic beachfront resorts. Nothing takes you deeper into the diverse cultures of this intriguing island nation, cruising to the far-flung edges of the Tuamotu, Marquesas and Society Islands to reveal local traditions, artisanal villages, uninhabited atolls and archeological finds seldom experienced by outsiders.',
         'No one sets foot on Fiji without being serenaded with the Bula Muleya, the smiling islanders’ singsong welcome, as they slip salusalu flower garlands over your head. Bula means “life”, but on this tropical archipelago in the South Pacific it’s used as a greeting and a blessing, too. Lean into the kava ceremonies, coconut bowling, and lovo cooking.',
@@ -150,10 +149,6 @@ export const home = {
     title: 'Your crew',
     body: 'Captain Scott Waterfield, Chief Stewardess Renee Weatherall and Chef Max are part of the seven-person crew. They arrange your meals, activities and excursions on board and ashore.',
     link: 'Meet your crew',
-    image: {
-      name: 'food-11',
-      alt: 'Fresh juices and warm pastries laid out for breakfast aboard Serendipity I',
-    } satisfies HomePhoto,
   },
   activities: {
     eyebrow: 'Activities',

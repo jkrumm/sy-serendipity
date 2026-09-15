@@ -5,6 +5,7 @@ import Photo from '@/components/Photo.astro';
 import CharterCta from '@/components/CharterCta.astro';
 import Facts from '@/components/Facts.astro';
 import { home, HOME_DESTINATION_IMAGES, HOME_TAILOR_PHOTOS } from '@/content/home';
+import { crewContent } from '@/content/crew';
 import { YACHT_FACTS } from '@/content/facts';
 import styles from './index.module.scss';
 ---
@@ -111,54 +112,38 @@ import styles from './index.module.scss';
       </div>
     </div>
   </section>
-  <section class={`section-shell ${styles.tailor}`} id="tailor">
-    <figure class={styles.tailorOpener}>
-      <Photo
-        {...HOME_TAILOR_PHOTOS.sandbarAerial}
-        width={1920}
-        height={820}
-        sizes="(min-width: 900px) min(1312px, calc(100vw - 128px)), calc(100vw - 48px)"
-      />
-      <figcaption>{home.destinations.tailor.openerCaption}</figcaption>
-    </figure>
-    <div class={styles.tailorHeading}>
-      <p class="eyebrow">{home.destinations.tailor.eyebrow}</p>
-      <h2>{home.destinations.tailor.title}</h2>
+  <section class={styles.tailor} id="tailor">
+    <div class={`section-shell ${styles.sectionHeading} ${styles.tailorHeading}`}>
+      <div>
+        <p class="eyebrow">{home.destinations.tailor.eyebrow}</p>
+        <h2>{home.destinations.tailor.title}</h2>
+      </div>
       <p class={styles.tailorLead}>{home.destinations.tailor.paragraphs[0]}</p>
     </div>
-    <div class={styles.tailorStrip}>
-      <figure>
-        <Photo
-          {...HOME_TAILOR_PHOTOS.blackPearls}
-          width={800}
-          height={800}
-          sizes="(min-width: 700px) 30vw, calc(100vw - 48px)"
-        />
-        <figcaption>{home.destinations.tailor.stripCaptions.blackPearls}</figcaption>
-      </figure>
-      <figure>
-        <Photo
-          {...HOME_TAILOR_PHOTOS.frangipani}
-          width={800}
-          height={800}
-          sizes="(min-width: 700px) 30vw, calc(100vw - 48px)"
-        />
-        <figcaption>{home.destinations.tailor.stripCaptions.frangipani}</figcaption>
-      </figure>
-      <figure>
-        <Photo
-          {...HOME_TAILOR_PHOTOS.lagoonShallows}
-          width={800}
-          height={800}
-          sizes="(min-width: 700px) 30vw, calc(100vw - 48px)"
-        />
-        <figcaption>{home.destinations.tailor.stripCaptions.lagoonShallows}</figcaption>
-      </figure>
+    <div class="section-shell">
+      <div class={`${styles.tailorStrip} ${styles.snapStrip}`}>
+        {
+          home.destinations.tailor.destinations.map((destination) => (
+            <figure>
+              <Photo
+                {...destination.image}
+                width={800}
+                height={1000}
+                sizes="(min-width: 700px) 30vw, 72vw"
+              />
+              <figcaption class={styles.stripCaption}>
+                <span>{destination.place}</span>
+                <span class="eyebrow">{destination.subject}</span>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
     </div>
-    <div class={styles.tailorFiji}>
+    <div class={`section-shell ${styles.tailorFiji}`}>
       <figure>
         <Photo
-          {...HOME_TAILOR_PHOTOS.palmShore}
+          {...HOME_TAILOR_PHOTOS.sandbarAerial}
           width={800}
           height={1000}
           sizes="(min-width: 900px) 39vw, calc(100vw - 48px)"
@@ -172,12 +157,33 @@ import styles from './index.module.scss';
     </div>
   </section>
   <section class={styles.crew}>
-    <div class={`section-shell ${styles.crewInner}`}>
-      <Photo {...home.crew.image} width={900} height={950} sizes="(min-width: 800px) 45vw, 100vw" />
+    <div class={`section-shell ${styles.sectionHeading} ${styles.crewHeading}`}>
       <div>
-        <p class="eyebrow">{home.crew.eyebrow}</p><h2>{home.crew.title}</h2><p>
-          {home.crew.body}
-        </p><a href="/crew/" class="text-link">{home.crew.link}<span aria-hidden="true">↗</span></a>
+        <p class="eyebrow">{home.crew.eyebrow}</p><h2>{home.crew.title}</h2>
+      </div>
+      <div class={styles.crewHeadingCopy}>
+        <p>{home.crew.body}</p>
+        <a href="/crew/" class="text-link">{home.crew.link}<span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <div class="section-shell">
+      <div class={`${styles.crewStrip} ${styles.snapStrip}`}>
+        {
+          crewContent.profiles.map((member) => (
+            <figure>
+              <Photo
+                {...member.image}
+                width={720}
+                height={900}
+                sizes="(min-width: 700px) 30vw, 72vw"
+              />
+              <figcaption class={styles.stripCaption}>
+                <span>{member.name}</span>
+                <span class="eyebrow">{member.role}</span>
+              </figcaption>
+            </figure>
+          ))
+        }
       </div>
     </div>
   </section>
