@@ -15,16 +15,6 @@ import styles from './activities.module.scss';
 <Layout title={content.meta.title} description={content.meta.description}>
   <PageIntro {...content.intro} />
 
-  <figure class={`section-shell ${styles.opener}`}>
-    <Photo
-      {...images.opener}
-      width={1600}
-      height={900}
-      sizes="(min-width: 900px) min(1100px, 80svh, calc(100vw - 128px)), min(1100px, 80svh, calc(100vw - 48px))"
-    />
-    <figcaption>The tender crossing open water, a motu on the horizon</figcaption>
-  </figure>
-
   <section class={`section-shell ${styles.film}`} aria-labelledby="film-title" data-loops-container>
     <div class={styles.filmHeading}>
       <div>
@@ -60,94 +50,126 @@ import styles from './activities.module.scss';
   </section>
 
   <section class={`section-shell ${styles.equipment}`} aria-labelledby="equipment-title">
-    <div class={styles.sectionHeading}>
-      <p class="eyebrow">{content.equipment.eyebrow}</p>
-      <h2 id="equipment-title">{content.equipment.title}</h2>
-    </div>
-    <div class={styles.lists}>
-      <div>
-        <h3 class="eyebrow">{content.equipment.waterLabel}</h3>
-        <ul>{content.equipment.waterToys.map((toy) => <li>{toy}</li>)}</ul>
+    <div class={styles.equipmentGrid}>
+      <div class={styles.equipmentCopy}>
+        <div class={styles.sectionHeading}>
+          <p class="eyebrow">{content.equipment.eyebrow}</p>
+          <h2 id="equipment-title">{content.equipment.title}</h2>
+        </div>
+        <div class={styles.lists}>
+          <div>
+            <h3 class="eyebrow">{content.equipment.waterLabel}</h3>
+            <ul>{content.equipment.waterToys.map((toy) => <li>{toy}</li>)}</ul>
+          </div>
+          <div>
+            <h3 class="eyebrow">{content.equipment.deckLabel}</h3>
+            <ul>{content.equipment.deckToys.map((toy) => <li>{toy}</li>)}</ul>
+          </div>
+        </div>
       </div>
-      <div>
-        <h3 class="eyebrow">{content.equipment.deckLabel}</h3>
-        <ul>{content.equipment.deckToys.map((toy) => <li>{toy}</li>)}</ul>
+      <div class={styles.equipmentCollage}>
+        <figure class={styles.equipmentWide}>
+          <Photo
+            {...images.seabob}
+            width={900}
+            height={600}
+            sizes="(min-width: 900px) 46vw, (min-width: 700px) 90vw, 100vw"
+          />
+        </figure>
+        <div class={styles.equipmentPair}>
+          <figure>
+            <Photo
+              {...images.supBoard}
+              width={700}
+              height={875}
+              sizes="(min-width: 900px) 22vw, (min-width: 700px) 44vw, 46vw"
+            />
+          </figure>
+          <figure>
+            <Photo
+              {...images.tender}
+              width={700}
+              height={875}
+              sizes="(min-width: 900px) 22vw, (min-width: 700px) 44vw, 46vw"
+            />
+          </figure>
+        </div>
       </div>
-    </div>
-    <figure class={styles.equipmentWide}>
-      <Photo {...images.seabob} width={1600} height={1067} sizes="100vw" />
-    </figure>
-    <div class={styles.equipmentPair}>
-      <figure>
-        <Photo
-          {...images.supBoard}
-          width={900}
-          height={1350}
-          sizes="(min-width: 700px) 46vw, 100vw"
-        />
-      </figure>
-      <figure>
-        <Photo
-          {...images.tender}
-          width={900}
-          height={1350}
-          sizes="(min-width: 700px) 46vw, 100vw"
-        />
-      </figure>
     </div>
   </section>
 
-  <section class={`section-shell ${styles.wellness}`} aria-labelledby="wellness-title">
-    <figure class={styles.wellnessWide}>
-      <Photo {...images.downwardDog} width={1600} height={1067} sizes="100vw" />
-    </figure>
-    <div class={styles.wellnessPair}>
+  <section class={styles.wellness} aria-labelledby="wellness-title">
+    <div class={`section-shell ${styles.twoColHeading}`}>
+      <div>
+        <p class="eyebrow">{content.wellness.eyebrow}</p>
+        <h2 id="wellness-title">{content.wellness.title}</h2>
+      </div>
+      <p>{content.wellness.line}</p>
+    </div>
+    <div class={`section-shell ${styles.wellnessRow}`}>
+      <figure>
+        <Photo
+          {...images.downwardDog}
+          width={900}
+          height={600}
+          sizes="(min-width: 700px) 30vw, 78vw"
+        />
+        <figcaption>Downward dog</figcaption>
+      </figure>
       <figure>
         <Photo
           {...images.headstand}
           width={900}
           height={600}
-          sizes="(min-width: 700px) 46vw, 100vw"
+          sizes="(min-width: 700px) 30vw, 78vw"
         />
+        <figcaption>Headstands</figcaption>
       </figure>
       <figure>
         <Photo
           {...images.meditation}
           width={900}
           height={600}
-          sizes="(min-width: 700px) 46vw, 100vw"
+          sizes="(min-width: 700px) 30vw, 78vw"
         />
+        <figcaption>Meditation under the shade sail</figcaption>
       </figure>
-    </div>
-    <div class={styles.wellnessHeading}>
-      <p class="eyebrow">{content.wellness.eyebrow}</p>
-      <h2 id="wellness-title">{content.wellness.title}</h2>
-      <p>{content.wellness.line}</p>
     </div>
   </section>
 
   <section class={`section-shell ${styles.ashore}`} aria-labelledby="ashore-title">
-    <div class={styles.ashoreHeading}>
-      <p class="eyebrow">{content.ashore.eyebrow}</p>
-      <h2 id="ashore-title">{content.ashore.title}</h2>
+    <div class={styles.twoColHeading}>
+      <div>
+        <p class="eyebrow">{content.ashore.eyebrow}</p>
+        <h2 id="ashore-title">{content.ashore.title}</h2>
+      </div>
       <p>{content.ashore.paragraph}</p>
     </div>
-    <div class={styles.ashorePair}>
+    <div class={styles.ashoreGrid}>
+      <div class={styles.ashoreList}>
+        <ul>{content.ashore.items.map((item) => <li>{item}</li>)}</ul>
+        <a href={content.ashore.link.href} class="text-link">
+          {content.ashore.link.label}
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
       <figure class={styles.ashoreBeach}>
         <Photo
           {...images.motuBeach}
           width={800}
-          height={1422}
-          sizes="(min-width: 700px) 36vw, 68vw"
+          height={1000}
+          sizes="(min-width: 900px) 30vw, (min-width: 500px) 46vw, 84vw"
         />
+        <figcaption>Motu beach</figcaption>
       </figure>
       <figure class={styles.ashoreWaterfall}>
         <Photo
           {...images.waterfall}
-          width={1000}
-          height={750}
-          sizes="(min-width: 700px) 55vw, 100vw"
+          width={800}
+          height={1000}
+          sizes="(min-width: 900px) 30vw, (min-width: 500px) 46vw, 84vw"
         />
+        <figcaption>Marquesas waterfall</figcaption>
       </figure>
     </div>
   </section>

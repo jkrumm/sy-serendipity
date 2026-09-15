@@ -3,10 +3,6 @@ import type { PhotoOptions } from '@/util/get-image';
 type ActivityPhoto = Omit<PhotoOptions, 'width' | 'height'> & { alt?: string };
 
 export const activitiesImages = {
-  opener: {
-    name: 'polynesia-35',
-    alt: 'Guests aboard the tender at speed, wake fanning out behind, a motu on the horizon',
-  },
   seabob: {
     name: 'sport-3',
     alt: 'A red Seabob resting on the teak swim step, clear water beyond',
@@ -134,5 +130,15 @@ export const activitiesContent = {
     title: 'Excursions',
     paragraph:
       'Serendipity I sails the South Pacific until summer 2028. The tender takes guests to beaches, villages and dive sites; the crew plans excursions around your interests.',
+    items: [
+      'Snorkelling and diving excursions',
+      'Surfing',
+      'Hikes',
+      'Visits to local communities and cultural sites',
+    ],
+    link: {
+      label: 'Explore the destinations',
+      href: '/#destinations',
+    },
   },
 };

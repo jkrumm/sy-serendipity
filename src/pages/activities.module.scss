@@ -1,20 +1,3 @@
-.opener {
-  width: min(100%, 1100px, 80svh);
-  margin: 0 auto var(--section-space);
-
-  img {
-    aspect-ratio: 16 / 9;
-    max-height: 60svh;
-    object-fit: cover;
-  }
-
-  figcaption {
-    padding-top: 16px;
-    color: var(--muted);
-    font-size: 12px;
-  }
-}
-
 .film {
   padding-bottom: var(--section-space);
 }
@@ -52,7 +35,7 @@
 
 .loops {
   display: grid;
-  gap: 32px;
+  gap: 24px;
 }
 
 .loopWide {
@@ -60,6 +43,8 @@
 
   video {
     aspect-ratio: 16 / 9;
+    max-height: 70svh;
+    object-fit: cover;
   }
 }
 
@@ -69,12 +54,33 @@
   padding-block: var(--section-space);
 }
 
+.wellness {
+  background: #eaece5;
+}
+
 .sectionHeading {
   max-width: 620px;
   margin-bottom: 38px;
 
   h2 {
     margin-block: 16px 0;
+  }
+}
+
+.twoColHeading {
+  display: grid;
+  gap: 18px;
+  align-items: end;
+  margin-bottom: 38px;
+
+  h2 {
+    margin-block: 20px 0;
+  }
+
+  > p {
+    margin: 0;
+    max-width: 430px;
+    color: var(--muted);
   }
 }
 
@@ -105,37 +111,12 @@
   }
 }
 
-.equipmentWide {
-  margin: 0 0 32px;
-
-  img {
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    object-fit: cover;
-  }
-}
-
-.equipmentPair,
-.wellnessPair,
-.ashorePair {
+.equipmentGrid {
   display: grid;
-  gap: 24px;
-
-  figure {
-    margin: 0;
-  }
-
-  img {
-    width: 100%;
-    object-fit: cover;
-  }
+  gap: 40px;
 }
 
-.equipmentPair img {
-  aspect-ratio: 2 / 3;
-}
-
-.wellnessWide {
+.equipmentWide {
   margin: 0 0 24px;
 
   img {
@@ -145,50 +126,105 @@
   }
 }
 
-.wellnessPair {
-  margin-bottom: 40px;
+.equipmentPair {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+
+  figure {
+    margin: 0;
+  }
 
   img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+}
+
+.wellnessRow {
+  display: flex;
+  gap: 24px;
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  figure {
+    flex: 0 0 78%;
+    margin: 0;
+    scroll-snap-align: start;
+  }
+
+  img {
+    width: 100%;
     aspect-ratio: 3 / 2;
-  }
-}
-
-.wellnessHeading {
-  max-width: 540px;
-
-  h2 {
-    margin-block: 16px 12px;
+    object-fit: cover;
   }
 
-  p:not(:global(.eyebrow)) {
+  figcaption {
+    padding-top: 16px;
     color: var(--muted);
+    font-size: 12px;
   }
 }
 
-.ashoreHeading {
-  max-width: 620px;
-  margin-bottom: 38px;
+.ashoreGrid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+}
 
-  h2 {
-    margin-block: 16px 12px;
+.ashoreList {
+  ul {
+    margin: 0 0 20px;
+    padding: 0;
+    list-style: none;
   }
 
-  p:not(:global(.eyebrow)) {
+  li {
+    padding-block: 10px;
     color: var(--muted);
+    font-size: 15px;
+    border-top: 1px solid var(--rule);
+
+    &:last-child {
+      border-bottom: 1px solid var(--rule);
+    }
   }
 }
 
-.ashorePair {
-  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-  align-items: start;
+.ashoreBeach,
+.ashoreWaterfall {
+  margin: 0;
 
   img {
-    aspect-ratio: 9 / 16;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  figcaption {
+    padding-top: 16px;
+    color: var(--muted);
+    font-size: 12px;
   }
 }
 
-.ashoreWaterfall img {
-  aspect-ratio: 4 / 3;
+@media (min-width: 500px) {
+  .ashoreGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ashoreList {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (min-width: 700px) {
@@ -200,9 +236,23 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .equipmentPair,
-  .wellnessPair {
-    grid-template-columns: repeat(2, 1fr);
+  .wellnessRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-inline: auto;
+    padding-inline: 0;
+    overflow-x: visible;
+    scroll-snap-type: none;
+
+    figure {
+      flex: initial;
+    }
+  }
+
+  .twoColHeading {
+    grid-template-columns: 1.4fr 1fr;
+    gap: 60px;
+    margin-bottom: 55px;
   }
 }
 
@@ -211,5 +261,29 @@
     grid-template-columns: 1.4fr 1fr auto;
     align-items: end;
     gap: 40px;
+  }
+
+  .equipmentGrid {
+    grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+    align-items: start;
+  }
+
+  .equipmentPair {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ashoreGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: center;
+  }
+
+  .ashoreList {
+    grid-column: auto;
+  }
+}
+
+@media (min-width: 1100px) {
+  .loops {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
