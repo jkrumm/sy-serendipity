@@ -1,5 +1,5 @@
 // The single image registry for the site: one entry per photograph, keyed by id.
-// Generated from a vision-model pass over the CDN library — see CLAUDE.md § Images and email.
+// Generated from a vision-model pass over the CDN library — see AGENTS.md § Images and email.
 import catalog from '@/content/images.json';
 
 export type ImageFolder = 'new' | 'polynesia' | 'nature' | 'all' | 'broker';
