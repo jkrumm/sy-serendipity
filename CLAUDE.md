@@ -27,7 +27,7 @@ herdr pane read <pane_id> --source recent --lines 80   # logs, incl. /api/reques
   is `.test` + `.mini.jkrumm.com`, so any Caddy door works without a config change.
 - `astro dev` (Astro 7) detaches into a daemon: `bun run dev` returns immediately,
   `astro dev logs` / `astro dev stop` / `astro dev status` manage it.
-- `/api/request` reads `BEA_BASE_URL` / `BEA_SECRET_KEY` via `astro:env/server` (schema in
+- `/api/request` reads `EMAIL_GATEWAY_URL` / `EMAIL_GATEWAY_SECRET_KEY` via `astro:env/server` (schema in
   `astro.config.ts`), sourced from `.env` (gitignored, see `.env.example`) under `astro dev`
   and from Netlify's site environment variables (scope: Functions) in production. Restart
   the pane after editing `.env`.
@@ -59,5 +59,5 @@ before a commit. `/check` covers them.
 Netlify. Production: `bun run deploy` (`astro build && netlify-cli deploy --prod --dir=dist
 --no-build`, needs `NETLIFY_AUTH_TOKEN` and a linked site). Previews:
 `ALIAS=<name> bun run deploy:preview` → `https://<name>--sy-serendipity.netlify.app`.
-`BEA_SECRET_KEY` is a Netlify site environment variable (scope: Functions), set in the
+`EMAIL_GATEWAY_SECRET_KEY` is a Netlify site environment variable (scope: Functions), set in the
 Netlify dashboard.

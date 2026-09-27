@@ -36,8 +36,8 @@ bun run format
 Env:
 
 - `.env` (see `.env.example`): `PUBLIC_GA_TRACKING_ID` — when set, the Layout injects gtag.
-  `BEA_BASE_URL` / `BEA_SECRET_KEY` carry the request route under `astro dev`. In production
-  `BEA_SECRET_KEY` is a Netlify site environment variable (scope: Functions).
+  `EMAIL_GATEWAY_URL` / `EMAIL_GATEWAY_SECRET_KEY` carry the request route under `astro dev`. In production
+  `EMAIL_GATEWAY_SECRET_KEY` is a Netlify site environment variable (scope: Functions).
 
 ## Deploy
 

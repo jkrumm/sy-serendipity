@@ -46,12 +46,12 @@ export default defineConfig({
   server: { port, allowedHosts },
   env: {
     schema: {
-      BEA_BASE_URL: envField.string({
+      EMAIL_GATEWAY_URL: envField.string({
         context: 'server',
         access: 'public',
         default: 'https://email-gateway.jkrumm.com',
       }),
-      BEA_SECRET_KEY: envField.string({ context: 'server', access: 'secret' }),
+      EMAIL_GATEWAY_SECRET_KEY: envField.string({ context: 'server', access: 'secret' }),
     },
   },
   vite: {
