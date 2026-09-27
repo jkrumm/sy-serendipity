@@ -29,7 +29,7 @@ function text(data: Record<string, unknown>, key: string, max: number): string |
   return trimmed === '' ? null : trimmed;
 }
 
-/** Forwards a charter request to bun-email-api, which holds the Resend integration. */
+/** Forwards a charter request to email-gateway, which holds the Resend integration. */
 export const POST: APIRoute = async ({ request }) => {
   let data: Record<string, unknown>;
   try {
@@ -62,7 +62,7 @@ export const POST: APIRoute = async ({ request }) => {
   });
 
   if (!upstream.ok) {
-    console.error('bun-email-api rejected the request', upstream.status, await upstream.text());
+    console.error('email-gateway rejected the request', upstream.status, await upstream.text());
     return json({ errors: [{ message: 'Sending failed. Please try again or call us.' }] }, 502);
   }
 

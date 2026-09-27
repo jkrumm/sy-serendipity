@@ -49,7 +49,7 @@ export default defineConfig({
       BEA_BASE_URL: envField.string({
         context: 'server',
         access: 'public',
-        default: 'https://bun-email-api.jkrumm.com',
+        default: 'https://email-gateway.jkrumm.com',
       }),
       BEA_SECRET_KEY: envField.string({ context: 'server', access: 'secret' }),
     },
