@@ -4,7 +4,7 @@
 
 # Activity loops are re-encoded under a new name if they ever change.
 /video/*
-  Cache-Control: public, max-age=604800
+  Cache-Control: public, max-age=31536000, immutable
 
 /*
   X-Content-Type-Options: nosniff

@@ -40,7 +40,6 @@ export const crewImages = {
 
 export const crewContent = {
   meta: {
-    image: 'crew-21' as const,
     title: 'Crew',
     description:
       'Serendipity I has seven crew, including Captain Scott, Chief Stewardess Renée and Chef Max.',

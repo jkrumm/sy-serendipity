@@ -42,7 +42,8 @@ export default defineConfig({
     devFeatures: { environmentVariables: false, images: true, edgeFunctions: false },
   }),
   session: false,
-  build: { format: 'directory' },
+  // Inline the small per-page CSS: saves a render-blocking request on first paint.
+  build: { format: 'directory', inlineStylesheets: 'always' },
   integrations: [
     react(),
     sitemap({

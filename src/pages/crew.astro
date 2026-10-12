@@ -7,11 +7,7 @@ import { crewContent as content, crewImages as images } from '@/content/crew';
 import styles from './crew.module.scss';
 ---
 
-<Layout
-  title={content.meta.title}
-  description={content.meta.description}
-  image={content.meta.image}
->
+<Layout title={content.meta.title} description={content.meta.description}>
   <PageIntro {...content.intro} />
 
   <div class={`section-shell ${styles.profiles}`}>

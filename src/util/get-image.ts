@@ -97,6 +97,7 @@ export function getPhotoSrcSet(options: PhotoOptions): string {
 /** 1200x630 JPEG for Open Graph / Twitter cards; smart gravity keeps the subject in frame. */
 export function getSocialImage(name: ImageId): string {
   const { folder, file } = imageMeta(name);
-  return url(['rs:fill:1200:630', 'g:sm', 'f:jpg'], folder, file);
+  // The trailing :1 (enlarge) upscales smaller sources smaller sources so every card is exactly 1200x630 as the meta tags state.
+  return url(['rs:fill:1200:630:1', 'g:sm', 'f:jpg'], folder, file);
 }
 export const BROKER_LOGO = `${CDN}/rs:fit:230/${PREFIX}/OI_Logo_-_white_thick.png`;

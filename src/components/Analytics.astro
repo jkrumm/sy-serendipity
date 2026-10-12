@@ -12,7 +12,19 @@ import { ANALYTICS } from '@/util/analytics';
       data-domains={ANALYTICS.domains}
       data-exclude-search="true"
     />
-    <script is:inline defer src={ANALYTICS.recorderSrc} data-website-id={ANALYTICS.websiteId} />
+    {/* Session replay is not needed for the first paint: load the recorder once the page is idle. */}
+    <script is:inline define:vars={{ src: ANALYTICS.recorderSrc, websiteId: ANALYTICS.websiteId }}>
+      addEventListener('load', () => {
+        const start = () => {
+          const script = document.createElement('script');
+          script.src = src;
+          script.dataset.websiteId = websiteId;
+          document.head.append(script);
+        };
+        if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 3000 });
+        else setTimeout(start, 1500);
+      });
+    </script>
   </>
 )}
 
