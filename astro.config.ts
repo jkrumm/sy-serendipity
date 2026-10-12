@@ -76,7 +76,7 @@ export default defineConfig({
       UMAMI_URL: envField.string({
         context: 'server',
         access: 'public',
-        default: new URL(ANALYTICS.trackerSrc).origin,
+        default: ANALYTICS.origin,
       }),
       UMAMI_WEBSITE_ID: envField.string({
         context: 'server',

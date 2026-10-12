@@ -1,0 +1,6 @@
+# Same-origin Umami proxy (ad-blocker resilience). Exact paths only, never a wildcard onto Umami's API.
+/u/p.js  https://umami.jkrumm.com/p.js  200!
+/u/recorder.js  https://umami.jkrumm.com/recorder.js  200!
+/u/api/p  https://umami.jkrumm.com/api/p  200!
+/u/api/record  https://umami.jkrumm.com/api/record  200!
+/u/api/websites/3e37cbbd-85d5-450c-b1d4-3c1900897644/recorder  https://umami.jkrumm.com/api/websites/3e37cbbd-85d5-450c-b1d4-3c1900897644/recorder  200!
