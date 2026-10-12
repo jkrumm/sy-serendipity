@@ -54,6 +54,11 @@ export const POST: APIRoute = async ({ request }) => {
   ) as Payload;
   payload.email = email;
 
+  if (!EMAIL_GATEWAY_SECRET_KEY) {
+    console.error('EMAIL_GATEWAY_SECRET_KEY is not set');
+    return json({ errors: [{ message: 'Sending failed. Please try again or call us.' }] }, 503);
+  }
+
   const upstream = await fetch(`${EMAIL_GATEWAY_URL}/sy-serendipity`, {
     method: 'POST',
     headers: {

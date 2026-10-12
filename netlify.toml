@@ -1,5 +1,5 @@
-# Deploys currently run from a developer machine via `bun run deploy` / `bun run deploy:preview`
-# (netlify-cli, --no-build). These settings only matter if the site is connected to GitHub.
+# Production deploys run from GitHub Actions (.github/workflows/deploy.yml: build, then
+# netlify-cli --no-build). Netlify's own builds stay paused; these settings only matter if resumed.
 [build]
   command = "bun run build"
   publish = "dist"

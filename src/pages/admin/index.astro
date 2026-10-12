@@ -1,5 +1,5 @@
 ---
-import { UMAMI_URL, UMAMI_WEBSITE_ID } from 'astro:env/server';
+import { EMAIL_GATEWAY_SECRET_KEY, UMAMI_URL, UMAMI_WEBSITE_ID } from 'astro:env/server';
 import { applyAdminHeaders, requireAdmin } from '@/admin/auth';
 import AdminLayout from '@/admin/AdminLayout.astro';
 import BarList from '@/admin/BarList.astro';
@@ -148,6 +148,12 @@ const unavailable = 'Not available right now';
     {!demo && noVisitors && (
       <p class={styles.hint}>
         <a href={`/admin/?range=${range.key}&demo=1`}>See it with example data</a>
+      </p>
+    )}
+    {!EMAIL_GATEWAY_SECRET_KEY && (
+      <p class={styles.banner}>
+        The request form cannot send right now: EMAIL_GATEWAY_SECRET_KEY is missing on Netlify.
+        Visitors are asked to call Barbara instead.
       </p>
     )}
     {analyticsProblem && <p class={styles.banner}>{analyticsProblem}</p>}
