@@ -5,7 +5,7 @@ import netlify from '@astrojs/netlify';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
-import { defineConfig, envField } from 'astro/config';
+import { defineConfig, envField, fontProviders } from 'astro/config';
 
 import { ANALYTICS } from './src/util/analytics';
 
@@ -58,7 +58,12 @@ export default defineConfig({
         access: 'public',
         default: 'https://email-gateway.jkrumm.com',
       }),
-      EMAIL_GATEWAY_SECRET_KEY: envField.string({ context: 'server', access: 'secret' }),
+      // Optional so CI can build without secrets; Netlify provides it to the function at runtime.
+      EMAIL_GATEWAY_SECRET_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true,
+      }),
       // Admin panel (/admin/). Optional so `astro build` works without them; the pages then
       // render a "not configured" notice.
       EMAIL_GATEWAY_READ_KEY: envField.string({
@@ -85,11 +90,39 @@ export default defineConfig({
       }),
     },
   },
+  // Brown is the brand face (it matches the logo's wordmark). The Fonts API emits @font-face,
+  // the preload and a metric-matched Arial fallback, so the swap does not shift the layout.
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: 'Brown',
+      cssVariable: '--font-brown',
+      fallbacks: ['Arial', 'sans-serif'],
+      options: {
+        variants: [
+          { src: ['./src/assets/fonts/brown-regular.woff2'], weight: 400, style: 'normal' },
+          { src: ['./src/assets/fonts/brown-bold.woff2'], weight: 700, style: 'normal' },
+        ],
+      },
+    },
+  ],
+  prefetch: { prefetchAll: true, defaultStrategy: 'hover' },
   vite: {
     plugins: [tailwindcss()],
     server: { strictPort: true, allowedHosts },
-    // Without this the dev server answers 504 for the lightbox chunk and the Gallery island never hydrates.
-    optimizeDeps: { include: ['yet-another-react-lightbox'] },
+    // `astro build` rewrites the dep cache with production React; sharing it with a running
+    // `astro dev` breaks island hydration there. Builds get their own cache directory.
+    cacheDir: process.argv.includes('build') ? 'node_modules/.vite-build' : 'node_modules/.vite',
+    // Island deps pre-bundled up front: discovered lazily, Vite answered 504 for them and the
+    // Gallery / RequestForm islands never hydrated in dev.
+    optimizeDeps: {
+      include: [
+        'yet-another-react-lightbox',
+        'react-day-picker',
+        'react-international-phone',
+        'date-fns',
+      ],
+    },
     css: {
       modules: { localsConvention: 'camelCase' },
       preprocessorOptions: {

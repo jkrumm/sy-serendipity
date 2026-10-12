@@ -15,6 +15,9 @@ export const navigationLinks = [
   { href: '/technical/', label: 'Specifications' },
 ];
 
+/** The only place the charter window is shown (owner's call). */
+export const footerDestination = { area: 'In the Pacific', availability: 'Until summer 2028' };
+
 export const requestLink = { href: '/request/', label: 'Request A Charter' };
 
 /** Ordered "guided tour" through the site. `image` is a registry id from `images.json`
@@ -25,13 +28,13 @@ export const pageFlow: PageFlowStep[] = [
     href: '/',
     label: 'Yacht',
     blurb:
-      'Serendipity I is a 45-metre Perini Navi sailing yacht for eight guests, available for private charter in the South Pacific until summer 2028.',
+      'Serendipity I is a 45-metre Perini Navi sailing yacht for eight guests, available for private charter in the Pacific.',
   },
   {
     href: '/activities/',
     label: 'Activities',
     blurb:
-      'Water sports, diving, sailing and yoga aboard Serendipity I, with the tender and crew for excursions ashore in the South Pacific.',
+      'Water sports, diving, sailing and yoga aboard Serendipity I, with the tender and crew for excursions ashore in the Pacific.',
     image: 'polynesia-35',
   },
   {
@@ -58,7 +61,7 @@ export const pageFlow: PageFlowStep[] = [
     href: '/request/',
     label: 'Request A Charter',
     blurb:
-      'Request a charter on Serendipity I in the South Pacific until summer 2028. Contact Barbara Mueller at Ocean Independence, Palma.',
+      'Request a charter on Serendipity I in the Pacific. Contact Barbara Mueller at Ocean Independence, Palma.',
     image: 'ship-1',
   },
 ];

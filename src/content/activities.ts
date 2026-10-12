@@ -81,9 +81,10 @@ export const activitiesLoops: ActivityLoop[] = [
 
 export const activitiesContent = {
   meta: {
+    image: 'polynesia-35' as const,
     title: 'Activities',
     description:
-      'Water sports, diving, sailing and yoga aboard Serendipity I, with the tender and crew for excursions ashore in the South Pacific.',
+      'Water sports, diving, sailing and yoga aboard Serendipity I, with the tender and crew for excursions ashore in the Pacific.',
   },
   intro: {
     eyebrow: 'Serendipity I',
@@ -93,7 +94,7 @@ export const activitiesContent = {
   },
   film: {
     eyebrow: 'On the water',
-    title: 'Days In The South Pacific',
+    title: 'Days In The Pacific',
     line: 'Short scenes from the 2026 season in French Polynesia.',
     toggleOn: 'Pause videos',
     toggleOff: 'Play videos',
@@ -130,7 +131,7 @@ export const activitiesContent = {
     eyebrow: 'Ashore',
     title: 'Excursions',
     paragraph:
-      'Serendipity I sails the South Pacific until summer 2028. The tender takes guests to beaches, villages and dive sites; the crew plans excursions around your interests.',
+      'Serendipity I sails the Pacific. The tender takes guests to beaches, villages and dive sites; the crew plans excursions around your interests.',
     items: [
       'Snorkelling and diving excursions',
       'Surfing',

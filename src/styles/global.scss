@@ -1,30 +1,6 @@
 @use 'normalize';
 @use 'styles/variables' as *;
 
-@font-face {
-  font-family: 'RockStar';
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-  src: url('/fonts/RockStar-NarrowMedium.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'BrownRegular';
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-  src: url('/fonts/Brown Regular.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'BrownBold';
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-  src: url('/fonts/Brown Bold.woff2') format('woff2');
-}
-
 :root {
   --paper: #{$paper};
   --ink: #{$ink};
@@ -44,6 +20,10 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+html.menu-open {
+  overflow: hidden;
 }
 
 html {
@@ -88,22 +68,22 @@ h5,
 h6 {
   color: $ink;
   font-family: $font-display;
-  font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: 0;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(2.75rem, 7vw, 6.25rem);
+  font-size: clamp(2.25rem, 5vw, 4rem);
 }
 
 h2 {
-  font-size: clamp(2.5rem, 5.5vw, 4.75rem);
+  font-size: clamp(2rem, 4vw, 3.5rem);
 }
 
 h3 {
-  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
 }
 
 h4 {

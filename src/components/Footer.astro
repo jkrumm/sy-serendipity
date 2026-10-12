@@ -1,5 +1,5 @@
 ---
-import { navigationLinks, requestLink } from '@/content/navigation';
+import { footerDestination, navigationLinks, requestLink } from '@/content/navigation';
 import { getImg } from '@/util/get-image';
 import styles from './footer.module.scss';
 
@@ -14,7 +14,11 @@ const links = [...navigationLinks, requestLink];
       </a>
       <div class={styles.destination}>
         <p class="eyebrow">Charter destinations</p>
-        <p>In the Pacific</p>
+        <p>
+          {footerDestination.area}
+          <br />
+          {footerDestination.availability}
+        </p>
         <a href="/#destinations">
           Explore the destinations <span aria-hidden="true">↗</span>
         </a>

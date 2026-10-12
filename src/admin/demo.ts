@@ -218,7 +218,7 @@ function fixtureRequests(range: DateRange): { legit: CharterRequest[]; spam: Cha
       email: 'clara.whitfield@example.com',
       phone: '+1 555 0142',
       numberOfPeople: '2',
-      destination: 'The South Pacific',
+      destination: 'The Pacific',
       duration: '11 days',
       arrivalDate: `${travelYear}-03-14`,
       departureDate: `${travelYear}-03-24`,

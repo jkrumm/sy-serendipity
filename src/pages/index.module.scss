@@ -15,7 +15,7 @@
     white-space: pre-line;
     margin-block: 20px 24px;
   }
-  p {
+  p:not(:global(.eyebrow)) {
     max-width: 490px;
     color: var(--muted);
     font-size: 17px;
@@ -91,7 +91,7 @@
   }
 }
 .destinationCopy {
-  > p {
+  > p:not(:global(.eyebrow)) {
     max-width: 540px;
     margin: 0 0 24px;
   }
@@ -157,7 +157,7 @@
   }
 }
 .tailorFijiCopy {
-  p {
+  p:not(:global(.eyebrow)) {
     max-width: 60ch;
     color: var(--muted);
     font-size: 17px;
@@ -186,7 +186,7 @@
 }
 .crewHeadingCopy {
   max-width: 460px;
-  p {
+  p:not(:global(.eyebrow)) {
     margin: 0 0 20px;
   }
 }
@@ -204,7 +204,7 @@
     white-space: pre-line;
     margin-block: 20px 24px;
   }
-  p {
+  p:not(:global(.eyebrow)) {
     max-width: 460px;
     color: var(--muted);
     font-size: 17px;
@@ -232,7 +232,7 @@
 .filmShade {
   position: absolute;
   inset: 0;
-  background: rgba(12, 30, 32, 0.38);
+  background: rgba(12, 30, 32, 0.5);
   z-index: -1;
 }
 .filmContent {
@@ -242,13 +242,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 28px;
   text-align: center;
   padding: 32px var(--gutter);
   color: white;
   h2 {
     color: inherit;
     max-width: 730px;
-    font-size: clamp(40px, 5.5vw, 76px);
+    font-size: clamp(32px, 4vw, 56px);
   }
   p {
     color: inherit;
@@ -303,9 +304,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 9%;
   }
-  .tailorHeading {
-    grid-template-columns: 1fr 1fr;
-  }
   .tailorFiji {
     grid-template-columns: 1fr 1fr;
     gap: 8%;
@@ -318,10 +316,21 @@
     }
   }
   .introCopy h2 {
-    font-size: clamp(44px, 4.5vw, 66px);
+    font-size: clamp(34px, 3.4vw, 50px);
   }
   .activitiesInner {
     grid-template-columns: 1fr 1fr;
     gap: 10%;
+  }
+}
+// The long lead needs room: side by side only from 1100px, stacked on tablets.
+@media (max-width: 1099px) {
+  .tailorHeading {
+    grid-template-columns: 1fr;
+  }
+}
+@media (min-width: 1100px) {
+  .tailorHeading {
+    grid-template-columns: 1fr 1fr;
   }
 }

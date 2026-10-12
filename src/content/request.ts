@@ -6,17 +6,14 @@ export const REQUEST_COPY = {
   eyebrow: 'Serendipity I',
   title: 'Request A Charter',
   description:
-    'Request a charter on Serendipity I in the South Pacific until summer 2028. Contact Barbara Mueller at Ocean Independence, Palma.',
+    'Request a charter on Serendipity I in the Pacific. Contact Barbara Mueller at Ocean Independence, Palma.',
   intro:
-    'Serendipity I is sailing the South Pacific until summer 2028, including French Polynesia, the Cook Islands and Fiji. Please tell us your preferred dates and where you would like to sail.',
+    'Serendipity I is sailing the Pacific, including French Polynesia, the Cook Islands and Fiji. Please tell us your preferred dates and where you would like to sail.',
   formTitle: 'charter request',
   formIntro: 'Only your email address is required. All other details are optional.',
   formFallback: 'Please call Barbara to arrange your charter.',
   cruisingLabel: 'Current cruising area',
-  cruising: {
-    destination: 'The South Pacific',
-    availability: 'Until summer 2028',
-  },
+  cruisingArea: 'The Pacific',
   broker: {
     name: 'Barbara Mueller',
     role: 'Senior Charter Broker',

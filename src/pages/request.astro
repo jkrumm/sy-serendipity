@@ -8,7 +8,7 @@ import { BROKER_LOGO } from '@/util/get-image';
 import styles from './request.module.scss';
 ---
 
-<Layout title="Request" description={REQUEST_COPY.description}>
+<Layout title={REQUEST_COPY.title} description={REQUEST_COPY.description} image="ship-1">
   <PageIntro
     eyebrow={REQUEST_COPY.eyebrow}
     title={REQUEST_COPY.title}
@@ -82,12 +82,7 @@ import styles from './request.module.scss';
         </noscript>
         <div class={styles.cruising}>
           <p class="eyebrow">{REQUEST_COPY.cruisingLabel}</p>
-          <dl>
-            <div>
-              <dt>{REQUEST_COPY.cruising.destination}</dt>
-              <dd>{REQUEST_COPY.cruising.availability}</dd>
-            </div>
-          </dl>
+          <p class={styles.cruisingArea}>{REQUEST_COPY.cruisingArea}</p>
         </div>
       </section>
     </div>

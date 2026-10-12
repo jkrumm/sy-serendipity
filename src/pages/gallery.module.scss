@@ -12,10 +12,13 @@
   ul {
     display: flex;
     gap: 24px;
+    width: 100%;
+    max-width: none;
     margin: 0;
-    padding: 8px 0;
+    padding: 8px var(--gutter);
     list-style: none;
     overflow-x: auto;
+    scroll-padding-inline: var(--gutter);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
 
@@ -70,7 +73,7 @@
 
   h2 {
     margin: 10px 0 0;
-    font-size: clamp(42px, 4.5vw, 64px);
+    font-size: clamp(32px, 3.4vw, 48px);
     line-height: 1.05;
   }
 }

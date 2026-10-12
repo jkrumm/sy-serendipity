@@ -8,7 +8,7 @@ import { galleryPhotographs } from '@/util/gallery-photos';
 import styles from './gallery.module.scss';
 ---
 
-<Layout title="Gallery" description={GALLERY_COPY.description}>
+<Layout title="Gallery" description={GALLERY_COPY.description} image="polynesia-02">
   <PageIntro
     eyebrow={GALLERY_COPY.eyebrow}
     title={GALLERY_COPY.title}
@@ -129,6 +129,9 @@ import styles from './gallery.module.scss';
       'scroll',
       () => {
         if (isAtDocumentBottom()) setActive(sections[sections.length - 1].id);
+        // Above the first chapter nothing crosses the activation line, so the observer stays silent.
+        else if (sections[0].getBoundingClientRect().top > activationLine())
+          setActive(sections[0].id);
       },
       { passive: true },
     );

@@ -85,6 +85,11 @@ const links = navigationLinks;
       toggle.setAttribute('aria-expanded', String(open));
       menu.hidden = !open;
       label.textContent = open ? 'Close' : 'Menu';
+      // Lock the page behind the open menu: no scrolling, no focus or taps on hidden content.
+      document.documentElement.classList.toggle('menu-open', open);
+      document
+        .querySelectorAll('#main-content, body > footer')
+        .forEach((element) => element.toggleAttribute('inert', open));
     };
 
     toggle.addEventListener('click', () =>

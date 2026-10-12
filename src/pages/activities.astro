@@ -12,7 +12,11 @@ import {
 import styles from './activities.module.scss';
 ---
 
-<Layout title={content.meta.title} description={content.meta.description}>
+<Layout
+  title={content.meta.title}
+  description={content.meta.description}
+  image={content.meta.image}
+>
   <PageIntro {...content.intro} />
 
   <section class={`section-shell ${styles.film}`} aria-labelledby="film-title" data-loops-container>

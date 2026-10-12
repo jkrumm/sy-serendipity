@@ -33,15 +33,12 @@
   p {
     color: inherit;
   }
-  :global(.eyebrow) {
-    font-size: 10px;
-    letter-spacing: 0.15em;
-  }
   h1 {
     color: inherit;
-    font-size: clamp(48px, 7.7vw, 112px);
-    line-height: 1.06;
-    letter-spacing: -0.01em;
+    font-size: clamp(34px, 5.6vw, 84px);
+    line-height: 1.1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     margin: 25px 0 20px;
   }
 }

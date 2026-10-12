@@ -41,31 +41,30 @@ Env:
   optionally `UMAMI_URL` / `UMAMI_WEBSITE_ID`.
 - Analytics is self-hosted Umami: the tracker script in `src/components/Analytics.astro` (production
   builds only) and the event catalog in `src/util/analytics.ts`. No cookies, no env var.
-- `PREVIEW=1` (build-command env, not `.env`): marks a build as a preview — the Layout renders
-  `noindex, nofollow` and drops the canonical link. See `bun run deploy:preview` below.
 
 ## Deploy
 
-- **Production** — `bun run deploy` (needs `NETLIFY_AUTH_TOKEN`, site `sy-serendipity`,
-  `netlify link` once).
-- **Preview** — `PREVIEW=1 ALIAS=v2 bun run deploy:preview` → `https://v2--sy-serendipity.netlify.app`.
+- **Production** — every push to `master` runs `.github/workflows/deploy.yml`: check, lint,
+  format, build, then `netlify-cli deploy --prod --no-build` (repo secrets `NETLIFY_AUTH_TOKEN`,
+  `NETLIFY_SITE_ID`). Pull requests run the same checks without deploying.
+- **Manual** — `bun run deploy` (needs `NETLIFY_AUTH_TOKEN` and `netlify link` once).
 - The domain sy-serendipity.org already points at Netlify (DNS at the registrar, www CNAME →
   sy-serendipity.netlify.app).
 
 ## Routes
 
-| Route                | Content                                                                      |
-| -------------------- | ---------------------------------------------------------------------------- |
-| `/`                  | Home — hero, yacht facts, accommodation, South Pacific destinations, service |
-| `/activities/`       | Activities and equipment                                                     |
-| `/crew/`             | Crew biographies                                                             |
-| `/gallery/`          | Photo gallery, chapters                                                      |
-| `/technical/`        | Specifications                                                               |
-| `/request/`          | Charter request form                                                         |
-| `/legal-disclaimer/` | Legal / privacy                                                              |
-| `/about/`            | 301 redirect to `/` (content merged into home)                               |
-| `/admin/`            | Owners' overview: visitors (Umami) and charter requests (e-mail gateway)     |
-| `404`                | Not found                                                                    |
+| Route                | Content                                                                  |
+| -------------------- | ------------------------------------------------------------------------ |
+| `/`                  | Home — hero, yacht facts, accommodation, Pacific destinations, service   |
+| `/activities/`       | Activities and equipment                                                 |
+| `/crew/`             | Crew biographies                                                         |
+| `/gallery/`          | Photo gallery, chapters                                                  |
+| `/technical/`        | Specifications                                                           |
+| `/request/`          | Charter request form                                                     |
+| `/legal-disclaimer/` | Legal / privacy                                                          |
+| `/about/`            | 301 redirect to `/` (content merged into home)                           |
+| `/admin/`            | Owners' overview: visitors (Umami) and charter requests (e-mail gateway) |
+| `404`                | Not found                                                                |
 
 ## Layout
 

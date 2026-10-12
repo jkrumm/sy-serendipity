@@ -145,7 +145,10 @@
 .wellnessRow {
   display: flex;
   gap: 24px;
-  margin-inline: calc(var(--gutter) * -1);
+  // Full-bleed snap strip on mobile (the section has no gutter): the padding is the gutter.
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
   padding-inline: var(--gutter);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -227,6 +230,8 @@
   .wellnessRow {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    width: calc(100% - var(--gutter) * 2);
+    max-width: var(--content-width);
     margin-inline: auto;
     padding-inline: 0;
     overflow-x: visible;

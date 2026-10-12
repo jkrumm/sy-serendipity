@@ -15,7 +15,7 @@ export type GalleryChapterHeading = { id: GalleryChapter; title: string };
 
 export const GALLERY_CHAPTERS: GalleryChapterHeading[] = [
   { id: 'yacht', title: 'The Yacht' },
-  { id: 'south-pacific', title: 'South Pacific' },
+  { id: 'south-pacific', title: 'The Pacific' },
   { id: 'decks', title: 'Decks' },
   { id: 'interiors', title: 'Interiors' },
   { id: 'cuisine', title: 'Cuisine' },
@@ -70,7 +70,7 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     layout: 'full',
   },
 
-  // South Pacific
+  // The Pacific
   {
     name: 'polynesia-02',
     chapter: 'south-pacific',

@@ -35,9 +35,10 @@ $border-strength: 1px;
 /* font-family */
 $font-monospace:
   SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-$font-display: 'RockStar', 'Arial Narrow', Arial, sans-serif;
-$font-brown-bold: 'BrownBold', Arial;
-$font-brown-regular: 'BrownRegular', Arial;
+// One face for everything: Brown (registered by the Fonts API in astro.config.ts) matches the logo.
+$font-display: var(--font-brown);
+$font-brown-bold: var(--font-brown);
+$font-brown-regular: var(--font-brown);
 
 /* radii */
 $radius-sm: 4px;

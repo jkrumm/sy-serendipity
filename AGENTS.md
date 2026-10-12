@@ -48,14 +48,17 @@ before a commit. `/check` covers them.
 
 ## Typography and copy (owner rules)
 
-- Headings use the brand font RockStar Narrow Medium (`$font-display`, as on the original site),
-  body text Brown. No serif anywhere, admin panel included.
+- One face everywhere: Brown, which matches the logo's wordmark (registered via the Astro Fonts
+  API in `astro.config.ts` as `--font-brown`, files in `src/assets/fonts/`). No serif, no second
+  display face, admin panel included. The yacht's name in the nav and hero is set like the logo:
+  uppercase, wide tracking. Headline sizes stay moderate; the owner found them too loud at 100 px.
 - Headlines (page `h1`, section `h2`, gallery chapters, "Next" titles, CTA labels) capitalise
   every word: "Request A Charter", "Water Sports And Fitness". Subheadlines below them (card
   titles, spec table captions, the form heading, legal `h3`) are lowercase: "open decks",
   "the yacht", "charter request". Proper nouns keep their capitals.
 - No decorative captions under photos or videos; keep only informative ones (crew names,
   destination names, deck-plan labels). No overlay icons on images.
+- Location is "the Pacific" (never "South Pacific"); "Until summer 2028" appears only in the footer.
 - Crew by first name only (Scott, Renée, Max).
 
 ## Images and email
@@ -119,14 +122,15 @@ Zero client JS, no dependencies, the chart is server-rendered SVG. Code: `src/pa
 
 ## Deploy
 
-Netlify. Production: `bun run deploy` (`astro build && netlify-cli deploy --prod --dir=dist
---no-build`, needs `NETLIFY_AUTH_TOKEN` and a linked site). Previews build with `PREVIEW=1`
-set (`PREVIEW=1 ALIAS=<name> bun run deploy:preview`) so the Layout renders `noindex,
-nofollow` and drops the canonical link — production builds (no `PREVIEW`) are unchanged.
-→ `https://<name>--sy-serendipity.netlify.app`. `EMAIL_GATEWAY_SECRET_KEY` is a Netlify site
-environment variable (scope: Functions), set in the Netlify dashboard.
+Netlify, deployed by GitHub Actions on every push to `master` (`.github/workflows/deploy.yml`:
+check, lint, format, build, `netlify-cli deploy --prod --no-build`; repo secrets
+`NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`). **A push to master is a production release** — validate
+first. There are no preview deploys. Netlify's own builds stay paused (the site still carries old
+Gatsby settings). The build needs no secrets: every `astro:env` secret is optional and Netlify
+injects them into the function at runtime (site environment variables). Manual fallback:
+`bun run deploy`.
 
-`/about/` is a 301 redirect to `/` — the About content (accommodation, South Pacific
+`/about/` is a 301 redirect to `/` — the About content (accommodation, Pacific
 destinations) now lives on the home page.
 
 Videos ship from `public/video/` as static Netlify assets. Encoding contract for anything
