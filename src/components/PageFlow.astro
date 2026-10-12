@@ -7,12 +7,18 @@ const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astr
 const currentIndex = pageFlow.findIndex((step) => step.href === pathname);
 const next =
   currentIndex >= 0 && currentIndex < pageFlow.length - 1 ? pageFlow[currentIndex + 1] : undefined;
+const isRequest = next?.href === '/request/';
 ---
 
 {
   next?.image && (
     <section class={`section-shell ${styles.flow}`} aria-label="Continue">
-      <a href={next.href} class={styles.row}>
+      <a
+        href={next.href}
+        class={styles.row}
+        data-umami-event={isRequest ? 'request-cta' : undefined}
+        data-umami-event-location={isRequest ? 'page-flow' : undefined}
+      >
         <div class={styles.media}>
           <Photo
             name={next.image}

@@ -40,7 +40,12 @@ const desktopSet = desktopWidths
     <h1 id="hero-title">{hero.title}</h1>
     <p class={styles.line}>{hero.line}</p>
     <div class={styles.actions}>
-      <a href="/request/" class={styles.explore}>{hero.link}<span aria-hidden="true">↗</span></a>
+      <a
+        href="/request/"
+        class={styles.explore}
+        data-umami-event="request-cta"
+        data-umami-event-location="home-hero">{hero.link}<span aria-hidden="true">↗</span></a
+      >
       <button type="button" class={styles.watchFilm} data-film-open aria-haspopup="dialog">
         <span aria-hidden="true">▷</span>{home.film.button}
       </button>

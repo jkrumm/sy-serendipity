@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState, type CSSProperties } from 'react';
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 
+import { track } from '@/util/analytics';
 import { getImgCropped } from '@/util/get-image';
 import type { ImageId } from '@/util/images';
 import styles from '@/components/big-slider.module.scss';
@@ -19,6 +20,8 @@ type Props = {
   height: number;
   slidesToShow?: number;
   autoplay?: boolean;
+  /** Analytics label for `slider-use`. */
+  name?: string;
 };
 
 type Tier = 'single' | 'double' | 'multiple';
@@ -35,6 +38,7 @@ export default function Slider({
   height,
   slidesToShow = 1,
   autoplay = false,
+  name = 'slider',
 }: Props) {
   const tier = tierFor(slidesToShow);
 
@@ -44,6 +48,14 @@ export default function Slider({
   );
 
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const used = useRef(false);
+
+  // Fires once per page load, on the first manual interaction (arrows or drag), never on autoplay.
+  const trackUse = useCallback(() => {
+    if (used.current) return;
+    used.current = true;
+    track('slider-use', { slider: name });
+  }, [name]);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
@@ -54,11 +66,13 @@ export default function Slider({
     if (!emblaApi) return;
     emblaApi.on('select', onSelect);
     emblaApi.on('reInit', onSelect);
+    emblaApi.on('pointerDown', trackUse);
     return () => {
       emblaApi.off('select', onSelect);
       emblaApi.off('reInit', onSelect);
+      emblaApi.off('pointerDown', trackUse);
     };
-  }, [emblaApi, onSelect]);
+  }, [emblaApi, onSelect, trackUse]);
 
   const imageWidth = slidesToShow > 1 ? width / slidesToShow : width;
   const imageHeight = slidesToShow > 1 ? height / slidesToShow : height;
@@ -72,10 +86,24 @@ export default function Slider({
           {selectedIndex + 1} / {images.length}
         </span>
         <div className={styles.arrows}>
-          <button type="button" aria-label="Previous slide" onClick={() => emblaApi?.scrollPrev()}>
+          <button
+            type="button"
+            aria-label="Previous slide"
+            onClick={() => {
+              trackUse();
+              emblaApi?.scrollPrev();
+            }}
+          >
             <img alt="slide-left" src={arrowSrc} />
           </button>
-          <button type="button" aria-label="Next slide" onClick={() => emblaApi?.scrollNext()}>
+          <button
+            type="button"
+            aria-label="Next slide"
+            onClick={() => {
+              trackUse();
+              emblaApi?.scrollNext();
+            }}
+          >
             <img alt="slide-right" src={arrowSrc} />
           </button>
         </div>

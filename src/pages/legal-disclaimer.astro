@@ -29,10 +29,58 @@ const company = {
       </address>
       <dl>
         <div><dt>Telephone</dt><dd>{company.telephone}</dd></div>
-        <div><dt>E-mail</dt><dd><a href={`mailto:${company.email}`}>{company.email}</a></dd></div>
+        <div>
+          <dt>E-mail</dt><dd>
+            <a
+              href={`mailto:${company.email}`}
+              data-umami-event="email-click"
+              data-umami-event-location="legal">{company.email}</a
+            >
+          </dd>
+        </div>
         <div><dt>Company registration</dt><dd>{company.registration}</dd></div>
         <div><dt>VAT ID</dt><dd>{company.vat}</dd></div>
       </dl>
+    </div>
+  </section>
+  <section class={`section-shell ${styles.privacy}`} aria-labelledby="privacy-title">
+    <div>
+      <p class="eyebrow">Privacy</p>
+      <h2 id="privacy-title">Your data</h2>
+    </div>
+    <div class={styles.privacyText}>
+      <h3>Who is responsible</h3>
+      <p>
+        {company.name}, {company.address.join(', ')}. Contact: <a
+          href={`mailto:${company.email}`}
+          data-umami-event="email-click"
+          data-umami-event-location="legal-privacy">{company.email}</a
+        >.
+      </p>
+      <h3>Web analytics</h3>
+      <p>
+        We measure visits with self-hosted Umami on a server in the EU. It sets no cookies, does not
+        track you across other sites and does not store IP addresses. We only see aggregated
+        statistics, such as which pages are visited and which buttons are clicked.
+      </p>
+      <h3>Session recordings and heatmaps</h3>
+      <p>
+        To improve the site we use anonymised session recordings and click heatmaps. All form inputs
+        are masked, so what you type is never recorded.
+      </p>
+      <h3>Charter requests</h3>
+      <p>
+        The details you enter in the charter request form are sent by e-mail to the charter team. We
+        use them only to answer your request and do not share them with anyone else.
+      </p>
+      <h3>Your rights</h3>
+      <p>
+        To ask for access to or deletion of your data, write to <a
+          href={`mailto:${company.email}`}
+          data-umami-event="email-click"
+          data-umami-event-location="legal-privacy">{company.email}</a
+        >.
+      </p>
     </div>
   </section>
 </Layout>

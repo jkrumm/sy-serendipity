@@ -3,8 +3,8 @@ import '@/styles/tailwind.css';
 import '@/styles/global.scss';
 import '@/styles/overrides.scss';
 
+import Analytics from '@/components/Analytics.astro';
 import Footer from '@/components/Footer.astro';
-import GoogleTag from '@/components/GoogleTag.astro';
 import Navigation from '@/components/Navigation.astro';
 import PageFlow from '@/components/PageFlow.astro';
 import { SEO_IMAGE } from '@/util/get-image';
@@ -65,7 +65,7 @@ function fullTitle(): string {
       crossorigin
     />
     <link rel="preload" href="/fonts/Brown Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <GoogleTag />
+    <Analytics />
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>

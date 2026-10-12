@@ -6,6 +6,7 @@ import type { DateRange } from 'react-day-picker';
 import 'react-day-picker/style.css';
 import { defaultCountries, parseCountry, usePhoneInput } from 'react-international-phone';
 
+import { track } from '@/util/analytics';
 import { REQUEST_COPY, REQUEST_FORM_COPY as COPY } from '@/content/request';
 import styles from '@/pages/request.module.scss';
 
@@ -94,6 +95,16 @@ function InternationalPhoneField({
   );
 }
 
+// Destination is free text, so only a coarse bucket is ever sent to analytics.
+function destinationBucket(value: FormDataEntryValue | null) {
+  const text = typeof value === 'string' ? value.trim().toLowerCase() : '';
+  if (!text) return undefined;
+  if (/\b(polynesia|tahiti|moorea|bora|marquesas|tuamotu)\b/.test(text)) return 'french-polynesia';
+  if (/\b(cook|rarotonga|aitutaki)\b/.test(text)) return 'cook-islands';
+  if (/\bfiji\b/.test(text)) return 'fiji';
+  return 'other';
+}
+
 function getDuration(range: DateRange | undefined) {
   if (!range?.from || !range.to) return 0;
   const duration = differenceInCalendarDays(range.to, range.from) + 1;
@@ -111,6 +122,7 @@ export default function RequestForm() {
   const [numberOfMonths, setNumberOfMonths] = useState(1);
   const dateSection = useRef<HTMLDivElement>(null);
   const feedback = useRef<HTMLDivElement>(null);
+  const started = useRef(false);
   const duration = getDuration(range);
 
   useEffect(() => {
@@ -131,6 +143,19 @@ export default function RequestForm() {
     return errors.some((error) => error.field === field);
   }
 
+  function handleStart() {
+    if (started.current) return;
+    started.current = true;
+    track('request-form-start');
+  }
+
+  function handleSelect(next: DateRange | undefined) {
+    setRange(next);
+    if (!next?.from || !next.to) return;
+    const nights = differenceInCalendarDays(next.to, next.from);
+    if (nights > 0) track('request-dates-selected', { nights });
+  }
+
   async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     if (submitting) return;
@@ -145,12 +170,23 @@ export default function RequestForm() {
         body: JSON.stringify(Object.fromEntries(formData)),
       });
       if (response.ok) {
+        const guests = Number(formData.get('numberOfPeople'));
+        const destination = destinationBucket(formData.get('destination'));
+        track('request-submit', {
+          ...(destination && { destination }),
+          ...(guests > 0 && { guests }),
+          ...(duration > 1 && { nights: duration - 1 }),
+        });
         setSucceeded(true);
         return;
       }
+      track('request-error', {
+        kind: response.status === 400 || response.status === 422 ? 'validation' : 'server',
+      });
       const data: unknown = await response.json().catch(() => null);
       setErrors(parseErrors(data));
     } catch {
+      track('request-error', { kind: 'network' });
       setErrors([{ message: COPY.connectionError }]);
     } finally {
       setSubmitting(false);
@@ -163,7 +199,12 @@ export default function RequestForm() {
         <p className="eyebrow">{COPY.successEyebrow}</p>
         <h3>{COPY.successTitle}</h3>
         <p>{COPY.successBody}</p>
-        <a className="text-link" href={REQUEST_COPY.broker.phoneHref}>
+        <a
+          className="text-link"
+          href={REQUEST_COPY.broker.phoneHref}
+          data-umami-event="phone-click"
+          data-umami-event-location="request-success"
+        >
           {COPY.successCall}
           <span aria-hidden="true">↗</span>
         </a>
@@ -176,6 +217,8 @@ export default function RequestForm() {
       method="post"
       action={FORM_ENDPOINT}
       onSubmit={handleSubmit}
+      onFocus={handleStart}
+      onInput={handleStart}
       className={styles.contactForm}
       aria-busy={submitting}
     >
@@ -291,7 +334,7 @@ export default function RequestForm() {
               numberOfMonths={numberOfMonths}
               disabled={{ before: new Date() }}
               selected={range}
-              onSelect={setRange}
+              onSelect={handleSelect}
               navLayout="after"
             />
             <div className={styles.selectedDates}>

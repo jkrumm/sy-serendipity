@@ -1,0 +1,33 @@
+---
+import { ANALYTICS } from '@/util/analytics';
+---
+
+{
+  import.meta.env.PROD && (
+    <>
+      <script
+        is:inline
+        defer
+        src={ANALYTICS.trackerSrc}
+        data-website-id={ANALYTICS.websiteId}
+        data-domains={ANALYTICS.domains}
+        data-exclude-search="true"
+      />
+      <script is:inline defer src={ANALYTICS.recorderSrc} data-website-id={ANALYTICS.websiteId} />
+    </>
+  )
+}
+
+<script>
+  import { track } from '@/util/analytics';
+
+  // Outbound links that do not already carry a data-umami-event (Umami tracks those itself).
+  document.addEventListener('click', (event) => {
+    if (!(event.target instanceof Element)) return;
+    const link = event.target.closest('a');
+    if (!link || link.closest('[data-umami-event]')) return;
+    if (link.protocol !== 'http:' && link.protocol !== 'https:') return;
+    if (link.host === location.host) return;
+    track('outbound-click', { url: `${link.host}${link.pathname}` });
+  });
+</script>

@@ -52,8 +52,45 @@
   }
 }
 
+.privacy {
+  display: grid;
+  gap: 40px;
+  padding-top: 40px;
+  padding-bottom: var(--section-space);
+  border-top: 1px solid $rule;
+
+  h2 {
+    margin-top: 18px;
+    font-size: clamp(2.25rem, 4vw, 3.5rem);
+  }
+}
+
+.privacyText {
+  color: $muted;
+  font-size: 16px;
+
+  h3 {
+    margin: 32px 0 8px;
+    color: $ink;
+    font-size: 16px;
+  }
+
+  h3:first-child {
+    margin-top: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+
 @media (min-width: 800px) {
-  .legal {
+  .legal,
+  .privacy {
     grid-template-columns: 1fr 1fr;
     gap: 80px;
     padding-top: 56px;

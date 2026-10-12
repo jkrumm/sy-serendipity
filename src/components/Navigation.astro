@@ -28,10 +28,20 @@ const links = navigationLinks;
           ))
         }
       </ul>
-      <a href="/request/" class={`button ${styles.desktopRequest}`}>Request a charter</a>
+      <a
+        href="/request/"
+        class={`button ${styles.desktopRequest}`}
+        data-umami-event="request-cta"
+        data-umami-event-location="nav">Request a charter</a
+      >
     </nav>
     <div class={styles.mobileActions}>
-      <a href="/request/" class={`button ${styles.mobileRequest}`}>Request</a>
+      <a
+        href="/request/"
+        class={`button ${styles.mobileRequest}`}
+        data-umami-event="request-cta"
+        data-umami-event-location="nav-mobile">Request</a
+      >
       <button
         class={styles.menuButton}
         type="button"

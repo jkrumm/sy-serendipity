@@ -33,8 +33,11 @@ import styles from './request.module.scss';
           </div>
           <address>
             <span>{REQUEST_COPY.broker.office}</span>
-            <a class={styles.brokerPhone} href={REQUEST_COPY.broker.phoneHref}
-              >{REQUEST_COPY.broker.phone}</a
+            <a
+              class={styles.brokerPhone}
+              href={REQUEST_COPY.broker.phoneHref}
+              data-umami-event="phone-click"
+              data-umami-event-location="request-broker">{REQUEST_COPY.broker.phone}</a
             >
           </address>
           <a

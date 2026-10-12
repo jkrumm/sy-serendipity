@@ -18,7 +18,7 @@ import styles from './gallery.module.scss';
       {
         GALLERY_CHAPTERS.map(({ id, title }, index) => (
           <li>
-            <a href={`#${id}`}>
+            <a href={`#${id}`} data-umami-event="gallery-chapter" data-umami-event-chapter={id}>
               {String(index + 1).padStart(2, '0')} {title}
             </a>
           </li>

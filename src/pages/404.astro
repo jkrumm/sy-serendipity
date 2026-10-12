@@ -21,7 +21,11 @@ const content: { title: string; description: string; image: ImageId; imageAlt: s
       <p class={styles.description}>{content.description}</p>
       <div class={styles.links}>
         <a href="/" class="button">Home page <span aria-hidden="true">↗</span></a>
-        <a href="/request/" class="text-link">Request a charter <span aria-hidden="true">↗</span></a
+        <a
+          href="/request/"
+          class="text-link"
+          data-umami-event="request-cta"
+          data-umami-event-location="404">Request a charter <span aria-hidden="true">↗</span></a
         >
       </div>
     </div>

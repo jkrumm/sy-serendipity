@@ -4,6 +4,7 @@ import 'yet-another-react-lightbox/styles.css';
 
 import { GALLERY_CHAPTERS, GALLERY_IMAGES } from '@/content/gallery';
 import { getPhoto, getPhotoSrcSet, getPhotoSrcSetEntries } from '@/util/get-image';
+import { track } from '@/util/analytics';
 import { imageMeta } from '@/util/images';
 import styles from '@/pages/gallery.module.scss';
 
@@ -80,7 +81,10 @@ export default function Gallery() {
                   >
                     <button
                       type="button"
-                      onClick={() => setLightboxIndex(photo.index)}
+                      onClick={() => {
+                        track('gallery-open', { chapter: id, image: photo.name });
+                        setLightboxIndex(photo.index);
+                      }}
                       aria-label={`View photograph ${photo.number}: ${photo.alt}`}
                     >
                       <img

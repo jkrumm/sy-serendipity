@@ -15,5 +15,10 @@ const {
 <section class={`section-shell ${styles.cta}`} aria-labelledby="charter-invitation">
   <h2 id="charter-invitation">{title}</h2>
   <p class={styles.body}>{body}</p>
-  <a class="button" href="/request/">Request a charter <span aria-hidden="true">↗</span></a>
+  <a
+    class="button"
+    href="/request/"
+    data-umami-event="request-cta"
+    data-umami-event-location="cta-band">Request a charter <span aria-hidden="true">↗</span></a
+  >
 </section>
