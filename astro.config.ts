@@ -88,6 +88,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     server: { strictPort: true, allowedHosts },
+    // Without this the dev server answers 504 for the lightbox chunk and the Gallery island never hydrates.
+    optimizeDeps: { include: ['yet-another-react-lightbox'] },
     css: {
       modules: { localsConvention: 'camelCase' },
       preprocessorOptions: {
