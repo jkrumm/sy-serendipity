@@ -61,6 +61,41 @@ before a commit. `/check` covers them.
   Template lives there, not here. Receiver/sender addresses are env on the VPS
   (`vps/apps/email-gateway/.env.tpl`).
 
+## Analytics (Umami)
+
+Self-hosted Umami, cookie-free. The tracker script lives in `src/components/Analytics.astro`
+(production builds only, not under `astro dev`); the event catalog and the website id live in
+`src/util/analytics.ts`. Tracking only runs on the hostnames in its `data-domains`
+(`sy-serendipity.org`, `www.`, `v2--sy-serendipity.netlify.app`): a new preview alias must be
+added there. Event names are defined in the same file; the admin panel maps them to friendly
+labels in `src/admin/format.ts`, so a new event needs a label there too.
+
+## Admin panel
+
+`/admin/` (on-demand, `noindex`, `Cache-Control: private, no-store`, excluded from the sitemap):
+a one-screen overview for the owners. Visitors, page views, channels, countries, devices,
+pages, funnel and clicks come from Umami; the charter-request inbox comes from email-gateway.
+Zero client JS, no dependencies, the chart is server-rendered SVG. Code: `src/pages/admin/*`
+(login, logout, dashboard) and `src/admin/` (`auth`/`session` cookie, `umami`, `requests`,
+`range`, `format`, `chart`, components).
+
+- Auth: `ADMIN_PASSWORD` (constant-time compare) → HMAC-SHA256-signed cookie `sy_admin`
+  (`ADMIN_SESSION_SECRET`, 30 days, HttpOnly, SameSite=Lax, Path=/admin, Secure except on http).
+- Env (schema in `astro.config.ts`, all secrets `optional` so `astro build` works without them,
+  the pages then say "not set up yet"): `EMAIL_GATEWAY_READ_KEY`, `UMAMI_API_KEY`,
+  `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`; public defaults `UMAMI_URL`, `UMAMI_WEBSITE_ID`
+  (and the existing `EMAIL_GATEWAY_URL`). Netlify: site environment variables, scope Functions.
+- Scoped keys: email-gateway `SY_SERENDIPITY_READ_KEY` (read-only, `GET /sy-serendipity/requests`)
+  → `EMAIL_GATEWAY_READ_KEY`; Umami view-only user `sy-serendipity-viewer` → `UMAMI_API_KEY`.
+  Secrets: 1Password `op://common/sy-serendipity-admin` and
+  `op://vps/email-gateway/SY_SERENDIPITY_READ_KEY`.
+- Netlify Functions read env at deploy time: rotating any admin secret needs a redeploy.
+- Each upstream call has an 8 s timeout and the page renders with `Promise.allSettled`: if Umami
+  or the gateway is down that block shows a notice, the rest still renders. Ranges are `?range=`
+  `7d|30d|90d|12m` (default `30d`, Europe/Madrid days; 12m is monthly).
+- Charts follow the dataviz palette (teal / brass / violet on the paper surface, validated); keep
+  new series in that fixed order.
+
 ## Deploy
 
 Netlify. Production: `bun run deploy` (`astro build && netlify-cli deploy --prod --dir=dist

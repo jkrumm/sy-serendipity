@@ -1,0 +1,318 @@
+---
+import { UMAMI_URL, UMAMI_WEBSITE_ID } from 'astro:env/server';
+import { applyAdminHeaders, requireAdmin } from '@/admin/auth';
+import AdminLayout from '@/admin/AdminLayout.astro';
+import BarList from '@/admin/BarList.astro';
+import DeviceSplit from '@/admin/DeviceSplit.astro';
+import KpiTile from '@/admin/KpiTile.astro';
+import Panel from '@/admin/Panel.astro';
+import RequestRow from '@/admin/RequestRow.astro';
+import VisitorsChart from '@/admin/VisitorsChart.astro';
+import styles from '@/admin/admin.module.scss';
+import {
+  averageVisitSeconds,
+  channelLabel,
+  countryName,
+  eventLabel,
+  flagEmoji,
+  formatCount,
+  formatDuration,
+  formatPercent,
+  funnelShares,
+  pageLabel,
+  percentOf,
+  pointsDelta,
+  referrerLabel,
+  relativeDelta,
+} from '@/admin/format';
+import { NotConfiguredError } from '@/admin/http';
+import { bucketKey, parseRangeKey, rangeTabs, resolveRange } from '@/admin/range';
+import { getRequests } from '@/admin/requests';
+import { getAnalytics } from '@/admin/umami';
+
+export const prerender = false;
+
+applyAdminHeaders(Astro);
+const denied = requireAdmin(Astro);
+if (denied) return denied;
+
+const range = resolveRange(parseRangeKey(Astro.url.searchParams.get('range')));
+const [analyticsResult, requestsResult] = await Promise.allSettled([
+  getAnalytics(range),
+  getRequests(range),
+]);
+
+const analytics = analyticsResult.status === 'fulfilled' ? analyticsResult.value : null;
+const requests = requestsResult.status === 'fulfilled' ? requestsResult.value : null;
+
+function problem(result: PromiseSettledResult<unknown>, what: string): string | null {
+  if (result.status === 'fulfilled') return null;
+  if (result.reason instanceof NotConfiguredError) return `${what} are not set up yet.`;
+  console.error(`[admin] ${what} failed:`, result.reason);
+  return `${what} are not available right now. Please try again in a moment.`;
+}
+const analyticsProblem = problem(analyticsResult, 'Website statistics');
+const requestsProblem = problem(requestsResult, 'Charter requests');
+
+const UNAVAILABLE = 'This could not be loaded right now. Please try again in a moment.';
+const NO_DATA = 'Nothing here yet. This fills in as visitors arrive.';
+function listNotice(items: unknown[] | null | undefined): string | null {
+  if (analyticsProblem) return analyticsProblem;
+  if (!items) return UNAVAILABLE;
+  return items.length === 0 ? NO_DATA : null;
+}
+
+const totals = analytics?.totals ?? null;
+const requestCount = requests?.requests.length ?? null;
+const rate =
+  totals && requestCount !== null ? percentOf(requestCount, totals.current.visitors) : null;
+const previousRate =
+  totals && requests ? percentOf(requests.previousCount, totals.previous.visitors) : null;
+const avgVisit = totals
+  ? averageVisitSeconds(totals.current.totaltime, totals.current.visits)
+  : null;
+const bounceRate = totals ? percentOf(totals.current.bounces, totals.current.visits) : null;
+
+const requestsPerBucket = new Map<string, number>();
+for (const request of requests?.requests ?? []) {
+  const receivedAt = Date.parse(request.receivedAt);
+  if (Number.isNaN(receivedAt)) continue;
+  const key = bucketKey(receivedAt, range.unit);
+  requestsPerBucket.set(key, (requestsPerBucket.get(key) ?? 0) + 1);
+}
+const series = analytics?.series ?? null;
+const chartVisitors = series?.map((point) => point.visitors) ?? [];
+const chartRequests = range.buckets.map(({ key }) => requestsPerBucket.get(key) ?? 0);
+const chartEmpty =
+  chartVisitors.every((value) => value === 0) && chartRequests.every((value) => value === 0);
+const NO_VISITS = 'No visits recorded in this period yet.';
+/** First applicable message: the Umami problem, a failed block, or an empty period. */
+function blockNotice(loaded: boolean, empty: boolean): string | null {
+  if (analyticsProblem) return analyticsProblem;
+  if (!loaded) return UNAVAILABLE;
+  return empty ? NO_VISITS : null;
+}
+const chartNotice = blockNotice(series !== null, chartEmpty);
+
+const funnel = analytics?.funnel ?? null;
+const funnelCounts = funnel?.map((step) => step.visitors) ?? [];
+const funnelPercents = funnelShares(funnelCounts);
+const funnelNotice = blockNotice(funnel !== null, funnelCounts[0] === 0);
+
+const live = analytics?.activeVisitors ?? 0;
+const kpiAgainst = range.previousLabel;
+const unavailable = 'Not available right now';
+---
+
+<AdminLayout title="Website overview">
+  <main class={styles.main}>
+    <header class={styles.header}>
+      <div class={styles.headerTitle}>
+        <h1>SY Serendipity I</h1>
+        <p>Website overview</p>
+      </div>
+      <div class={styles.headerTools}>
+        <nav class={styles.tabs} aria-label="Time range">
+          {
+            rangeTabs().map(({ key, tab }) => (
+              <a
+                href={`/admin/?range=${key}`}
+                aria-current={key === range.key ? 'page' : undefined}
+              >
+                {tab}
+              </a>
+            ))
+          }
+        </nav>
+        {
+          live > 0 && (
+            <span class={styles.live}>
+              {live} {live === 1 ? 'visitor' : 'visitors'} on the site right now
+            </span>
+          )
+        }
+        <form class={styles.logout} method="post" action="/admin/logout/">
+          <button type="submit">Log out</button>
+        </form>
+      </div>
+    </header>
+
+    <section class={styles.kpis} aria-label={`Key numbers, ${range.label}`}>
+      <KpiTile
+        label="Visitors"
+        value={totals ? formatCount(totals.current.visitors) : '–'}
+        delta={totals ? relativeDelta(totals.current.visitors, totals.previous.visitors) : null}
+        against={kpiAgainst}
+        noDelta={totals ? undefined : unavailable}
+        detail={avgVisit !== null ? `Avg. visit ${formatDuration(avgVisit)}` : undefined}
+      />
+      <KpiTile
+        label="Page views"
+        value={totals ? formatCount(totals.current.pageviews) : '–'}
+        delta={totals ? relativeDelta(totals.current.pageviews, totals.previous.pageviews) : null}
+        against={kpiAgainst}
+        noDelta={totals ? undefined : unavailable}
+        detail={bounceRate !== null
+          ? `Left after one page: ${formatPercent(bounceRate)}`
+          : undefined}
+      />
+      <KpiTile
+        label="Charter requests"
+        value={requestCount !== null ? formatCount(requestCount) : '–'}
+        delta={requests && requestCount !== null
+          ? relativeDelta(requestCount, requests.previousCount)
+          : null}
+        against={kpiAgainst}
+        noDelta={requests ? undefined : unavailable}
+      />
+      <KpiTile
+        label="Request rate"
+        value={rate !== null ? formatPercent(rate) : '–'}
+        delta={pointsDelta(rate, previousRate)}
+        against={kpiAgainst}
+        noDelta={totals && requests ? undefined : unavailable}
+        detail="Requests per visitor"
+      />
+    </section>
+
+    <div class={styles.grid}>
+      <Panel
+        title={`Visitors per ${range.unit}`}
+        hint={`In the ${range.label}`}
+        notice={chartNotice}
+      >
+        <VisitorsChart
+          buckets={range.buckets}
+          visitors={chartVisitors}
+          requests={chartRequests}
+          unit={range.unit}
+        />
+      </Panel>
+
+      <div class={styles.columns}>
+        <div class={styles.col}>
+          <Panel
+            class={styles.areaInbox}
+            title="Charter requests"
+            hint={`Newest first, in the ${range.label}`}
+            notice={requestsProblem}
+          >
+            {
+              requests && requests.requests.length === 0 ? (
+                <p class={styles.notice}>No requests in this period yet.</p>
+              ) : (
+                <ul class={styles.requests}>
+                  {requests?.requests.map((request) => (
+                    <RequestRow request={request} />
+                  ))}
+                </ul>
+              )
+            }
+            {requests?.truncated && <p class={styles.muted}>Showing the latest 200 requests</p>}
+            {
+              requests && requests.filtered.length > 0 && (
+                <details class={styles.filtered}>
+                  <summary>Filtered as spam ({requests.filtered.length})</summary>
+                  <ul class={styles.requests}>
+                    {requests.filtered.map((request) => (
+                      <RequestRow request={request} muted />
+                    ))}
+                  </ul>
+                </details>
+              )
+            }
+          </Panel>
+          <Panel
+            class={styles.areaFunnel}
+            title="From visit to request"
+            hint="Visitors who went on to ask for a charter, within 24 hours"
+            notice={funnelNotice}
+          >
+            <BarList
+              items={(funnel ?? []).map((step, index) => {
+                const share = funnelPercents[index];
+                const display = `${formatCount(step.visitors)}${share == null ? '' : ` · ${formatPercent(share)}`}`;
+                return { label: step.label, value: step.visitors, display };
+              })}
+              scaleTo={funnelCounts[0]}
+            />
+          </Panel>
+          <Panel
+            class={styles.areaClicks}
+            title="What visitors click"
+            notice={listNotice(analytics?.events)}
+          >
+            <BarList
+              items={(analytics?.events ?? []).slice(0, 8).map((item) => ({
+                label: eventLabel(item.key),
+                value: item.value,
+              }))}
+            />
+          </Panel>
+        </div>
+        <div class={styles.col}>
+          <Panel
+            class={styles.areaFind}
+            title="How visitors find the site"
+            notice={listNotice(analytics?.channels)}
+          >
+            <BarList
+              items={(analytics?.channels ?? []).slice(0, 5).map((item) => ({
+                label: channelLabel(item.key),
+                value: item.value,
+              }))}
+            />
+            {
+              analytics?.referrers && analytics.referrers.length > 0 && (
+                <>
+                  <h3 class={styles.subheading}>Websites that send visitors</h3>
+                  <BarList
+                    items={analytics.referrers.slice(0, 5).map((item) => ({
+                      label: referrerLabel(item.key),
+                      value: item.value,
+                    }))}
+                  />
+                </>
+              )
+            }
+          </Panel>
+          <Panel
+            class={styles.areaCountries}
+            title="Where visitors come from"
+            notice={listNotice(analytics?.countries)}
+          >
+            <BarList
+              items={(analytics?.countries ?? []).slice(0, 6).map((item) => ({
+                label: countryName(item.key),
+                prefix: flagEmoji(item.key),
+                value: item.value,
+              }))}
+            />
+          </Panel>
+          <Panel class={styles.areaDevices} title="Devices" notice={listNotice(analytics?.devices)}>
+            <DeviceSplit devices={analytics?.devices ?? []} />
+          </Panel>
+          <Panel
+            class={styles.areaPages}
+            title="Most visited pages"
+            notice={listNotice(analytics?.pages)}
+          >
+            <BarList
+              items={(analytics?.pages ?? []).slice(0, 6).map((item) => ({
+                label: pageLabel(item.key),
+                value: item.value,
+              }))}
+            />
+          </Panel>
+        </div>
+      </div>
+    </div>
+
+    <footer class={styles.footer}>
+      <a href={`${UMAMI_URL}/websites/${UMAMI_WEBSITE_ID}`}>
+        Detailed analytics, session recordings and heatmaps →
+      </a>
+      <p>Data: Umami (self-hosted, cookie-free) · E-mail gateway</p>
+    </footer>
+  </main>
+</AdminLayout>

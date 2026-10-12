@@ -1,0 +1,38 @@
+---
+import styles from './admin.module.scss';
+
+type Item = {
+  label: string;
+  value: number;
+  prefix?: string;
+  /** Figure shown at the end of the row; defaults to the formatted value. */
+  display?: string;
+};
+type Props = {
+  items: Item[];
+  /** Bars are scaled to this value; defaults to the largest item. */
+  scaleTo?: number;
+};
+const { items, scaleTo } = Astro.props;
+const displayOf = (item: Item) => item.display ?? item.value.toLocaleString('en-GB');
+const max = Math.max(scaleTo ?? 0, ...items.map((item) => item.value), 1);
+---
+
+<ul class={styles.barList}>
+  {
+    items.map((item) => (
+      <li>
+        <div class={styles.barText}>
+          <span class={styles.barLabel}>
+            {item.prefix && <span aria-hidden="true">{item.prefix}</span>}
+            {item.label}
+          </span>
+          <span class={styles.barValue}>{displayOf(item)}</span>
+        </div>
+        <div class={styles.barTrack} role="img" aria-label={`${item.label}: ${displayOf(item)}`}>
+          <span style={`width: ${Math.max((item.value / max) * 100, item.value > 0 ? 1.5 : 0)}%`} />
+        </div>
+      </li>
+    ))
+  }
+</ul>

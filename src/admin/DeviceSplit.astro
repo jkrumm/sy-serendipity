@@ -1,0 +1,53 @@
+---
+import {
+  DEVICE_LABELS,
+  DEVICE_ORDER,
+  deviceKind,
+  formatCount,
+  formatPercent,
+  percentOf,
+} from './format';
+import type { Metric } from './umami';
+import styles from './admin.module.scss';
+
+type Props = { devices: Metric[] };
+const { devices } = Astro.props;
+
+const totals = new Map(DEVICE_ORDER.map((kind) => [kind, 0]));
+for (const { key, value } of devices) {
+  const kind = deviceKind(key);
+  totals.set(kind, (totals.get(kind) ?? 0) + value);
+}
+const total = [...totals.values()].reduce((sum, value) => sum + value, 0);
+const segments = DEVICE_ORDER.map((kind) => ({
+  kind,
+  label: DEVICE_LABELS[kind],
+  value: totals.get(kind) ?? 0,
+  share: percentOf(totals.get(kind) ?? 0, total) ?? 0,
+})).filter((segment) => segment.value > 0);
+const summary = segments.map((s) => `${s.label} ${formatPercent(s.share)}`).join(', ');
+---
+
+<div class={styles.split} role="img" aria-label={`Devices: ${summary}`}>
+  {
+    segments.map((segment) => (
+      <span
+        class={styles[`device-${segment.kind}`]}
+        style={`flex-grow: ${segment.value}`}
+        title={`${segment.label}: ${formatCount(segment.value)} (${formatPercent(segment.share)})`}
+      />
+    ))
+  }
+</div>
+<ul class={styles.legend}>
+  {
+    segments.map((segment) => (
+      <li>
+        <span class:list={[styles.swatch, styles[`device-${segment.kind}`]]} aria-hidden="true" />
+        {segment.label}
+        <strong>{formatPercent(segment.share)}</strong>
+        <span class={styles.muted}>{formatCount(segment.value)}</span>
+      </li>
+    ))
+  }
+</ul>

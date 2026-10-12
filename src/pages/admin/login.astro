@@ -1,0 +1,62 @@
+---
+import {
+  adminRedirect,
+  applyAdminHeaders,
+  hasValidSession,
+  isAuthConfigured,
+  login,
+} from '@/admin/auth';
+import AdminLayout from '@/admin/AdminLayout.astro';
+import styles from '@/admin/admin.module.scss';
+
+export const prerender = false;
+
+applyAdminHeaders(Astro);
+const signedIn = hasValidSession(Astro) ? adminRedirect('/admin/') : undefined;
+if (signedIn) return signedIn;
+
+let failed = false;
+if (Astro.request.method === 'POST' && isAuthConfigured) {
+  const form = await Astro.request.formData();
+  const password = form.get('password');
+  const granted = typeof password === 'string' ? login(Astro, password) : undefined;
+  if (granted) return granted;
+  // Slows down guessing; the real protection is the length of the password.
+  await new Promise((resolve) => setTimeout(resolve, 600));
+  failed = true;
+}
+---
+
+<AdminLayout title="Sign in">
+  <main class={styles.login}>
+    <div class={styles.loginCard}>
+      <h1>SY Serendipity I</h1>
+      <p>Website overview</p>
+      {
+        isAuthConfigured ? (
+          <form method="post" action="/admin/login/">
+            {failed && (
+              <p class={styles.error} role="alert">
+                That password is not right. Please try again.
+              </p>
+            )}
+            <label for="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+            />
+            <button type="submit">Sign in</button>
+          </form>
+        ) : (
+          <p class={styles.error}>
+            The admin area is not set up yet. Set ADMIN_PASSWORD and ADMIN_SESSION_SECRET on the
+            server.
+          </p>
+        )
+      }
+    </div>
+  </main>
+</AdminLayout>

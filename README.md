@@ -35,9 +35,13 @@ bun run format
 
 Env:
 
-- `.env` (see `.env.example`): `PUBLIC_GA_TRACKING_ID` — when set, the Layout injects gtag.
-  `EMAIL_GATEWAY_URL` / `EMAIL_GATEWAY_SECRET_KEY` carry the request route under `astro dev`. In production
-  `EMAIL_GATEWAY_SECRET_KEY` is a Netlify site environment variable (scope: Functions).
+- `.env` (see `.env.example`): `EMAIL_GATEWAY_URL` / `EMAIL_GATEWAY_SECRET_KEY` carry the request
+  route under `astro dev`. In production `EMAIL_GATEWAY_SECRET_KEY` is a Netlify site environment
+  variable (scope: Functions). The admin panel adds `EMAIL_GATEWAY_READ_KEY`, `UMAMI_API_KEY`,
+  `ADMIN_PASSWORD` and `ADMIN_SESSION_SECRET` (all optional for builds; Functions scope too), and
+  optionally `UMAMI_URL` / `UMAMI_WEBSITE_ID`.
+- Analytics is self-hosted Umami: the tracker script in `src/components/Analytics.astro` (production
+  builds only) and the event catalog in `src/util/analytics.ts`. No cookies, no env var.
 - `PREVIEW=1` (build-command env, not `.env`): marks a build as a preview — the Layout renders
   `noindex, nofollow` and drops the canonical link. See `bun run deploy:preview` below.
 
@@ -61,17 +65,20 @@ Env:
 | `/request/`          | Charter request form                                                         |
 | `/legal-disclaimer/` | Legal / privacy                                                              |
 | `/about/`            | 301 redirect to `/` (content merged into home)                               |
+| `/admin/`            | Owners' overview: visitors (Umami) and charter requests (e-mail gateway)     |
 | `404`                | Not found                                                                    |
 
 ## Layout
 
 ```
 src/
-  layouts/Layout.astro    head (SEO, GA, robots/canonical), nav, footer, global CSS
+  layouts/Layout.astro    head (SEO, Umami, robots/canonical), nav, footer, global CSS
   components/*.astro      static building blocks + their .module.scss
   islands/*.tsx           React, hydrated with client:* directives
   pages/*.astro           one file per route + its .module.scss
   styles/                 global.scss, overrides.scss, variables.scss, tailwind.css
+  pages/admin/*.astro     on-demand admin panel (login, logout, dashboard)
+  admin/                  admin server modules (auth, umami, requests, range, format) + components
   pages/api/request.ts    on-demand Netlify Function -> email-gateway /sy-serendipity
   util/get-image.ts       every image URL on the site goes through here (img.jkrumm.com, imgproxy)
   util/images.ts          gallery image list with intrinsic sizes

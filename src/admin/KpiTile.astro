@@ -1,0 +1,43 @@
+---
+import type { Delta } from './format';
+import styles from './admin.module.scss';
+
+type Props = {
+  label: string;
+  value: string;
+  delta: Delta | null;
+  /** Name of the comparison period, e.g. "previous 30 days". */
+  against: string;
+  detail?: string;
+  /** Shown instead of the comparison when there is none. */
+  noDelta?: string;
+};
+const {
+  label,
+  value,
+  delta,
+  against,
+  detail,
+  noDelta = 'No earlier data to compare',
+} = Astro.props;
+const arrow = { up: '▲', down: '▼', flat: '→' } as const;
+const spoken = { up: 'Up ', down: 'Down ', flat: 'No change, ' } as const;
+---
+
+<div class={styles.kpi}>
+  <p class={styles.kpiLabel}>{label}</p>
+  <p class={styles.kpiValue}>{value}</p>
+  {
+    delta ? (
+      <p class:list={[styles.delta, styles[`delta-${delta.direction}`]]}>
+        <span aria-hidden="true">{arrow[delta.direction]}</span>
+        <span class="sr-only">{spoken[delta.direction]}</span>
+        {delta.text}
+        <span class={styles.deltaAgainst}> vs {against}</span>
+      </p>
+    ) : (
+      <p class={styles.deltaAgainst}>{noDelta}</p>
+    )
+  }
+  {detail && <p class={styles.kpiDetail}>{detail}</p>}
+</div>

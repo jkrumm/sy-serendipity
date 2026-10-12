@@ -1,0 +1,20 @@
+---
+import styles from './admin.module.scss';
+
+type Props = {
+  title: string;
+  hint?: string;
+  /** Replaces the content with one calm line (empty data, not configured, upstream down). */
+  notice?: string | null;
+  class?: string;
+};
+const { title, hint, notice, class: className } = Astro.props;
+---
+
+<section class:list={[styles.panel, className]}>
+  <header class={styles.panelHeader}>
+    <h2>{title}</h2>
+    {hint && <p>{hint}</p>}
+  </header>
+  {notice ? <p class={styles.notice}>{notice}</p> : <slot />}
+</section>

@@ -1,0 +1,9 @@
+---
+import { adminRedirect, logout } from '@/admin/auth';
+
+export const prerender = false;
+
+// Only POST ends the session (the dashboard's button); a stray GET goes back to the dashboard.
+const redirect = Astro.request.method === 'POST' ? logout(Astro) : adminRedirect('/admin/');
+if (redirect) return redirect;
+---

@@ -7,6 +7,8 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, envField } from 'astro/config';
 
+import { ANALYTICS } from './src/util/analytics';
+
 const site = 'https://sy-serendipity.org';
 
 // PORT lets parallel worktrees run side by side (7734 is the main checkout, see the Caddyfile).
@@ -44,7 +46,7 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      filter: (page) => !page.includes('/images/'),
+      filter: (page) => !page.includes('/images/') && !page.includes('/admin/'),
       serialize: (item) => ({ ...item, lastmod: gitLastModified(pageFileForUrl(item.url)) }),
     }),
   ],
@@ -57,6 +59,30 @@ export default defineConfig({
         default: 'https://email-gateway.jkrumm.com',
       }),
       EMAIL_GATEWAY_SECRET_KEY: envField.string({ context: 'server', access: 'secret' }),
+      // Admin panel (/admin/). Optional so `astro build` works without them; the pages then
+      // render a "not configured" notice.
+      EMAIL_GATEWAY_READ_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true,
+      }),
+      UMAMI_API_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
+      ADMIN_PASSWORD: envField.string({ context: 'server', access: 'secret', optional: true }),
+      ADMIN_SESSION_SECRET: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true,
+      }),
+      UMAMI_URL: envField.string({
+        context: 'server',
+        access: 'public',
+        default: new URL(ANALYTICS.trackerSrc).origin,
+      }),
+      UMAMI_WEBSITE_ID: envField.string({
+        context: 'server',
+        access: 'public',
+        default: ANALYTICS.websiteId,
+      }),
     },
   },
   vite: {

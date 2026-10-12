@@ -1,0 +1,135 @@
+---
+import { CHART_HEIGHT, SLOT, gridLines, labelIndices, layoutColumns, niceMax } from './chart';
+import { formatCount } from './format';
+import type { Bucket } from './range';
+import styles from './admin.module.scss';
+
+type Props = {
+  buckets: Bucket[];
+  visitors: number[];
+  requests: number[];
+  unit: 'day' | 'month';
+};
+const { buckets, visitors, requests, unit } = Astro.props;
+
+const max = niceMax(Math.max(...visitors));
+const columns = layoutColumns(visitors, requests, max);
+const grid = gridLines(max);
+const labels = labelIndices(buckets.length);
+const width = buckets.length * SLOT;
+const total = visitors.reduce((sum, value) => sum + value, 0);
+const requestTotal = requests.reduce((sum, value) => sum + value, 0);
+const summary = `Visitors per ${unit}, ${buckets[0]?.longLabel} to ${buckets.at(-1)?.longLabel}: ${formatCount(total)} in total${requestTotal > 0 ? `, with ${requestTotal} charter ${requestTotal === 1 ? 'request' : 'requests'} marked` : ''}.`;
+const tooltip = (index: number) => {
+  const count = visitors[index] ?? 0;
+  const asked = requests[index] ?? 0;
+  const base = `${buckets[index]?.longLabel}: ${formatCount(count)} ${count === 1 ? 'visitor' : 'visitors'}`;
+  return asked > 0 ? `${base}, ${asked} charter ${asked === 1 ? 'request' : 'requests'}` : base;
+};
+---
+
+<figure class={styles.chart} style={`--n: ${buckets.length}`}>
+  <div class={styles.plot} style={`height: ${CHART_HEIGHT}px`}>
+    {
+      grid.map((line) => (
+        <span class={styles.gridLabel} style={`top: ${line.y}px`}>
+          {formatCount(line.value)}
+        </span>
+      ))
+    }
+    <svg
+      viewBox={`0 0 ${width} ${CHART_HEIGHT}`}
+      preserveAspectRatio="none"
+      role="img"
+      aria-label={summary}
+    >
+      <title>{summary}</title>
+      {
+        grid.map((line) => (
+          <line class={styles.gridLine} x1="0" x2={width} y1={line.y} y2={line.y} />
+        ))
+      }
+      {
+        columns.map((column) => (
+          <g class={styles.column}>
+            <title>{tooltip(column.index)}</title>
+            <line class={styles.hit} x1={column.x} x2={column.x} y1="0" y2={CHART_HEIGHT} />
+            {column.hasBar && (
+              <line
+                class={styles.bar}
+                x1={column.x}
+                x2={column.x}
+                y1={column.barTop}
+                y2={CHART_HEIGHT}
+              />
+            )}
+            {column.markerY !== null && (
+              <>
+                <line
+                  class={styles.markerRing}
+                  x1={column.x}
+                  x2={column.x}
+                  y1={column.markerY}
+                  y2={column.markerY}
+                />
+                <line
+                  class={styles.marker}
+                  x1={column.x}
+                  x2={column.x}
+                  y1={column.markerY}
+                  y2={column.markerY}
+                />
+              </>
+            )}
+          </g>
+        ))
+      }
+      <line class={styles.baseline} x1="0" x2={width} y1={CHART_HEIGHT} y2={CHART_HEIGHT}></line>
+    </svg>
+  </div>
+  <div class={styles.axis} aria-hidden="true">
+    {
+      labels.map((index) => (
+        <span style={`left: ${((index + 0.5) / buckets.length) * 100}%`}>
+          {buckets[index]?.label}
+        </span>
+      ))
+    }
+  </div>
+  <figcaption class={styles.chartLegend}>
+    <span><i class={styles.swatchBar} aria-hidden="true"></i>Visitors</span>
+    {
+      requestTotal > 0 && (
+        <span>
+          <i class={styles.swatchDot} aria-hidden="true" />
+          Charter request
+        </span>
+      )
+    }
+  </figcaption>
+  <details class={styles.tableToggle}>
+    <summary>Show as table</summary>
+    <div class={styles.tableScroll}>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">{unit === 'day' ? 'Day' : 'Month'}</th>
+            <th scope="col">Visitors</th>
+            <th scope="col">Charter requests</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            buckets.map((bucket, index) => (
+              <tr>
+                <th scope="row">{bucket.longLabel}</th>
+                <td>{formatCount(visitors[index] ?? 0)}</td>
+                <td>{requests[index] ?? 0}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </details>
+</figure>
