@@ -4,7 +4,7 @@ Marketing site for the charter sailing yacht SY Serendipity I — <https://sy-se
 
 Astro 7 renders every page at build time, React 19 islands hydrate only the three interactive
 spots (gallery lightbox, request form, image carousels). The single server-side piece is
-`src/pages/api/request.ts`, an on-demand Netlify Function that forwards charter requests to bun-email-api
+`src/pages/api/request.ts`, an on-demand Netlify Function that forwards charter requests to email-gateway
 so the bearer key never reaches the browser. No CMS.
 
 ## Stack
@@ -17,7 +17,7 @@ so the bearer key never reaches the browser. No CMS.
 | Images       | ImageKit transform URLs, built by the single seam `src/util/get-image.ts`                                                           |
 | Carousel     | `embla-carousel-react` + autoplay plugin                                                                                            |
 | Gallery      | `react-photo-album` + `yet-another-react-lightbox`                                                                                  |
-| Request form | `react-day-picker` (range), `react-international-phone`; posts to `/api/request`, an on-demand route that forwards to bun-email-api |
+| Request form | `react-day-picker` (range), `react-international-phone`; posts to `/api/request`, an on-demand route that forwards to email-gateway |
 | Hosting      | Netlify — static assets + one Netlify Function for /api/request (@astrojs/netlify)                                                  |
 | Runtime / PM | Bun                                                                                                                                 |
 
@@ -36,8 +36,8 @@ bun run format
 Env:
 
 - `.env` (see `.env.example`): `PUBLIC_GA_TRACKING_ID` — when set, the Layout injects gtag.
-  `BEA_BASE_URL` / `BEA_SECRET_KEY` carry the request route under `astro dev`. In production
-  `BEA_SECRET_KEY` is a Netlify site environment variable (scope: Functions).
+  `EMAIL_GATEWAY_URL` / `EMAIL_GATEWAY_SECRET_KEY` carry the request route under `astro dev`. In production
+  `EMAIL_GATEWAY_SECRET_KEY` is a Netlify site environment variable (scope: Functions).
 - `PREVIEW=1` (build-command env, not `.env`): marks a build as a preview — the Layout renders
   `noindex, nofollow` and drops the canonical link. See `bun run deploy:preview` below.
 
@@ -72,7 +72,7 @@ src/
   islands/*.tsx           React, hydrated with client:* directives
   pages/*.astro           one file per route + its .module.scss
   styles/                 global.scss, overrides.scss, variables.scss, tailwind.css
-  pages/api/request.ts    on-demand Netlify Function -> bun-email-api /sy-serendipity
+  pages/api/request.ts    on-demand Netlify Function -> email-gateway /sy-serendipity
   util/get-image.ts       every image URL on the site goes through here (img.jkrumm.com, imgproxy)
   util/images.ts          gallery image list with intrinsic sizes
 public/                   fonts, favicon, robots.txt

@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { BEA_BASE_URL, BEA_SECRET_KEY } from 'astro:env/server';
+import { EMAIL_GATEWAY_URL, EMAIL_GATEWAY_SECRET_KEY } from 'astro:env/server';
 
 export const prerender = false;
 
@@ -29,7 +29,7 @@ function text(data: Record<string, unknown>, key: string, max: number): string |
   return trimmed === '' ? null : trimmed;
 }
 
-/** Forwards a charter request to bun-email-api, which holds the Resend integration. */
+/** Forwards a charter request to email-gateway, which holds the Resend integration. */
 export const POST: APIRoute = async ({ request }) => {
   let data: Record<string, unknown>;
   try {
@@ -54,15 +54,18 @@ export const POST: APIRoute = async ({ request }) => {
   ) as Payload;
   payload.email = email;
 
-  const upstream = await fetch(`${BEA_BASE_URL}/sy-serendipity`, {
+  const upstream = await fetch(`${EMAIL_GATEWAY_URL}/sy-serendipity`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${BEA_SECRET_KEY}` },
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${EMAIL_GATEWAY_SECRET_KEY}`,
+    },
     body: JSON.stringify(payload),
     signal: AbortSignal.timeout(10_000),
   });
 
   if (!upstream.ok) {
-    console.error('bun-email-api rejected the request', upstream.status, await upstream.text());
+    console.error('email-gateway rejected the request', upstream.status, await upstream.text());
     return json({ errors: [{ message: 'Sending failed. Please try again or call us.' }] }, 502);
   }
 

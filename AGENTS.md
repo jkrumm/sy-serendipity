@@ -30,7 +30,7 @@ herdr pane read <pane_id> --source recent --lines 80   # logs, incl. /api/reques
 - Local Edge Function emulation is disabled in the adapter: this site has no Edge Functions,
   and the emulator's Deno process rejects `--allow-scripts`. The request route uses a regular
   Netlify Function; production output is unaffected.
-- `/api/request` reads `BEA_BASE_URL` / `BEA_SECRET_KEY` via `astro:env/server` (schema in
+- `/api/request` reads `EMAIL_GATEWAY_URL` / `EMAIL_GATEWAY_SECRET_KEY` via `astro:env/server` (schema in
   `astro.config.ts`), sourced from `.env` (gitignored, see `.env.example`) under `astro dev`
   and from Netlify's site environment variables (scope: Functions) in production. Restart
   the pane after editing `.env`.
@@ -39,7 +39,7 @@ herdr pane read <pane_id> --source recent --lines 80   # logs, incl. /api/reques
   curl -s -X POST http://localhost:7734/api/request -H 'Content-Type: application/json' \
     -d '{"email":"test@example.com","firstName":"Test","message":"hello"}'   # → {"ok":true}
   ```
-  That sends a real mail through bun-email-api to the configured receiver.
+  That sends a real mail through email-gateway to the configured receiver.
 
 ## Validation
 
@@ -56,10 +56,10 @@ before a commit. `/check` covers them.
 - New assets: `imgcli sync <dir> sy-serendipity/` or `imgcli upload <file> sy-serendipity/`
   (see the `/img` skill), never a raw CDN path in a page.
 - The hero video still streams from ImageKit; imgproxy is image-only.
-- Charter requests: island → `/api/request` (Netlify Function) → bun-email-api
-  `POST /sy-serendipity` (repo `bun-email-api`, deployed on the VPS by RollHook on push).
+- Charter requests: island → `/api/request` (Netlify Function) → email-gateway
+  `POST /sy-serendipity` (repo `email-gateway`, deployed on the VPS by RollHook on push).
   Template lives there, not here. Receiver/sender addresses are env on the VPS
-  (`vps/apps/bun-email-api/.env.tpl`).
+  (`vps/apps/email-gateway/.env.tpl`).
 
 ## Deploy
 
@@ -67,7 +67,7 @@ Netlify. Production: `bun run deploy` (`astro build && netlify-cli deploy --prod
 --no-build`, needs `NETLIFY_AUTH_TOKEN` and a linked site). Previews build with `PREVIEW=1`
 set (`PREVIEW=1 ALIAS=<name> bun run deploy:preview`) so the Layout renders `noindex,
 nofollow` and drops the canonical link — production builds (no `PREVIEW`) are unchanged.
-→ `https://<name>--sy-serendipity.netlify.app`. `BEA_SECRET_KEY` is a Netlify site
+→ `https://<name>--sy-serendipity.netlify.app`. `EMAIL_GATEWAY_SECRET_KEY` is a Netlify site
 environment variable (scope: Functions), set in the Netlify dashboard.
 
 `/about/` is a 301 redirect to `/` — the About content (accommodation, South Pacific
