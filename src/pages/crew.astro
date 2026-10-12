@@ -11,26 +11,24 @@ import styles from './crew.module.scss';
   <PageIntro {...content.intro} />
 
   <div class={`section-shell ${styles.profiles}`}>
-    {
-      content.profiles.map((profile, index) => (
-        <section class={styles.profile} aria-labelledby={`crew-${index}`}>
-          <figure>
-            <Photo
-              {...profile.image}
-              sizes="(min-width: 900px) 400px, (min-width: 500px) 70vw, calc(100vw - 48px)"
-              eager={index === 0}
-            />
-          </figure>
-          <div class={styles.biography}>
-            <p class="eyebrow">{profile.role}</p>
-            <h2 id={`crew-${index}`}>{profile.name}</h2>
-            {profile.paragraphs.map((paragraph) => (
-              <p>{paragraph}</p>
-            ))}
-          </div>
-        </section>
-      ))
-    }
+    {content.profiles.map((profile, index) => (
+      <section class={styles.profile} aria-labelledby={`crew-${index}`}>
+        <figure>
+          <Photo
+            {...profile.image}
+            sizes="(min-width: 900px) 400px, (min-width: 500px) 70vw, calc(100vw - 48px)"
+            eager={index === 0}
+          />
+        </figure>
+        <div class={styles.biography}>
+          <p class="eyebrow">{profile.role}</p>
+          <h2 id={`crew-${index}`}>{profile.name}</h2>
+          {profile.paragraphs.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+      </section>
+    ))}
   </div>
 
   <section class={styles.dining} aria-labelledby="dining-title">

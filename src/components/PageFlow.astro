@@ -8,32 +8,31 @@ const currentIndex = pageFlow.findIndex((step) => step.href === pathname);
 const next =
   currentIndex >= 0 && currentIndex < pageFlow.length - 1 ? pageFlow[currentIndex + 1] : undefined;
 const isRequest = next?.href === '/request/';
+// The step into the request page closes the tour with a wide yacht photo.
+const photoSize = isRequest
+  ? { width: 1600, height: 800, sizes: '(min-width: 1440px) 1312px, 90vw' }
+  : { width: 640, height: 512, sizes: '(min-width: 800px) 320px, 100vw' };
 ---
 
-{
-  next?.image && (
-    <section class={`section-shell ${styles.flow}`} aria-label="Continue">
-      <a
-        href={next.href}
-        class={styles.row}
-        data-umami-event={isRequest ? 'request-cta' : undefined}
-        data-umami-event-location={isRequest ? 'page-flow' : undefined}
-      >
-        <div class={styles.media}>
-          <Photo
-            name={next.image}
-            width={640}
-            height={512}
-            sizes="(min-width: 800px) 320px, 100vw"
-            class={styles.photo}
-          />
-        </div>
-        <div class={styles.text}>
-          <p class="eyebrow">Next</p>
-          <h2 class={styles.title}>{next.label}</h2>
-          <p class={styles.blurb}>{next.blurb}</p>
-        </div>
-      </a>
-    </section>
-  )
-}
+{next?.image && (
+  <section
+    class:list={['section-shell', styles.flow, isRequest && styles.feature]}
+    aria-label="Continue"
+  >
+    <a
+      href={next.href}
+      class={styles.row}
+      data-umami-event={isRequest ? 'request-cta' : undefined}
+      data-umami-event-location={isRequest ? 'page-flow' : undefined}
+    >
+      <div class={styles.media}>
+        <Photo name={next.image} {...photoSize} class={styles.photo} />
+      </div>
+      <div class={styles.text}>
+        <p class="eyebrow">Next</p>
+        <h2 class={styles.title}>{next.label}</h2>
+        <p class={styles.blurb}>{next.blurb}</p>
+      </div>
+    </a>
+  </section>
+)}

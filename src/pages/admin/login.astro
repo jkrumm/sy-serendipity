@@ -32,31 +32,29 @@ if (Astro.request.method === 'POST' && isAuthConfigured) {
     <div class={styles.loginCard}>
       <h1>SY Serendipity I</h1>
       <p>Website overview</p>
-      {
-        isAuthConfigured ? (
-          <form method="post" action="/admin/login/">
-            {failed && (
-              <p class={styles.error} role="alert">
-                That password is not right. Please try again.
-              </p>
-            )}
-            <label for="password">Password</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autocomplete="current-password"
-              required
-            />
-            <button type="submit">Sign in</button>
-          </form>
-        ) : (
-          <p class={styles.error}>
-            The admin area is not set up yet. Set ADMIN_PASSWORD and ADMIN_SESSION_SECRET on the
-            server.
-          </p>
-        )
-      }
+      {isAuthConfigured ? (
+        <form method="post" action="/admin/login/">
+          {failed && (
+            <p class={styles.error} role="alert">
+              That password is not right. Please try again.
+            </p>
+          )}
+          <label for="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+          <button type="submit">Sign in</button>
+        </form>
+      ) : (
+        <p class={styles.error}>
+          The admin area is not set up yet. Set ADMIN_PASSWORD and ADMIN_SESSION_SECRET on the
+          server.
+        </p>
+      )}
     </div>
   </main>
 </AdminLayout>

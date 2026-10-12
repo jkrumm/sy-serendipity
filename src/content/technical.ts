@@ -8,14 +8,14 @@ export const TECHNICAL_COPY = {
   intro:
     'Serendipity I is a 45 m Perini Navi sailing yacht built in 2011, with four cabins for eight guests and a crew of seven.',
   plansEyebrow: 'General arrangement',
-  plansTitle: 'Deck plans',
+  plansTitle: 'Deck Plans',
   cockpitEyebrow: 'Navigation',
   cockpitTitle: 'Wheelhouse',
 };
 
 export const SPECIFICATIONS = [
   {
-    title: 'The yacht',
+    title: 'the yacht',
     rows: [
       { label: 'Yard', value: 'Perini Navi' },
       { label: 'Type', value: 'Sailing Yacht' },
@@ -30,7 +30,7 @@ export const SPECIFICATIONS = [
     ],
   },
   {
-    title: 'Design & construction',
+    title: 'design & construction',
     rows: [
       { label: 'Gross tonnage', value: '325' },
       { label: 'Hull', value: 'Steel' },
@@ -42,7 +42,7 @@ export const SPECIFICATIONS = [
     ],
   },
   {
-    title: 'Power & performance',
+    title: 'power & performance',
     rows: [
       { label: 'Model', value: 'C32' },
       { label: 'Engine power', value: '1100 hp' },
@@ -55,36 +55,34 @@ export const SPECIFICATIONS = [
   },
 ];
 
-type TechnicalPhoto = { name: ImageId; alt: string; caption: string };
+type TechnicalPhoto = { name: ImageId; alt: string };
+type DeckPlan = TechnicalPhoto & { caption: string };
 
 export const TECHNICAL_IMAGES = {
   profile: {
     name: 'old-technical-3',
     alt: 'Serendipity I sail profile and four deck drawings, showing the accommodation and machinery layout',
-    caption: 'Serendipity I · Profile & general arrangement',
   } satisfies TechnicalPhoto,
   plans: [
     {
       name: 'technical-1',
       alt: 'Complete general arrangement drawing of the upper deck and main deck',
-      caption: 'Upper deck & main deck',
+      caption: 'upper deck & main deck',
     },
     {
       name: 'technical-2',
       alt: 'Complete general arrangement drawing of the lower deck and below-deck spaces',
-      caption: 'Lower deck & below-deck arrangement',
+      caption: 'lower deck & below-deck arrangement',
     },
-  ] satisfies TechnicalPhoto[],
+  ] satisfies DeckPlan[],
   cockpit: [
     {
       name: 'cockpit-1',
       alt: 'Wheelhouse navigation console and seating beside the saloon',
-      caption: 'Wheelhouse',
     },
     {
       name: 'cockpit-4',
       alt: 'Engine throttle and navigation screens on the wheelhouse console',
-      caption: 'Wheelhouse console',
     },
   ] satisfies TechnicalPhoto[],
 };

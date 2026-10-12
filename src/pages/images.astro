@@ -40,14 +40,12 @@ const cards = entries.map(([id, meta]) => ({
       <h1>Image catalogue</h1>
       <p class={styles.counts}>
         {entries.length} images total —{' '}
-        {
-          FOLDERS.map((folder, index) => (
-            <>
-              {index > 0 && ', '}
-              {folder} {folderCounts.get(folder)}
-            </>
-          ))
-        }
+        {FOLDERS.map((folder, index) => (
+          <>
+            {index > 0 && ', '}
+            {folder} {folderCounts.get(folder)}
+          </>
+        ))}
       </p>
     </header>
 
@@ -60,15 +58,21 @@ const cards = entries.map(([id, meta]) => ({
       />
       <select data-filter="folder" aria-label="Folder">
         <option value="">All folders</option>
-        {FOLDERS.map((folder) => <option value={folder}>{folder}</option>)}
+        {FOLDERS.map((folder) => (
+          <option value={folder}>{folder}</option>
+        ))}
       </select>
       <select data-filter="tag" aria-label="Tag">
         <option value="">All tags</option>
-        {tags.map((tag) => <option value={tag}>{tag}</option>)}
+        {tags.map((tag) => (
+          <option value={tag}>{tag}</option>
+        ))}
       </select>
       <select data-filter="quality" aria-label="Minimum quality">
         <option value="">Any quality</option>
-        {[5, 4, 3, 2, 1].map((quality) => <option value={quality}>{quality}★ and up</option>)}
+        {[5, 4, 3, 2, 1].map((quality) => (
+          <option value={quality}>{quality}★ and up</option>
+        ))}
       </select>
       <label class={styles.usedToggle}>
         <input type="checkbox" data-filter="used" />
@@ -77,66 +81,64 @@ const cards = entries.map(([id, meta]) => ({
     </div>
 
     <div class={styles.grid} data-cards>
-      {
-        cards.map(({ id, meta, placements, thumbnail, original }) => (
-          <article
-            class={styles.card}
-            data-card
-            data-folder={meta.folder}
-            data-tags={meta.tags.join(' ')}
-            data-quality={meta.quality}
-            data-used={placements.length > 0 ? '1' : '0'}
-            data-search={`${id} ${meta.subject} ${meta.description}`.toLowerCase()}
+      {cards.map(({ id, meta, placements, thumbnail, original }) => (
+        <article
+          class={styles.card}
+          data-card
+          data-folder={meta.folder}
+          data-tags={meta.tags.join(' ')}
+          data-quality={meta.quality}
+          data-used={placements.length > 0 ? '1' : '0'}
+          data-search={`${id} ${meta.subject} ${meta.description}`.toLowerCase()}
+        >
+          <a
+            href={original}
+            target="_blank"
+            rel="noreferrer"
+            class={styles.thumbnail}
+            aria-label={`Open the original file for ${id}`}
           >
-            <a
-              href={original}
-              target="_blank"
-              rel="noreferrer"
-              class={styles.thumbnail}
-              aria-label={`Open the original file for ${id}`}
-            >
-              <img
-                src={thumbnail}
-                alt={meta.alt}
-                loading="lazy"
-                width={meta.width}
-                height={meta.height}
-                style={{ aspectRatio: `${meta.width} / ${meta.height}` }}
-              />
-            </a>
-            <div class={styles.meta}>
-              <p class={styles.id}>{id}</p>
-              <p class={styles.specs}>
-                {meta.folder} · {meta.width}×{meta.height} · {meta.orientation} · quality ★
-                {meta.quality} · {meta.bestUse}
-              </p>
-              {meta.tags.length > 0 && (
-                <ul class={styles.tags}>
-                  {meta.tags.map((tag) => (
-                    <li>{tag}</li>
+            <img
+              src={thumbnail}
+              alt={meta.alt}
+              loading="lazy"
+              width={meta.width}
+              height={meta.height}
+              style={{ aspectRatio: `${meta.width} / ${meta.height}` }}
+            />
+          </a>
+          <div class={styles.meta}>
+            <p class={styles.id}>{id}</p>
+            <p class={styles.specs}>
+              {meta.folder} · {meta.width}×{meta.height} · {meta.orientation} · quality ★
+              {meta.quality} · {meta.bestUse}
+            </p>
+            {meta.tags.length > 0 && (
+              <ul class={styles.tags}>
+                {meta.tags.map((tag) => (
+                  <li>{tag}</li>
+                ))}
+              </ul>
+            )}
+            <p class={styles.subject}>
+              <strong>{meta.subject}</strong>
+            </p>
+            <p class={styles.description}>{meta.description}</p>
+            {meta.notes && <p class={styles.notes}>{meta.notes}</p>}
+            <p class={styles.usage}>
+              Used on:{' '}
+              {placements.length === 0
+                ? 'unused'
+                : placements.map((placement, index) => (
+                    <>
+                      {index > 0 && ', '}
+                      <a href={placement.href}>{placement.label}</a>
+                    </>
                   ))}
-                </ul>
-              )}
-              <p class={styles.subject}>
-                <strong>{meta.subject}</strong>
-              </p>
-              <p class={styles.description}>{meta.description}</p>
-              {meta.notes && <p class={styles.notes}>{meta.notes}</p>}
-              <p class={styles.usage}>
-                Used on:{' '}
-                {placements.length === 0
-                  ? 'unused'
-                  : placements.map((placement, index) => (
-                      <>
-                        {index > 0 && ', '}
-                        <a href={placement.href}>{placement.label}</a>
-                      </>
-                    ))}
-              </p>
-            </div>
-          </article>
-        ))
-      }
+            </p>
+          </div>
+        </article>
+      ))}
     </div>
   </div>
 </Layout>

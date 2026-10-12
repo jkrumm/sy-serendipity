@@ -44,8 +44,7 @@ export const home = {
   hero: {
     eyebrow: '45-metre Perini Navi sailing yacht',
     title: 'Serendipity I',
-    line: 'South Pacific until summer 2028.',
-    link: 'Request a charter',
+    link: 'Request A Charter',
     desktop: {
       name: 'old-ship-16',
       alt: 'Serendipity I under full sail, cutting through the open sea',
@@ -57,7 +56,7 @@ export const home = {
   },
   introduction: {
     eyebrow: 'Perini Navi · Built in 2011',
-    title: 'Accommodation for eight guests',
+    title: 'Accommodation For Eight Guests',
     paragraphs: [
       'The yacht accommodates eight guests in four cabins. The full-beam owner’s cabin aft has a queen-size bed, walk-in closets, a desk and a large en suite.',
       'Two twin cabins convert to suit your party, while the gym becomes a fourth, small double cabin when needed. Every cabin has en suite shower facilities.',
@@ -72,16 +71,15 @@ export const home = {
       name: 'polynesia-09',
       alt: 'Serendipity I at anchor in a deep blue lagoon, a palm-fringed motu beyond',
     } satisfies HomePhoto,
-    caption: 'At anchor off a motu',
   },
   onboard: {
     eyebrow: 'On board',
-    title: 'Decks and cabins',
+    title: 'Decks And Cabins',
     body: 'The decks have seating, sunbeds and dining space, the main saloon opens onto the aft cockpit, and the full-beam owner’s cabin is aft.',
     chapters: [
       {
         number: '01',
-        title: 'Open decks',
+        title: 'open decks',
         label: 'Outdoor spaces',
         href: '/gallery/#decks',
         image: {
@@ -91,7 +89,7 @@ export const home = {
       },
       {
         number: '02',
-        title: 'Main saloon',
+        title: 'main saloon',
         label: 'Indoor living',
         href: '/gallery/#interiors',
         image: {
@@ -101,7 +99,7 @@ export const home = {
       },
       {
         number: '03',
-        title: 'Owner’s cabin',
+        title: 'owner’s cabin',
         label: 'Accommodation',
         href: '/gallery/#interiors',
         image: {
@@ -120,12 +118,9 @@ export const home = {
       'Serendipity I will sail the South Pacific until the summer of 2028. Discover the 121 islands of French Polynesia, favored for their pristine beaches and rich culture. Play with dolphins in Rangiroa’s Tiputa Pass, or have a Polynesian tattoo inked by a traditional artist.',
       'Further afield, the far-flung Marquesas Islands are the heartland of an ancient Polynesian belief system. Spiritually revived by a younger generation, temple ruins and tiki statues serve as a link to seafaring ancestors. Even today, life in the archipelago revolves around water. From the humpbacks greeting snorkellers in Moorea between mid-August and mid-October to the Olympics-worthy waves challenging surfers on Tahiti, this is a destination ruled by marine giants.',
     ],
-    openerCaption: 'Marquesas Islands, French Polynesia',
-    anchorageCaption: 'At anchor in the Marquesas Islands',
-    reefCaption: 'At anchor beside a Polynesian motu',
     tailor: {
       eyebrow: 'Cook Islands · French Polynesia · Fiji',
-      title: 'Tailor your trip',
+      title: 'Tailor Your Trip',
       destinations: [
         { place: 'Cook Islands', subject: 'Black pearls', image: HOME_TAILOR_PHOTOS.blackPearls },
         { place: 'French Polynesia', subject: 'Under sail', image: HOME_TAILOR_PHOTOS.underSail },
@@ -136,7 +131,6 @@ export const home = {
         },
       ],
       fijiEyebrow: 'Fiji',
-      fijiPhotoCaption: 'Sandbar and lagoon',
       paragraphs: [
         'There’s “off the beaten path” … and then there is this: a sailing trip to shine an inspiring new light on some truly extraordinary places, each offering its own vision of paradise on earth. In the Cook Islands, it’s black pearls and a chance to swim in clear waters alive with sea turtles and fish. The names Tahiti and Bora Bora conjure images of tropical beaches and endless coral reefs, yet there is so much more to French Polynesia than water sports and idyllic beachfront resorts. Nothing takes you deeper into the diverse cultures of this intriguing island nation, cruising to the far-flung edges of the Tuamotu, Marquesas and Society Islands to reveal local traditions, artisanal villages, uninhabited atolls and archeological finds seldom experienced by outsiders.',
         'No one sets foot on Fiji without being serenaded with the Bula Muleya, the smiling islanders’ singsong welcome, as they slip salusalu flower garlands over your head. Bula means “life”, but on this tropical archipelago in the South Pacific it’s used as a greeting and a blessing, too. Lean into the kava ceremonies, coconut bowling, and lovo cooking.',
@@ -146,13 +140,13 @@ export const home = {
   },
   crew: {
     eyebrow: 'Crew of seven',
-    title: 'Your crew',
-    body: 'Captain Scott Waterfield, Chief Stewardess Renee Weatherall and Chef Max are part of the seven-person crew. They arrange your meals, activities and excursions on board and ashore.',
+    title: 'Your Crew',
+    body: 'Captain Scott, Chief Stewardess Renée and Chef Max are part of the seven-person crew. They arrange your meals, activities and excursions on board and ashore.',
     link: 'Meet your crew',
   },
   activities: {
     eyebrow: 'Activities',
-    title: 'Water sports and fitness',
+    title: 'Water Sports And Fitness',
     body: 'Equipment is available for sailing, diving, snorkelling, paddling, water skiing and exercise on board: Seabobs, an eFoil, a Tiwal sailing dinghy, SUP boards, a kayak, wakeboard and water skis, plus yoga mats and weights on deck.',
     link: 'Explore activities',
     image: {
@@ -162,7 +156,8 @@ export const home = {
   },
   film: {
     eyebrow: 'Film',
-    title: 'Serendipity I under sail',
+    // No-break space keeps the name "Serendipity I" on one line.
+    title: 'Serendipity\u00a0I Under Sail',
     button: 'Watch the film',
     close: 'Close film',
     source: 'https://ik.imagekit.io/bgmwrkfoi/sy-serendipty-1080.mov',

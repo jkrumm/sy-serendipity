@@ -17,13 +17,13 @@ export const MAX_PORTRAIT_IMAGE = {
 export const crewImages = {
   captain: {
     name: 'crew-21',
-    alt: 'Captain Scott Waterfield on board Serendipity I',
+    alt: 'Captain Scott on board Serendipity I',
     width: 800,
     height: 1000,
   },
   chiefStewardess: {
     name: 'crew-20',
-    alt: 'Chief Stewardess Renee Weatherall on board Serendipity I',
+    alt: 'Chief Stewardess Renée on board Serendipity I',
     width: 800,
     height: 1000,
   },
@@ -42,11 +42,11 @@ export const crewContent = {
   meta: {
     title: 'Crew',
     description:
-      'Serendipity I has seven crew, including Captain Scott Waterfield, Chief Stewardess Renee Weatherall and Chef Max.',
+      'Serendipity I has seven crew, including Captain Scott, Chief Stewardess Renée and Chef Max.',
   },
   intro: {
     eyebrow: 'Serendipity I',
-    title: 'The crew',
+    title: 'The Crew',
     description:
       'Serendipity I has seven trained crew. The team provides unobtrusive service and arranges excursions and experiences around guests’ interests.',
   },
@@ -54,7 +54,7 @@ export const crewContent = {
     'Share your interests, the needs of your travel companions and any special occasions so the crew can plan suitable excursions and experiences.',
   profiles: [
     {
-      name: 'Scott Waterfield',
+      name: 'Scott',
       role: 'Captain',
       image: crewImages.captain,
       paragraphs: [
@@ -64,13 +64,13 @@ export const crewContent = {
       ],
     },
     {
-      name: 'Renee Weatherall',
+      name: 'Renée',
       role: 'Chief Stewardess',
       image: crewImages.chiefStewardess,
       paragraphs: [
-        'A Kiwi who loves travel and meeting new people, Renee grew up in a small town near the beach, where she learned to sail. While studying for her degree in visual arts, she worked in fine dining restaurants, progressing to hostess and bar manager.',
+        'A Kiwi who loves travel and meeting new people, Renée grew up in a small town near the beach, where she learned to sail. While studying for her degree in visual arts, she worked in fine dining restaurants, progressing to hostess and bar manager.',
         'That experience led naturally to life as a chief stewardess on yachts, where she strives to give every guest the highest level of service.',
-        'Away from work, Renee hikes and explores the places the yacht visits, and practises yoga and meditation. She also studies winemaking, with the ambition of becoming a sommelier.',
+        'Away from work, Renée hikes and explores the places the yacht visits, and practises yoga and meditation. She also studies winemaking, with the ambition of becoming a sommelier.',
       ],
     },
     {
@@ -85,6 +85,6 @@ export const crewContent = {
   ],
   dining: {
     eyebrow: 'Dining',
-    title: 'Meals on board',
+    title: 'Meals On Board',
   },
 };

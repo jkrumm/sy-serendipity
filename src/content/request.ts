@@ -4,12 +4,12 @@ type RequestPhoto = Omit<PhotoOptions, 'width' | 'height'> & { alt?: string };
 
 export const REQUEST_COPY = {
   eyebrow: 'Serendipity I',
-  title: 'Request a charter',
+  title: 'Request A Charter',
   description:
     'Request a charter on Serendipity I in the South Pacific until summer 2028. Contact Barbara Mueller at Ocean Independence, Palma.',
   intro:
-    'Serendipity I is sailing the South Pacific until summer 2028, including French Polynesia, the Cook Islands and Fiji. Please tell us your preferred dates and destination.',
-  formTitle: 'Charter request',
+    'Serendipity I is sailing the South Pacific until summer 2028, including French Polynesia, the Cook Islands and Fiji. Please tell us your preferred dates and where you would like to sail.',
+  formTitle: 'charter request',
   formIntro: 'Only your email address is required. All other details are optional.',
   formFallback: 'Please call Barbara to arrange your charter.',
   cruisingLabel: 'Current cruising area',
@@ -47,8 +47,6 @@ export const REQUEST_FORM_COPY = {
   required: 'Required',
   numberOfPeople: 'Guests',
   guestsPlaceholder: '1–8',
-  destination: 'Preferred destination',
-  destinationPlaceholder: 'French Polynesia, the Cook Islands, Fiji…',
   datesTitle: 'Your preferred dates',
   optional: 'Optional',
   chooseDates: 'Choose your dates',

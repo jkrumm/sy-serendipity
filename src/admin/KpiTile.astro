@@ -27,17 +27,15 @@ const spoken = { up: 'Up ', down: 'Down ', flat: 'No change, ' } as const;
 <div class={styles.kpi}>
   <p class={styles.kpiLabel}>{label}</p>
   <p class={styles.kpiValue}>{value}</p>
-  {
-    delta ? (
-      <p class:list={[styles.delta, styles[`delta-${delta.direction}`]]}>
-        <span aria-hidden="true">{arrow[delta.direction]}</span>
-        <span class="sr-only">{spoken[delta.direction]}</span>
-        {delta.text}
-        <span class={styles.deltaAgainst}> vs {against}</span>
-      </p>
-    ) : (
-      <p class={styles.deltaAgainst}>{noDelta}</p>
-    )
-  }
+  {delta ? (
+    <p class:list={[styles.delta, styles[`delta-${delta.direction}`]]}>
+      <span aria-hidden="true">{arrow[delta.direction]}</span>
+      <span class="sr-only">{spoken[delta.direction]}</span>
+      {delta.text}
+      <span class={styles.deltaAgainst}> vs {against}</span>
+    </p>
+  ) : (
+    <p class={styles.deltaAgainst}>{noDelta}</p>
+  )}
   {detail && <p class={styles.kpiDetail}>{detail}</p>}
 </div>

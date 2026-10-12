@@ -29,25 +29,21 @@ const summary = segments.map((s) => `${s.label} ${formatPercent(s.share)}`).join
 ---
 
 <div class={styles.split} role="img" aria-label={`Devices: ${summary}`}>
-  {
-    segments.map((segment) => (
-      <span
-        class={styles[`device-${segment.kind}`]}
-        style={`flex-grow: ${segment.value}`}
-        title={`${segment.label}: ${formatCount(segment.value)} (${formatPercent(segment.share)})`}
-      />
-    ))
-  }
+  {segments.map((segment) => (
+    <span
+      class={styles[`device-${segment.kind}`]}
+      style={`flex-grow: ${segment.value}`}
+      title={`${segment.label}: ${formatCount(segment.value)} (${formatPercent(segment.share)})`}
+    />
+  ))}
 </div>
 <ul class={styles.legend}>
-  {
-    segments.map((segment) => (
-      <li>
-        <span class:list={[styles.swatch, styles[`device-${segment.kind}`]]} aria-hidden="true" />
-        {segment.label}
-        <strong>{formatPercent(segment.share)}</strong>
-        <span class={styles.muted}>{formatCount(segment.value)}</span>
-      </li>
-    ))
-  }
+  {segments.map((segment) => (
+    <li>
+      <span class:list={[styles.swatch, styles[`device-${segment.kind}`]]} aria-hidden="true" />
+      {segment.label}
+      <strong>{formatPercent(segment.share)}</strong>
+      <span class={styles.muted}>{formatCount(segment.value)}</span>
+    </li>
+  ))}
 </ul>

@@ -2,21 +2,19 @@
 import { ANALYTICS } from '@/util/analytics';
 ---
 
-{
-  import.meta.env.PROD && (
-    <>
-      <script
-        is:inline
-        defer
-        src={ANALYTICS.trackerSrc}
-        data-website-id={ANALYTICS.websiteId}
-        data-domains={ANALYTICS.domains}
-        data-exclude-search="true"
-      />
-      <script is:inline defer src={ANALYTICS.recorderSrc} data-website-id={ANALYTICS.websiteId} />
-    </>
-  )
-}
+{import.meta.env.PROD && (
+  <>
+    <script
+      is:inline
+      defer
+      src={ANALYTICS.trackerSrc}
+      data-website-id={ANALYTICS.websiteId}
+      data-domains={ANALYTICS.domains}
+      data-exclude-search="true"
+    />
+    <script is:inline defer src={ANALYTICS.recorderSrc} data-website-id={ANALYTICS.websiteId} />
+  </>
+)}
 
 <script>
   import { track } from '@/util/analytics';

@@ -14,24 +14,24 @@ const links = [...navigationLinks, requestLink];
       </a>
       <div class={styles.destination}>
         <p class="eyebrow">Charter destinations</p>
-        <p>The South Pacific.<br />Until summer 2028.</p>
-        <a href="/#destinations">Explore the destinations <span aria-hidden="true">↗</span></a>
+        <p>In the Pacific</p>
+        <a href="/#destinations">
+          Explore the destinations <span aria-hidden="true">↗</span>
+        </a>
       </div>
       <nav aria-label="Footer">
         <ul>
-          {
-            links.map((link) => (
-              <li>
-                <a
-                  href={link.href}
-                  data-umami-event={link.href === requestLink.href ? 'request-cta' : undefined}
-                  data-umami-event-location={link.href === requestLink.href ? 'footer' : undefined}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))
-          }
+          {links.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                data-umami-event={link.href === requestLink.href ? 'request-cta' : undefined}
+                data-umami-event-location={link.href === requestLink.href ? 'footer' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
     </div>

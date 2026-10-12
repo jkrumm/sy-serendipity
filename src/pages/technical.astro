@@ -2,7 +2,6 @@
 import Layout from '@/layouts/Layout.astro';
 import PageIntro from '@/components/PageIntro.astro';
 import Photo from '@/components/Photo.astro';
-import CharterCta from '@/components/CharterCta.astro';
 import Facts from '@/components/Facts.astro';
 import { TECHNICAL_COPY, TECHNICAL_IMAGES, SPECIFICATIONS } from '@/content/technical';
 import { YACHT_FACTS } from '@/content/facts';
@@ -33,24 +32,21 @@ import styles from './technical.module.scss';
           loading="lazy"
           decoding="async"
         />
-        <figcaption>{TECHNICAL_IMAGES.profile.caption}</figcaption>
       </figure>
       <div class={styles.tables}>
-        {
-          SPECIFICATIONS.map(({ title, rows }) => (
-            <table>
-              <caption>{title}</caption>
-              <tbody>
-                {rows.map(({ label, value }) => (
-                  <tr>
-                    <th scope="row">{label}</th>
-                    <td>{value}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ))
-        }
+        {SPECIFICATIONS.map(({ title, rows }) => (
+          <table>
+            <caption>{title}</caption>
+            <tbody>
+              {rows.map(({ label, value }) => (
+                <tr>
+                  <th scope="row">{label}</th>
+                  <td>{value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ))}
       </div>
     </section>
     <section class={styles.deckPlans} aria-labelledby="deck-plans-title">
@@ -58,28 +54,26 @@ import styles from './technical.module.scss';
         <p class="eyebrow">{TECHNICAL_COPY.plansEyebrow}</p>
         <h2 id="deck-plans-title">{TECHNICAL_COPY.plansTitle}</h2>
       </div>
-      {
-        TECHNICAL_IMAGES.plans.map(({ name, alt, caption }, index) => (
-          <figure>
-            <img
-              src={getImg(name, 1440)}
-              srcset={[480, 800, 1200, 1600, 1920]
-                .map((size) => `${getImg(name, size)} ${size}w`)
-                .join(', ')}
-              sizes="(min-width: 1440px) 1312px, 90vw"
-              width={imageMeta(name).width}
-              height={imageMeta(name).height}
-              alt={alt}
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>
-              <span>0{index + 1}</span>
-              {caption}
-            </figcaption>
-          </figure>
-        ))
-      }
+      {TECHNICAL_IMAGES.plans.map(({ name, alt, caption }, index) => (
+        <figure>
+          <img
+            src={getImg(name, 1440)}
+            srcset={[480, 800, 1200, 1600, 1920]
+              .map((size) => `${getImg(name, size)} ${size}w`)
+              .join(', ')}
+            sizes="(min-width: 1440px) 1312px, 90vw"
+            width={imageMeta(name).width}
+            height={imageMeta(name).height}
+            alt={alt}
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            <span>0{index + 1}</span>
+            {caption}
+          </figcaption>
+        </figure>
+      ))}
     </section>
     <section class={styles.cockpit} aria-labelledby="cockpit-title">
       <div class={styles.sectionHeading}>
@@ -87,22 +81,18 @@ import styles from './technical.module.scss';
         <h2 id="cockpit-title">{TECHNICAL_COPY.cockpitTitle}</h2>
       </div>
       <div class={styles.cockpitImages}>
-        {
-          TECHNICAL_IMAGES.cockpit.map(({ name, alt, caption }) => (
-            <figure>
-              <Photo
-                name={name}
-                alt={alt}
-                width={1200}
-                height={900}
-                sizes="(min-width: 700px) 45vw, 90vw"
-              />
-              <figcaption>{caption}</figcaption>
-            </figure>
-          ))
-        }
+        {TECHNICAL_IMAGES.cockpit.map(({ name, alt }) => (
+          <figure>
+            <Photo
+              name={name}
+              alt={alt}
+              width={1200}
+              height={900}
+              sizes="(min-width: 700px) 45vw, 90vw"
+            />
+          </figure>
+        ))}
       </div>
     </section>
   </div>
-  <CharterCta />
 </Layout>

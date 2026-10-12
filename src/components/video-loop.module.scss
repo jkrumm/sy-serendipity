@@ -8,13 +8,6 @@
     object-fit: cover;
     background: var(--rule);
   }
-
-  figcaption {
-    margin-top: 12px;
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.5;
-  }
 }
 
 .play {
@@ -22,7 +15,7 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: calc(12px + 1.5em);
+  bottom: 0;
   display: grid;
   place-items: center;
   margin: auto;

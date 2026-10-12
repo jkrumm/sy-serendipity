@@ -38,16 +38,19 @@ const desktopSet = desktopWidths
   <div class={styles.content}>
     <p class="eyebrow">{hero.eyebrow}</p>
     <h1 id="hero-title">{hero.title}</h1>
-    <p class={styles.line}>{hero.line}</p>
     <div class={styles.actions}>
       <a
         href="/request/"
         class={styles.explore}
         data-umami-event="request-cta"
-        data-umami-event-location="home-hero">{hero.link}<span aria-hidden="true">↗</span></a
+        data-umami-event-location="home-hero"
       >
+        {hero.link}
+        <span aria-hidden="true">↗</span>
+      </a>
       <button type="button" class={styles.watchFilm} data-film-open aria-haspopup="dialog">
-        <span aria-hidden="true">▷</span>{home.film.button}
+        <span aria-hidden="true">▷</span>
+        {home.film.button}
       </button>
     </div>
   </div>
@@ -57,17 +60,18 @@ const desktopSet = desktopWidths
     aria-label={home.film.title}
     data-source={home.film.source}
   >
-    <button type="button" data-film-close>{home.film.close}<span aria-hidden="true">×</span></button
-    >
-    {
-      /* eslint-disable astro/jsx-a11y/media-has-caption -- Supplementary scenic film; yacht information is provided in the surrounding page text. */
-    }
+    <button type="button" data-film-close>
+      {home.film.close}
+      <span aria-hidden="true">×</span>
+    </button>
+    {/* eslint-disable astro/jsx-a11y/media-has-caption -- Supplementary scenic film; yacht information is provided in the surrounding page text. */}
     <video
       controls
       playsinline
       preload="none"
       aria-label={home.film.title}
-      data-poster={getPhoto({ ...home.film.image, width: 1280, height: 720 })}></video>
+      data-poster={getPhoto({ ...home.film.image, width: 1280, height: 720 })}
+    ></video>
     {/* eslint-enable astro/jsx-a11y/media-has-caption */}
   </dialog>
 </section>

@@ -17,16 +17,16 @@ import styles from './index.module.scss';
     <div class={styles.introCopy}>
       <p class="eyebrow">{home.introduction.eyebrow}</p>
       <h2 id="interior-title">{home.introduction.title}</h2>
-      {home.introduction.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      {home.introduction.paragraphs.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
       <div class={styles.introLinks}>
-        {
-          home.introduction.links.map((link) => (
-            <a href={link.href} class="text-link">
-              {link.label}
-              <span aria-hidden="true">↗</span>
-            </a>
-          ))
-        }
+        {home.introduction.links.map((link) => (
+          <a href={link.href} class="text-link">
+            {link.label}
+            <span aria-hidden="true">↗</span>
+          </a>
+        ))}
       </div>
     </div>
     <figure>
@@ -35,46 +35,46 @@ import styles from './index.module.scss';
         width={960}
         height={1100}
         sizes="(min-width: 800px) 49vw, 100vw"
-      /><figcaption>{home.introduction.caption}</figcaption>
+      />
     </figure>
   </section>
   <section class={styles.onboard}>
     <div class={`section-shell ${styles.sectionHeading}`}>
-      <div><p class="eyebrow">{home.onboard.eyebrow}</p><h2>{home.onboard.title}</h2></div>
+      <div>
+        <p class="eyebrow">{home.onboard.eyebrow}</p>
+        <h2>{home.onboard.title}</h2>
+      </div>
       <p>{home.onboard.body}</p>
     </div>
     <div class={`section-shell ${styles.chapters}`}>
-      {
-        home.onboard.chapters.map((chapter) => (
-          <a href={chapter.href}>
-            <>
-              <Photo
-                {...chapter.image}
-                width={1000}
-                height={780}
-                sizes="(min-width: 700px) 32vw, 100vw"
-              />
-              <div class={styles.chapterMeta}>
-                <>
-                  <span class="eyebrow">
-                    {chapter.number} / {chapter.label}
-                  </span>
-                  <span aria-hidden="true">↗</span>
-                </>
-              </div>
-              <h3>{chapter.title}</h3>
-            </>
-          </a>
-        ))
-      }
+      {home.onboard.chapters.map((chapter) => (
+        <a href={chapter.href}>
+          <>
+            <Photo
+              {...chapter.image}
+              width={1000}
+              height={780}
+              sizes="(min-width: 700px) 32vw, 100vw"
+            />
+            <div class={styles.chapterMeta}>
+              <>
+                <span class="eyebrow">
+                  {chapter.number} / {chapter.label}
+                </span>
+                <span aria-hidden="true">↗</span>
+              </>
+            </div>
+            <h3>{chapter.title}</h3>
+          </>
+        </a>
+      ))}
     </div>
   </section>
   <section class={`section-shell ${styles.destinations}`} id="destinations">
     <div class={styles.sectionHeading}>
       <div>
-        <p class="eyebrow">{home.destinations.eyebrow}</p><h2 id="cruising-title">
-          {home.destinations.title}
-        </h2>
+        <p class="eyebrow">{home.destinations.eyebrow}</p>
+        <h2 id="cruising-title">{home.destinations.title}</h2>
       </div>
       <p>{home.destinations.lead}</p>
     </div>
@@ -85,7 +85,6 @@ import styles from './index.module.scss';
         height={900}
         sizes="(min-width: 800px) min(800px, 80svh, calc(100vw - 128px)), min(800px, 80svh, calc(100vw - 48px))"
       />
-      <figcaption>{home.destinations.openerCaption}</figcaption>
     </figure>
     <div class={styles.destinationStory}>
       <figure data-image-slot="home-marquesas-anchorage">
@@ -95,11 +94,12 @@ import styles from './index.module.scss';
           height={1100}
           sizes="(min-width: 900px) 46vw, 100vw"
         />
-        <figcaption>{home.destinations.anchorageCaption}</figcaption>
       </figure>
       <div class={styles.destinationCopy}>
         <p class="eyebrow">{home.destinations.locations}</p>
-        {home.destinations.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        {home.destinations.paragraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
         <figure class={styles.reefPhoto} data-image-slot="home-reef-anchorage">
           <Photo
             {...HOME_DESTINATION_IMAGES.reefAnchorage}
@@ -107,7 +107,6 @@ import styles from './index.module.scss';
             height={720}
             sizes="(min-width: 900px) 39vw, 100vw"
           />
-          <figcaption>{home.destinations.reefCaption}</figcaption>
         </figure>
       </div>
     </div>
@@ -122,22 +121,20 @@ import styles from './index.module.scss';
     </div>
     <div class="section-shell">
       <div class={`${styles.tailorStrip} ${styles.snapStrip}`}>
-        {
-          home.destinations.tailor.destinations.map((destination) => (
-            <figure>
-              <Photo
-                {...destination.image}
-                width={800}
-                height={1000}
-                sizes="(min-width: 700px) 30vw, 72vw"
-              />
-              <figcaption class={styles.stripCaption}>
-                <span>{destination.place}</span>
-                <span class="eyebrow">{destination.subject}</span>
-              </figcaption>
-            </figure>
-          ))
-        }
+        {home.destinations.tailor.destinations.map((destination) => (
+          <figure>
+            <Photo
+              {...destination.image}
+              width={800}
+              height={1000}
+              sizes="(min-width: 700px) 30vw, 72vw"
+            />
+            <figcaption class={styles.stripCaption}>
+              <span>{destination.place}</span>
+              <span class="eyebrow">{destination.subject}</span>
+            </figcaption>
+          </figure>
+        ))}
       </div>
     </div>
     <div class={`section-shell ${styles.tailorFiji}`}>
@@ -148,55 +145,58 @@ import styles from './index.module.scss';
           height={1000}
           sizes="(min-width: 900px) 39vw, calc(100vw - 48px)"
         />
-        <figcaption>{home.destinations.tailor.fijiPhotoCaption}</figcaption>
       </figure>
       <div class={styles.tailorFijiCopy}>
         <p class="eyebrow">{home.destinations.tailor.fijiEyebrow}</p>
-        {home.destinations.tailor.paragraphs.slice(1).map((paragraph) => <p>{paragraph}</p>)}
+        {home.destinations.tailor.paragraphs.slice(1).map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
       </div>
     </div>
   </section>
   <section class={styles.crew}>
     <div class={`section-shell ${styles.sectionHeading} ${styles.crewHeading}`}>
       <div>
-        <p class="eyebrow">{home.crew.eyebrow}</p><h2>{home.crew.title}</h2>
+        <p class="eyebrow">{home.crew.eyebrow}</p>
+        <h2>{home.crew.title}</h2>
       </div>
       <div class={styles.crewHeadingCopy}>
         <p>{home.crew.body}</p>
-        <a href="/crew/" class="text-link">{home.crew.link}<span aria-hidden="true">↗</span></a>
+        <a href="/crew/" class="text-link">
+          {home.crew.link}
+          <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </div>
     <div class="section-shell">
       <div class={`${styles.crewStrip} ${styles.snapStrip}`}>
-        {
-          crewContent.profiles.map((member) => (
-            <figure>
-              <Photo
-                {...member.image}
-                width={720}
-                height={900}
-                sizes="(min-width: 700px) 30vw, 72vw"
-              />
-              <figcaption class={styles.stripCaption}>
-                <span>{member.name}</span>
-                <span class="eyebrow">{member.role}</span>
-              </figcaption>
-            </figure>
-          ))
-        }
+        {crewContent.profiles.map((member) => (
+          <figure>
+            <Photo
+              {...member.image}
+              width={720}
+              height={900}
+              sizes="(min-width: 700px) 30vw, 72vw"
+            />
+            <figcaption class={styles.stripCaption}>
+              <span>{member.name}</span>
+              <span class="eyebrow">{member.role}</span>
+            </figcaption>
+          </figure>
+        ))}
       </div>
     </div>
   </section>
   <section class={styles.activities}>
     <div class={`section-shell ${styles.activitiesInner}`}>
       <div>
-        <p class="eyebrow">{home.activities.eyebrow}</p><h2 id="activities-title">
-          {home.activities.title}
-        </h2><p>
-          {home.activities.body}
-        </p><a href="/activities/" class="text-link"
-          >{home.activities.link}<span aria-hidden="true">↗</span></a
-        >
+        <p class="eyebrow">{home.activities.eyebrow}</p>
+        <h2 id="activities-title">{home.activities.title}</h2>
+        <p>{home.activities.body}</p>
+        <a href="/activities/" class="text-link">
+          {home.activities.link}
+          <span aria-hidden="true">↗</span>
+        </a>
       </div>
       <Photo
         {...home.activities.image}
@@ -210,12 +210,14 @@ import styles from './index.module.scss';
     <Photo {...home.film.image} width={1920} height={1000} sizes="100vw" />
     <div class={styles.filmShade}></div>
     <div class={styles.filmContent}>
-      <p class="eyebrow">{home.film.eyebrow}</p><h2>{home.film.title}</h2><button
-        type="button"
-        data-film-open
-        aria-haspopup="dialog"
-        ><span class={styles.play} aria-hidden="true">▷</span>{home.film.button}</button
-      >
+      <p class="eyebrow">{home.film.eyebrow}</p>
+      <h2>{home.film.title}</h2>
+      <button type="button" data-film-open aria-haspopup="dialog">
+        <span class={styles.play} aria-hidden="true">
+          ▷
+        </span>
+        {home.film.button}
+      </button>
     </div>
   </section>
 

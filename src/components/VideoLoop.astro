@@ -15,9 +15,7 @@ const { src, poster, label, width, height, eager = false, class: className } = A
 ---
 
 <figure class:list={[styles.loop, className]}>
-  {
-    /* muted video: astro/jsx-a11y/media-has-caption does not apply (see eslint-plugin-jsx-a11y). Decorative ambient footage, described by aria-label and the figcaption. */
-  }
+  {/* muted video: astro/jsx-a11y/media-has-caption does not apply (see eslint-plugin-jsx-a11y). Decorative ambient footage, described by aria-label. */}
   <video
     muted
     playsinline
@@ -29,9 +27,11 @@ const { src, poster, label, width, height, eager = false, class: className } = A
     aria-label={label}
     data-loop-src={src}
     data-loop-eager={eager ? '' : undefined}
-    style={`aspect-ratio: ${width} / ${height};`}></video>
-  <button type="button" class={styles.play} data-loop-play hidden>Play</button>
-  <figcaption><slot /></figcaption>
+    style={`aspect-ratio: ${width} / ${height};`}
+  ></video>
+  <button type="button" class={styles.play} data-loop-play hidden>
+    Play
+  </button>
 </figure>
 
 <script>

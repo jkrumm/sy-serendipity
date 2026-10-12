@@ -15,33 +15,35 @@ const links = navigationLinks;
     </a>
     <nav class={styles.desktop} aria-label="Main">
       <ul>
-        {
-          links.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                aria-current={isActive(Astro.url.pathname, link.href) ? 'page' : undefined}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))
-        }
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              aria-current={isActive(Astro.url.pathname, link.href) ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
       </ul>
       <a
         href="/request/"
         class={`button ${styles.desktopRequest}`}
         data-umami-event="request-cta"
-        data-umami-event-location="nav">Request a charter</a
+        data-umami-event-location="nav"
       >
+        Request A Charter
+      </a>
     </nav>
     <div class={styles.mobileActions}>
       <a
         href="/request/"
         class={`button ${styles.mobileRequest}`}
         data-umami-event="request-cta"
-        data-umami-event-location="nav-mobile">Request</a
+        data-umami-event-location="nav-mobile"
       >
+        Request
+      </a>
       <button
         class={styles.menuButton}
         type="button"
@@ -56,19 +58,17 @@ const links = navigationLinks;
   </div>
   <nav id="mobile-navigation" class={styles.mobile} aria-label="Main" hidden>
     <ul>
-      {
-        links.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              aria-current={isActive(Astro.url.pathname, link.href) ? 'page' : undefined}
-            >
-              {link.label}
-              <span aria-hidden="true">↗</span>
-            </a>
-          </li>
-        ))
-      }
+      {links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            aria-current={isActive(Astro.url.pathname, link.href) ? 'page' : undefined}
+          >
+            {link.label}
+            <span aria-hidden="true">↗</span>
+          </a>
+        </li>
+      ))}
     </ul>
     <p class="eyebrow">45 metres · 8 guests · 7 crew</p>
   </nav>
@@ -87,7 +87,9 @@ const links = navigationLinks;
       label.textContent = open ? 'Close' : 'Menu';
     };
 
-    toggle.addEventListener('click', () => setOpen(menu.hidden));
+    toggle.addEventListener('click', () =>
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true'),
+    );
     menu.addEventListener('click', (event) => {
       if (event.target instanceof Element && event.target.closest('a')) setOpen(false);
     });

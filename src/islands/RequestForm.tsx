@@ -95,16 +95,6 @@ function InternationalPhoneField({
   );
 }
 
-// Destination is free text, so only a coarse bucket is ever sent to analytics.
-function destinationBucket(value: FormDataEntryValue | null) {
-  const text = typeof value === 'string' ? value.trim().toLowerCase() : '';
-  if (!text) return undefined;
-  if (/\b(polynesia|tahiti|moorea|bora|marquesas|tuamotu)\b/.test(text)) return 'french-polynesia';
-  if (/\b(cook|rarotonga|aitutaki)\b/.test(text)) return 'cook-islands';
-  if (/\bfiji\b/.test(text)) return 'fiji';
-  return 'other';
-}
-
 function getDuration(range: DateRange | undefined) {
   if (!range?.from || !range.to) return 0;
   const duration = differenceInCalendarDays(range.to, range.from) + 1;
@@ -171,9 +161,7 @@ export default function RequestForm() {
       });
       if (response.ok) {
         const guests = Number(formData.get('numberOfPeople'));
-        const destination = destinationBucket(formData.get('destination'));
         track('request-submit', {
-          ...(destination && { destination }),
           ...(guests > 0 && { guests }),
           ...(duration > 1 && { nights: duration - 1 }),
         });
@@ -295,22 +283,6 @@ export default function RequestForm() {
           />
           <FieldErrors field="numberOfPeople" errors={errors} />
         </div>
-      </div>
-      <div className={styles.field}>
-        <label htmlFor="destination">
-          {COPY.destination}
-          <span>{COPY.optional}</span>
-        </label>
-        <input
-          id="destination"
-          name="destination"
-          type="text"
-          maxLength={200}
-          placeholder={COPY.destinationPlaceholder}
-          aria-invalid={fieldHasError('destination')}
-          aria-describedby={fieldHasError('destination') ? 'destination-error' : undefined}
-        />
-        <FieldErrors field="destination" errors={errors} />
       </div>
       <div ref={dateSection} className={styles.dateSection}>
         <div className={styles.dateLabel}>

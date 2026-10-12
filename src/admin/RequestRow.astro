@@ -34,38 +34,30 @@ const phoneHref = request.phone ? `tel:${request.phone.replace(/[^\d+]/g, '')}` 
       <p class={styles.muted}>Received {formatDateTime(request.receivedAt)}</p>
       {request.message && <p class={styles.message}>{request.message}</p>}
       <dl>
-        {
-          request.email && (
-            <>
-              <dt>E-mail</dt>
-              <dd>{request.email}</dd>
-            </>
-          )
-        }
-        {
-          request.phone && (
-            <>
-              <dt>Phone</dt>
-              <dd>{request.phone}</dd>
-            </>
-          )
-        }
+        {request.email && (
+          <>
+            <dt>E-mail</dt>
+            <dd>{request.email}</dd>
+          </>
+        )}
+        {request.phone && (
+          <>
+            <dt>Phone</dt>
+            <dd>{request.phone}</dd>
+          </>
+        )}
       </dl>
       <div class={styles.actions}>
-        {
-          mailHref && (
-            <a class={styles.actionPrimary} href={mailHref}>
-              Reply by e-mail
-            </a>
-          )
-        }
-        {
-          phoneHref && (
-            <a class={styles.action} href={phoneHref}>
-              Call
-            </a>
-          )
-        }
+        {mailHref && (
+          <a class={styles.actionPrimary} href={mailHref}>
+            Reply by e-mail
+          </a>
+        )}
+        {phoneHref && (
+          <a class={styles.action} href={phoneHref}>
+            Call
+          </a>
+        )}
       </div>
     </div>
   </details>

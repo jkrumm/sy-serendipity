@@ -25,46 +25,64 @@ const company = {
     </div>
     <div class={styles.details}>
       <address>
-        {company.address.map((line) => <span>{line}</span>)}
+        {company.address.map((line) => (
+          <span>{line}</span>
+        ))}
       </address>
       <dl>
-        <div><dt>Telephone</dt><dd>{company.telephone}</dd></div>
         <div>
-          <dt>E-mail</dt><dd>
+          <dt>Telephone</dt>
+          <dd>{company.telephone}</dd>
+        </div>
+        <div>
+          <dt>E-mail</dt>
+          <dd>
             <a
               href={`mailto:${company.email}`}
               data-umami-event="email-click"
-              data-umami-event-location="legal">{company.email}</a
+              data-umami-event-location="legal"
             >
+              {company.email}
+            </a>
           </dd>
         </div>
-        <div><dt>Company registration</dt><dd>{company.registration}</dd></div>
-        <div><dt>VAT ID</dt><dd>{company.vat}</dd></div>
+        <div>
+          <dt>Company registration</dt>
+          <dd>{company.registration}</dd>
+        </div>
+        <div>
+          <dt>VAT ID</dt>
+          <dd>{company.vat}</dd>
+        </div>
       </dl>
     </div>
   </section>
   <section class={`section-shell ${styles.privacy}`} aria-labelledby="privacy-title">
     <div>
       <p class="eyebrow">Privacy</p>
-      <h2 id="privacy-title">Your data</h2>
+      <h2 id="privacy-title">Your Data</h2>
     </div>
     <div class={styles.privacyText}>
-      <h3>Who is responsible</h3>
+      <h3>who is responsible</h3>
       <p>
-        {company.name}, {company.address.join(', ')}. Contact: <a
+        {company.name}, {company.address.join(', ')}. Contact:{' '}
+        <a
           href={`mailto:${company.email}`}
           data-umami-event="email-click"
-          data-umami-event-location="legal-privacy">{company.email}</a
-        >.
+          data-umami-event-location="legal-privacy"
+        >
+          {company.email}
+        </a>
+        .
       </p>
-      <h3>Statistics</h3>
+      <h3>statistics</h3>
       <p>
         We measure visits with Umami, self-hosted by us on a server in the EU; requests to it pass
         through this website's domain. There are no cookies, no cross-site tracking and no IP
         addresses are stored. We also use anonymised session recordings and click maps, with all
         form inputs masked.
       </p>
-      <h3>Charter requests</h3>
+      <h3>charter requests</h3>
       <p>
         The details in the request form are sent by e-mail to the charter team and used only to
         answer your request.

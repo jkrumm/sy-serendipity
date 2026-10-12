@@ -46,6 +46,18 @@ herdr pane read <pane_id> --source recent --lines 80   # logs, incl. /api/reques
 `bun run check`, `bun run lint`, `bun run format:check`, `bun run build`. All four must pass
 before a commit. `/check` covers them.
 
+## Typography and copy (owner rules)
+
+- Headings use the brand font RockStar Narrow Medium (`$font-display`, as on the original site),
+  body text Brown. No serif anywhere, admin panel included.
+- Headlines (page `h1`, section `h2`, gallery chapters, "Next" titles, CTA labels) capitalise
+  every word: "Request A Charter", "Water Sports And Fitness". Subheadlines below them (card
+  titles, spec table captions, the form heading, legal `h3`) are lowercase: "open decks",
+  "the yacht", "charter request". Proper nouns keep their capitals.
+- No decorative captions under photos or videos; keep only informative ones (crew names,
+  destination names, deck-plan labels). No overlay icons on images.
+- Crew by first name only (Scott, Renée, Max).
+
 ## Images and email
 
 - Every image is one entry in `src/content/images.json` (id → folder/file/dims/alt/tags/quality,
@@ -71,8 +83,8 @@ Self-hosted Umami, cookie-free. The tracker script lives in `src/components/Anal
 with `200!`, never a wildcard. The scripts derive their endpoints from their own `src`, so a new
 Umami endpoint needs a new rule; the adapter appends the `/about/` redirect to the same
 `dist/_redirects`. Tracking only runs on the hostnames in its `data-domains`
-(`sy-serendipity.org`, `www.`, `v2--sy-serendipity.netlify.app`): a new preview alias must be
-added there. Event names are defined in the same file; the admin panel maps them to friendly
+(`sy-serendipity.org`, `www.`): previews are deliberately untracked; add an alias there only to
+debug tracking on it. Event names are defined in the same file; the admin panel maps them to friendly
 labels in `src/admin/format.ts`, so a new event needs a label there too.
 
 ## Admin panel

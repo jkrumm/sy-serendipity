@@ -15,7 +15,7 @@ export const navigationLinks = [
   { href: '/technical/', label: 'Specifications' },
 ];
 
-export const requestLink = { href: '/request/', label: 'Request a charter' };
+export const requestLink = { href: '/request/', label: 'Request A Charter' };
 
 /** Ordered "guided tour" through the site. `image` is a registry id from `images.json`
  * and is only needed on steps that can be rendered as the "next" step by `PageFlow`
@@ -38,7 +38,7 @@ export const pageFlow: PageFlowStep[] = [
     href: '/crew/',
     label: 'Crew',
     blurb:
-      'Serendipity I has seven crew, including Captain Scott Waterfield, Chief Stewardess Renee Weatherall and Chef Max.',
+      'Serendipity I has seven crew, including Captain Scott, Chief Stewardess Renée and Chef Max.',
     image: 'crew-21',
   },
   {
@@ -56,9 +56,9 @@ export const pageFlow: PageFlowStep[] = [
   },
   {
     href: '/request/',
-    label: 'Request a charter',
+    label: 'Request A Charter',
     blurb:
       'Request a charter on Serendipity I in the South Pacific until summer 2028. Contact Barbara Mueller at Ocean Independence, Palma.',
-    image: 'outside-8',
+    image: 'ship-1',
   },
 ];

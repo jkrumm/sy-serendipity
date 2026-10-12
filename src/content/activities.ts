@@ -43,7 +43,7 @@ export type ActivityLoop = {
   slug: string;
   width: number;
   height: number;
-  caption: string;
+  label: string;
 };
 
 export const activitiesLoops: ActivityLoop[] = [
@@ -51,31 +51,31 @@ export const activitiesLoops: ActivityLoop[] = [
     slug: 'yacht',
     width: 1280,
     height: 714,
-    caption: 'Drone orbit around Serendipity I at anchor in a lagoon',
+    label: 'Drone orbit around Serendipity I at anchor in a lagoon',
   },
   {
     slug: 'tender',
     width: 1280,
     height: 720,
-    caption: 'The tender crossing a lagoon channel, seen from above',
+    label: 'The tender crossing a lagoon channel, seen from above',
   },
   {
     slug: 'reef',
     width: 1280,
     height: 714,
-    caption: 'Reef sharks over coral on a dive',
+    label: 'Reef sharks over coral on a dive',
   },
   {
     slug: 'lagoon',
     width: 1280,
     height: 714,
-    caption: 'Flying over the coral patterns of a lagoon',
+    label: 'Flying over the coral patterns of a lagoon',
   },
   {
     slug: 'sunset',
     width: 1280,
     height: 720,
-    caption: 'Wading in the shallows at sunset, the anchorage behind',
+    label: 'Wading in the shallows at sunset, the anchorage behind',
   },
 ];
 
@@ -93,14 +93,14 @@ export const activitiesContent = {
   },
   film: {
     eyebrow: 'On the water',
-    title: 'Days in the South Pacific',
+    title: 'Days In The South Pacific',
     line: 'Short scenes from the 2026 season in French Polynesia.',
     toggleOn: 'Pause videos',
     toggleOff: 'Play videos',
   },
   equipment: {
     eyebrow: 'Equipment',
-    title: 'Water sports and fitness',
+    title: 'Water Sports And Fitness',
     waterLabel: 'On the water',
     waterToys: [
       'Seabobs',
@@ -123,7 +123,7 @@ export const activitiesContent = {
   },
   wellness: {
     eyebrow: 'On deck',
-    title: 'Yoga on the foredeck',
+    title: 'Yoga On The Foredeck',
     line: 'Mats and weights are on board; the foredeck under the shade sail is the usual spot.',
   },
   ashore: {

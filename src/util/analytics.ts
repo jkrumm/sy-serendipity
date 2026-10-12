@@ -9,7 +9,7 @@ export const ANALYTICS = {
   websiteId: '3e37cbbd-85d5-450c-b1d4-3c1900897644',
   trackerSrc: '/u/p.js',
   recorderSrc: '/u/recorder.js',
-  domains: 'sy-serendipity.org,www.sy-serendipity.org,v2--sy-serendipity.netlify.app',
+  domains: 'sy-serendipity.org,www.sy-serendipity.org',
 } as const;
 
 /** Event catalog. Never attach names, e-mail addresses, phone numbers or free text. */
@@ -20,7 +20,6 @@ export const ANALYTICS_EVENTS = [
   'outbound-click',
   'gallery-open',
   'gallery-chapter',
-  'slider-use',
   'request-form-start',
   'request-dates-selected',
   'request-submit',

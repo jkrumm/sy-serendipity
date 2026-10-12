@@ -2,60 +2,22 @@ import { useState } from 'react';
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 
-import { GALLERY_CHAPTERS, GALLERY_IMAGES } from '@/content/gallery';
-import { getPhoto, getPhotoSrcSet, getPhotoSrcSetEntries } from '@/util/get-image';
+import type { GalleryChapterHeading, GalleryPhoto } from '@/content/gallery';
 import { track } from '@/util/analytics';
-import { imageMeta } from '@/util/images';
 import styles from '@/pages/gallery.module.scss';
 
-const photographs = GALLERY_IMAGES.map((photo, index) => {
-  const original = imageMeta(photo.name);
+type Props = {
+  chapters: GalleryChapterHeading[];
+  photographs: GalleryPhoto[];
+};
 
-  const crop =
-    photo.layout === 'portrait'
-      ? { width: 1000, height: 1250 }
-      : photo.layout === 'full'
-        ? { width: 1600, height: 900 }
-        : { width: 1200, height: 900 };
-
-  const slideSrcSet = getPhotoSrcSetEntries({
-    name: photo.name,
-    width: original.width,
-    height: original.height,
-  });
-
-  return {
-    ...photo,
-    index,
-    number: String(index + 1).padStart(2, '0'),
-    crop,
-    thumbnail: getPhoto({ name: photo.name, width: crop.width, height: crop.height }),
-    thumbnailSrcSet: getPhotoSrcSet({
-      name: photo.name,
-      width: crop.width,
-      height: crop.height,
-    }),
-    slide: {
-      src: getPhoto({
-        name: photo.name,
-        width: original.width,
-        height: original.height,
-      }),
-      alt: photo.alt,
-      width: original.width,
-      height: original.height,
-      srcSet: slideSrcSet,
-    },
-  };
-});
-
-export default function Gallery() {
+export default function Gallery({ chapters, photographs }: Props) {
   const [lightboxIndex, setLightboxIndex] = useState(-1);
 
   return (
     <>
       <div className={styles.chapters}>
-        {GALLERY_CHAPTERS.map(({ id, title, description }, chapterIndex) => (
+        {chapters.map(({ id, title }, chapterIndex) => (
           <section
             key={id}
             id={id}
@@ -64,11 +26,8 @@ export default function Gallery() {
             aria-labelledby={`chapter-${id}`}
           >
             <div className={styles.chapterHeading}>
-              <div>
-                <p className="eyebrow">{String(chapterIndex + 1).padStart(2, '0')}</p>
-                <h2 id={`chapter-${id}`}>{title}</h2>
-              </div>
-              <p>{description}</p>
+              <p className="eyebrow">{String(chapterIndex + 1).padStart(2, '0')}</p>
+              <h2 id={`chapter-${id}`}>{title}</h2>
             </div>
             <div className={styles.imageGrid}>
               {photographs
@@ -77,6 +36,8 @@ export default function Gallery() {
                   <figure
                     key={photo.name}
                     className={styles.photo}
+                    // Layout's reveal-on-scroll script adds a `reveal` class before hydration.
+                    suppressHydrationWarning
                     data-layout={photo.layout ?? 'half'}
                   >
                     <button
@@ -102,14 +63,7 @@ export default function Gallery() {
                         fetchPriority={photo.index === 0 ? 'high' : 'auto'}
                         decoding="async"
                       />
-                      <span className={styles.openIcon} aria-hidden="true">
-                        ↗
-                      </span>
                     </button>
-                    <figcaption>
-                      <span>{photo.number}</span>
-                      <span>{photo.caption}</span>
-                    </figcaption>
                   </figure>
                 ))}
             </div>
