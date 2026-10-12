@@ -23,19 +23,18 @@
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  gap: 9px;
+  gap: 10px;
   color: $ink;
-  font-family: $font-display;
-  font-size: 15px;
-  line-height: 1;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  white-space: nowrap;
+}
 
-  img {
-    width: 24px;
-    height: auto;
-  }
+.mark {
+  width: auto;
+  height: 34px;
+}
+
+.wordmark {
+  width: auto;
+  height: 11px;
 }
 
 .desktop {
@@ -124,21 +123,24 @@
 
   .brand {
     gap: 12px;
-    font-size: 17px;
+  }
 
-    img {
-      width: 28px;
-    }
+  .mark {
+    height: 38px;
+  }
+
+  .wordmark {
+    height: 13px;
   }
 }
 
 @media (min-width: 1100px) {
-  .brand {
-    font-size: 18px;
+  .mark {
+    height: 42px;
+  }
 
-    img {
-      width: 32px;
-    }
+  .wordmark {
+    height: 14px;
   }
 
   .mobileActions,

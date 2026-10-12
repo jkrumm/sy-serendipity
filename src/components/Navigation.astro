@@ -1,5 +1,6 @@
 ---
-import { getImg } from '@/util/get-image';
+import LogoMark from '@/components/LogoMark.astro';
+import Wordmark from '@/components/Wordmark.astro';
 import { navigationLinks } from '@/content/navigation';
 import { isActive } from '@/util/is-active';
 import styles from './navigation.module.scss';
@@ -10,8 +11,8 @@ const links = navigationLinks;
 <header class={styles.header} data-site-header>
   <div class={styles.bar}>
     <a href="/" class={styles.brand} aria-label="Serendipity I — home">
-      <img src={getImg('old-logo-blue-icon', 74)} alt="" width="148" height="242" />
-      <span>Serendipity I</span>
+      <LogoMark class={styles.mark} />
+      <Wordmark class={styles.wordmark} />
     </a>
     <nav class={styles.desktop} aria-label="Main">
       <ul>

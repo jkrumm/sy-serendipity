@@ -48,10 +48,14 @@ before a commit. `/check` covers them.
 
 ## Typography and copy (owner rules)
 
-- One face everywhere: Brown, which matches the logo's wordmark (registered via the Astro Fonts
-  API in `astro.config.ts` as `--font-brown`, files in `src/assets/fonts/`). No serif, no second
-  display face, admin panel included. The yacht's name in the nav and hero is set like the logo:
-  uppercase, wide tracking. Headline sizes stay moderate; the owner found them too loud at 100 px.
+- The yacht's name in the nav and hero is the logo itself: `Wordmark.astro` / `LogoMark.astro`
+  hold the paths cut out of `all/logo-blue.svg` (no re-typesetting, never an AI redraw). Keep it
+  that way wherever the name appears as a brand mark.
+- Headings use Work Sans (OFL, `src/assets/fonts/work-sans-latin.woff2`, Latin subset, wght
+  400-600, `--font-heading`): the open typeface measured closest to the logo's letters (glyph
+  overlap vs. the logo outlines: Work Sans 0.84, Brown 0.70, Avenir 0.73, Futura 0.52). Body text
+  is Brown (`--font-brown`). Both via the Astro Fonts API in `astro.config.ts`. No serif, admin
+  panel included. Headline sizes stay moderate; the owner found them too loud at 100 px.
 - Headlines (page `h1`, section `h2`, gallery chapters, "Next" titles, CTA labels) capitalise
   every word: "Request A Charter", "Water Sports And Fitness". Subheadlines below them (card
   titles, spec table captions, the form heading, legal `h3`) are lowercase: "open decks",

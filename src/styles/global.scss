@@ -68,9 +68,10 @@ h5,
 h6 {
   color: $ink;
   font-family: $font-display;
-  font-weight: 400;
+  // 450 matches the logo's stroke-to-height ratio closest at headline sizes.
+  font-weight: 450;
   line-height: 1.1;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   text-wrap: balance;
 }
 

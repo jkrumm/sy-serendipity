@@ -35,12 +35,15 @@
   }
   h1 {
     color: inherit;
-    font-size: clamp(34px, 5.6vw, 84px);
-    line-height: 1.1;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    line-height: 1;
     margin: 25px 0 20px;
   }
+}
+// The logo's own wordmark, sized by width so it scales like an image.
+.wordmark {
+  display: block;
+  width: clamp(260px, 44vw, 620px);
+  height: auto;
 }
 .explore {
   display: inline-flex;

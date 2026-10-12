@@ -91,9 +91,26 @@ export default defineConfig({
       }),
     },
   },
-  // Brown is the brand face (it matches the logo's wordmark). The Fonts API emits @font-face,
-  // the preload and a metric-matched Arial fallback, so the swap does not shift the layout.
+  // The Fonts API emits @font-face, the preload and a metric-matched Arial fallback, so the swap
+  // does not shift the layout. Work Sans (OFL, Latin subset, wght 400-600) is the open typeface
+  // closest to the logo's lettering, measured glyph by glyph against the logo outlines; headings
+  // use it. Brown is the body face from the original site.
   fonts: [
+    {
+      provider: fontProviders.local(),
+      name: 'Work Sans',
+      cssVariable: '--font-heading',
+      fallbacks: ['Arial', 'sans-serif'],
+      options: {
+        variants: [
+          {
+            src: ['./src/assets/fonts/work-sans-latin.woff2'],
+            weight: '400 600',
+            style: 'normal',
+          },
+        ],
+      },
+    },
     {
       provider: fontProviders.local(),
       name: 'Brown',
