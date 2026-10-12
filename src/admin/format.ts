@@ -38,7 +38,7 @@ export type Delta = {
 };
 
 /** Relative change in percent; null when there is nothing to compare against. */
-export function deltaPercent(current: number, previous: number): number | null {
+function deltaPercent(current: number, previous: number): number | null {
   if (previous <= 0) return null;
   return ((current - previous) / previous) * 100;
 }
@@ -60,8 +60,6 @@ export function pointsDelta(current: number | null, previous: number | null): De
   if (current === null || previous === null) return null;
   return toDelta(current - previous, ' pts', 1);
 }
-
-export type BarItem = { label: string; value: number };
 
 /** Share of the first step, for the funnel. */
 export function funnelShares(counts: number[]): (number | null)[] {
@@ -85,14 +83,13 @@ export function pageLabel(path: string): string {
 }
 
 const EVENT_LABELS: Record<AnalyticsEvent, string> = {
-  'request-cta': "Clicked 'Request a charter'",
+  'request-cta': "Clicked 'Request A Charter'",
   'request-form-start': 'Started the request form',
   'request-dates-selected': 'Picked travel dates',
   'request-submit': 'Sent a request',
   'request-error': 'Request form error',
   'gallery-open': 'Opened a photo',
   'gallery-chapter': 'Jumped to a gallery chapter',
-  'slider-use': 'Browsed a photo slider',
   'phone-click': 'Tapped the phone number',
   'email-click': 'Tapped the e-mail address',
   'outbound-click': 'Followed an external link',

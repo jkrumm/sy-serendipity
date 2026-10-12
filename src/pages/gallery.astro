@@ -4,6 +4,7 @@ import PageIntro from '@/components/PageIntro.astro';
 import CharterCta from '@/components/CharterCta.astro';
 import Gallery from '@/islands/Gallery';
 import { GALLERY_CHAPTERS, GALLERY_COPY } from '@/content/gallery';
+import { galleryPhotographs } from '@/util/gallery-photos';
 import styles from './gallery.module.scss';
 ---
 
@@ -15,19 +16,17 @@ import styles from './gallery.module.scss';
   />
   <nav class={styles.chapterNav} aria-label="Gallery chapters" data-chapter-nav>
     <ul class="section-shell">
-      {
-        GALLERY_CHAPTERS.map(({ id, title }, index) => (
-          <li>
-            <a href={`#${id}`} data-umami-event="gallery-chapter" data-umami-event-chapter={id}>
-              {String(index + 1).padStart(2, '0')} {title}
-            </a>
-          </li>
-        ))
-      }
+      {GALLERY_CHAPTERS.map(({ id, title }, index) => (
+        <li>
+          <a href={`#${id}`} data-umami-event="gallery-chapter" data-umami-event-chapter={id}>
+            {String(index + 1).padStart(2, '0')} {title}
+          </a>
+        </li>
+      ))}
     </ul>
   </nav>
   <div class={`section-shell ${styles.gallery}`}>
-    <Gallery client:load />
+    <Gallery client:load chapters={GALLERY_CHAPTERS} photographs={galleryPhotographs} />
   </div>
   <CharterCta />
 </Layout>

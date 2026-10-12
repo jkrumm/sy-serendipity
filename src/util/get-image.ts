@@ -28,12 +28,6 @@ export function getImg(name: ImageId, width?: number, height?: number): string {
   return url([...fit({ width, height }), ...format(file)], folder, file);
 }
 
-/** Centre-cropped to exactly width x height. */
-export function getImgCropped(name: ImageId, width: number, height: number): string {
-  const { folder, file } = imageMeta(name);
-  return url([`rs:fill:${width}:${height}`, ...format(file)], folder, file);
-}
-
 /** The untransformed original file, straight off the CDN. */
 export function getOriginalUrl(name: ImageId): string {
   const { folder, file } = imageMeta(name);
