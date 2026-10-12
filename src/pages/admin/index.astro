@@ -9,6 +9,7 @@ import Panel from '@/admin/Panel.astro';
 import RequestRow from '@/admin/RequestRow.astro';
 import VisitorsChart from '@/admin/VisitorsChart.astro';
 import styles from '@/admin/admin.module.scss';
+import { getDemoAnalytics, getDemoRequests } from '@/admin/demo';
 import {
   averageVisitSeconds,
   channelLabel,
@@ -37,9 +38,12 @@ const denied = requireAdmin(Astro);
 if (denied) return denied;
 
 const range = resolveRange(parseRangeKey(Astro.url.searchParams.get('range')));
+const demo = Astro.url.searchParams.get('demo') === '1';
+const loadAnalytics = demo ? async () => getDemoAnalytics(range) : () => getAnalytics(range);
+const loadRequests = demo ? async () => getDemoRequests(range) : () => getRequests(range);
 const [analyticsResult, requestsResult] = await Promise.allSettled([
-  getAnalytics(range),
-  getRequests(range),
+  loadAnalytics(),
+  loadRequests(),
 ]);
 
 const analytics = analyticsResult.status === 'fulfilled' ? analyticsResult.value : null;
@@ -55,12 +59,15 @@ const analyticsProblem = problem(analyticsResult, 'Website statistics');
 const requestsProblem = problem(requestsResult, 'Charter requests');
 
 const UNAVAILABLE = 'This could not be loaded right now. Please try again in a moment.';
-const NO_DATA = 'Nothing here yet. This fills in as visitors arrive.';
-function listNotice(items: unknown[] | null | undefined): string | null {
-  if (analyticsProblem) return analyticsProblem;
-  if (!items) return UNAVAILABLE;
-  return items.length === 0 ? NO_DATA : null;
+/**
+ * A block shows when it has data or when its own request failed (then with a notice). Empty blocks
+ * collapse to nothing, and a failed Umami as a whole is reported once at the top instead.
+ */
+function visible(items: unknown[] | null | undefined): boolean {
+  if (analyticsProblem) return false;
+  return !items || items.length > 0;
 }
+const failed = (items: unknown): string | null => (items ? null : UNAVAILABLE);
 
 const totals = analytics?.totals ?? null;
 const requestCount = requests?.requests.length ?? null;
@@ -85,19 +92,18 @@ const chartVisitors = series?.map((point) => point.visitors) ?? [];
 const chartRequests = range.buckets.map(({ key }) => requestsPerBucket.get(key) ?? 0);
 const chartEmpty =
   chartVisitors.every((value) => value === 0) && chartRequests.every((value) => value === 0);
-const NO_VISITS = 'No visits recorded in this period yet.';
-/** First applicable message: the Umami problem, a failed block, or an empty period. */
-function blockNotice(loaded: boolean, empty: boolean): string | null {
-  if (analyticsProblem) return analyticsProblem;
-  if (!loaded) return UNAVAILABLE;
-  return empty ? NO_VISITS : null;
-}
-const chartNotice = blockNotice(series !== null, chartEmpty);
+const showChart = !analyticsProblem && (series === null || !chartEmpty);
 
 const funnel = analytics?.funnel ?? null;
 const funnelCounts = funnel?.map((step) => step.visitors) ?? [];
 const funnelPercents = funnelShares(funnelCounts);
-const funnelNotice = blockNotice(funnel !== null, funnelCounts[0] === 0);
+const showFunnel = !analyticsProblem && (funnel === null || funnelCounts[0] !== 0);
+
+const referrers = analytics?.referrers ?? [];
+// A single referrer only repeats the "links on other websites" channel row.
+const showReferrers = referrers.length > 1;
+const noVisitors = totals !== null && totals.current.visitors === 0;
+const demoSuffix = demo ? '&demo=1' : '';
 
 const live = analytics?.activeVisitors ?? 0;
 const kpiAgainst = range.previousLabel;
@@ -116,7 +122,7 @@ const unavailable = 'Not available right now';
           {
             rangeTabs().map(({ key, tab }) => (
               <a
-                href={`/admin/?range=${key}`}
+                href={`/admin/?range=${key}${demoSuffix}`}
                 aria-current={key === range.key ? 'page' : undefined}
               >
                 {tab}
@@ -136,6 +142,23 @@ const unavailable = 'Not available right now';
         </form>
       </div>
     </header>
+
+    {
+      demo && (
+        <p class={styles.banner}>
+          Example data — this is what the overview looks like once visitors arrive.{' '}
+          <a href={`/admin/?range=${range.key}`}>Show real data →</a>
+        </p>
+      )
+    }
+    {
+      !demo && noVisitors && (
+        <p class={styles.hint}>
+          <a href={`/admin/?range=${range.key}&demo=1`}>See it with example data</a>
+        </p>
+      )
+    }
+    {analyticsProblem && <p class={styles.banner}>{analyticsProblem}</p>}
 
     <section class={styles.kpis} aria-label={`Key numbers, ${range.label}`}>
       <KpiTile
@@ -176,18 +199,22 @@ const unavailable = 'Not available right now';
     </section>
 
     <div class={styles.grid}>
-      <Panel
-        title={`Visitors per ${range.unit}`}
-        hint={`In the ${range.label}`}
-        notice={chartNotice}
-      >
-        <VisitorsChart
-          buckets={range.buckets}
-          visitors={chartVisitors}
-          requests={chartRequests}
-          unit={range.unit}
-        />
-      </Panel>
+      {
+        showChart && (
+          <Panel
+            title={`Visitors per ${range.unit}`}
+            hint={`In the ${range.label}`}
+            notice={failed(series)}
+          >
+            <VisitorsChart
+              buckets={range.buckets}
+              visitors={chartVisitors}
+              requests={chartRequests}
+              unit={range.unit}
+            />
+          </Panel>
+        )
+      }
 
       <div class={styles.columns}>
         <div class={styles.col}>
@@ -222,88 +249,110 @@ const unavailable = 'Not available right now';
               )
             }
           </Panel>
-          <Panel
-            class={styles.areaFunnel}
-            title="From visit to request"
-            hint="Visitors who went on to ask for a charter, within 24 hours"
-            notice={funnelNotice}
-          >
-            <BarList
-              items={(funnel ?? []).map((step, index) => {
-                const share = funnelPercents[index];
-                const display = `${formatCount(step.visitors)}${share == null ? '' : ` · ${formatPercent(share)}`}`;
-                return { label: step.label, value: step.visitors, display };
-              })}
-              scaleTo={funnelCounts[0]}
-            />
-          </Panel>
-          <Panel
-            class={styles.areaClicks}
-            title="What visitors click"
-            notice={listNotice(analytics?.events)}
-          >
-            <BarList
-              items={(analytics?.events ?? []).slice(0, 8).map((item) => ({
-                label: eventLabel(item.key),
-                value: item.value,
-              }))}
-            />
-          </Panel>
+          {
+            showFunnel && (
+              <Panel
+                class={styles.areaFunnel}
+                title="From visit to request"
+                hint="Visitors who went on to ask for a charter, within 24 hours"
+                notice={failed(funnel)}
+              >
+                <BarList
+                  items={(funnel ?? []).map((step, index) => {
+                    const share = funnelPercents[index];
+                    const display = `${formatCount(step.visitors)}${share == null ? '' : ` · ${formatPercent(share)}`}`;
+                    return { label: step.label, value: step.visitors, display };
+                  })}
+                  scaleTo={funnelCounts[0]}
+                />
+              </Panel>
+            )
+          }
+          {
+            visible(analytics?.events) && (
+              <Panel
+                class={styles.areaClicks}
+                title="What visitors click"
+                notice={failed(analytics?.events)}
+              >
+                <BarList
+                  items={(analytics?.events ?? []).slice(0, 5).map((item) => ({
+                    label: eventLabel(item.key),
+                    value: item.value,
+                  }))}
+                />
+              </Panel>
+            )
+          }
+          {
+            visible(analytics?.devices) && (
+              <Panel class={styles.areaDevices} title="Devices" notice={failed(analytics?.devices)}>
+                <DeviceSplit devices={analytics?.devices ?? []} />
+              </Panel>
+            )
+          }
         </div>
         <div class={styles.col}>
-          <Panel
-            class={styles.areaFind}
-            title="How visitors find the site"
-            notice={listNotice(analytics?.channels)}
-          >
-            <BarList
-              items={(analytics?.channels ?? []).slice(0, 5).map((item) => ({
-                label: channelLabel(item.key),
-                value: item.value,
-              }))}
-            />
-            {
-              analytics?.referrers && analytics.referrers.length > 0 && (
-                <>
-                  <h3 class={styles.subheading}>Websites that send visitors</h3>
-                  <BarList
-                    items={analytics.referrers.slice(0, 5).map((item) => ({
-                      label: referrerLabel(item.key),
-                      value: item.value,
-                    }))}
-                  />
-                </>
-              )
-            }
-          </Panel>
-          <Panel
-            class={styles.areaCountries}
-            title="Where visitors come from"
-            notice={listNotice(analytics?.countries)}
-          >
-            <BarList
-              items={(analytics?.countries ?? []).slice(0, 6).map((item) => ({
-                label: countryName(item.key),
-                prefix: flagEmoji(item.key),
-                value: item.value,
-              }))}
-            />
-          </Panel>
-          <Panel class={styles.areaDevices} title="Devices" notice={listNotice(analytics?.devices)}>
-            <DeviceSplit devices={analytics?.devices ?? []} />
-          </Panel>
-          <Panel
-            class={styles.areaPages}
-            title="Most visited pages"
-            notice={listNotice(analytics?.pages)}
-          >
-            <BarList
-              items={(analytics?.pages ?? []).slice(0, 6).map((item) => ({
-                label: pageLabel(item.key),
-                value: item.value,
-              }))}
-            />
-          </Panel>
+          {
+            visible(analytics?.channels) && (
+              <Panel
+                class={styles.areaFind}
+                title="How visitors find the site"
+                notice={failed(analytics?.channels)}
+              >
+                <BarList
+                  items={(analytics?.channels ?? []).slice(0, 5).map((item) => ({
+                    label: channelLabel(item.key),
+                    value: item.value,
+                  }))}
+                />
+                {showReferrers && (
+                  <>
+                    <h3 class={styles.subheading}>Websites that send visitors</h3>
+                    <BarList
+                      items={referrers.slice(0, 5).map((item) => ({
+                        label: referrerLabel(item.key),
+                        value: item.value,
+                      }))}
+                    />
+                  </>
+                )}
+              </Panel>
+            )
+          }
+          {
+            visible(analytics?.countries) && (
+              <Panel
+                class={styles.areaCountries}
+                title="Where visitors come from"
+                notice={failed(analytics?.countries)}
+              >
+                <BarList
+                  items={(analytics?.countries ?? []).slice(0, 5).map((item) => ({
+                    label: countryName(item.key),
+                    prefix: flagEmoji(item.key),
+                    value: item.value,
+                  }))}
+                />
+              </Panel>
+            )
+          }
+          {
+            visible(analytics?.pages) && (
+              <Panel
+                class={styles.areaPages}
+                title="Most visited pages"
+                notice={failed(analytics?.pages)}
+              >
+                <BarList
+                  items={(analytics?.pages ?? []).slice(0, 5).map((item) => ({
+                    label: pageLabel(item.key),
+                    value: item.value,
+                  }))}
+                />
+              </Panel>
+            )
+          }
         </div>
       </div>
     </div>

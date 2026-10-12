@@ -65,7 +65,12 @@ before a commit. `/check` covers them.
 
 Self-hosted Umami, cookie-free. The tracker script lives in `src/components/Analytics.astro`
 (production builds only, not under `astro dev`); the event catalog and the website id live in
-`src/util/analytics.ts`. Tracking only runs on the hostnames in its `data-domains`
+`src/util/analytics.ts`. Tracker and recorder load same-origin from `/u/p.js` and
+`/u/recorder.js` (ad-blocker resilience): `public/_redirects` proxies exactly five paths to Umami
+(`/u/p.js`, `/u/recorder.js`, `/u/api/p`, `/u/api/record` and the website's `/u/api/websites/<id>/recorder`)
+with `200!`, never a wildcard. The scripts derive their endpoints from their own `src`, so a new
+Umami endpoint needs a new rule; the adapter appends the `/about/` redirect to the same
+`dist/_redirects`. Tracking only runs on the hostnames in its `data-domains`
 (`sy-serendipity.org`, `www.`, `v2--sy-serendipity.netlify.app`): a new preview alias must be
 added there. Event names are defined in the same file; the admin panel maps them to friendly
 labels in `src/admin/format.ts`, so a new event needs a label there too.
@@ -93,6 +98,10 @@ Zero client JS, no dependencies, the chart is server-rendered SVG. Code: `src/pa
 - Each upstream call has an 8 s timeout and the page renders with `Promise.allSettled`: if Umami
   or the gateway is down that block shows a notice, the rest still renders. Ranges are `?range=`
   `7d|30d|90d|12m` (default `30d`, Europe/Madrid days; 12m is monthly).
+- `?demo=1` (with any `range`) renders the same page from deterministic fixtures in
+  `src/admin/demo.ts` (DTO-identical to the live ones) under an "Example data" banner; an empty
+  real period offers a link to it. Real renders collapse blocks without data (only the KPI tiles
+  and the requests inbox stay), lists are capped at 5 rows.
 - Charts follow the dataviz palette (teal / brass / violet on the paper surface, validated); keep
   new series in that fixed order.
 

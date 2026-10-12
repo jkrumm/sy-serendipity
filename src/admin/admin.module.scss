@@ -70,15 +70,13 @@ $bad: #a3412d;
 .tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
-  padding: 3px;
-  border: 1px solid $rule;
-  background: $surface;
+  gap: 4px 20px;
 
   a {
-    padding: 7px 12px;
+    padding: 6px 0;
+    border-bottom: 1px solid transparent;
     color: $muted;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.2;
     white-space: nowrap;
 
@@ -87,8 +85,8 @@ $bad: #a3412d;
     }
 
     &[aria-current='page'] {
-      background: $ink;
-      color: $paper;
+      border-color: $ink;
+      color: $ink;
     }
   }
 }
@@ -97,10 +95,7 @@ $bad: #a3412d;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 12px;
-  border: 1px solid $rule;
-  border-radius: 999px;
-  background: $surface;
+  color: $muted;
   font-size: 14px;
   line-height: 1.2;
 
@@ -131,27 +126,62 @@ $bad: #a3412d;
   }
 }
 
+/* ---------- notes ---------- */
+
+.banner {
+  margin: 0 0 20px;
+  padding: 12px 16px;
+  border-left: 2px solid $accent;
+  background: $black-fade-5;
+  color: $muted;
+  font-size: 15px;
+  line-height: 1.5;
+
+  a {
+    color: $ink;
+    border-bottom: 1px solid $rule;
+    white-space: nowrap;
+
+    &:hover {
+      border-color: currentColor;
+    }
+  }
+}
+
+.hint {
+  margin: 0 0 20px;
+  font-size: 15px;
+
+  a {
+    color: $muted;
+    border-bottom: 1px solid $rule;
+
+    &:hover {
+      color: $ink;
+      border-color: currentColor;
+    }
+  }
+}
+
 /* ---------- layout ---------- */
 
 .kpis {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
+  border-top: 1px solid $rule;
 
   @media (min-width: 960px) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
-    margin-bottom: 20px;
   }
 }
 
 .grid {
   display: grid;
-  gap: 16px;
+  gap: 8px;
 
   @media (min-width: 960px) {
-    gap: 20px;
+    gap: 12px;
   }
 }
 
@@ -162,14 +192,15 @@ $bad: #a3412d;
 
   @media (min-width: 960px) {
     display: grid;
-    gap: 20px;
+    gap: 12px;
     align-content: start;
   }
 }
 
 .columns {
   @media (min-width: 960px) {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    column-gap: 56px;
     align-items: start;
   }
 }
@@ -200,21 +231,20 @@ $bad: #a3412d;
 
 .panel {
   min-width: 0;
-  padding: 18px 16px 20px;
-  border: 1px solid $rule;
-  background: $surface;
+  padding: 26px 0 24px;
+  border-top: 1px solid $rule;
 
   @media (min-width: 800px) {
-    padding: 22px 24px 26px;
+    padding: 32px 0 28px;
   }
 }
 
 .panelHeader {
-  margin-bottom: 14px;
+  margin-bottom: 20px;
 
   h2 {
-    font-size: 24px;
-    line-height: 1.15;
+    font-size: 28px;
+    line-height: 1.1;
   }
 
   p {
@@ -231,7 +261,9 @@ $bad: #a3412d;
 }
 
 .subheading {
-  margin: 20px 0 10px;
+  margin: 28px 0 14px;
+  padding-top: 18px;
+  border-top: 1px solid $rule;
   color: $muted;
   font-size: 11px;
   letter-spacing: 0.17em;
@@ -245,12 +277,15 @@ $bad: #a3412d;
   flex-direction: column;
   gap: 2px;
   min-width: 0;
-  padding: 14px 14px 16px;
-  border: 1px solid $rule;
-  background: $surface;
+  padding: 20px 12px 20px 0;
 
-  @media (min-width: 800px) {
-    padding: 18px 20px 20px;
+  @media (min-width: 960px) {
+    padding: 28px 24px 28px 0;
+
+    & + & {
+      padding-left: 24px;
+      border-left: 1px solid $rule;
+    }
   }
 
   p {
@@ -265,12 +300,13 @@ $bad: #a3412d;
 
 .kpiValue {
   color: $ink;
-  font-size: 34px;
-  line-height: 1.15;
+  font-family: $font-display;
+  font-size: 40px;
+  line-height: 1.1;
   letter-spacing: -0.02em;
 
   @media (min-width: 800px) {
-    font-size: 42px;
+    font-size: 52px;
   }
 }
 
@@ -302,9 +338,7 @@ $bad: #a3412d;
 }
 
 .kpiDetail {
-  margin-top: 6px !important;
-  padding-top: 6px;
-  border-top: 1px solid $rule;
+  margin-top: 8px !important;
   color: $muted;
   font-size: 13px;
   line-height: 1.4;
@@ -472,7 +506,7 @@ $bad: #a3412d;
 
 .barList {
   display: grid;
-  gap: 12px;
+  gap: 16px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -500,15 +534,14 @@ $bad: #a3412d;
 }
 
 .barTrack {
-  height: 8px;
-  margin-top: 5px;
+  height: 4px;
+  margin-top: 6px;
   background: $track;
 
   span {
     display: block;
     height: 100%;
     background: $series-teal;
-    border-radius: 0 4px 4px 0;
   }
 }
 

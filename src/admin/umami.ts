@@ -86,10 +86,10 @@ export async function getAnalytics(range: DateRange): Promise<AnalyticsOverview>
       fetchJson<{ visitors: number }>(`${base}/active`, key),
       metrics('channel', 10),
       metrics('referrer', 5),
-      metrics('country', 6),
+      metrics('country', 5),
       metrics('device', 10),
-      metrics('path', 6),
-      metrics('event', 10),
+      metrics('path', 5),
+      metrics('event', 5),
       get<FunnelResponse>('funnels/stats', {
         timezone: TIMEZONE,
         window: String(FUNNEL_WINDOW_MINUTES),
