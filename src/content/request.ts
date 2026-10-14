@@ -68,6 +68,6 @@ export const REQUEST_FORM_COPY = {
   successEyebrow: 'Charter request',
   successTitle: 'Request sent',
   successBody:
-    'Thank you. Barbara Mueller and the charter team will contact you about your request.',
+    'Thank you. A confirmation email is on its way, and Barbara Mueller and the charter team will contact you about your request.',
   successCall: 'Call Barbara Mueller',
 };
