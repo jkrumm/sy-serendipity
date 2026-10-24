@@ -78,7 +78,7 @@ export function getPhotoSrcSetEntries(
 ): { src: string; width: number; height: number }[] {
   const aspect = options.width / options.height;
   const maximum = photoMaximumWidth(options);
-  const widths = [390, 640, 960, 1280, 1600, 1920].filter((width) => width < maximum);
+  const widths = [390, 480, 640, 768, 960, 1280, 1600, 1920].filter((width) => width < maximum);
   widths.push(maximum);
   return widths.map((width) => ({
     src: photoUrl({ ...options, width, height: width / aspect }),
