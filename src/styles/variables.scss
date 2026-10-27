@@ -36,10 +36,9 @@ $border-strength: 1px;
 $font-monospace:
   SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 // Registered by the Fonts API in astro.config.ts: Work Sans for headings (closest to the logo's
-// lettering), Brown for text. The yacht's name itself is the logo wordmark SVG, not type.
+// lettering), Nunito Sans for text. The yacht's name itself is the logo wordmark SVG, not type.
 $font-display: var(--font-heading);
-$font-brown-bold: var(--font-brown);
-$font-brown-regular: var(--font-brown);
+$font-text: var(--font-text);
 
 /* radii */
 $radius-sm: 4px;

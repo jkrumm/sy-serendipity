@@ -54,7 +54,9 @@ before a commit. `/check` covers them.
 - Headings use Work Sans (OFL, `src/assets/fonts/work-sans-latin.woff2`, Latin subset, wght
   400-600, `--font-heading`): the open typeface measured closest to the logo's letters (glyph
   overlap vs. the logo outlines: Work Sans 0.84, Brown 0.70, Avenir 0.73, Futura 0.52). Body text
-  is Brown (`--font-brown`). Both via the Astro Fonts API in `astro.config.ts`. No serif, admin
+  is Nunito Sans (OFL, `src/assets/fonts/nunito-sans-latin.woff2`, Latin subset, wght 400-700,
+  `--font-text`), rounder and friendlier than the headings; it replaced Brown, a commercial Lineto
+  font the site never held a web licence for. Never ship a font without its licence. Both via the Astro Fonts API in `astro.config.ts`. No serif, admin
   panel included. Headline sizes stay moderate; the owner found them too loud at 100 px.
 - Headlines (page `h1`, section `h2`, gallery chapters, "Next" titles, CTA labels) capitalise
   every word: "Request A Charter", "Water Sports And Fitness". Subheadlines below them (card

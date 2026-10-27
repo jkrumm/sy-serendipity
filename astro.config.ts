@@ -96,7 +96,8 @@ export default defineConfig({
   // The Fonts API emits @font-face, the preload and a metric-matched Arial fallback, so the swap
   // does not shift the layout. Work Sans (OFL, Latin subset, wght 400-600) is the open typeface
   // closest to the logo's lettering, measured glyph by glyph against the logo outlines; headings
-  // use it. Brown is the body face from the original site.
+  // use it. Body text is Nunito Sans (OFL, Latin subset, wght 400-700): rounder and friendlier than
+  // the headings, the open replacement for the unlicensed Brown of the original site.
   fonts: [
     {
       provider: fontProviders.local(),
@@ -115,13 +116,16 @@ export default defineConfig({
     },
     {
       provider: fontProviders.local(),
-      name: 'Brown',
-      cssVariable: '--font-brown',
+      name: 'Nunito Sans',
+      cssVariable: '--font-text',
       fallbacks: ['Arial', 'sans-serif'],
       options: {
         variants: [
-          { src: ['./src/assets/fonts/brown-regular.woff2'], weight: 400, style: 'normal' },
-          { src: ['./src/assets/fonts/brown-bold.woff2'], weight: 700, style: 'normal' },
+          {
+            src: ['./src/assets/fonts/nunito-sans-latin.woff2'],
+            weight: '400 700',
+            style: 'normal',
+          },
         ],
       },
     },
