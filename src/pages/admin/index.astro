@@ -1,5 +1,10 @@
 ---
-import { EMAIL_GATEWAY_SECRET_KEY, UMAMI_URL, UMAMI_WEBSITE_ID } from 'astro:env/server';
+import {
+  BRAND_ASSETS_URL,
+  EMAIL_GATEWAY_SECRET_KEY,
+  UMAMI_URL,
+  UMAMI_WEBSITE_ID,
+} from 'astro:env/server';
 import { applyAdminHeaders, requireAdmin } from '@/admin/auth';
 import AdminLayout from '@/admin/AdminLayout.astro';
 import BarList from '@/admin/BarList.astro';
@@ -343,6 +348,9 @@ const unavailable = 'Not available right now';
       <a href={`${UMAMI_URL}/websites/${UMAMI_WEBSITE_ID}`}>
         Detailed analytics, session recordings and heatmaps →
       </a>
+      {BRAND_ASSETS_URL && (
+        <a href={BRAND_ASSETS_URL}>Photos, videos, logo, fonts and brand sheet (Dropbox) →</a>
+      )}
       <p>Data: Umami (self-hosted, cookie-free) · E-mail gateway</p>
     </footer>
   </main>
