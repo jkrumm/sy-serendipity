@@ -79,6 +79,8 @@ export default defineConfig({
         access: 'secret',
         optional: true,
       }),
+      // Shared Dropbox folder with the broker asset package; a secret because the repo is public.
+      BRAND_ASSETS_URL: envField.string({ context: 'server', access: 'secret', optional: true }),
       UMAMI_URL: envField.string({
         context: 'server',
         access: 'public',
