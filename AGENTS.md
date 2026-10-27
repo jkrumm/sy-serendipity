@@ -107,9 +107,9 @@ Zero client JS, no dependencies, the chart is server-rendered SVG. Code: `src/pa
   (`ADMIN_SESSION_SECRET`, 30 days, HttpOnly, SameSite=Lax, Path=/admin, Secure except on http).
 - Env (schema in `astro.config.ts`, all secrets `optional` so `astro build` works without them,
   the pages then say "not set up yet"): `EMAIL_GATEWAY_READ_KEY`, `UMAMI_API_KEY`,
-  `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`, `BRAND_ASSETS_URL` (the shared Dropbox folder with the
-  broker asset package, linked in the footer; secret because the repo is public); public defaults `UMAMI_URL`, `UMAMI_WEBSITE_ID`
-  (and the existing `EMAIL_GATEWAY_URL`). Netlify: site environment variables, scope Functions.
+  `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`, `BRAND_ASSETS_URL` (shared Dropbox folder with the
+  broker asset package, linked in the footer; secret because the repo is public); public defaults
+  `UMAMI_URL`, `UMAMI_WEBSITE_ID` (and the existing `EMAIL_GATEWAY_URL`). Netlify: site environment variables, scope Functions.
 - Scoped keys: email-gateway `SY_SERENDIPITY_READ_KEY` (read-only, `GET /sy-serendipity/requests`)
   → `EMAIL_GATEWAY_READ_KEY`; Umami view-only user `sy-serendipity-viewer` → `UMAMI_API_KEY`.
   Secrets: 1Password `op://common/sy-serendipity-admin` and
