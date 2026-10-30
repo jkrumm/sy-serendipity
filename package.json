@@ -4,6 +4,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "packageManager": "bun@1.4.3",
   "author": "Johannes Krumm <jkrumm@pm.me>",
   "license": "MIT",
   "homepage": "https://sy-serendipity.org/",
