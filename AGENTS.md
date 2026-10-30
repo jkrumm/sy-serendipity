@@ -43,8 +43,8 @@ herdr pane read <pane_id> --source recent --lines 80   # logs, incl. /api/reques
 
 ## Validation
 
-`bun run check`, `bun run lint`, `bun run format:check`, `bun run build`. All four must pass
-before a commit. `/check` covers them.
+`make check` (frozen install, `oxfmt --check`, `oxlint --type-aware`, `astro check`) plus
+`bun run build`. Both must pass before a commit. `/check` covers them.
 
 ## Typography and copy (owner rules)
 

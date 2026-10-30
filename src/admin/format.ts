@@ -167,7 +167,7 @@ export function countryName(code: string): string {
 export function flagEmoji(code: string): string {
   if (!/^[a-z]{2}$/i.test(code)) return '';
   return String.fromCodePoint(
-    ...[...code.toUpperCase()].map((char) => 0x1f1e6 + char.charCodeAt(0) - 65),
+    ...code.toUpperCase().split('').map((char) => 0x1f1e6 + char.charCodeAt(0) - 65),
   );
 }
 

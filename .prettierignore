@@ -1,5 +1,0 @@
-dist
-.astro
-.wrangler
-node_modules
-bun.lock

@@ -28,8 +28,8 @@ bun run dev        # https://sy-serendipity.test (Caddy) / http://localhost:7734
 bun run build      # dist/
 bun run preview
 bun run check      # astro check (types)
-bun run lint       # eslint, incl. .astro
-bun run format
+bun run lint       # oxlint --type-aware
+bun run format     # oxfmt
 ```
 
 Env:
