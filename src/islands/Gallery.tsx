@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import Lightbox from 'yet-another-react-lightbox';
-import 'yet-another-react-lightbox/styles.css';
+import { useState } from 'react'
+import Lightbox from 'yet-another-react-lightbox'
+import 'yet-another-react-lightbox/styles.css'
 
-import type { GalleryChapterHeading, GalleryPhoto } from '@/content/gallery';
-import { track } from '@/util/analytics';
-import styles from '@/pages/gallery.module.scss';
+import type { GalleryChapterHeading, GalleryPhoto } from '@/content/gallery'
+import { track } from '@/util/analytics'
+import styles from '@/pages/gallery.module.scss'
 
 type Props = {
-  chapters: GalleryChapterHeading[];
-  photographs: GalleryPhoto[];
-};
+  chapters: GalleryChapterHeading[]
+  photographs: GalleryPhoto[]
+}
 
 export default function Gallery({ chapters, photographs }: Props) {
-  const [lightboxIndex, setLightboxIndex] = useState(-1);
+  const [lightboxIndex, setLightboxIndex] = useState(-1)
 
   return (
     <>
@@ -43,8 +43,8 @@ export default function Gallery({ chapters, photographs }: Props) {
                     <button
                       type="button"
                       onClick={() => {
-                        track('gallery-open', { chapter: id, image: photo.name });
-                        setLightboxIndex(photo.index);
+                        track('gallery-open', { chapter: id, image: photo.name })
+                        setLightboxIndex(photo.index)
                       }}
                       aria-label={`View photograph ${photo.number}: ${photo.alt}`}
                     >
@@ -77,5 +77,5 @@ export default function Gallery({ chapters, photographs }: Props) {
         close={() => setLightboxIndex(-1)}
       />
     </>
-  );
+  )
 }

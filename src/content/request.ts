@@ -1,6 +1,6 @@
-import type { PhotoOptions } from '@/util/get-image';
+import type { PhotoOptions } from '@/util/get-image'
 
-type RequestPhoto = Omit<PhotoOptions, 'width' | 'height'> & { alt?: string };
+type RequestPhoto = Omit<PhotoOptions, 'width' | 'height'> & { alt?: string }
 
 export const REQUEST_COPY = {
   eyebrow: 'Serendipity I',
@@ -24,18 +24,18 @@ export const REQUEST_COPY = {
     linkLabel: 'Ocean Independence',
     logoAlt: 'Ocean Independence',
   },
-};
+}
 
 export const REQUEST_IMAGE = {
   name: 'deck-24',
   alt: 'The teak deck and polished railing beside clear turquoise water',
-} satisfies RequestPhoto;
+} satisfies RequestPhoto
 
 export const REQUEST_BROKER_IMAGE = {
   name: 'barbara-mueller',
   maxWidth: 160,
   alt: 'Barbara Mueller, Senior Charter Broker at Ocean Independence',
-} satisfies RequestPhoto;
+} satisfies RequestPhoto
 
 export const REQUEST_FORM_COPY = {
   firstName: 'First name',
@@ -70,4 +70,4 @@ export const REQUEST_FORM_COPY = {
   successBody:
     'Thank you. A confirmation email is on its way, and Barbara Mueller and the charter team will contact you about your request.',
   successCall: 'Call Barbara Mueller',
-};
+}

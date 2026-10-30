@@ -1,6 +1,6 @@
-import type { PhotoOptions } from '@/util/get-image';
+import type { PhotoOptions } from '@/util/get-image'
 
-type HomePhoto = Omit<PhotoOptions, 'width' | 'height'> & { alt?: string };
+type HomePhoto = Omit<PhotoOptions, 'width' | 'height'> & { alt?: string }
 
 export const HOME_DESTINATION_IMAGES = {
   marquesasBay: {
@@ -15,7 +15,7 @@ export const HOME_DESTINATION_IMAGES = {
     name: 'polynesia-12',
     alt: 'Serendipity I at anchor in deep blue water beside a reef-fringed Polynesian motu',
   },
-} satisfies Record<string, HomePhoto>;
+} satisfies Record<string, HomePhoto>
 
 export const HOME_TAILOR_PHOTOS = {
   sandbarAerial: {
@@ -35,7 +35,7 @@ export const HOME_TAILOR_PHOTOS = {
     name: 'nature-lagoon-shallows',
     alt: 'A small boat anchored off a palm-lined beach in a turquoise lagoon',
   },
-} satisfies Record<string, HomePhoto>;
+} satisfies Record<string, HomePhoto>
 
 export const home = {
   title: 'Private Sailing Yacht Charter',
@@ -165,4 +165,4 @@ export const home = {
       alt: 'Serendipity I sailing towards the viewer, her bow lifting through the waves',
     } satisfies HomePhoto,
   },
-};
+}

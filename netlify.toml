@@ -1,5 +1,5 @@
 # Production deploys run from GitHub Actions (.github/workflows/deploy.yml: build, then
 # netlify-cli --no-build). Netlify's own builds stay paused; these settings only matter if resumed.
 [build]
-  command = "bun run build"
-  publish = "dist"
+command = "bun run build"
+publish = "dist"

@@ -1,11 +1,11 @@
-import type { ImageId } from '@/util/images';
+import type { ImageId } from '@/util/images'
 
 type PageFlowStep = {
-  href: string;
-  label: string;
-  blurb: string;
-  image?: ImageId;
-};
+  href: string
+  label: string
+  blurb: string
+  image?: ImageId
+}
 
 export const navigationLinks = [
   { href: '/', label: 'Yacht' },
@@ -13,12 +13,12 @@ export const navigationLinks = [
   { href: '/crew/', label: 'Crew' },
   { href: '/gallery/', label: 'Gallery' },
   { href: '/technical/', label: 'Specifications' },
-];
+]
 
 /** The only place the charter window is shown (owner's call). */
-export const footerDestination = { area: 'In the Pacific', availability: 'Until summer 2028' };
+export const footerDestination = { area: 'In the Pacific', availability: 'Until summer 2028' }
 
-export const requestLink = { href: '/request/', label: 'Request A Charter' };
+export const requestLink = { href: '/request/', label: 'Request A Charter' }
 
 /** Ordered "guided tour" through the site. `image` is a registry id from `images.json`
  * and is only needed on steps that can be rendered as the "next" step by `PageFlow`
@@ -64,4 +64,4 @@ export const pageFlow: PageFlowStep[] = [
       'Request a charter on Serendipity I in the Pacific. Contact Barbara Mueller at Ocean Independence, Palma.',
     image: 'ship-1',
   },
-];
+]

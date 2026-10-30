@@ -1,35 +1,35 @@
-import { execFileSync } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process'
+import { fileURLToPath } from 'node:url'
 
-import netlify from '@astrojs/netlify';
-import react from '@astrojs/react';
-import sitemap from '@astrojs/sitemap';
-import tailwindcss from '@tailwindcss/vite';
-import { defineConfig, envField, fontProviders } from 'astro/config';
+import netlify from '@astrojs/netlify'
+import react from '@astrojs/react'
+import sitemap from '@astrojs/sitemap'
+import tailwindcss from '@tailwindcss/vite'
+import { defineConfig, envField, fontProviders } from 'astro/config'
 
-import { ANALYTICS } from './src/util/analytics';
+import { ANALYTICS } from './src/util/analytics'
 
-const site = 'https://sy-serendipity.org';
+const site = 'https://sy-serendipity.org'
 
 // PORT lets parallel worktrees run side by side (7734 is the main checkout, see the Caddyfile).
-const port = Number(process.env.PORT ?? 7734);
+const port = Number(process.env.PORT ?? 7734)
 // Leading dot = the host and every subdomain: Caddy .test doors and their tailnet mirrors.
-const allowedHosts = ['.test', '.mini.jkrumm.com'];
+const allowedHosts = ['.test', '.mini.jkrumm.com']
 
 function pageFileForUrl(url: string): string {
-  const path = new URL(url).pathname.replace(/^\/|\/$/g, '');
-  return `src/pages/${path === '' ? 'index' : path}.astro`;
+  const path = new URL(url).pathname.replace(/^\/|\/$/g, '')
+  return `src/pages/${path === '' ? 'index' : path}.astro`
 }
 
 function gitLastModified(file: string): string | undefined {
   try {
     const out = execFileSync('git', ['log', '-1', '--format=%cI', '--', file], {
       encoding: 'utf8',
-    }).trim();
-    return out || undefined;
+    }).trim()
+    return out || undefined
   } catch (error) {
-    console.warn(`[sitemap] no git lastmod for ${file} (shallow clone?)`, error);
-    return undefined;
+    console.warn(`[sitemap] no git lastmod for ${file} (shallow clone?)`, error)
+    return undefined
   }
 }
 
@@ -156,4 +156,4 @@ export default defineConfig({
       },
     },
   },
-});
+})

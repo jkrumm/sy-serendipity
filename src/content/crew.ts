@@ -1,10 +1,10 @@
-import type { PhotoOptions } from '@/util/get-image';
+import type { PhotoOptions } from '@/util/get-image'
 
 type CrewPortrait = Omit<PhotoOptions, 'width' | 'height'> & {
-  alt?: string;
-  width?: number;
-  height?: number;
-};
+  alt?: string
+  width?: number
+  height?: number
+}
 
 export const MAX_PORTRAIT_IMAGE = {
   name: 'polynesia-24',
@@ -12,7 +12,7 @@ export const MAX_PORTRAIT_IMAGE = {
   width: 800,
   height: 1000,
   gravity: 'no',
-} satisfies CrewPortrait;
+} satisfies CrewPortrait
 
 export const crewImages = {
   captain: {
@@ -36,7 +36,7 @@ export const crewImages = {
     name: 'food-16',
     alt: 'A cocktail and a selection of small bites served on deck',
   },
-} satisfies Record<string, CrewPortrait>;
+} satisfies Record<string, CrewPortrait>
 
 export const crewContent = {
   meta: {
@@ -87,4 +87,4 @@ export const crewContent = {
     eyebrow: 'Dining',
     title: 'Meals On Board',
   },
-};
+}

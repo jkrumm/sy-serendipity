@@ -1,4 +1,4 @@
-import type { ImageId } from '@/util/images';
+import type { ImageId } from '@/util/images'
 
 export const TECHNICAL_COPY = {
   eyebrow: 'Serendipity I · Perini Navi · 2011',
@@ -11,7 +11,7 @@ export const TECHNICAL_COPY = {
   plansTitle: 'Deck Plans',
   cockpitEyebrow: 'Navigation',
   cockpitTitle: 'Wheelhouse',
-};
+}
 
 export const SPECIFICATIONS = [
   {
@@ -53,10 +53,10 @@ export const SPECIFICATIONS = [
       { label: 'Water capacity', value: '8,200 L' },
     ],
   },
-];
+]
 
-type TechnicalPhoto = { name: ImageId; alt: string };
-type DeckPlan = TechnicalPhoto & { caption: string };
+type TechnicalPhoto = { name: ImageId; alt: string }
+type DeckPlan = TechnicalPhoto & { caption: string }
 
 export const TECHNICAL_IMAGES = {
   profile: {
@@ -85,4 +85,4 @@ export const TECHNICAL_IMAGES = {
       alt: 'Engine throttle and navigation screens on the wheelhouse console',
     },
   ] satisfies TechnicalPhoto[],
-};
+}

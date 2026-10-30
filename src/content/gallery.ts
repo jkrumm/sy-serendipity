@@ -1,4 +1,4 @@
-import type { ImageId } from '@/util/images';
+import type { ImageId } from '@/util/images'
 
 export const GALLERY_COPY = {
   eyebrow: 'Serendipity I',
@@ -6,12 +6,17 @@ export const GALLERY_COPY = {
   description:
     'Photographs of Serendipity I, including the decks, interiors, dining and activities.',
   intro: 'View the yacht, outdoor spaces, guest accommodation, food and activities on board.',
-};
+}
 
 export type GalleryChapter =
-  'yacht' | 'south-pacific' | 'decks' | 'interiors' | 'cuisine' | 'activities';
+  | 'yacht'
+  | 'south-pacific'
+  | 'decks'
+  | 'interiors'
+  | 'cuisine'
+  | 'activities'
 
-export type GalleryChapterHeading = { id: GalleryChapter; title: string };
+export type GalleryChapterHeading = { id: GalleryChapter; title: string }
 
 export const GALLERY_CHAPTERS: GalleryChapterHeading[] = [
   { id: 'yacht', title: 'The Yacht' },
@@ -20,30 +25,30 @@ export const GALLERY_CHAPTERS: GalleryChapterHeading[] = [
   { id: 'interiors', title: 'Interiors' },
   { id: 'cuisine', title: 'Cuisine' },
   { id: 'activities', title: 'Activities' },
-];
+]
 
 export type PhotoChoice = {
-  name: ImageId;
-  chapter: GalleryChapter;
-  alt: string;
-  layout?: 'full' | 'portrait' | 'companion';
-};
+  name: ImageId
+  chapter: GalleryChapter
+  alt: string
+  layout?: 'full' | 'portrait' | 'companion'
+}
 
 /** A gallery photo with its URLs resolved at render time (`src/util/gallery-photos.ts`). */
 export type GalleryPhoto = PhotoChoice & {
-  index: number;
-  number: string;
-  crop: { width: number; height: number };
-  thumbnail: string;
-  thumbnailSrcSet: string;
+  index: number
+  number: string
+  crop: { width: number; height: number }
+  thumbnail: string
+  thumbnailSrcSet: string
   slide: {
-    src: string;
-    alt: string;
-    width: number;
-    height: number;
-    srcSet: { src: string; width: number; height: number }[];
-  };
-};
+    src: string
+    alt: string
+    width: number
+    height: number
+    srcSet: { src: string; width: number; height: number }[]
+  }
+}
 
 export const GALLERY_IMAGES: PhotoChoice[] = [
   // Yacht
@@ -341,4 +346,4 @@ export const GALLERY_IMAGES: PhotoChoice[] = [
     alt: 'The RIB tender speeding across the lagoon with an island and reef beyond',
     layout: 'full',
   },
-];
+]

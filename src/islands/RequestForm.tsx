@@ -1,26 +1,26 @@
-import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
-import type { SubmitEvent } from 'react';
-import { differenceInCalendarDays } from 'date-fns';
-import { DayPicker } from 'react-day-picker';
-import type { DateRange } from 'react-day-picker';
-import 'react-day-picker/style.css';
-import { defaultCountries, parseCountry, usePhoneInput } from 'react-international-phone';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import type { SubmitEvent } from 'react'
+import { differenceInCalendarDays } from 'date-fns'
+import { DayPicker } from 'react-day-picker'
+import type { DateRange } from 'react-day-picker'
+import 'react-day-picker/style.css'
+import { defaultCountries, parseCountry, usePhoneInput } from 'react-international-phone'
 
-import { track } from '@/util/analytics';
-import { REQUEST_COPY, REQUEST_FORM_COPY as COPY } from '@/content/request';
-import styles from '@/pages/request.module.scss';
+import { track } from '@/util/analytics'
+import { REQUEST_COPY, REQUEST_FORM_COPY as COPY } from '@/content/request'
+import styles from '@/pages/request.module.scss'
 
-const FORM_ENDPOINT = '/api/request';
-const subscribeToHydration = () => () => {};
-const getClientReady = () => true;
-const getServerReady = () => false;
+const FORM_ENDPOINT = '/api/request'
+const subscribeToHydration = () => () => {}
+const getClientReady = () => true
+const getServerReady = () => false
 const dateFormatter = new Intl.DateTimeFormat('en-GB', {
   day: 'numeric',
   month: 'short',
   year: 'numeric',
-});
+})
 
-type FieldError = { field?: string; message: string };
+type FieldError = { field?: string; message: string }
 
 function parseErrors(data: unknown): FieldError[] {
   if (
@@ -29,41 +29,41 @@ function parseErrors(data: unknown): FieldError[] {
     !('errors' in data) ||
     !Array.isArray(data.errors)
   ) {
-    return [{ message: COPY.submissionError }];
+    return [{ message: COPY.submissionError }]
   }
   const errors = data.errors.filter(
     (error): error is FieldError =>
       typeof error === 'object' && error !== null && typeof error.message === 'string',
-  );
-  return errors.length ? errors : [{ message: COPY.submissionError }];
+  )
+  return errors.length ? errors : [{ message: COPY.submissionError }]
 }
 
 function FieldErrors({ field, errors }: { field: string; errors: FieldError[] }) {
-  const matching = errors.filter((error) => error.field === field);
-  if (!matching.length) return null;
+  const matching = errors.filter((error) => error.field === field)
+  if (!matching.length) return null
   return (
     <p id={`${field}-error`} className={styles.fieldError}>
       {matching.map((error) => error.message).join(' ')}
     </p>
-  );
+  )
 }
 
-const phoneCountries = defaultCountries.map(parseCountry);
+const phoneCountries = defaultCountries.map(parseCountry)
 
 function InternationalPhoneField({
   value,
   onChange,
   invalid,
 }: {
-  value: string;
-  onChange: (phone: string) => void;
-  invalid: boolean;
+  value: string
+  onChange: (phone: string) => void
+  invalid: boolean
 }) {
   const { inputValue, handlePhoneValueChange, inputRef, country, setCountry } = usePhoneInput({
     defaultCountry: 'gb',
     value,
     onChange: ({ phone }) => onChange(phone),
-  });
+  })
 
   return (
     <div className={styles.phoneFields}>
@@ -92,92 +92,92 @@ function InternationalPhoneField({
         aria-describedby={invalid ? 'phone-error' : undefined}
       />
     </div>
-  );
+  )
 }
 
 function getDuration(range: DateRange | undefined) {
-  if (!range?.from || !range.to) return 0;
-  const duration = differenceInCalendarDays(range.to, range.from) + 1;
-  return duration > 1 ? duration : 0;
+  if (!range?.from || !range.to) return 0
+  const duration = differenceInCalendarDays(range.to, range.from) + 1
+  return duration > 1 ? duration : 0
 }
 
 export default function RequestForm() {
-  const [range, setRange] = useState<DateRange | undefined>();
-  const [phoneEnabled, setPhoneEnabled] = useState(false);
-  const [phone, setPhone] = useState('');
-  const [submitting, setSubmitting] = useState(false);
-  const ready = useSyncExternalStore(subscribeToHydration, getClientReady, getServerReady);
-  const [succeeded, setSucceeded] = useState(false);
-  const [errors, setErrors] = useState<FieldError[]>([]);
-  const [numberOfMonths, setNumberOfMonths] = useState(1);
-  const dateSection = useRef<HTMLDivElement>(null);
-  const feedback = useRef<HTMLDivElement>(null);
-  const started = useRef(false);
-  const duration = getDuration(range);
+  const [range, setRange] = useState<DateRange | undefined>()
+  const [phoneEnabled, setPhoneEnabled] = useState(false)
+  const [phone, setPhone] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const ready = useSyncExternalStore(subscribeToHydration, getClientReady, getServerReady)
+  const [succeeded, setSucceeded] = useState(false)
+  const [errors, setErrors] = useState<FieldError[]>([])
+  const [numberOfMonths, setNumberOfMonths] = useState(1)
+  const dateSection = useRef<HTMLDivElement>(null)
+  const feedback = useRef<HTMLDivElement>(null)
+  const started = useRef(false)
+  const duration = getDuration(range)
 
   useEffect(() => {
-    const element = dateSection.current;
-    if (!element) return;
+    const element = dateSection.current
+    if (!element) return
     const observer = new ResizeObserver(([entry]) => {
-      if (entry) setNumberOfMonths(entry.contentRect.width >= 650 ? 2 : 1);
-    });
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
+      if (entry) setNumberOfMonths(entry.contentRect.width >= 650 ? 2 : 1)
+    })
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
-    if (succeeded || errors.length) feedback.current?.focus();
-  }, [succeeded, errors]);
+    if (succeeded || errors.length) feedback.current?.focus()
+  }, [succeeded, errors])
 
   function fieldHasError(field: string) {
-    return errors.some((error) => error.field === field);
+    return errors.some((error) => error.field === field)
   }
 
   function handleStart() {
-    if (started.current) return;
-    started.current = true;
-    track('request-form-start');
+    if (started.current) return
+    started.current = true
+    track('request-form-start')
   }
 
   function handleSelect(next: DateRange | undefined) {
-    setRange(next);
-    if (!next?.from || !next.to) return;
-    const nights = differenceInCalendarDays(next.to, next.from);
-    if (nights > 0) track('request-dates-selected', { nights });
+    setRange(next)
+    if (!next?.from || !next.to) return
+    const nights = differenceInCalendarDays(next.to, next.from)
+    if (nights > 0) track('request-dates-selected', { nights })
   }
 
   async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (submitting) return;
-    const formData = new FormData(event.currentTarget);
-    setSubmitting(true);
-    setErrors([]);
+    event.preventDefault()
+    if (submitting) return
+    const formData = new FormData(event.currentTarget)
+    setSubmitting(true)
+    setErrors([])
 
     try {
       const response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(Object.fromEntries(formData)),
-      });
+      })
       if (response.ok) {
-        const guests = Number(formData.get('numberOfPeople'));
+        const guests = Number(formData.get('numberOfPeople'))
         track('request-submit', {
           ...(guests > 0 && { guests }),
           ...(duration > 1 && { nights: duration - 1 }),
-        });
-        setSucceeded(true);
-        return;
+        })
+        setSucceeded(true)
+        return
       }
       track('request-error', {
         kind: response.status === 400 || response.status === 422 ? 'validation' : 'server',
-      });
-      const data: unknown = await response.json().catch(() => null);
-      setErrors(parseErrors(data));
+      })
+      const data: unknown = await response.json().catch(() => null)
+      setErrors(parseErrors(data))
     } catch {
-      track('request-error', { kind: 'network' });
-      setErrors([{ message: COPY.connectionError }]);
+      track('request-error', { kind: 'network' })
+      setErrors([{ message: COPY.connectionError }])
     } finally {
-      setSubmitting(false);
+      setSubmitting(false)
     }
   }
 
@@ -197,7 +197,7 @@ export default function RequestForm() {
           <span aria-hidden="true">↗</span>
         </a>
       </div>
-    );
+    )
   }
 
   return (
@@ -394,5 +394,5 @@ export default function RequestForm() {
         <span aria-hidden="true">↗</span>
       </button>
     </form>
-  );
+  )
 }

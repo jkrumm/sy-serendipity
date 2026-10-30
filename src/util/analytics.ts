@@ -10,7 +10,7 @@ export const ANALYTICS = {
   trackerSrc: '/u/p.js',
   recorderSrc: '/u/recorder.js',
   domains: 'sy-serendipity.org,www.sy-serendipity.org',
-} as const;
+} as const
 
 /** Event catalog. Never attach names, e-mail addresses, phone numbers or free text. */
 export const ANALYTICS_EVENTS = [
@@ -24,17 +24,17 @@ export const ANALYTICS_EVENTS = [
   'request-dates-selected',
   'request-submit',
   'request-error',
-] as const;
+] as const
 
-export type AnalyticsEvent = (typeof ANALYTICS_EVENTS)[number];
+export type AnalyticsEvent = (typeof ANALYTICS_EVENTS)[number]
 
 declare global {
   interface Window {
-    umami?: { track: (event: string, data?: Record<string, string | number>) => void };
+    umami?: { track: (event: string, data?: Record<string, string | number>) => void }
   }
 }
 
 export function track(event: AnalyticsEvent, data?: Record<string, string | number>) {
-  if (typeof window === 'undefined') return;
-  window.umami?.track(event, data);
+  if (typeof window === 'undefined') return
+  window.umami?.track(event, data)
 }

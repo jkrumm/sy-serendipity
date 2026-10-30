@@ -1,6 +1,6 @@
-import type { PhotoOptions } from '@/util/get-image';
+import type { PhotoOptions } from '@/util/get-image'
 
-type ActivityPhoto = Omit<PhotoOptions, 'width' | 'height'> & { alt?: string };
+type ActivityPhoto = Omit<PhotoOptions, 'width' | 'height'> & { alt?: string }
 
 export const activitiesImages = {
   seabob: {
@@ -37,14 +37,14 @@ export const activitiesImages = {
     gravity: 'fp:0.3:0.6',
     alt: 'Aerial view of Serendipity I anchored beside a coral reef and a palm-covered motu',
   },
-} satisfies Record<string, ActivityPhoto>;
+} satisfies Record<string, ActivityPhoto>
 
 export type ActivityLoop = {
-  slug: string;
-  width: number;
-  height: number;
-  label: string;
-};
+  slug: string
+  width: number
+  height: number
+  label: string
+}
 
 export const activitiesLoops: ActivityLoop[] = [
   {
@@ -77,7 +77,7 @@ export const activitiesLoops: ActivityLoop[] = [
     height: 720,
     label: 'Wading in the shallows at sunset, the anchorage behind',
   },
-];
+]
 
 export const activitiesContent = {
   meta: {
@@ -143,4 +143,4 @@ export const activitiesContent = {
       href: '/#destinations',
     },
   },
-};
+}

@@ -1,22 +1,22 @@
-import { GALLERY_IMAGES, type GalleryPhoto } from '@/content/gallery';
-import { getPhoto, getPhotoSrcSet, getPhotoSrcSetEntries } from '@/util/get-image';
-import { imageMeta } from '@/util/images';
+import { GALLERY_IMAGES, type GalleryPhoto } from '@/content/gallery'
+import { getPhoto, getPhotoSrcSet, getPhotoSrcSetEntries } from '@/util/get-image'
+import { imageMeta } from '@/util/images'
 
 export const galleryPhotographs: GalleryPhoto[] = GALLERY_IMAGES.map((photo, index) => {
-  const original = imageMeta(photo.name);
+  const original = imageMeta(photo.name)
 
   const crop =
     photo.layout === 'portrait'
       ? { width: 1000, height: 1250 }
       : photo.layout === 'full'
         ? { width: 1600, height: 900 }
-        : { width: 1200, height: 900 };
+        : { width: 1200, height: 900 }
 
   const slideSrcSet = getPhotoSrcSetEntries({
     name: photo.name,
     width: original.width,
     height: original.height,
-  });
+  })
 
   return {
     ...photo,
@@ -40,5 +40,5 @@ export const galleryPhotographs: GalleryPhoto[] = GALLERY_IMAGES.map((photo, ind
       height: original.height,
       srcSet: slideSrcSet,
     },
-  };
-});
+  }
+})

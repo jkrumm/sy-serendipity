@@ -1,17 +1,16 @@
 {
   "name": "sy-serendipity",
-  "description": "SY Serendipity - Charter Sailing Yacht - Set Sails. Now.",
-  "private": true,
   "version": "1.0.0",
-  "type": "module",
-  "packageManager": "bun@1.4.3",
-  "author": "Johannes Krumm <jkrumm@pm.me>",
-  "license": "MIT",
+  "private": true,
+  "description": "SY Serendipity - Charter Sailing Yacht - Set Sails. Now.",
   "homepage": "https://sy-serendipity.org/",
+  "license": "MIT",
+  "author": "Johannes Krumm <jkrumm@pm.me>",
   "repository": {
     "type": "git",
     "url": "https://github.com/jkrumm/sy-serendipity"
   },
+  "type": "module",
   "scripts": {
     "dev": "bunx kill-port ${PORT:-7734} && astro dev",
     "build": "astro build",
@@ -23,9 +22,6 @@
     "format:check": "oxfmt --check .",
     "deploy": "astro build && bunx netlify-cli@27.12.0 deploy --prod --dir=dist --no-build",
     "lint:fix": "oxlint --type-aware --fix ."
-  },
-  "engines": {
-    "bun": ">=1.3.0"
   },
   "dependencies": {
     "@astrojs/netlify": "8.2.9",
@@ -50,5 +46,9 @@
     "oxlint-tsgolint": "7.0.2005",
     "sass-embedded": "1.105.1",
     "typescript": "6.0.3"
-  }
+  },
+  "engines": {
+    "bun": ">=1.3.0"
+  },
+  "packageManager": "bun@1.4.3"
 }
