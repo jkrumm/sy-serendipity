@@ -5,19 +5,29 @@ Marketing site for the charter yacht SY Serendipity I. Astro 7, `output: 'static
 SCSS modules. README.md has the stack table and layout; this file only carries what changes
 how you work here.
 
-## Dev server runs in a herdr pane — you start it
+## Dev server runs in an hc terminal — you start it
 
 Overrides the global "never start dev servers" rule for this repo, by explicit request:
 the agent owns the dev server so it can read its logs and hit the routes itself.
 
 ```bash
-herdr pane list                                   # is a pane labelled "sy-serendipity dev" alive?
-herdr pane split --current --direction right --ratio 0.35 --cwd "$PWD" --no-focus   # → pane_id
-herdr pane rename <pane_id> "sy-serendipity dev"
-herdr pane run <pane_id> 'bun run dev'
-herdr pane wait-output <pane_id> --regex 'Local|localhost:7734' --timeout 60000
-herdr pane read <pane_id> --source recent --lines 80   # logs, incl. /api/request errors
+hc get sy-dev                                     # alive? (state: live; not_found = start it)
+hc run --bg --no-notify --name sy-dev --cwd "$PWD" 'bun run dev'
+hc wait sy-dev --output localhost:7734 --timeout 60   # plain text, not a regex; also ends if it exits
+hc read sy-dev --lines 80                         # logs, incl. /api/request errors
+hc kill sy-dev && hc rm sy-dev                    # stop it (the port is free afterwards)
 ```
+
+Start `wait` right after `run`: output printed before the wait began does not match (it times
+out; `hc read` shows whether the server is up). A different port goes in the command:
+`'PORT=7735 bun run dev'` and `localhost:7735`.
+
+<!-- TODO(Wave 7): drop classic -->
+
+Still on classic herdr (no `hc`): `herdr pane split --current --direction right --ratio 0.35 --cwd "$PWD" --no-focus`
+→ `pane_id`, then `herdr pane rename <id> "sy-serendipity dev"`, `herdr pane run <id> 'bun run dev'`,
+`herdr pane wait-output <id> --regex 'Local|localhost:7734' --timeout 60000`,
+`herdr pane read <id> --source recent --lines 80`.
 
 - Port is **7734** by default, `strictPort`; `PORT=7735 bun run dev` moves it (the kill-port
   in `dev`/`preview` follows). Parallel worktrees each take their own port and Caddy block:
@@ -33,7 +43,7 @@ herdr pane read <pane_id> --source recent --lines 80   # logs, incl. /api/reques
 - `/api/request` reads `EMAIL_GATEWAY_URL` / `EMAIL_GATEWAY_SECRET_KEY` via `astro:env/server` (schema in
   `astro.config.ts`), sourced from `.env` (gitignored, see `.env.example`) under `astro dev`
   and from Netlify's site environment variables (scope: Functions) in production. Restart
-  the pane after editing `.env`.
+  the dev terminal after editing `.env`.
 - Verify the form end to end:
   ```bash
   curl -s -X POST http://localhost:7734/api/request -H 'Content-Type: application/json' \
