@@ -22,13 +22,6 @@ Start `wait` right after `run`: output printed before the wait began does not ma
 out; `hc read` shows whether the server is up). A different port goes in the command:
 `'PORT=7735 bun run dev'` and `localhost:7735`.
 
-<!-- TODO(Wave 7): drop classic -->
-
-Still on classic herdr (no `hc`): `herdr pane split --current --direction right --ratio 0.35 --cwd "$PWD" --no-focus`
-→ `pane_id`, then `herdr pane rename <id> "sy-serendipity dev"`, `herdr pane run <id> 'bun run dev'`,
-`herdr pane wait-output <id> --regex 'Local|localhost:7734' --timeout 60000`,
-`herdr pane read <id> --source recent --lines 80`.
-
 - Port is **7734** by default, `strictPort`; `PORT=7735 bun run dev` moves it (the kill-port
   in `dev`/`preview` follows). Parallel worktrees each take their own port and Caddy block:
   `sy-serendipity-fable.test` → 7735, `sy-serendipity-codex.test` → 7736.
